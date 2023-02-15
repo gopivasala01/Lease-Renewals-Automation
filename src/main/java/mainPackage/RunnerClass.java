@@ -38,7 +38,7 @@ public class RunnerClass
 	public static String failedReason ="";
 	public static ArrayList<String> successBuildings = new ArrayList<String>();
 	public static ArrayList<String> failedBuildings = new ArrayList<String>();
-	public static String[][] completedBuildingList;
+	public static String[][] autoCharges;
 	public static String [] statusList;
 	public static String currentDate = "";
 	public static HashMap<String,String> failedReaonsList= new HashMap<String,String>();
@@ -57,6 +57,8 @@ public class RunnerClass
 	
 	public static void main(String[] args) throws Exception 
 	{
+		
+		
 		//Get Pending Renewal Leases
 		//Company,BuildingAbbreviation, LeaseNae
 		DataBase.getBuildingsList();
@@ -128,7 +130,6 @@ public class RunnerClass
 				{
 					RunnerClass.driver.findElement(Locators.renewalPoupCloseButton).click();
 				}
-
 			}
 			catch(Exception e) {}
 		   RunnerClass.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
@@ -141,9 +142,6 @@ public class RunnerClass
 			  RunnerClass.js.executeScript("window.scrollBy(document.body.scrollHeight,0)");
 		  }
 		}
-		
-		
-		
 
 	}   
 
@@ -186,16 +184,16 @@ public class RunnerClass
 		}
 	}
 	
-	    public static String firstDayOfMonth(String date) throws Exception 
+	    public static String firstDayOfMonth(String date,int month) throws Exception 
 	    {
 	    	//String string = "02/05/2014"; //assuming input
 	        DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 	        Date dt = sdf .parse(date);
 	        Calendar c = Calendar.getInstance();
 	        c.setTime(dt);
-	        if(portfolioType=="MCH")
-	        c.add(Calendar.MONTH, 1);  //adding a month directly - gives the start of next month.
-	        else c.add(Calendar.MONTH, 2);
+	        //if(portfolioType=="MCH")
+	        c.add(Calendar.MONTH, month);  //adding a month directly - gives the start of next month.
+	        //else c.add(Calendar.MONTH, 2);
 	        c.set(Calendar.DAY_OF_MONTH, 01);
 	        String firstDate = sdf.format(c.getTime());
 	        System.out.println(firstDate);

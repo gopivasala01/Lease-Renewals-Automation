@@ -31,7 +31,7 @@ public class AppConfig
 	   
 	   public static String excelFileLocation = "E:\\Automation\\Gopi\\Lease Audit Automation";
 	   
-	   public static String getBuildingsWithStatusforCurrentDay = "Select Company,[BuildingAbbreviation],MonthlyRentFromLeaseAgreement,MonthlyRentInPW,StartDateFromLeaseAgreement,StartDateInPW,Status,notes from automation.[leaseAuditAutomation] where  FoRMAT(completedDate,'MM-dd-yyyy')=FoRMAT(getdate(),'MM-dd-yyyy')";
+	   public static String getAutoCharges = "Select ChargeCode, Amount, StartDate,EndDate,Description from automation.LeaseReneWalsAutoChargesConfiguration Where Flag =1";
 	   
 	   public static String[] IAGClientList = {"510","AVE","BTH","CAP","FOR","HRG","HS","MAN","MCH","OFF","PIN","RF","SFR3","TH","HH","Lofty.Ai"};
 	
@@ -81,11 +81,11 @@ public class AppConfig
 	   switch(company)
 	   {
 	   case "Florida":
-		   return "4311 - Pet Rent";
+		   return "4000 - Rent";
 	   case "Alabama":
-		   return "4311 - Pet Rent";
+		   return "4000 - Rent";
 	   case "North Carolina":
-		   return "4311 - Pet Rent";
+		   return "4000 - Rent";
 	   }
 	   return "";
    }
@@ -94,11 +94,11 @@ public class AppConfig
 	   switch(company)
 	   {
 	   case "Florida":
-		   return "4311 - Pet Rent";
+		   return "4102 - Air Filter Fee";
 	   case "Alabama":
-		   return "4311 - Pet Rent";
+		   return "4102 - Air Filter Fee";
 	   case "North Carolina":
-		   return "4311 - Pet Rent";
+		   return "4102 - Air Filter Fee";
 	   }
 	   return "";
    }

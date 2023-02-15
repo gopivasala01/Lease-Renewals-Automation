@@ -105,7 +105,7 @@ public class DataBase
 		    }
 	 }
 	
-	public static boolean getCompletedBuildingsList()
+	public static boolean getAutoCharges()
 	{
 		try
 		{
@@ -114,7 +114,7 @@ public class DataBase
 		        ResultSet rs = null;
 		            //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		            con = DriverManager.getConnection(AppConfig.connectionUrl);
-		            String SQL = AppConfig.getBuildingsWithStatusforCurrentDay;
+		            String SQL = AppConfig.getAutoCharges;
 		            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		           // stmt = con.createStatement();
 		            rs = stmt.executeQuery(SQL);
@@ -125,37 +125,28 @@ public class DataBase
 		            	rs.beforeFirst();
 		            }
 		            System.out.println("No of buildings with status = "+rows);
-		            RunnerClass.completedBuildingList = new String[rows][8];
+		            RunnerClass.autoCharges = new String[rows][5];
 		           int  i=0;
 		            while(rs.next())
 		            {
 		            	
-		            	String 	company =  (String) rs.getObject(1);
-		                String  buildingAbbreviation = (String) rs.getObject(2);
-		                String  MonthlyRentFromLeaseAgreement = (String) rs.getObject(3);
-		                String  MonthlyRentInPW = (String) rs.getObject(4);
-		                String  StartDateFromLeaseAgreement = (String) rs.getObject(5);
-		                String  StartDateInPW = (String) rs.getObject(6);
-		                String  Status = (String) rs.getObject(7);
-		                String  Notes = (String) rs.getObject(8);
+		            	String 	chargeCode =  (String) rs.getObject(1);
+		                String  amount = (String) rs.getObject(2);
+		                String  startDate = (String) rs.getObject(3);
+		                String  endDate = (String) rs.getObject(4);
+		                String  description = (String) rs.getObject(5);
 		                
-		                System.out.println(company +" ----  "+buildingAbbreviation+" ---- "+MonthlyRentFromLeaseAgreement+" ---- "+MonthlyRentInPW+" ---- "+StartDateFromLeaseAgreement+" ---- "+StartDateInPW+" ---- "+Status+" ---- "+Notes );
+		                System.out.println(chargeCode +" ----  "+amount+" ---- "+startDate+" ---- "+endDate+" ---- "+description);
 		    				//Company
-		    				RunnerClass.completedBuildingList[i][0] = company;
+		    				RunnerClass.autoCharges[i][0] = chargeCode;
 		    				//Building Abbreviation
-		    				RunnerClass.completedBuildingList[i][1] = buildingAbbreviation;
+		    				RunnerClass.autoCharges[i][1] = amount;
 		    				//Monthly Rent From Lease Agreement
-		    				RunnerClass.completedBuildingList[i][2] = MonthlyRentFromLeaseAgreement;
+		    				RunnerClass.autoCharges[i][2] = startDate;
 		    				//Monthly Rent In PW
-		    				RunnerClass.completedBuildingList[i][3] = MonthlyRentInPW;
+		    				RunnerClass.autoCharges[i][3] = endDate;
 		    				//Start Date From Lease Agreement
-		    				RunnerClass.completedBuildingList[i][4] = StartDateFromLeaseAgreement;
-		    				//Start Date In PW
-		    				RunnerClass.completedBuildingList[i][5] = StartDateInPW;
-		    				//Status
-		    				RunnerClass.completedBuildingList[i][6] = Status;
-		    				//Notes
-		    				RunnerClass.completedBuildingList[i][7] = Notes;
+		    				RunnerClass.autoCharges[i][4] = description;
 		    				i++;
 		            }	
 		           // System.out.println("Total Pending Buildings  = " +RunnerClass.pendingBuildingList.length);

@@ -17,37 +17,9 @@ public class PDFReader
     public static String proratedRent ="";
     public static String proratedRentDate ="";
     public static String monthlyRent="";
-    public static String adminFee="";
-    public static String airFilterFee="";
-    public static String earlyTermination="";
-    public static String occupants="";
-    public static String proratedPetRent="";
     public static String petRentWithTax="";
-    public static String proratedPetRentDate="";
-    public static String petSecurityDeposit="";
-    public static String RCDetails="";
     public static String petRent="";
     public static String petFee;
-    public static String pet1Type="";
-    public static String pet2Type="";
-    public static String serviceAnimalType="";
-    public static String pet1Breed="";
-    public static String pet2Breed="";
-    public static String serviceAnimalBreed="";
-    public static String pet1Weight="";
-    public static String pet2Weight="";
-    public static String serviceAnimalWeight="";
-    public static String petOneTimeNonRefundableFee="";
-    public static int countOfTypeWordInText;
-    public static String lateFeeChargeDay="";
-    public static String lateFeeAmount="";
-    public static String lateFeeChargePerDay="";
-    public static String additionalLateCharges="";
-    public static String additionalLateChargesLimit="";
-    public static String CDEType="";
-    public static double monthlyTenantAdminFee_Amount;
-    public static double calculatedPetRent;
-    public static DecimalFormat df = new DecimalFormat("0.00");
     public static String pdfText="";
     public static String securityDeposit="";
     public static String leaseStartDate_PW="";
@@ -87,25 +59,28 @@ public class PDFReader
 	 
 		public static boolean readPDFPerMarket(String market) throws Exception  
 		{
-			
 			//Initialize all PDF data variables
 			commencementDate ="";
 			expirationDate="";
 			monthlyRent="";
-			airFilterFee="";
 			HVACFilterFlag = false;
 			residentBenefitsPackageAvailabilityCheck = false;
 			residentBenefitsPackage = "";
 			proratedRent ="";
 		    proratedRentDate ="";
 		    petFlag = false;
-		    incrementRentFlag = false;
 		    leaseRenewalFee = "";
 		    startDate = "";
 		    lastDayOfTheStartDate = "";
 		    firstFullMonth = "";
 		    HVACAirFilterFee = "";
 		    secondFullMonth = "";
+		    petRent ="";
+		    incrementRentFlag = false;
+		    increasedRent_previousRentEndDate ="";
+		    increasedRent_amount ="";
+		    increasedRent_newStartDate ="";
+		    increasedRent_newEndDate ="";
 		    
 			switch(market)
 			{

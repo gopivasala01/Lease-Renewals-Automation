@@ -33,38 +33,21 @@ public class NorthCarolina_Format2
 	
 	public static String petAgreementAvailabilityCheck = "THIS PET ADDENDUM (this";
 	public static String petAgreementAvailabilityCheck2="PET AUTHORIZATION AND PET DESCRIPTION:";
-
-	public static String securityDeposit_Prior = "Deposit with Landlord, the sum of $";
-	public static String securityDeposit_After = " (the �Security Deposit�)";
-	
-	public static String petRent_Prior = "Tenant will pay Landlord monthly pet rent in the amount of $";
-	public static String petRent_Prior2 = "as additional rent, a monthly fee of $";
-	
-	public static String petType_Prior = "Type:";
-	public static String petType_After = "Breed:";
-	
-	public static String typeWord_Prior = "[Please provide the following for each pet, service or ESA]";
-	public static String typeWord_Prior2 = "Tenant may keep the following pet(s) on the Property until the above-referenced lease ends.";
-	public static String typeWord_After3 = "B. CONSIDERATION:";
-	public static String typeWord_After = "A photograph of the Pet shall be provided to Landlord by Tenant";
-	public static String typeWord_After2 = "3. Tenant will pay Landlord monthly pet rent in the amount of";
-	
-	public static String petOneTimeNonRefundable_Prior = "upon execution of this agreement, pay Landlord $";
-	public static String petOneTimeNonRefundable_After = " as a one-time, non-refundable";
-	public static String petOneTimeNonRefundable_Prior2 = "Tenant shall pay a pet deposit in the amount of $";
-	
-	public static String earlyTermination_Prior = "Tenant must pay an early termination fee to Landlord of ";
-	
-	public static String increasedRent_newStartDate_Prior = "per month. Monthly Rent from";
-	
-	static String AB_serviceAnimal_typeWord_Prior = "Tenant has the following Service/Support Animal(s) on the Property until the above-referenced lease ends.";
-	static String AB_serviceAnimal_typeWord_After = "B. SERVICE/SUPPORT ANIMAL RULES";
 	
 	static String monthlyRentAvailabilityCheck ="*Per the Landlord, Monthly Rent";
 	public static String HVACFilterAddendumTextAvailabilityCheck = "HVAC Filter Maintenance Program and Fee";
-	public static String residentBenefitsPackageCheck = "";
+	public static String residentBenefitsPackageCheck = "Resident Benefits Package (“RBP”) Program and Fee:";
 	
-	public static String AB1_residentBenefitsPackage_Prior = "home second nature at a cost of $";
+	public static String RBP_Prior = "home second nature at a cost of $";
+	
+	public static String prorateRent_Prior = "Tenant will pay Landlord $ ";
+	
+	public static String petRent_Prior = "pet rent in the amount of $";
+	
+	public static String HVACAirFilterFee = " HVAC Filter Maintenance Program Fee of $";
+	
+	public static String increasedRent_Prior1 = "on the first 12 months and $";
+	public static String increasedRent_Prior2 = "and, $ ";
 	
 
 }

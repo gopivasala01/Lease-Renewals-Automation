@@ -23,7 +23,7 @@ public class PropertyWare_ConsolidateValues
 				else autoCharges = "2,5";
 				}
 				query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in ("+autoCharges+")";
-                DataBase.updateTable(query);				
+               // DataBase.updateTable(query);				
 		     }
 			else
 			{
@@ -47,7 +47,7 @@ public class PropertyWare_ConsolidateValues
       }
 		
 		//Other Portfolios
-		if(RunnerClass.portfolioType=="Other")
+		if(RunnerClass.portfolioType=="Others")
 		{
 			if(PDFReader.petFlag==false)
 			{
@@ -92,7 +92,25 @@ public class PropertyWare_ConsolidateValues
 	{
 		if(RunnerClass.portfolioType=="MCH")
 		{
+		    PropertyWare_InsertData.proratedRent_StartDate ="";
+			PropertyWare_InsertData.monthlyRent_StartDate = PDFReader.firstFullMonth;
+			PropertyWare_InsertData.ResidentBenefitPackage_StartDate = PDFReader.firstFullMonth;
+			PropertyWare_InsertData.HVACAirFilterFee_StartDate = PDFReader.firstFullMonth;
+			PropertyWare_InsertData.petRent_StartDate = PDFReader.firstFullMonth;
+			PropertyWare_InsertData.increasedRent_previousRentStartDate = PDFReader.startDate;
 			
+			
+		}
+		else 
+		{
+			PropertyWare_InsertData.proratedRent_StartDate =PDFReader.firstFullMonth;
+			if(PDFReader.proratedRent=="Error")
+			    PropertyWare_InsertData.monthlyRent_StartDate = PDFReader.firstFullMonth;
+			else 
+				PropertyWare_InsertData.monthlyRent_StartDate = PDFReader.secondFullMonth;
+			PropertyWare_InsertData.ResidentBenefitPackage_StartDate = PDFReader.firstFullMonth;
+			PropertyWare_InsertData.HVACAirFilterFee_StartDate = PDFReader.firstFullMonth;
+			PropertyWare_InsertData.petRent_StartDate = PDFReader.firstFullMonth;
 		}
 	}
 }

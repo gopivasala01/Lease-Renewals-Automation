@@ -13,14 +13,14 @@ import mainPackage.RunnerClass;
 
 public class NorthCarolina_Format2 
 {
-	public static void northCarolina()
 	
-	    //public static void northCarolina() throws Exception
+	    public static void northCarolina() throws Exception
+	   // public static void main(String args[]) throws Exception
 		{
 			try
 			{
 			File file = RunnerClass.getLastModified();
-			//File file = new File("C:\\SantoshMurthyP\\Lease Audit Automation\\Full_Lease_-_[6128_Creekview_Court]_-_[Wallace_-_Crawford]_-_[02.01.2023]_-_[04.30.2024].PDF_(1).pdf");
+			//File file = new File("C:\\SantoshMurthyP\\Lease Audit Automation\\RENEWAL_[3343_Buckvalley_Dr]_[Kinsela_-_Kinsela]_[02.01.23-07.31.24].pdf");
 			System.out.println(file);
 			FileInputStream fis = new FileInputStream(file);
 			PDDocument document = PDDocument.load(fis);
@@ -28,40 +28,10 @@ public class NorthCarolina_Format2
 			text = text.replaceAll(System.lineSeparator(), " ");
 		    text = text.replaceAll(" +", " ");
 		    System.out.println(text);
-		    String commencementDate_Prior="";
-		    String expirationDate_Prior ="";
-		    String monthlyRent_Prior ="";
-		    String HVACAirFilterFee ="";
-		    String prorateRent = "";
-		    String prorateRentDate_Prior = "";
-		    String prorateRentDate_After = "";
-		    if(text.contains(AppConfig.PDFFormat2ConfirmationText))
-		    {
-                //Commencement Date 
-		    	commencementDate_Prior = PDFAppConfig.NorthCarolina_Format2.commencementDate_Prior;
-		    	//Expiration Date
-		    	expirationDate_Prior = PDFAppConfig.NorthCarolina_Format2.expirationDate_Prior;
-		    	//Monthly Rent
-		    	monthlyRent_Prior = PDFAppConfig.NorthCarolina_Format2.monthlyRent_Prior;
-		    	//HVAC Air Filter Fee
-		    	HVACAirFilterFee = PDFAppConfig.NorthCarolina_Format2.HVACAirFilter_prior;
-		    	//Prorate Rent
-		    	prorateRent = PDFAppConfig.NorthCarolina_Format2.proratedRent_Prior;
-		    	//Prorate Rent Date
-		    	prorateRentDate_Prior = PDFAppConfig.NorthCarolina_Format2.proratedRentDate_Prior;
-		    	prorateRentDate_After = PDFAppConfig.NorthCarolina_Format2.proratedRentDate_After;
-		    }
-		    else if(text.contains(AppConfig.PDFFormatConfirmationText))
-		    {
-		    	monthlyRent_Prior = PDFAppConfig.Florida_Format2.Florida_monthlyRent_Format2_Prior;
-		    }
-		    
-		    System.out.println("------------------------------------------------------------------");
-		  //Commencement Date 
 		    try
 		    {
-		    	PDFReader.commencementDate = text.substring(text.indexOf(commencementDate_Prior)+commencementDate_Prior.length()).trim().replaceAll(" +", " ");
-		    	PDFReader.commencementDate = PDFReader.commencementDate.substring(0,PDFReader.commencementDate.indexOf("(the")).trim();
+		    	PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.NorthCarolina_Format2.commencementDate_Prior)+PDFAppConfig.NorthCarolina_Format2.commencementDate_Prior.length());
+		    	PDFReader.commencementDate =  PDFReader.commencementDate.substring(0,PDFReader.commencementDate.indexOf("(the")).trim();
 		    }
 		    catch(Exception e)
 		    {
@@ -69,24 +39,25 @@ public class NorthCarolina_Format2
 		    	e.printStackTrace();
 		    }
 		    System.out.println("Commensement Date = "+PDFReader.commencementDate);
-		    
-		    //Expiration Date
-		    try
+		   try
 		    {
-		    	PDFReader.expirationDate = text.substring(text.indexOf(expirationDate_Prior)+expirationDate_Prior.length()).trim().replaceAll(" +", " ");
+			   PDFReader.expirationDate = text.substring(text.indexOf(PDFAppConfig.NorthCarolina_Format2.expirationDate_Prior)+PDFAppConfig.NorthCarolina_Format2.expirationDate_Prior.length());
 		    	PDFReader.expirationDate = PDFReader.expirationDate.substring(0,PDFReader.expirationDate.indexOf("(the")).trim();
 		    }
 		    catch(Exception e)
 		    {
-		    	PDFReader.expirationDate = "Error";
-		    	e.printStackTrace();
+		    	 PDFReader.expirationDate = "Error";
+		    	 e.printStackTrace();
 		    }
-		    System.out.println("Expiration Date = "+PDFReader.expirationDate);
+		   System.out.println("Expiration Date = "+PDFReader.expirationDate);
 		    
-		    //Monthly Rent
+			
+			//Monthly Rent
 		    try
 		    {
-		    	PDFReader.monthlyRent = text.substring(text.indexOf(monthlyRent_Prior)+monthlyRent_Prior.length()).trim().split(" ")[0];
+		    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.NorthCarolina_Format2.monthlyRent_Prior)+PDFAppConfig.NorthCarolina_Format2.monthlyRent_Prior.length()).trim().split(" ")[0];
+		    	if(PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*"))
+		    		PDFReader.monthlyRent = "Error";
 		    }
 		    catch(Exception e)
 		    {
@@ -102,14 +73,16 @@ public class NorthCarolina_Format2
 		    	//HVAC Air Filter Fee
 		    	 try
 				    {
-				    	PDFReader.airFilterFee = text.substring(text.indexOf(HVACAirFilterFee)+HVACAirFilterFee.length()).trim().split(" ")[0];
+				    	PDFReader.HVACAirFilterFee = text.substring(text.indexOf(PDFAppConfig.NorthCarolina_Format2.HVACAirFilterFee)+PDFAppConfig.NorthCarolina_Format2.HVACAirFilterFee.length()).trim().split(" ")[0];
+				    	if(PDFReader.HVACAirFilterFee.matches(".*[a-zA-Z]+.*"))
+				    		PDFReader.HVACAirFilterFee = "Error";
 				    }
 				    catch(Exception e)
 				    {
-				    	PDFReader.airFilterFee = "Error";
+				    	PDFReader.HVACAirFilterFee = "Error";
 				    	e.printStackTrace();
 				    }
-				    System.out.println("HVAC Air Filter Fee = "+PDFReader.airFilterFee);
+				    System.out.println("HVAC Air Filter Fee = "+PDFReader.HVACAirFilterFee);
 		    }
 		    
 		    if(text.contains(PDFAppConfig.NorthCarolina_Format2.residentBenefitsPackageCheck))
@@ -118,7 +91,9 @@ public class NorthCarolina_Format2
 		    	//HVAC Air Filter Fee
 		    	 try
 				    {
-				    	PDFReader.residentBenefitsPackage = text.substring(text.indexOf(HVACAirFilterFee)+HVACAirFilterFee.length()).trim().split(" ")[0];
+				    	PDFReader.residentBenefitsPackage = text.substring(text.indexOf(PDFAppConfig.NorthCarolina_Format2.RBP_Prior)+PDFAppConfig.NorthCarolina_Format2.RBP_Prior.length()).trim().split(" ")[0];
+				    	if(PDFReader.residentBenefitsPackage.matches(".*[a-zA-Z]+.*"))
+				    		PDFReader.residentBenefitsPackage = "Error";
 				    }
 				    catch(Exception e)
 				    {
@@ -132,7 +107,10 @@ public class NorthCarolina_Format2
 		    //Prorate Rent
 		    try
 		    {
-		    	PDFReader.proratedRent = text.substring(text.indexOf(prorateRent)+prorateRent.length()).trim().split(" ")[0];
+		    	PDFReader.proratedRent = text.substring(text.indexOf(PDFAppConfig.NorthCarolina_Format2.prorateRent_Prior)+PDFAppConfig.NorthCarolina_Format2.prorateRent_Prior.length());
+		    	PDFReader.proratedRent = PDFReader.proratedRent.substring(0,PDFReader.proratedRent.indexOf("as prorated rent")).trim();
+		    	if(PDFReader.proratedRent.matches(".*[a-zA-Z]+.*")||PDFReader.proratedRent.equals("0.00"))
+		    		PDFReader.proratedRent = "Error";
 		    }
 		    catch(Exception e)
 		    {
@@ -141,27 +119,113 @@ public class NorthCarolina_Format2
 		    }
 		    System.out.println("Prorate Rent = "+PDFReader.proratedRent);
 		    
-		    //Prorate Rent Date 
+			//Pet Rent
+		    if(text.contains(PDFAppConfig.NorthCarolina_Format2.petAgreementAvailabilityCheck))
+		    {
+		    	PDFReader.petFlag = true;
+		    	System.out.println("Pet Addendum Available = "+PDFReader.petFlag);
+		    	
+		    	try
+		    	{
+		    		PDFReader.petRent = text.substring(text.indexOf(PDFAppConfig.NorthCarolina_Format2.petRent_Prior)+PDFAppConfig.NorthCarolina_Format2.petRent_Prior.length()).trim().split(" ")[0].trim();
+		    		if(PDFReader.petRent.matches(".*[a-zA-Z]+.*")||PDFReader.petRent.equals("0.00"))
+			    		PDFReader.petRent = "Error";
+		    	}
+		    	catch(Exception e)
+		    	{
+		    		PDFReader.petRent = "Error";
+		    	}
+		    	System.out.println("Pet Rent = "+PDFReader.petRent);
+		    }
+		    
+		    //Increased Rent
 		    try
 		    {
-		    	PDFReader.proratedRentDate = text.substring(text.indexOf(prorateRentDate_Prior)+prorateRentDate_Prior.length()+1,text.indexOf(prorateRentDate_After)).trim();
+		    	if(text.contains("on the first 12 months"))
+		    	{
+		    		PDFReader.incrementRentFlag =true;
+		    		//Increased Rent
+		    		try
+		    		{
+		    		PDFReader.increasedRent_amount = text.substring(text.indexOf(PDFAppConfig.NorthCarolina_Format2.increasedRent_Prior1)+PDFAppConfig.NorthCarolina_Format2.increasedRent_Prior1.length()).trim().split(" ")[0].trim();
+		    		if(PDFReader.increasedRent_amount.matches(".*[a-zA-Z]+.*")||PDFReader.increasedRent_amount.equals("0.00"))
+			    		PDFReader.increasedRent_amount = "Error";
+		    		}
+		    		catch(Exception e)
+		    		{
+		    			PDFReader.increasedRent_amount = "Error";
+		    		}
+		    		System.out.println("Increased Rent = "+PDFReader.increasedRent_amount);
+		    		//Monthly Rent End Date
+		    		try
+		    		{
+		    		PDFReader.increasedRent_previousRentEndDate =RunnerClass.lastDateOfTheMonth(RunnerClass.firstDayOfMonth(RunnerClass.convertDate(PDFReader.commencementDate), 11));
+		    		}
+		    		catch(Exception e)
+		    		{
+		    			PDFReader.increasedRent_previousRentEndDate = "Error";
+		    		}
+		    		System.out.println("Monthly rent End Date = "+PDFReader.increasedRent_previousRentEndDate);
+		    		// Increased Rent Start Date
+		    		try
+		    		{
+		    			PDFReader.increasedRent_newStartDate =RunnerClass.firstDayOfMonth(RunnerClass.convertDate(PDFReader.commencementDate), 12);
+		    		}
+		    		catch(Exception e)
+		    		{
+		    			PDFReader.increasedRent_newStartDate  = "Error";
+		    		}
+		    		System.out.println("Increased Rent Start Date = "+PDFReader.increasedRent_newStartDate);
+		    		
+		    	}
+		    	if(text.contains("and, $"))
+		    	{
+		    		PDFReader.incrementRentFlag =true;
+		    		//Increased Rent
+		    		try
+		    		{
+		    		PDFReader.increasedRent_amount = text.substring(text.indexOf(PDFAppConfig.NorthCarolina_Format2.increasedRent_Prior2)+PDFAppConfig.NorthCarolina_Format2.increasedRent_Prior2.length()).trim().split(" ")[0].trim();
+		    		if(PDFReader.increasedRent_amount.matches(".*[a-zA-Z]+.*")||PDFReader.increasedRent_amount.equals("0.00"))
+			    		PDFReader.increasedRent_amount = "Error";
+		    		}
+		    		catch(Exception e)
+		    		{
+		    			PDFReader.increasedRent_amount = "Error";
+		    		}
+		    		System.out.println("Increased Rent = "+PDFReader.increasedRent_amount);
+		    		
+		    		//Monthly Rent End Date
+		    		try
+		    		{
+		    		PDFReader.increasedRent_previousRentEndDate = text.substring(text.indexOf(PDFReader.commencementDate+" to ")+(PDFReader.commencementDate+" to ").length(),text.indexOf("and, $")).trim();
+		    		}
+		    		catch(Exception e)
+		    		{
+		    			PDFReader.increasedRent_previousRentEndDate = "Error";
+		    		}
+		    		System.out.println("Monthly rent End Date = "+PDFReader.increasedRent_previousRentEndDate);
+		    		
+		    		// Increased Rent Start Date
+		    		try
+		    		{
+		    			PDFReader.increasedRent_newStartDate = text.substring(text.indexOf(PDFReader.increasedRent_amount+" for ")+(PDFReader.increasedRent_amount+" for ").length()).trim();
+		    			PDFReader.increasedRent_newStartDate = PDFReader.increasedRent_newStartDate.substring(0,PDFReader.increasedRent_newStartDate.indexOf("to"));
+		    		}
+		    		catch(Exception e)
+		    		{
+		    			PDFReader.increasedRent_newStartDate  = "Error";
+		    		}
+		    		System.out.println("Increased Rent Start Date = "+PDFReader.increasedRent_newStartDate);
+		    	}
 		    }
-		    catch(Exception e)
+            catch(Exception e)
 		    {
-		    	PDFReader.proratedRentDate = "Error";
-		    	e.printStackTrace();
+	
 		    }
-		    System.out.println("Prorate Rent Date = "+PDFReader.proratedRentDate);
 		    
+		    
+			}	
+			catch(Exception e)
+			{}
 			}
-		    catch(Exception e)
-		    {
-		    	System.out.println("Wrong PDF Format");
-		    	RunnerClass.monthlyRent = "Error";
-		    	RunnerClass.startDate = "Error";
-		    }
-		   
-		}
-		
-
 }

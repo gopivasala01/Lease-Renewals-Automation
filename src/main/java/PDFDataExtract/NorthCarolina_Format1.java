@@ -17,7 +17,7 @@ public class NorthCarolina_Format1
 	//public static void main(String [] args) throws Exception
 	{
 			File file = RunnerClass.getLastModified();
-			//File file = new File("C:\\SantoshMurthyP\\Lease Audit Automation\\RENEWAL_[12134_Old_Dulin_Farms_Way]_[Frazier-Frazier]_[01.01.23-12.31.24].pdf");
+			//File file = new File("C:\\SantoshMurthyP\\Lease Audit Automation\\Full_Lease_-_[14509_Glenduff_Pl]_-_[Brewer_-_Kearney]_-_[02.01.2023]_-_[05.31.2024].PDF (1).pdf");
 			System.out.println(file);
 			FileInputStream fis = new FileInputStream(file);
 			PDDocument document = PDDocument.load(fis);
@@ -30,7 +30,6 @@ public class NorthCarolina_Format1
 		    try
 		    {
 		    	PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.NorthCarolina_Format1.commencementDate_Prior)+PDFAppConfig.NorthCarolina_Format1.commencementDate_Prior.length(),text.indexOf(PDFAppConfig.NorthCarolina_Format1.commencementDate_After));
-		    	//PDFReader.commencementDate = PDFReader.commencementDate.substring(0,PDFReader.commencementDate.indexOf("(the")).trim();
 		    }
 		    catch(Exception e)
 		    {
@@ -55,6 +54,8 @@ public class NorthCarolina_Format1
 		    try
 		    {
 		    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.NorthCarolina_Format1.monthlyRent_Prior)+PDFAppConfig.NorthCarolina_Format1.monthlyRent_Prior.length()).trim().split(" ")[0];
+		    	if(PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*"))
+		    		PDFReader.monthlyRent = "Error";
 		    }
 		    catch(Exception e)
 		    {
@@ -70,23 +71,27 @@ public class NorthCarolina_Format1
 		    	//HVAC Air Filter Fee
 		    	 try
 				    {
-				    	PDFReader.airFilterFee = text.substring(text.indexOf(PDFAppConfig.NorthCarolina_Format1.HVACAirFilterFee)+PDFAppConfig.NorthCarolina_Format1.HVACAirFilterFee.length()).trim().split(" ")[0];
+				    	PDFReader.HVACAirFilterFee = text.substring(text.indexOf(PDFAppConfig.NorthCarolina_Format1.HVACAirFilterFee)+PDFAppConfig.NorthCarolina_Format1.HVACAirFilterFee.length()).trim().split(" ")[0];
+				    	if(PDFReader.HVACAirFilterFee.matches(".*[a-zA-Z]+.*"))
+				    		PDFReader.HVACAirFilterFee = "Error";
 				    }
 				    catch(Exception e)
 				    {
-				    	PDFReader.airFilterFee = "Error";
+				    	PDFReader.HVACAirFilterFee = "Error";
 				    	e.printStackTrace();
 				    }
-				    System.out.println("HVAC Air Filter Fee = "+PDFReader.airFilterFee);
+				    System.out.println("HVAC Air Filter Fee = "+PDFReader.HVACAirFilterFee);
 		    }
-		    /*
-		    if(text.contains(PDFAppConfig.NorthCarolina_Format2.residentBenefitsPackageCheck))
+		    
+		    if(text.contains(PDFAppConfig.NorthCarolina_Format1.residentBenefitsPackageCheck))
 		    {
 		    	PDFReader.residentBenefitsPackageAvailabilityCheck = true;
 		    	//HVAC Air Filter Fee
 		    	 try
 				    {
-				    	PDFReader.residentBenefitsPackage = text.substring(text.indexOf(HVACAirFilterFee)+HVACAirFilterFee.length()).trim().split(" ")[0];
+				    	PDFReader.residentBenefitsPackage = text.substring(text.indexOf(PDFAppConfig.NorthCarolina_Format1.RBP_Prior)+PDFAppConfig.NorthCarolina_Format1.RBP_Prior.length()).trim().split(" ")[0];
+				    	if(PDFReader.residentBenefitsPackage.matches(".*[a-zA-Z]+.*"))
+				    		PDFReader.residentBenefitsPackage = "Error";
 				    }
 				    catch(Exception e)
 				    {
@@ -96,11 +101,13 @@ public class NorthCarolina_Format1
 				    System.out.println("Resident Benefits Package = "+PDFReader.residentBenefitsPackage);
 		    }
 		    
-		    */
+		    
 		    //Prorate Rent
 		    try
 		    {
 		    	PDFReader.proratedRent = text.substring(text.indexOf(PDFAppConfig.NorthCarolina_Format1.prorateRent_Prior)+PDFAppConfig.NorthCarolina_Format1.prorateRent_Prior.length()).trim().split(" ")[0];
+		    	if(PDFReader.proratedRent.matches(".*[a-zA-Z]+.*"))
+		    		PDFReader.proratedRent = "Error";
 		    }
 		    catch(Exception e)
 		    {
@@ -109,19 +116,25 @@ public class NorthCarolina_Format1
 		    }
 		    System.out.println("Prorate Rent = "+PDFReader.proratedRent);
 		    
-		    //Prorate Rent Date 
-		    try
+			//Pet Rent
+		    if(text.contains(PDFAppConfig.NorthCarolina_Format1.petAgreementAvailabilityCheck))
 		    {
-		    	PDFReader.proratedRentDate = text.substring(text.indexOf(PDFAppConfig.NorthCarolina_Format1.prorateRentDate_Prior)+PDFAppConfig.NorthCarolina_Format1.prorateRentDate_Prior.length()+1,text.indexOf(PDFAppConfig.NorthCarolina_Format1.prorateRentDate_After)).trim();
+		    	PDFReader.petFlag = true;
+		    	System.out.println("Pet Addendum Available = "+PDFReader.petFlag);
+		    	
+		    	try
+		    	{
+		    		PDFReader.petRent = text.substring(text.indexOf(PDFAppConfig.NorthCarolina_Format1.petRent_Prior)+PDFAppConfig.NorthCarolina_Format1.petRent_Prior.length()).trim().split(" ")[0].trim();
+		    		if(PDFReader.petRent.matches(".*[a-zA-Z]+.*"))
+			    		PDFReader.petRent = "Error";
+		    	}
+		    	catch(Exception e)
+		    	{
+		    		PDFReader.petRent = "Error";
+		    	}
+		    	System.out.println("Pet Rent = "+PDFReader.petRent);
 		    }
-		    catch(Exception e)
-		    {
-		    	PDFReader.proratedRentDate = "Error";
-		    	e.printStackTrace();
-		    }
-		    System.out.println("Prorate Rent Date = "+PDFReader.proratedRentDate);
 		    
-			
 			
 
 }
