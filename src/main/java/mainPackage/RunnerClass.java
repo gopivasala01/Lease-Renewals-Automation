@@ -7,12 +7,17 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.ChronoField;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.JavascriptExecutor;
@@ -57,8 +62,7 @@ public class RunnerClass
 	
 	public static void main(String[] args) throws Exception 
 	{
-		
-		
+		//RunnerClass.monthDifference("02/01/2023", "01/31/2025");
 		//Get Pending Renewal Leases
 		//Company,BuildingAbbreviation, LeaseNae
 		DataBase.getBuildingsList();
@@ -77,9 +81,12 @@ public class RunnerClass
 				else 
 					buildingAbbreviation = buildingAbbreviation.split("-")[0].trim();
           // Login to the PropertyWare		  
-		  PropertyWare.login();
+		 
 		  try
 		  {
+			  //Login 
+		if( PropertyWare.login()==true)
+		{
 		  //Search building in property Ware
 		   if(PropertyWare.searchBuilding(company, buildingAbbreviation)==true)
 			{
@@ -89,6 +96,7 @@ public class RunnerClass
 					{
 						PropertyWare_InsertData.clearExistingAutoCharges();
 						PropertyWare_InsertData.addingNewAutoCharges();
+						PropertyWare_InsertOtherInformation.addingOtherInformation();
 					}
 					else 
 					{
@@ -107,6 +115,12 @@ public class RunnerClass
  		    	String updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Failed', StatusID=3,NotAutomatedFields='"+failedReason+"',LeaseCompletedDate= getDate() where BuildingName like '%"+buildingAbbreviation+"%'";
 		    	DataBase.updateTable(updateSuccessStatus);
 		    }
+		}
+		else 
+		{
+			String updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Failed', StatusID=3,NotAutomatedFields='"+failedReason+"',LeaseCompletedDate= getDate() where BuildingName like '%"+buildingAbbreviation+"%'";
+	    	DataBase.updateTable(updateSuccessStatus);
+		}
 		   RunnerClass.driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
 	        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(5));
 		   try
@@ -216,32 +230,31 @@ public class RunnerClass
 	    	String newDate = new SimpleDateFormat("MM/dd/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(lastDayOfMonth.toString()));
 	    	return newDate;
 	    }
+	    public static String monthDifference(String date1, String date2) throws Exception
+	    {
+	    	SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+	        Date firstDate = sdf.parse(date1);
+	        Date secondDate = sdf.parse(date2);
+
+	        DateTimeFormatter formatter = new DateTimeFormatterBuilder()
+	                .appendPattern("MM/dd/yyyy")
+	                .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
+	                .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
+	               // .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
+	                .toFormatter();
+	        
+           String x =  Duration.between( LocalDate.parse(date1,formatter),  LocalDate.parse(date2,formatter)).toString();
+			return "";
+	    }
+	    public static String getCurrentDate()
+	    {
+	    	currentTime ="";
+	    	 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");  
+			 LocalDateTime now = LocalDateTime.now();  
+			// System.out.println(dtf.format(now));
+			 currentTime = dtf.format(now);
+			 return currentTime;
+	    }
 }
 
-/*
-String success = String.join(",",successBuildings);
-String failed = String.join(",",failedBuildings);
-try
-{
-	if(successBuildings.size()>0)
-	{
-	String updateSuccessStatus = "update [Automation].[leaseAuditAutomation] Set Status ='Completed', completedDate = getdate() where [BuildingAbbreviation] in ("+success+")";
-	DataBase.updateTable(updateSuccessStatus);
-	}
-	if(failedBuildings.size()>0)
-	{
-	String failedReasons = String.join(",",failedReaonsList.values());
-	String failedBuildings = String.join(",",failedReaonsList.keySet());
-	String failedBuildingsUpdateQuery = "";
-	for(int i=0;i<failedReaonsList.size();i++)
-	{
-		String buildingAbbr = failedBuildings.split(",")[i].trim();
-		String failedReason = failedReasons.split(",")[i].trim();
-		failedBuildingsUpdateQuery =failedBuildingsUpdateQuery+"\nupdate [Automation].[leaseAuditAutomation] Set Status ='Failed', completedDate = getdate(),Notes='"+failedReason+"' where [BuildingAbbreviation] ='"+buildingAbbr+"'";
-		
-	}
-	//String updateFailedStatus = "update automation.TargetRent Set Status ='Failed', completedOn = getdate(),Notes='"+failedReason+"' where [Building/Unit Abbreviation] in ("+failed+")";
-	DataBase.updateTable(failedBuildingsUpdateQuery);
-	}
-	*/
 

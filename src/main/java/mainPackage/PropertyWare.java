@@ -22,8 +22,10 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class PropertyWare 
 {
-	public static void login()
+	public static boolean login()
 	{
+		try
+		{
 		RunnerClass.downloadFilePath = AppConfig.downloadFilePath;
 		Map<String, Object> prefs = new HashMap<String, Object>();
 	    // Use File.separator as it will work on any OS
@@ -44,6 +46,14 @@ public class PropertyWare
         RunnerClass.js = (JavascriptExecutor)RunnerClass.driver;
         RunnerClass.driver.manage().timeouts().implicitlyWait(100,TimeUnit.SECONDS);
         RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(100));
+        return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println("Login failed");
+		    RunnerClass.failedReason = "Login failed";
+			return false;
+		}
 	}
 	
 	public static boolean searchBuilding(String company, String building)
@@ -60,11 +70,6 @@ public class PropertyWare
 			{}
 			Thread.sleep(1000);
 			System.out.println(building);
-			 //RunnerClass.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-		    // RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(15));
-			
-			// RunnerClass.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-		     //RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(15));
 		// Select Lease from multiple leases
 			List<WebElement> displayedCompanies =null;
 			try
@@ -92,9 +97,6 @@ public class PropertyWare
 					String companyName = displayedCompanies.get(i).getText();
 					if(companyName.contains(company)&&!companyName.contains("Legacy"))
 					{
-						//RunnerClass.driver.findElement(By.xpath("(//*[@class='searchCat4'])["+(i+1)+"]/a")).click();
-						//break;
-						//RunnerClass.driver.findElement(By.partialLinkText(leaseName)).click();
 						
 						List<WebElement> leaseList = RunnerClass.driver.findElements(By.xpath("(//*[@class='section'])["+(i+1)+"]/ul/li/a"));
 						System.out.println(leaseList.size());
@@ -152,7 +154,11 @@ public class PropertyWare
 		}
 	
 		catch(Exception e) 
-		{}
+		{
+			System.out.println("Unable to fetch Portfolio Type");
+			 RunnerClass.failedReason = "Unable to fetch Portfolio Type";
+		    return false;
+		}
 		
 		try
 		{
@@ -214,9 +220,7 @@ public class PropertyWare
 		if(checkLeaseAgreementAvailable==false)
 		{
 			System.out.println("Unable to download Lease Agreement");
-			RunnerClass.failedReaonsList.put(building, "Unable to download Lease Agreement");
 		    RunnerClass.failedReason = "Unable to download Lease Agreement";
-			RunnerClass.updateStatus=1;
 			return false;
 		}
 		Thread.sleep(20000);
@@ -230,9 +234,7 @@ public class PropertyWare
 		catch(Exception e)
 		{
 			System.out.println("Unable to download Lease Agreement");
-			RunnerClass.failedReaonsList.put(building, "Unable to download Lease Agreement");
 		    RunnerClass.failedReason = "Unable to download Lease Agreement";
-			RunnerClass.updateStatus=1;
 			return false;
 		}
 	}

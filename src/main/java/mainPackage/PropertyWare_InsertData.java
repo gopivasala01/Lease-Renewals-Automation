@@ -27,6 +27,7 @@ public class PropertyWare_InsertData
 		
 		//Get all Required dates converted
 		PDFReader.startDate = RunnerClass.convertDate(PDFReader.commencementDate);
+		PDFReader.endDate = RunnerClass.convertDate(PDFReader.expirationDate);
 		PDFReader.lastDayOfTheStartDate = RunnerClass.lastDateOfTheMonth(PDFReader.startDate);
 		PDFReader.firstFullMonth = RunnerClass.firstDayOfMonth(PDFReader.startDate,1);
 		PDFReader.secondFullMonth = RunnerClass.firstDayOfMonth(PDFReader.startDate,2);
@@ -66,8 +67,9 @@ public class PropertyWare_InsertData
 					String autoChargeAmount = existingAutoChargeAmounts.get(k).getText();
 					String endDateAutoCharge = endDates.get(k).getText();
 					//String autoChargeStartDate = startDates.get(k).getText();
-					if(chargeCode.contains(autoChargeCodes)&&!autoChargeAmount.substring(1).equals(amount)&&endDateAutoCharge.trim().equals("")&&amount=="Error")
+					if(chargeCode.contains(autoChargeCodes)&&!autoChargeAmount.substring(1).equals(amount)&&endDateAutoCharge.trim().equals("")||amount=="Error")
 					{
+						PDFReader.previousMonthlyRent = autoChargeAmount;
 						editButtons.get(k).click();
                 		RunnerClass.driver.findElement(Locators.autoCharge_EndDate).clear();
                 		RunnerClass.driver.findElement(Locators.autoCharge_EndDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));

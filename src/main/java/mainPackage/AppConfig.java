@@ -108,11 +108,24 @@ public class AppConfig
 	   switch(company)
 	   {
 	   case "Florida":
-		   return "4311 - Pet Rent";
+		   return "4318 - Resident Benefits Package";
 	   case "Alabama":
-		   return "4311 - Pet Rent";
+		   return "4318 - Resident Benefits Package";
 	   case "North Carolina":
-		   return "4311 - Pet Rent";
+		   return "4318 - Resident Benefits Package";
+	   }
+	   return "";
+   }
+   public static String getResidentRenewalAdminFee(String company)
+   {
+	   switch(company)
+	   {
+	   case "Florida":
+		   return "4315 - Resident Renewal Admin Fee";
+	   case "Alabama":
+		   return "4315 - Resident Renewal Admin Fee";
+	   case "North Carolina":
+		   return "4315 - Resident Renewal Admin Fee";
 	   }
 	   return "";
    }

@@ -55,4 +55,27 @@ public class Locators
     public static By accountDropdown = By.name("charge.GLAccountID");
     public static By autoCharge_refField = By.name("charge.refNo");
     public static By autoCharge_Description = By.name("charge.description");
+    
+    //Other information
+    public static By renewalStatusDropdown = By.xpath("//*[text()='Renewal Status']/following::select[1]");
+    public static By renewalFollowUpNotes = By.xpath("//*[text()='Renewal Follow-Up Notes']/following::input[1]");
+    public static By renewalExecutionDate = By.xpath("//*[text()='Renewal Execution Date']/following::input[1]");
+    public static By currentMonthlyRent = By.xpath("//*[text()='Current Monthly Rent']/following::input[1]");
+    public static By priorMonthlyRent = By.xpath("//*[text()='Prior Monthly Rent']/following::input[1]");
+    public static By renewalCoordinatorName = By.xpath("//*[text()='Renewal Coordinator Name']/following::input[1]");
+    public static By saveLease = By.xpath("(//*[@class='primaryButtons'])[2]/input[1]");
+    public static By cancelLease = By.xpath("(//*[@class='primaryButtons'])[2]/input[2]");
+    
+    //Related Activities
+    public static By relatedActivities_LeaseRenewal = By.xpath("//*[text()=' Lease Renewal ']");
+    public static By relatedActivities_newStartDate = By.xpath("//*[text()=' New Start Date']");
+    public static By relatedActivities_newEndDate = By.xpath("//*[text()=' New End Date']/following::input[1]");
+    public static By relatedActivities_renewalOnDate = By.xpath("//*[text()=' Renewed On Date']/following::input[1]");
+    public static By relatedActivities_save = By.xpath("(//*[@class='primaryButtons'])[4]/input[1]");
+    public static By relatedActivities_cancel = By.xpath("(//*[@class='primaryButtons'])[4]/input[2]");
+    
+    public static By relatedActivities_newLeaseRenewalPopUpHeading = By.xpath("//*[text()='New Lease Renewal']");
+    
+    
+    
 }

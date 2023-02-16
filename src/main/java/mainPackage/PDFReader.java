@@ -52,10 +52,12 @@ public class PDFReader
     public static String residentBenefitsPackage = "";
     public static String leaseRenewalFee = "";
     public static String startDate = "";
+    public static String endDate = "";
     public static String lastDayOfTheStartDate = "";
     public static String firstFullMonth = "";
     public static String secondFullMonth = "";
     public static String HVACAirFilterFee ="";
+    public static String previousMonthlyRent = "";
 	 
 		public static boolean readPDFPerMarket(String market) throws Exception  
 		{
@@ -81,6 +83,7 @@ public class PDFReader
 		    increasedRent_amount ="";
 		    increasedRent_newStartDate ="";
 		    increasedRent_newEndDate ="";
+		    previousMonthlyRent = "";
 		    
 			switch(market)
 			{
