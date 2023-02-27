@@ -20,12 +20,14 @@ public class PropertyWare_InsertOtherInformation
 	public static void addingOtherInformation()
 	{
 		
+		try
+		{
 		//Clear all existing values in variables
 		PropertyWare_InsertOtherInformation.clearExistingVariableValues();
 		//Adding values to all variables 
 		
-		renewalStatus = "CHARGE RENEWAL FEE - ANNUAL";
-		reneWalFollowupNotes = ""; //Need to calculate Month's difference between StartDate and EndDate
+		renewalStatus = "CHARGE+RENEWAL+FEE+-+ANNUAL";
+		reneWalFollowupNotes = "Full Lease Executed From "+PDFReader.startDate+" - "+PDFReader.endDate+" - HRG Automation - "; //Need to calculate Month's difference between StartDate and EndDate
 		renewalExecutionDate = RunnerClass.getCurrentDate();
 		currentMonthlyRent = PDFReader.monthlyRent;
 		priorMonthlyRent = PDFReader.previousMonthlyRent;
@@ -43,7 +45,9 @@ public class PropertyWare_InsertOtherInformation
 		}
 		catch(Exception e)
 		{
-			
+			 e.printStackTrace();
+			 RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Renewal Status";
+			 System.out.println("Issue - Other information - Renewal Status");
 		}
 		
 		//Renewal Follow - up Notes
@@ -56,7 +60,9 @@ public class PropertyWare_InsertOtherInformation
 	    }
 	    catch(Exception e)
 	    {
-		
+	    	e.printStackTrace();
+			RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Renewal Follow up Notes";
+			System.out.println("Issue - Other information - Renewal Follow up Notes");
 	    }
 		//Renewal Execution Date
 		try
@@ -68,7 +74,9 @@ public class PropertyWare_InsertOtherInformation
 		}
 	    catch(Exception e)
 	    {
-		
+	    	e.printStackTrace();
+			RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Renewal Execution Date";
+			System.out.println("Issue - Other information - Renewal Renewal Execution Date");
 	    }
         //Current Monthly Rent
 		try
@@ -80,7 +88,9 @@ public class PropertyWare_InsertOtherInformation
 		}
 		catch(Exception e)
 		{
-			
+			e.printStackTrace();
+			RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Current Monthly Rent";
+			System.out.println("Issue - Other information - Current Monthly Rent");
 		}
 		
 		//Prior Monthly Rent
@@ -93,7 +103,9 @@ public class PropertyWare_InsertOtherInformation
 		}
 		catch(Exception e)
 		{
-			
+			e.printStackTrace();
+			RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Prior Monthly Rent";
+			System.out.println("Issue - Other information - Prior Monthly Rent");
 		}
 		
 		//Renewal Coordinator Name
@@ -106,7 +118,9 @@ public class PropertyWare_InsertOtherInformation
 		}
 		catch(Exception e)
 		{
-					
+			e.printStackTrace();
+			RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Renewal Coordinator Name";
+			System.out.println("Issue - Other information - Renewal Coordinator Name");		
 		}
 		
 		RunnerClass.js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
@@ -114,6 +128,7 @@ public class PropertyWare_InsertOtherInformation
 		{
 			if(AppConfig.saveButtonOnAndOff==true)
 			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.saveLease)).click(RunnerClass.driver.findElement(Locators.saveLease)).build().perform();
+			else
 			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.cancelLease)).click(RunnerClass.driver.findElement(Locators.cancelLease)).build().perform();
 		}
 		catch(Exception e)
@@ -121,6 +136,15 @@ public class PropertyWare_InsertOtherInformation
 			e.printStackTrace();
 		}
 		
+	  }
+	  catch(Exception e)
+	  {
+		  RunnerClass.js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+		  if(AppConfig.saveButtonOnAndOff==true)
+			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.saveLease)).click(RunnerClass.driver.findElement(Locators.saveLease)).build().perform();
+		  else
+			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.cancelLease)).click(RunnerClass.driver.findElement(Locators.cancelLease)).build().perform();
+	  }
 		
 		//Related Activities
 		
@@ -132,13 +156,15 @@ public class PropertyWare_InsertOtherInformation
 		}
 		catch(Exception e)
 		{
-			
+			e.printStackTrace();
+			RunnerClass.failedReason = RunnerClass.failedReason+","+"Issue in adding Related Activities";
+			System.out.println("Issue in adding Related Activities");	
 		}
 		//Related Activities - New Start Date
 		try
 		{
 		RunnerClass.driver.findElement(Locators.relatedActivities_newStartDate).click();
-		//RunnerClass.driver.findElement(Locators.relatedActivities_newStartDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+		RunnerClass.driver.findElement(Locators.relatedActivities_newStartDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
 		RunnerClass.driver.findElement(Locators.relatedActivities_newStartDate).sendKeys(newStartDate);
 		//Click this to remove Calendar 
 		RunnerClass.driver.findElement(Locators.relatedActivities_newLeaseRenewalPopUpHeading).click();
@@ -148,6 +174,8 @@ public class PropertyWare_InsertOtherInformation
 							
 		}
 		
+		try
+		{
 		//Related Activities - New End Date
 		try
 		{
@@ -176,11 +204,30 @@ public class PropertyWare_InsertOtherInformation
 		{
 			if(AppConfig.saveButtonOnAndOff==true)
 			RunnerClass.driver.findElement(Locators.relatedActivities_save).click();
+			else
 			RunnerClass.driver.findElement(Locators.relatedActivities_cancel).click();
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
+		}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			RunnerClass.failedReason = RunnerClass.failedReason+","+"Issue in adding Related Activities";
+			System.out.println("Issue in adding Related Activities");
+			try
+			{
+			if(RunnerClass.driver.findElement(Locators.youMustCorrectTheFollowingErrorMessage).isDisplayed())
+			{
+				RunnerClass.driver.findElement(Locators.relatedActivities_cancel).click();
+			}
+			}
+			catch(Exception e2)
+			{
+				
+			}
 		}
 		
 	}

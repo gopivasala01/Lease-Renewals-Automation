@@ -44,6 +44,7 @@ public class RunnerClass
 	public static ArrayList<String> successBuildings = new ArrayList<String>();
 	public static ArrayList<String> failedBuildings = new ArrayList<String>();
 	public static String[][] autoCharges;
+	public static String[][] moveInCharges;
 	public static String [] statusList;
 	public static String currentDate = "";
 	public static HashMap<String,String> failedReaonsList= new HashMap<String,String>();
@@ -72,6 +73,7 @@ public class RunnerClass
 		  buildingAbbreviation = pendingRenewalLeases[i][1];
 		  ownerName = pendingRenewalLeases[i][2];
 		  
+		  failedReason = "";
 		  
 		  //Change the Status of the Lease to Started so that it won't run again in the Jenkins scheduling Process
 		  DataBase.insertData(buildingAbbreviation,"Started",6);
@@ -84,9 +86,9 @@ public class RunnerClass
 		 
 		  try
 		  {
-			  //Login 
-		if( PropertyWare.login()==true)
-		{
+		  //Login 
+		  if( PropertyWare.login()==true)
+		  {
 		  //Search building in property Ware
 		   if(PropertyWare.searchBuilding(company, buildingAbbreviation)==true)
 			{
@@ -94,31 +96,49 @@ public class RunnerClass
 				{
 					if(PDFReader.readPDFPerMarket(company)==true)
 					{
+						PropertyWare_InsertData.configureValues();
+						PropertyWare_InsertData.addingMoveInCharges();
 						PropertyWare_InsertData.clearExistingAutoCharges();
 						PropertyWare_InsertData.addingNewAutoCharges();
 						PropertyWare_InsertOtherInformation.addingOtherInformation();
+						
+						//Update Completed Status
+						if(failedReason=="")
+							failedReason="";
+						else if(failedReason.charAt(0)==',')
+							failedReason = failedReason.substring(1);
+							String updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Completed', StatusID=4,NotAutomatedFields='"+failedReason+"',LeaseCompletionDate= getDate() where BuildingName like '%"+buildingAbbreviation+"%'";
+					    	DataBase.updateTable(updateSuccessStatus);
 					}
 					else 
 					{
-						String updateSuccessStatus = "update [Automation].[leaseAuditAutomation] Set Status ='Failed', completedDate = getdate() ,Notes = 'Unable to Read Lease Agreement' where [BuildingAbbreviation] = '"+buildingAbbreviation+"'";
+						if(failedReason.charAt(0)==',')
+						failedReason = failedReason.substring(1);
+						String updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Failed', StatusID=3,NotAutomatedFields='"+failedReason+"',LeaseCompletionDate= getDate() where BuildingName like '%"+buildingAbbreviation+"%'";
 				    	DataBase.updateTable(updateSuccessStatus);
 					}
 				}
 				else 
 				{
-					String updateSuccessStatus = "update [Automation].[leaseAuditAutomation] Set Status ='Failed', completedDate = getdate() ,Notes = 'Unable to download Lease Agreement' where [BuildingAbbreviation] = '"+buildingAbbreviation+"'";
+					if(failedReason.charAt(0)==',')
+						failedReason = failedReason.substring(1);
+					String updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Failed', StatusID=3,NotAutomatedFields='"+failedReason+"',LeaseCompletionDate= getDate() where BuildingName like '%"+buildingAbbreviation+"%'";
 			    	DataBase.updateTable(updateSuccessStatus);
 				}
 			}
 		    else 
 		    {
- 		    	String updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Failed', StatusID=3,NotAutomatedFields='"+failedReason+"',LeaseCompletedDate= getDate() where BuildingName like '%"+buildingAbbreviation+"%'";
+		    	if(failedReason.charAt(0)==',')
+					failedReason = failedReason.substring(1);
+ 		    	String updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Failed', StatusID=3,NotAutomatedFields='"+failedReason+"',LeaseCompletionDate= getDate() where BuildingName like '%"+buildingAbbreviation+"%'";
 		    	DataBase.updateTable(updateSuccessStatus);
 		    }
 		}
 		else 
 		{
-			String updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Failed', StatusID=3,NotAutomatedFields='"+failedReason+"',LeaseCompletedDate= getDate() where BuildingName like '%"+buildingAbbreviation+"%'";
+			if(failedReason.charAt(0)==',')
+				failedReason = failedReason.substring(1);
+			String updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Failed', StatusID=3,NotAutomatedFields='"+failedReason+"',LeaseCompletionDate= getDate() where BuildingName like '%"+buildingAbbreviation+"%'";
 	    	DataBase.updateTable(updateSuccessStatus);
 		}
 		   RunnerClass.driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
@@ -194,7 +214,42 @@ public class RunnerClass
 		}
 		catch(Exception e)
 		{
-		return "Error";
+			try
+			{
+			SimpleDateFormat format1 = new SimpleDateFormat("MMMM dd yyyy");
+		    SimpleDateFormat format2 = new SimpleDateFormat("MM/dd/yyyy");
+		    Date date = format1.parse(dateRaw.trim().replaceAll(" +", " "));
+		    System.out.println(format2.format(date));
+			return format2.format(date).toString();
+			}
+			catch(Exception e2)
+			{
+			  if(dateRaw.trim().replaceAll(" +", " ").split(" ")[1].contains("st")||dateRaw.trim().replaceAll(" +", " ").split(" ")[1].contains("nd")||dateRaw.trim().replaceAll(" +", " ").split(" ")[1].contains("th"))
+				  dateRaw = dateRaw.trim().replaceAll(" +", " ").replace("st", "").replace("nd", "").replace("th", "");
+			  try
+				{
+				SimpleDateFormat format1 = new SimpleDateFormat("MMMM dd yyyy");
+			    SimpleDateFormat format2 = new SimpleDateFormat("MM/dd/yyyy");
+			    Date date = format1.parse(dateRaw.trim().replaceAll(" +", " "));
+			    System.out.println(format2.format(date));
+				return format2.format(date).toString();
+				}
+				catch(Exception e3)
+				{
+					try
+					{
+					SimpleDateFormat format1 = new SimpleDateFormat("MMMM dd,yyyy");
+				    SimpleDateFormat format2 = new SimpleDateFormat("MM/dd/yyyy");
+				    Date date = format1.parse(dateRaw.trim().replaceAll(" +", " "));
+				    System.out.println(format2.format(date));
+					return format2.format(date).toString();
+					}
+					catch(Exception e4)
+					{
+					return "";
+					}
+				}
+			}
 		}
 	}
 	
@@ -254,6 +309,25 @@ public class RunnerClass
 			// System.out.println(dtf.format(now));
 			 currentTime = dtf.format(now);
 			 return currentTime;
+	    }
+	    public static boolean onlyDigits(String str)
+	    {
+			str = str.replace(",", "").replace(".", "").trim();
+			if(str=="")
+				return false;
+			int numberCount =0;
+	        for (int i = 0; i < str.length(); i++) 
+	        {
+	            if (Character.isDigit(str.charAt(i))) 
+	            {
+	            	numberCount++;
+	            	//return true;
+	            }
+	        }
+	        if(numberCount==str.length())
+	        return true;
+	        else
+	        return false;
 	    }
 }
 

@@ -13,9 +13,11 @@ import mainPackage.RunnerClass;
 
 public class NorthCarolina_Format1 
 {
-	public static void northCarolina() throws Exception
+	public static boolean northCarolina() throws Exception
 	//public static void main(String [] args) throws Exception
 	{
+		try
+		{
 			File file = RunnerClass.getLastModified();
 			//File file = new File("C:\\SantoshMurthyP\\Lease Audit Automation\\Full_Lease_-_[14509_Glenduff_Pl]_-_[Brewer_-_Kearney]_-_[02.01.2023]_-_[05.31.2024].PDF (1).pdf");
 			System.out.println(file);
@@ -137,8 +139,26 @@ public class NorthCarolina_Format1
 		    	System.out.println("Pet Rent = "+PDFReader.petRent);
 		    }
 		    
-			
-
+		    //Lease Renewal Admin Fee
+		    try
+	    	{
+	    		PDFReader.leaseRenewalFee = text.substring(text.indexOf(PDFAppConfig.NorthCarolina_Format1.leaseRenewalFee_Prior)+PDFAppConfig.NorthCarolina_Format1.leaseRenewalFee_Prior.length()).trim().split(" ")[0].trim();
+	    		if(PDFReader.leaseRenewalFee.matches(".*[a-zA-Z]+.*"))
+		    		PDFReader.leaseRenewalFee = "Error";
+	    	}
+	    	catch(Exception e)
+	    	{
+	    		PDFReader.leaseRenewalFee = "Error";
+	    	}
+	    	System.out.println("Lease Renewal Fee = "+PDFReader.leaseRenewalFee);
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println("Issue in fetching values from PDF");
+			RunnerClass.failedReason =  RunnerClass.failedReason+","+"Issue in fetching values from PDF";
+			return false;
+		}
 }
 
 }

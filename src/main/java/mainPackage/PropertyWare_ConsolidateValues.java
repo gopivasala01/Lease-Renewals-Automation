@@ -6,8 +6,8 @@ public class PropertyWare_ConsolidateValues
 	{
 		String autoCharges ="";
 		String query ="";
-		if(RunnerClass.portfolioType=="MCH")
-		{
+		//if(RunnerClass.portfolioType=="MCH")
+		//{
 			if(PDFReader.petFlag==false)
 			{
 				if(PDFReader.residentBenefitsPackageAvailabilityCheck==true)
@@ -44,8 +44,8 @@ public class PropertyWare_ConsolidateValues
 					query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in ("+autoCharges+")";
 				}
 	         }
-      }
-		
+      //}
+		/*
 		//Other Portfolios
 		if(RunnerClass.portfolioType=="Others")
 		{
@@ -85,21 +85,30 @@ public class PropertyWare_ConsolidateValues
 				}
 	         }
       }
+      */
 		DataBase.updateTable(query);
 	}
 	
 	public static void updateDates()
 	{
-		if(RunnerClass.portfolioType=="MCH")
-		{
 		    PropertyWare_InsertData.proratedRent_StartDate ="";
+		    if(PDFReader.startDate.split("/")[1].equals("1")||PDFReader.startDate.split("/")[1].equals("01"))
+		    {
+		    	PropertyWare_InsertData.monthlyRent_StartDate = PDFReader.startDate;
+				PropertyWare_InsertData.ResidentBenefitPackage_StartDate = PDFReader.startDate;
+				PropertyWare_InsertData.HVACAirFilterFee_StartDate = PDFReader.startDate;
+				PropertyWare_InsertData.petRent_StartDate = PDFReader.startDate;
+		    }
+		    else
+		    {
 			PropertyWare_InsertData.monthlyRent_StartDate = PDFReader.firstFullMonth;
 			PropertyWare_InsertData.ResidentBenefitPackage_StartDate = PDFReader.firstFullMonth;
 			PropertyWare_InsertData.HVACAirFilterFee_StartDate = PDFReader.firstFullMonth;
 			PropertyWare_InsertData.petRent_StartDate = PDFReader.firstFullMonth;
+		    }
 			PropertyWare_InsertData.increasedRent_previousRentStartDate = PDFReader.startDate;
-			
-			
+		    
+		/*
 		}
 		else 
 		{
@@ -112,5 +121,6 @@ public class PropertyWare_ConsolidateValues
 			PropertyWare_InsertData.HVACAirFilterFee_StartDate = PDFReader.firstFullMonth;
 			PropertyWare_InsertData.petRent_StartDate = PDFReader.firstFullMonth;
 		}
+		*/
 	}
 }

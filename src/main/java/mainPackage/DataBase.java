@@ -64,7 +64,7 @@ public class DataBase
 		            	String 	company =  (String) rs.getObject(1);
 		                String  buildingAbbreviation = (String) rs.getObject(2);
 		                String  ownerName = (String) rs.getObject(3);
-		                System.out.println(company +" ----  "+buildingAbbreviation+" ---- "+ownerName);
+		                System.out.println(company +" |  "+buildingAbbreviation+" | "+ownerName);
 		    				//Company
 		    				RunnerClass.pendingRenewalLeases[i][0] = company;
 		    				//Building Abbreviation
@@ -136,7 +136,7 @@ public class DataBase
 		                String  endDate = (String) rs.getObject(4);
 		                String  description = (String) rs.getObject(5);
 		                
-		                System.out.println(chargeCode +" ----  "+amount+" ---- "+startDate+" ---- "+endDate+" ---- "+description);
+		                System.out.println(chargeCode +" | "+amount+" | "+startDate+" | "+endDate+" | "+description);
 		    				//Company
 		    				RunnerClass.autoCharges[i][0] = chargeCode;
 		    				//Building Abbreviation
@@ -154,6 +154,62 @@ public class DataBase
 		            //{
 		            //	System.out.println(RunnerClass.pendingBuildingList[j][j]);
 		           // }
+		            rs.close();
+		            stmt.close();
+		            con.close();
+		 return true;
+		}
+		catch(Exception e) 
+		{
+			e.printStackTrace();
+		 return false;
+		}
+	}
+	
+	public static boolean getMoveInCharges()
+	{
+		try
+		{
+		        Connection con = null;
+		        Statement stmt = null;
+		        ResultSet rs = null;
+		            //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		            con = DriverManager.getConnection(AppConfig.connectionUrl);
+		            String SQL = AppConfig.getMoveInCharges;
+		            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		           // stmt = con.createStatement();
+		            rs = stmt.executeQuery(SQL);
+		            int rows =0;
+		            if (rs.last()) {
+		            	rows = rs.getRow();
+		            	// Move to beginning
+		            	rs.beforeFirst();
+		            }
+		            System.out.println("No of buildings with status = "+rows);
+		            RunnerClass.moveInCharges = new String[rows][5];
+		           int  i=0;
+		            while(rs.next())
+		            {
+		            	
+		            	String 	chargeCode =  (String) rs.getObject(1);
+		                String  amount = (String) rs.getObject(2);
+		                String  startDate = (String) rs.getObject(3);
+		                String  endDate = (String) rs.getObject(4);
+		                String  description = (String) rs.getObject(5);
+		                
+		                System.out.println(chargeCode +" |  "+amount+" | "+startDate+" | "+endDate+" | "+description);
+		    				//Company
+		    				RunnerClass.moveInCharges[i][0] = chargeCode;
+		    				//Building Abbreviation
+		    				RunnerClass.moveInCharges[i][1] = amount;
+		    				//Monthly Rent From Lease Agreement
+		    				RunnerClass.moveInCharges[i][2] = startDate;
+		    				//Monthly Rent In PW
+		    				RunnerClass.moveInCharges[i][3] = endDate;
+		    				//Start Date From Lease Agreement
+		    				RunnerClass.moveInCharges[i][4] = description;
+		    				i++;
+		            }	
 		            rs.close();
 		            stmt.close();
 		            con.close();

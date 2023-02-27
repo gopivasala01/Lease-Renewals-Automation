@@ -33,6 +33,8 @@ public class AppConfig
 	   
 	   public static String getAutoCharges = "Select ChargeCode, Amount, StartDate,EndDate,Description from automation.LeaseReneWalsAutoChargesConfiguration Where Flag =1";
 	   
+	   public static String getMoveInCharges = "Select ChargeCode, Amount, StartDate,EndDate,Description from automation.LeaseReneWalsMoveInChargesConfiguration Where Flag =1";
+	   
 	   public static String[] IAGClientList = {"510","AVE","BTH","CAP","FOR","HRG","HS","MAN","MCH","OFF","PIN","RF","SFR3","TH","HH","Lofty.Ai"};
 	
    public static String getMonthlyRentChargeCode(String company)
@@ -129,5 +131,6 @@ public class AppConfig
 	   }
 	   return "";
    }
+   
 
 }

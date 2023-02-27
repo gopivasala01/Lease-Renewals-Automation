@@ -51,7 +51,7 @@ public class PropertyWare
 		catch(Exception e)
 		{
 			System.out.println("Login failed");
-		    RunnerClass.failedReason = "Login failed";
+		    RunnerClass.failedReason = RunnerClass.failedReason+","+ "Login failed";
 			return false;
 		}
 	}
@@ -83,7 +83,7 @@ public class PropertyWare
 				if(RunnerClass.driver.findElement(Locators.noItemsFound).isDisplayed())
 				{
 					System.out.println("Building Not Found");
-				    RunnerClass.failedReason = "Building Not Found";
+				    RunnerClass.failedReason =  RunnerClass.failedReason+","+ "Building Not Found";
 					return false;
 				}
 				}
@@ -118,12 +118,12 @@ public class PropertyWare
 				}
 				if(leaseSelected==false)
 				{
-				    RunnerClass.failedReason = "Building Not Found";
+				    RunnerClass.failedReason =  RunnerClass.failedReason+","+ "Building Not Found";
 					return false;
 				}
 	         } catch(Exception e) 
 		     {
-	         RunnerClass.failedReason = "Issue in selecting Building";
+	         RunnerClass.failedReason = RunnerClass.failedReason+","+  "Issue in selecting Building";
 		     return false;
 		     }
 		return true;
@@ -143,7 +143,6 @@ public class PropertyWare
 			{
 				portfolioFlag =1;
 				break;
-				//AL_PropertyWare.portfolioType = "MCH"; 
 			}
 		}
 		
@@ -156,8 +155,8 @@ public class PropertyWare
 		catch(Exception e) 
 		{
 			System.out.println("Unable to fetch Portfolio Type");
-			 RunnerClass.failedReason = "Unable to fetch Portfolio Type";
-		    return false;
+			 RunnerClass.failedReason =  RunnerClass.failedReason+","+ "Unable to fetch Portfolio Type";
+		   // return false;  -- Commented this as we are not using Portfolio condition anywhere in the process
 		}
 		
 		try
@@ -175,7 +174,7 @@ public class PropertyWare
 		{
 			
 			System.out.println("Unable to Click Lease Owner Name");
-		    RunnerClass.failedReason = "Unable to Click Lease Onwer Name";
+		    RunnerClass.failedReason =  RunnerClass.failedReason+","+  "Unable to Click Lease Onwer Name";
 			return false;
 		}
 		try
@@ -220,7 +219,7 @@ public class PropertyWare
 		if(checkLeaseAgreementAvailable==false)
 		{
 			System.out.println("Unable to download Lease Agreement");
-		    RunnerClass.failedReason = "Unable to download Lease Agreement";
+		    RunnerClass.failedReason =  RunnerClass.failedReason+","+ "Unable to download Lease Agreement";
 			return false;
 		}
 		Thread.sleep(20000);
@@ -234,7 +233,7 @@ public class PropertyWare
 		catch(Exception e)
 		{
 			System.out.println("Unable to download Lease Agreement");
-		    RunnerClass.failedReason = "Unable to download Lease Agreement";
+		    RunnerClass.failedReason =  RunnerClass.failedReason+","+"Unable to download Lease Agreement";
 			return false;
 		}
 	}

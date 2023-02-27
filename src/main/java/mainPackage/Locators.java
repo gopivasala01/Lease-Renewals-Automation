@@ -68,13 +68,30 @@ public class Locators
     
     //Related Activities
     public static By relatedActivities_LeaseRenewal = By.xpath("//*[text()=' Lease Renewal ']");
-    public static By relatedActivities_newStartDate = By.xpath("//*[text()=' New Start Date']");
+    public static By relatedActivities_newStartDate = By.xpath("//*[text()=' New Start Date']/following::input[1]");
     public static By relatedActivities_newEndDate = By.xpath("//*[text()=' New End Date']/following::input[1]");
     public static By relatedActivities_renewalOnDate = By.xpath("//*[text()=' Renewed On Date']/following::input[1]");
     public static By relatedActivities_save = By.xpath("(//*[@class='primaryButtons'])[4]/input[1]");
     public static By relatedActivities_cancel = By.xpath("(//*[@class='primaryButtons'])[4]/input[2]");
     
     public static By relatedActivities_newLeaseRenewalPopUpHeading = By.xpath("//*[text()='New Lease Renewal']");
+    public static By ledgerTab = By.id("tab2");
+    
+    public static By moveInCharges_List =By.xpath("//*[@id='ledgerDataTable']/tbody/tr/td[5]");
+    public static By moveInCharge_List_Amount = By.xpath("//*[@id='ledgerDataTable']/tbody/tr/td[8]");
+    
+    public static By newCharge = By.xpath("//*[@value='New Charge']");
+    public static By accountList = By.xpath("(//*[@class='edit'])[9]/descendant::select[1]/optgroup/option");
+    public static By referenceName = By.name("charge.refNo");
+    public static By moveInChargeAmount = By.name("charge.editAmountAsString");
+    public static By moveInChargeDate = By.name("charge.dateAsString");
+    public static By moveInChargeSave = By.xpath("//*[@value='Save']");
+    public static By moveInChargeCancel = By.xpath("//*[@value='Cancel']");
+    public static By moveInChargeSaveButton = By.xpath("//*[@value='Save']");
+    public static By somethingWrongInSavingCharge = By.xpath("//*[text()='You must correct the following:']");
+    public static By summaryTab = By.xpath("//*[text()='Summary']");
+    
+    public static By youMustCorrectTheFollowingErrorMessage = By.xpath("//*[text()='You must correct the following:']");
     
     
     

@@ -1,10 +1,13 @@
 package mainPackage;
 
+import java.time.Duration;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PropertyWare_InsertData 
 {
@@ -17,13 +20,18 @@ public class PropertyWare_InsertData
 	public static String petRent_StartDate = "";
 	public static String increasedRent_previousRentStartDate ="";
 	
-	
-	//Navigate to Auto Charges Section and update existing auto charges
-	public static boolean clearExistingAutoCharges() throws Exception
+	//ConfigureValues
+	public static boolean configureValues() throws Exception
 	{
-		//Clear all values in table first
-		String query = "Update automation.LeaseReneWalsAutoChargesConfiguration Set ChargeCode = null,Amount = null,StartDate=null,EndDate=null,Flag=null";
-		DataBase.updateTable(query);
+		try
+		{
+		//Clear all values in Auto Charges first
+		String query1 = "Update automation.LeaseReneWalsAutoChargesConfiguration Set ChargeCode = null,Amount = null,StartDate=null,EndDate=null,Flag=null";
+		DataBase.updateTable(query1);
+				
+		//Clear all values in Auto Charges first
+		String query2 = "Update automation.LeaseReneWalsMoveInChargesConfiguration Set ChargeCode = null,Amount = null,StartDate=null,EndDate=null";
+		DataBase.updateTable(query2);
 		
 		//Get all Required dates converted
 		PDFReader.startDate = RunnerClass.convertDate(PDFReader.commencementDate);
@@ -32,24 +40,101 @@ public class PropertyWare_InsertData
 		PDFReader.firstFullMonth = RunnerClass.firstDayOfMonth(PDFReader.startDate,1);
 		PDFReader.secondFullMonth = RunnerClass.firstDayOfMonth(PDFReader.startDate,2);
 		
+		}
+		catch(Exception e)
+		{
+			System.out.println("Issue in getting or Converting dates");
+			RunnerClass.failedReason =  RunnerClass.failedReason+","+"Issue in getting or Converting dates";
+			return false;
+		}
 		//Update dates for auto charges
 		PropertyWare_ConsolidateValues.updateDates();
-		//Adding values to the table
-		PropertyWare_InsertData.addingValuesToTable();
+		//Adding values to the Auto Charges table
+		if(PropertyWare_InsertData.addingValuesToTable()==false)
+			return false;
+		//Adding values to the Move In Charges table
+		if(PropertyWare_InsertData.addingValuesToMoveInChargesTable()==false)
+			return false;
 		//Update Flag column in table
 		PropertyWare_ConsolidateValues.decideAutoCharges();
-		
+		return true;
+	}
+	
+	//Add Move In Charges
+	public static boolean addingMoveInCharges() throws Exception
+	{
 		try
 		{
+		 //Get All Auto Charges from Table
+	     DataBase.getMoveInCharges();
+		
+		RunnerClass.driver.navigate().refresh();
+		RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+		RunnerClass.driver.findElement(Locators.ledgerTab).click();
+		Thread.sleep(2000);
+		List<WebElement> existingMoveInCharges_ChargeCodes = RunnerClass.driver.findElements(Locators.moveInCharges_List);
+		List<WebElement> existingMoveInCharges_Amount = RunnerClass.driver.findElements(Locators.moveInCharge_List_Amount);
+		
+		for(int i=0;i<RunnerClass.moveInCharges.length;i++)
+		{
+			
+				boolean availabilityCheck = false;
+				String chargeCode = RunnerClass.moveInCharges[i][0];
+				String amount = RunnerClass.moveInCharges[i][1];
+				String startDate = RunnerClass.moveInCharges[i][2];
+				String endDate = RunnerClass.moveInCharges[i][3];
+				String description = RunnerClass.moveInCharges[i][4];
+				
+				for(int k=0;k<existingMoveInCharges_ChargeCodes.size();k++)
+				{
+					String autoChargeCodes = existingMoveInCharges_ChargeCodes.get(k).getText();
+					String autoChargeAmount = existingMoveInCharges_Amount.get(k).getText();
+					if(chargeCode.contains(autoChargeCodes)&&autoChargeAmount.substring(1).equals(amount))//&&(startDate.equals(autoChargeStartDate)||autoChargeEndDate.trim().equals("")))
+					{
+						availabilityCheck = true;
+						System.out.println(description+" already available");
+						break;
+					}
+				}
+				//Add new Charge if it is not there
+				if(availabilityCheck==false)
+				{
+					if(amount=="Error"||amount=="0.00")
+						System.out.println(description+ " is not updated");
+					else
+					PropertyWare_InsertData.addingMoveInCharge(chargeCode, amount, startDate, endDate, description);
+				}
+				
+		}
+		return true;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			System.out.println("Issue in Adding Move in charges");
+			RunnerClass.failedReason =  RunnerClass.failedReason+","+"Issue in Adding Move in charges";
+			RunnerClass.driver.navigate().refresh();
+			RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+			RunnerClass.driver.findElement(Locators.summaryTab).click();
+			return false;
+		}
+	}
+	
+	//Navigate to Auto Charges Section and update existing auto charges
+	public static boolean clearExistingAutoCharges() throws Exception
+	{
+		try
+		{
+		RunnerClass.driver.navigate().refresh();
+		RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+		RunnerClass.driver.findElement(Locators.summaryTab).click();
+		Thread.sleep(2000);
 	     RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 	     RunnerClass.driver.findElement(Locators.summaryEditButton).click();
 	     RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.newAutoCharge)).build().perform();
 	     
 	     //Get All Auto Charges from Table
 	     DataBase.getAutoCharges();
-	     
-	     try
-			{
 			List<WebElement> existingAutoCharges = RunnerClass.driver.findElements(Locators.autoCharge_List);
 			List<WebElement> existingAutoChargeAmounts = RunnerClass.driver.findElements(Locators.autoCharge_List_Amounts);
 			List<WebElement> endDates = RunnerClass.driver.findElements(Locators.autoCharge_List_EndDates);
@@ -79,29 +164,28 @@ public class PropertyWare_InsertData
                 			RunnerClass.driver.findElement(Locators.autoCharge_CancelButton).click();
                 			else 
                 			RunnerClass.driver.findElement(Locators.autoCharge_SaveButton).click();
+                		Thread.sleep(2000);
 					}
 				}	   
 	     
 			} //for loop close
-			}
-	     
-			catch(Exception e)
-			{
-				
-			}
+	     return true;
 		}
 		catch(Exception e)
 		{
+			e.printStackTrace();
 			RunnerClass.failedReason = "Something went wrong in clearing previous auto charges";
 			System.out.println("Something went wrong in clearing previous auto charges");
+			RunnerClass.driver.navigate().refresh();
+			RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 			return false;
 		}
-	return true;
 	}
 	
-	public static void addingNewAutoCharges() throws Exception
+	public static boolean addingNewAutoCharges() throws Exception
 	{
-		//Get all Auto Charges
+      try
+      {
 		
 		RunnerClass.driver.navigate().refresh();
 		RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
@@ -125,7 +209,7 @@ public class PropertyWare_InsertData
 				String autoChargeAmount = existingAutoChargeAmounts.get(k).getText();
 				String autoChargeStartDate = startDates.get(k).getText();
 				String autoChargeEndDate = endDates.get(k).getText();
-				if(chargeCode.contains(autoChargeCodes)&&autoChargeAmount.substring(1).equals(amount)&&(startDate.equals(autoChargeStartDate)||autoChargeEndDate.trim().equals("")))
+				if(chargeCode.contains(autoChargeCodes.replaceAll(".", ""))&&autoChargeAmount.substring(1).equals(amount)&&(startDate.equals(autoChargeStartDate)||autoChargeEndDate.trim().equals("")))
 				{
 					availabilityCheck = true;
 					System.out.println(description+" already available");
@@ -141,11 +225,25 @@ public class PropertyWare_InsertData
 			}
 			
 		}
+		return true;
+      }
+      catch(Exception e)
+      {
+    	  e.printStackTrace();
+		  RunnerClass.failedReason = RunnerClass.failedReason+","+"Something went wrong in adding auto charges";
+		  System.out.println("Something went wrong in adding auto charges");
+		  RunnerClass.driver.navigate().refresh();
+		  return false;
+      }
 		
 	}
 	
-	public static void addingAnAutoCharge(String accountCode, String amount, String startDate,String endDate,String description) throws Exception
+	
+	
+	public static boolean addingAnAutoCharge(String accountCode, String amount, String startDate,String endDate,String description) throws Exception
 	{
+		try
+		{
 		RunnerClass.driver.findElement(Locators.newAutoCharge).click();
 		 
 	    //Charge Code
@@ -173,10 +271,84 @@ public class PropertyWare_InsertData
 		RunnerClass.driver.findElement(Locators.autoCharge_CancelButton).click();
 		else 
 		RunnerClass.driver.findElement(Locators.autoCharge_SaveButton).click();
+		Thread.sleep(2000);
+		}
+		catch(Exception e)
+		{
+			try
+			{
+			e.printStackTrace();
+			System.out.println("Issue in adding Move in Charge"+description);
+			RunnerClass.failedReason =  RunnerClass.failedReason+","+"Issue in adding Auto Charge - "+description;
+			RunnerClass.driver.findElement(Locators.autoCharge_CancelButton).click();
+			return false;	
+			}
+			catch(Exception e2)
+			{
+				RunnerClass.driver.navigate().refresh();
+			}
+		}
+		return true;
 	}
 	
-	public static void addingValuesToTable()
+	public static boolean addingMoveInCharge(String accountCode, String amount, String startDate,String endDate,String description) throws Exception
 	{
+		try
+		{
+		RunnerClass.driver.findElement(Locators.newCharge).click();
+		Thread.sleep(2000);
+		//Account code
+		Select AutoChargesDropdown = new Select(RunnerClass.driver.findElement(Locators.accountDropdown));
+		AutoChargesDropdown.selectByVisibleText(accountCode);
+		//Reference
+		Thread.sleep(2000);
+		RunnerClass.driver.findElement(Locators.referenceName).sendKeys(description);
+		Thread.sleep(2000);
+		//Amount
+		RunnerClass.driver.findElement(Locators.moveInChargeAmount).click();
+		RunnerClass.actions.sendKeys(Keys.BACK_SPACE).sendKeys(Keys.BACK_SPACE).sendKeys(Keys.BACK_SPACE).sendKeys(Keys.BACK_SPACE).sendKeys(Keys.BACK_SPACE).build().perform();
+		Thread.sleep(2000);
+		RunnerClass.driver.findElement(Locators.moveInChargeAmount).sendKeys(amount); 
+		Thread.sleep(2000);
+		//Start Date
+		RunnerClass.driver.findElement(Locators.moveInChargeDate).clear();
+		Thread.sleep(2000);
+		RunnerClass.driver.findElement(Locators.moveInChargeDate).sendKeys(startDate);
+		//Save or Cancel button
+		Thread.sleep(2000);
+		if(AppConfig.saveButtonOnAndOff==false)
+		RunnerClass.driver.findElement(Locators.moveInChargeCancel).click();
+		else 
+		RunnerClass.driver.findElement(Locators.moveInChargeSaveButton).click();
+		Thread.sleep(2000);
+		try
+		{
+			if(RunnerClass.driver.findElement(Locators.somethingWrongInSavingCharge).isDisplayed())
+			{
+				RunnerClass.driver.findElement(Locators.moveInChargeCancel).click();
+			}
+			
+		}
+		catch(Exception e)
+		{}
+		return true;
+		}
+		catch(Exception e)
+		{
+			RunnerClass.driver.navigate().refresh();
+			RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+			RunnerClass.driver.findElement(Locators.summaryTab).click();
+			e.printStackTrace();
+			System.out.println("Issue in adding Move in Charge"+description);
+			RunnerClass.failedReason =  RunnerClass.failedReason+","+"Issue in adding Move in Charge - "+description;
+			return false;	
+		}
+	}
+	
+	public static boolean addingValuesToTable()
+	{
+		try
+		{
 		String query =null;
 		for(int i=1;i<=6;i++)
 		{
@@ -203,5 +375,40 @@ public class PropertyWare_InsertData
 			}
 		}
 		DataBase.updateTable(query);
+		return true;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			System.out.println("Issue in adding values to Auto charges table");
+			RunnerClass.failedReason =  RunnerClass.failedReason+","+"Internal Error - consolidating auto charges";
+			return false;
+		}
+	}
+	
+	public static boolean addingValuesToMoveInChargesTable()
+	{
+		try
+		{
+		String query =null;
+		for(int i=1;i<=1;i++)
+		{
+			switch(i)
+			{
+			case 1:
+				query = "Update automation.LeaseReneWalsMoveInChargesConfiguration Set ChargeCode = '"+AppConfig.getResidentRenewalAdminFee(RunnerClass.company)+"',Amount = '"+PDFReader.leaseRenewalFee+"',StartDate='"+monthlyRent_StartDate+"',EndDate='' where ID=1";
+				break;
+			}
+		}
+		DataBase.updateTable(query);
+		return true;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			System.out.println("Issue in adding values to Auto charges table");
+			RunnerClass.failedReason =  RunnerClass.failedReason+","+"Internal Error - consolidating Move In charges";
+			return false;
+		}
 	}
 }

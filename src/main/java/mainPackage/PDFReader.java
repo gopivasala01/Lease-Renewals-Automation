@@ -113,14 +113,21 @@ public class PDFReader
 				String pdfFormatType = PDFReader.decidePDFFormat(market);
 				System.out.println("PDF Format Type = "+pdfFormatType);
 				if(pdfFormatType=="Format1")
-					PDFDataExtract.NorthCarolina_Format1.northCarolina();
-				else if(pdfFormatType=="Format2")
-				PDFDataExtract.NorthCarolina_Format2.northCarolina();
-				else 
 				{
-					RunnerClass.failedReason = "Wrong PDF Format";
-					return false;
+					if(PDFDataExtract.NorthCarolina_Format1.northCarolina()==false)
+						return false;
 				}
+				else 
+					if(pdfFormatType=="Format2")
+				     {
+					if(PDFDataExtract.NorthCarolina_Format2.northCarolina()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
 
 			}
 			return true;

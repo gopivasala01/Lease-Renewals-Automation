@@ -14,7 +14,7 @@ import mainPackage.RunnerClass;
 public class NorthCarolina_Format2 
 {
 	
-	    public static void northCarolina() throws Exception
+	    public static boolean northCarolina() throws Exception
 	   // public static void main(String args[]) throws Exception
 		{
 			try
@@ -224,10 +224,14 @@ public class NorthCarolina_Format2
 		    {
 	
 		    }
-		    
+		    return true;
 		    
 			}	
 			catch(Exception e)
-			{}
+			{
+				System.out.println("Issue in fetching values from PDF");
+				RunnerClass.failedReason =  RunnerClass.failedReason+","+"Issue in fetching values from PDF";
+				return false;
+			}
 			}
 }
