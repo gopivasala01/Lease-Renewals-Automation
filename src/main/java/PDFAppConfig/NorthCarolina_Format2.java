@@ -46,6 +46,8 @@ public class NorthCarolina_Format2
 	
 	public static String HVACAirFilterFee = " HVAC Filter Maintenance Program Fee of $";
 	
+	public static String leaseRenewalAdminFee_Prior = "A lease renewal fee in the amount of $"; //leaseRenewalAdminFee_Prior
+	
 	public static String increasedRent_Prior1 = "on the first 12 months and $";
 	public static String increasedRent_Prior2 = "and, $ ";
 	

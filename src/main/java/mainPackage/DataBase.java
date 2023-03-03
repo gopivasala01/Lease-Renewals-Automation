@@ -50,7 +50,8 @@ public class DataBase
 		           // stmt = con.createStatement();
 		            rs = stmt.executeQuery(SQL);
 		            int rows =0;
-		            if (rs.last()) {
+		            if (rs.last()) 
+		            {
 		            	rows = rs.getRow();
 		            	// Move to beginning
 		            	rs.beforeFirst();

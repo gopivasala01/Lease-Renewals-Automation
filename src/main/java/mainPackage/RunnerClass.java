@@ -59,20 +59,24 @@ public class RunnerClass
 	public static boolean published;
 	public static boolean listingAgent;
 	public static String currentTime;
-	
+	public static int statusID;
 	
 	public static void main(String[] args) throws Exception 
 	{
+		String a = "4102 - hVAC Filter Fee";
+		System.out.println(a.replaceAll("[^A-Za-z0-9-]", ""));
+		
 		//RunnerClass.monthDifference("02/01/2023", "01/31/2025");
 		//Get Pending Renewal Leases
 		//Company,BuildingAbbreviation, LeaseNae
 		DataBase.getBuildingsList();
 		for(int i=0;i<pendingRenewalLeases.length;i++)
 		{
+			System.out.println(" Record -- "+(i+1));
 		  company = pendingRenewalLeases[i][0];
 		  buildingAbbreviation = pendingRenewalLeases[i][1];
 		  ownerName = pendingRenewalLeases[i][2];
-		  
+		  statusID =0;
 		  failedReason = "";
 		  
 		  //Change the Status of the Lease to Started so that it won't run again in the Jenkins scheduling Process
@@ -107,7 +111,11 @@ public class RunnerClass
 							failedReason="";
 						else if(failedReason.charAt(0)==',')
 							failedReason = failedReason.substring(1);
-							String updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Completed', StatusID=4,NotAutomatedFields='"+failedReason+"',LeaseCompletionDate= getDate() where BuildingName like '%"+buildingAbbreviation+"%'";
+						String updateSuccessStatus ="";
+						if(statusID==0)
+							updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Completed', StatusID=4,NotAutomatedFields='"+failedReason+"',LeaseCompletionDate= getDate() where BuildingName like '%"+buildingAbbreviation+"%'";
+						else 
+							updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Review', StatusID=5,NotAutomatedFields='"+failedReason+"',LeaseCompletionDate= getDate() where BuildingName like '%"+buildingAbbreviation+"%'";
 					    	DataBase.updateTable(updateSuccessStatus);
 					}
 					else 
@@ -168,6 +176,7 @@ public class RunnerClass
 			catch(Exception e) {}
 		   RunnerClass.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 	        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(15));
+	        driver.quit();
 		  }
 		  catch(Exception e)
 		  {

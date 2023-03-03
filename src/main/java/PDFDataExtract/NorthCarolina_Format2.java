@@ -15,12 +15,12 @@ public class NorthCarolina_Format2
 {
 	
 	    public static boolean northCarolina() throws Exception
-	   // public static void main(String args[]) throws Exception
+	   //public static void main(String args[]) throws Exception
 		{
 			try
 			{
 			File file = RunnerClass.getLastModified();
-			//File file = new File("C:\\SantoshMurthyP\\Lease Audit Automation\\RENEWAL_[3343_Buckvalley_Dr]_[Kinsela_-_Kinsela]_[02.01.23-07.31.24].pdf");
+			//File file = new File("C:\\SantoshMurthyP\\Lease Audit Automation\\Full_Lease_-_[10605_Hugue_Way]_-_[Truesdale,_S.]_-_[01.01.2023]_-_[06.30.2024].PDF.pdf");
 			System.out.println(file);
 			FileInputStream fis = new FileInputStream(file);
 			PDDocument document = PDDocument.load(fis);
@@ -121,6 +121,20 @@ public class NorthCarolina_Format2
 		    }
 		    System.out.println("Prorate Rent = "+PDFReader.proratedRent);
 		    
+		  //Lease Renewal Admin Fee
+		    try
+		    {
+		    	PDFReader.leaseRenewalFee = text.substring(text.indexOf(PDFAppConfig.NorthCarolina_Format2.leaseRenewalAdminFee_Prior)+PDFAppConfig.NorthCarolina_Format2.leaseRenewalAdminFee_Prior.length()).trim().split(" ")[0];
+		    	if(PDFReader.leaseRenewalFee.matches(".*[a-zA-Z]+.*")||PDFReader.proratedRent.equals("0.00"))
+		    		PDFReader.leaseRenewalFee = "Error";
+		    }
+		    catch(Exception e)
+		    {
+		    	PDFReader.leaseRenewalFee = "Error";
+		    	e.printStackTrace();
+		    }
+		    System.out.println("Lease Renewal Admin Fee = "+PDFReader.leaseRenewalFee);
+		    
 			//Pet Rent
 		    if(text.contains(PDFAppConfig.NorthCarolina_Format2.petAgreementAvailabilityCheck))
 		    {
@@ -219,12 +233,57 @@ public class NorthCarolina_Format2
 		    		}
 		    		System.out.println("Increased Rent Start Date = "+PDFReader.increasedRent_newStartDate);
 		    	}
+		    	if(text.contains("for "+PDFReader.commencementDate.trim()+" to"))
+		    	{
+		    		PDFReader.incrementRentFlag =true;
+		    		String increasedRent_previousRentEndDate_beforeConverting ="";
+		    		//Monthly Rent End Date
+		    		try
+		    		{
+		    			PDFReader.increasedRent_previousRentEndDate = text.substring(text.indexOf(PDFReader.commencementDate+" to ")+(PDFReader.commencementDate+" to ").length());
+			    		PDFReader.increasedRent_previousRentEndDate =  PDFReader.increasedRent_previousRentEndDate.substring(0,PDFReader.increasedRent_previousRentEndDate.indexOf(" and ")).trim();
+			    		increasedRent_previousRentEndDate_beforeConverting = PDFReader.increasedRent_previousRentEndDate.trim();
+			    		PDFReader.increasedRent_previousRentEndDate = RunnerClass.convertDate(PDFReader.increasedRent_previousRentEndDate);
+		    		}
+		    		catch(Exception e)
+		    		{
+		    			PDFReader.increasedRent_previousRentEndDate = "Error";
+		    		}
+		    		System.out.println("Monthly rent End Date = "+PDFReader.increasedRent_previousRentEndDate);
+		    		//Increased Rent
+		    		try
+		    		{
+		    			PDFReader.increasedRent_amount = text.substring(text.indexOf(increasedRent_previousRentEndDate_beforeConverting+" and ")+(increasedRent_previousRentEndDate_beforeConverting+" and ").length()).trim().split(" ")[0];
+			    		PDFReader.increasedRent_amount =  PDFReader.increasedRent_amount.replace("$", "");
+		    		if(PDFReader.increasedRent_amount.matches(".*[a-zA-Z]+.*")||PDFReader.increasedRent_amount.equals("0.00"))
+			    		PDFReader.increasedRent_amount = "Error";
+		    		}
+		    		catch(Exception e)
+		    		{
+		    			PDFReader.increasedRent_amount = "Error";
+		    		}
+		    		System.out.println("Increased Rent = "+PDFReader.increasedRent_amount);
+		    		
+		    		// Increased Rent Start Date
+		    		try
+		    		{
+		    			PDFReader.increasedRent_newStartDate = text.substring(text.indexOf(PDFReader.increasedRent_amount+" for ")+(PDFReader.increasedRent_amount+" for ").length()).trim();
+		    			PDFReader.increasedRent_newStartDate = PDFReader.increasedRent_newStartDate.substring(0,PDFReader.increasedRent_newStartDate.indexOf(" to ")).trim();
+		    			PDFReader.increasedRent_newStartDate = RunnerClass.convertDate(PDFReader.increasedRent_newStartDate);
+		    		}
+		    		catch(Exception e)
+		    		{
+		    			PDFReader.increasedRent_newStartDate  = "Error";
+		    		}
+		    		System.out.println("Increased Rent Start Date = "+PDFReader.increasedRent_newStartDate);
+		    		
+		    	}
 		    }
             catch(Exception e)
 		    {
 	
 		    }
-		    return true;
+		   return true;
 		    
 			}	
 			catch(Exception e)

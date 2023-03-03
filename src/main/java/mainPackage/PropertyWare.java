@@ -44,6 +44,18 @@ public class PropertyWare
         RunnerClass.driver.findElement(Locators.signInButton).click();
         RunnerClass.actions = new Actions(RunnerClass.driver);
         RunnerClass.js = (JavascriptExecutor)RunnerClass.driver;
+        RunnerClass.driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
+        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(2));
+        try
+        {
+        if(RunnerClass.driver.findElement(Locators.loginError).isDisplayed())
+        {
+        	System.out.println("Login failed");
+		    RunnerClass.failedReason = RunnerClass.failedReason+","+ "Login failed";
+			return false;
+        }
+        }
+        catch(Exception e) {}
         RunnerClass.driver.manage().timeouts().implicitlyWait(100,TimeUnit.SECONDS);
         RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(100));
         return true;
@@ -209,6 +221,18 @@ public class PropertyWare
 		for(int i =0;i<documents.size();i++)
 		{
 			if(documents.get(i).getText().toLowerCase().startsWith("renewal_"))//&&documents.get(i).getText().contains(leaseFirstName))
+			{
+				documents.get(i).click();
+				checkLeaseAgreementAvailable = true;
+				break;
+			}
+		}
+		}
+		if(checkLeaseAgreementAvailable == false)
+		{
+		for(int i =0;i<documents.size();i++)
+		{
+			if(documents.get(i).getText().toLowerCase().startsWith("Full_Lease"))//&&documents.get(i).getText().contains(leaseFirstName))
 			{
 				documents.get(i).click();
 				checkLeaseAgreementAvailable = true;

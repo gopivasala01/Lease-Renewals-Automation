@@ -45,6 +45,7 @@ public class PropertyWare_InsertOtherInformation
 		}
 		catch(Exception e)
 		{
+			RunnerClass.statusID=1;
 			 e.printStackTrace();
 			 RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Renewal Status";
 			 System.out.println("Issue - Other information - Renewal Status");
@@ -60,6 +61,7 @@ public class PropertyWare_InsertOtherInformation
 	    }
 	    catch(Exception e)
 	    {
+	    	RunnerClass.statusID=1;
 	    	e.printStackTrace();
 			RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Renewal Follow up Notes";
 			System.out.println("Issue - Other information - Renewal Follow up Notes");
@@ -74,6 +76,7 @@ public class PropertyWare_InsertOtherInformation
 		}
 	    catch(Exception e)
 	    {
+	    	RunnerClass.statusID=1;
 	    	e.printStackTrace();
 			RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Renewal Execution Date";
 			System.out.println("Issue - Other information - Renewal Renewal Execution Date");
@@ -88,6 +91,7 @@ public class PropertyWare_InsertOtherInformation
 		}
 		catch(Exception e)
 		{
+			RunnerClass.statusID=1;
 			e.printStackTrace();
 			RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Current Monthly Rent";
 			System.out.println("Issue - Other information - Current Monthly Rent");
@@ -103,6 +107,7 @@ public class PropertyWare_InsertOtherInformation
 		}
 		catch(Exception e)
 		{
+			RunnerClass.statusID=1;
 			e.printStackTrace();
 			RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Prior Monthly Rent";
 			System.out.println("Issue - Other information - Prior Monthly Rent");
@@ -118,6 +123,7 @@ public class PropertyWare_InsertOtherInformation
 		}
 		catch(Exception e)
 		{
+			RunnerClass.statusID=1;
 			e.printStackTrace();
 			RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Renewal Coordinator Name";
 			System.out.println("Issue - Other information - Renewal Coordinator Name");		
@@ -133,6 +139,7 @@ public class PropertyWare_InsertOtherInformation
 		}
 		catch(Exception e)
 		{
+			RunnerClass.statusID=1;
 			e.printStackTrace();
 		}
 		
@@ -147,90 +154,124 @@ public class PropertyWare_InsertOtherInformation
 	  }
 		
 		//Related Activities
-		
-		try
-		{
-		RunnerClass.driver.navigate().refresh();
-		RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.relatedActivities_LeaseRenewal)).build().perform();
-		RunnerClass.driver.findElement(Locators.relatedActivities_LeaseRenewal).click();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			RunnerClass.failedReason = RunnerClass.failedReason+","+"Issue in adding Related Activities";
-			System.out.println("Issue in adding Related Activities");	
-		}
-		//Related Activities - New Start Date
-		try
-		{
-		RunnerClass.driver.findElement(Locators.relatedActivities_newStartDate).click();
-		RunnerClass.driver.findElement(Locators.relatedActivities_newStartDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
-		RunnerClass.driver.findElement(Locators.relatedActivities_newStartDate).sendKeys(newStartDate);
-		//Click this to remove Calendar 
-		RunnerClass.driver.findElement(Locators.relatedActivities_newLeaseRenewalPopUpHeading).click();
-		}
-		catch(Exception e)
-		{
-							
-		}
-		
-		try
-		{
-		//Related Activities - New End Date
-		try
-		{
-		RunnerClass.driver.findElement(Locators.relatedActivities_newEndDate).click();
-		RunnerClass.driver.findElement(Locators.relatedActivities_newEndDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
-		RunnerClass.driver.findElement(Locators.relatedActivities_newEndDate).sendKeys(newEndDate);
-		}
-		catch(Exception e)
-		{
-									
-		}
-		
-		//Related Activities - Renewal On Date
-		try
-		{
-	    RunnerClass.driver.findElement(Locators.relatedActivities_renewalOnDate).click();
-		RunnerClass.driver.findElement(Locators.relatedActivities_renewalOnDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
-		RunnerClass.driver.findElement(Locators.relatedActivities_renewalOnDate).sendKeys(renewalOnDate);
-		}
-		catch(Exception e)
-		{
-											
-		}
-		
-		try
-		{
-			if(AppConfig.saveButtonOnAndOff==true)
-			RunnerClass.driver.findElement(Locators.relatedActivities_save).click();
-			else
-			RunnerClass.driver.findElement(Locators.relatedActivities_cancel).click();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			RunnerClass.failedReason = RunnerClass.failedReason+","+"Issue in adding Related Activities";
-			System.out.println("Issue in adding Related Activities");
-			try
-			{
-			if(RunnerClass.driver.findElement(Locators.youMustCorrectTheFollowingErrorMessage).isDisplayed())
-			{
-				RunnerClass.driver.findElement(Locators.relatedActivities_cancel).click();
-			}
-			}
-			catch(Exception e2)
-			{
-				
-			}
-		}
+		PropertyWare_InsertOtherInformation.RelatedActivities();
 		
 	}
+	
+	public static boolean RelatedActivities()
+	{
+		
+		
+				try
+				{
+				RunnerClass.driver.navigate().refresh();
+				RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.relatedActivities_LeaseRenewal)).build().perform();
+				RunnerClass.driver.findElement(Locators.relatedActivities_LeaseRenewal).click();
+				}
+				catch(Exception e)
+				{
+					RunnerClass.statusID=1;
+					e.printStackTrace();
+					RunnerClass.failedReason = RunnerClass.failedReason+","+"Issue in adding Related Activities";
+					System.out.println("Issue in adding Related Activities");	
+				}
+				//Related Activities - New Start Date
+				try
+				{
+				RunnerClass.driver.findElement(Locators.relatedActivities_newStartDate).click();
+				RunnerClass.driver.findElement(Locators.relatedActivities_newStartDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+				RunnerClass.driver.findElement(Locators.relatedActivities_newStartDate).sendKeys(newStartDate);
+				//Click this to remove Calendar 
+				RunnerClass.driver.findElement(Locators.relatedActivities_newLeaseRenewalPopUpHeading).click();
+				}
+				catch(Exception e)
+				{
+					RunnerClass.statusID=1;
+					e.printStackTrace();
+					RunnerClass.failedReason = RunnerClass.failedReason+","+"Issue in adding Related Activities";
+					System.out.println("Issue in adding Related Activities");
+					return false;			
+				}
+				
+				try
+				{
+				//Related Activities - New End Date
+				try
+				{
+				RunnerClass.driver.findElement(Locators.relatedActivities_newEndDate).click();
+				RunnerClass.driver.findElement(Locators.relatedActivities_newEndDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+				RunnerClass.driver.findElement(Locators.relatedActivities_newEndDate).sendKeys(newEndDate);
+				}
+				catch(Exception e)
+				{
+					RunnerClass.statusID=1;
+					e.printStackTrace();
+					RunnerClass.failedReason = RunnerClass.failedReason+","+"Issue in adding Related Activities";
+					System.out.println("Issue in adding Related Activities");
+					return false;
+					
+				}
+				
+				//Related Activities - Renewal On Date
+				try
+				{
+			    RunnerClass.driver.findElement(Locators.relatedActivities_renewalOnDate).click();
+				RunnerClass.driver.findElement(Locators.relatedActivities_renewalOnDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+				RunnerClass.driver.findElement(Locators.relatedActivities_renewalOnDate).sendKeys(renewalOnDate);
+				}
+				catch(Exception e)
+				{
+					RunnerClass.statusID=1;
+					e.printStackTrace();
+					RunnerClass.failedReason = RunnerClass.failedReason+","+"Issue in adding Related Activities";
+					System.out.println("Issue in adding Related Activities");
+					return false;							
+				}
+				
+				try
+				{
+					if(AppConfig.saveButtonOnAndOff==true)
+					RunnerClass.driver.findElement(Locators.relatedActivities_save).click();
+					else
+					RunnerClass.driver.findElement(Locators.relatedActivities_cancel).click();
+				}
+				catch(Exception e)
+				{
+					RunnerClass.statusID=1;
+					e.printStackTrace();
+					RunnerClass.failedReason = RunnerClass.failedReason+","+"Issue in adding Related Activities";
+					System.out.println("Issue in adding Related Activities");
+					e.printStackTrace();
+					return false;
+				}
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+					RunnerClass.failedReason = RunnerClass.failedReason+","+"Issue in adding Related Activities";
+					System.out.println("Issue in adding Related Activities");
+					RunnerClass.statusID=1;
+					try
+					{
+					if(RunnerClass.driver.findElement(Locators.youMustCorrectTheFollowingErrorMessage).isDisplayed())
+					{
+						RunnerClass.statusID=1;
+						e.printStackTrace();
+						RunnerClass.failedReason = RunnerClass.failedReason+","+"Issue in adding Related Activities";
+						System.out.println("Issue in adding Related Activities");
+						e.printStackTrace();
+						RunnerClass.driver.findElement(Locators.relatedActivities_cancel).click();
+						return false;
+					}
+					}
+					catch(Exception e2)
+					{
+						
+					}
+				}
+				return true;
+	}
+	
 	public static void clearExistingVariableValues()
 	{
 		renewalStatus="";

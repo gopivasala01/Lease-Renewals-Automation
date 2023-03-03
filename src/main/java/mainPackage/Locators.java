@@ -7,6 +7,7 @@ public class Locators
 	public static By username= By.id("loginEmail");
 	public static By password= By.name("password");
 	public static By signInButton= By.xpath("//*[@class=\"button login-button\"]");
+	public static By loginError = By.xpath("//*[@class='toast toast-error']");
 	public static By searchBar= By.id("eqsSearchText");
 	public static By noItemsFound= By.xpath("//*[text()='No Items Found']");
 	public static By Lease= By.xpath("//*[@class='tabbedSection']/a[4]");
