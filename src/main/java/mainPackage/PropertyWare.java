@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -208,7 +209,7 @@ public class PropertyWare
 		 
 		for(int i =0;i<documents.size();i++)
 		{
-			if(documents.get(i).getText().startsWith("Full Lease"))//&&documents.get(i).getText().contains(leaseFirstName))
+			if(documents.get(i).getText().startsWith("Full"))//&&documents.get(i).getText().contains(leaseFirstName))
 			{
 				documents.get(i).click();
 				checkLeaseAgreementAvailable = true;

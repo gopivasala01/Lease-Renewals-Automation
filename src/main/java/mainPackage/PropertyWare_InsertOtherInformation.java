@@ -17,8 +17,13 @@ public class PropertyWare_InsertOtherInformation
 	public static String newEndDate = "";
 	public static String renewalOnDate = "";
 	
-	public static void addingOtherInformation()
+	public static void addingOtherInformation() throws Exception
 	{
+		
+		RunnerClass.driver.navigate().refresh();
+		RunnerClass.driver.findElement(Locators.summaryEditButton).click();
+		Thread.sleep(2000);
+		RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 		
 		try
 		{
@@ -130,12 +135,14 @@ public class PropertyWare_InsertOtherInformation
 		}
 		
 		RunnerClass.js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+		Thread.sleep(3000);
 		try
 		{
 			if(AppConfig.saveButtonOnAndOff==true)
 			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.saveLease)).click(RunnerClass.driver.findElement(Locators.saveLease)).build().perform();
 			else
 			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.cancelLease)).click(RunnerClass.driver.findElement(Locators.cancelLease)).build().perform();
+			Thread.sleep(3000);
 		}
 		catch(Exception e)
 		{
@@ -158,7 +165,7 @@ public class PropertyWare_InsertOtherInformation
 		
 	}
 	
-	public static boolean RelatedActivities()
+	public static boolean RelatedActivities() throws Exception
 	{
 		
 		
@@ -175,6 +182,21 @@ public class PropertyWare_InsertOtherInformation
 					RunnerClass.failedReason = RunnerClass.failedReason+","+"Issue in adding Related Activities";
 					System.out.println("Issue in adding Related Activities");	
 				}
+				Thread.sleep(2000);
+				
+				try
+				{
+				RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.removeLeasingFee)).build().perform();
+				RunnerClass.driver.findElement(Locators.removeLeasingFee).click();
+				}
+				catch(Exception e)
+				{
+					RunnerClass.statusID=1;
+					e.printStackTrace();
+					RunnerClass.failedReason = RunnerClass.failedReason+","+"Issue in adding Related Activities";
+					System.out.println("Issue in adding Related Activities");	
+				}
+				
 				//Related Activities - New Start Date
 				try
 				{
@@ -227,13 +249,14 @@ public class PropertyWare_InsertOtherInformation
 					System.out.println("Issue in adding Related Activities");
 					return false;							
 				}
-				
+				Thread.sleep(3000);
 				try
 				{
 					if(AppConfig.saveButtonOnAndOff==true)
 					RunnerClass.driver.findElement(Locators.relatedActivities_save).click();
 					else
 					RunnerClass.driver.findElement(Locators.relatedActivities_cancel).click();
+					Thread.sleep(3000);
 				}
 				catch(Exception e)
 				{

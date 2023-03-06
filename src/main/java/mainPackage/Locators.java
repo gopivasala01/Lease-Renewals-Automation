@@ -94,6 +94,8 @@ public class Locators
     
     public static By youMustCorrectTheFollowingErrorMessage = By.xpath("//*[text()='You must correct the following:']");
     
+    public static By removeLeasingFee = By.xpath("//*[@value='Remove Leasing Fee']");
+    
     
     
 }

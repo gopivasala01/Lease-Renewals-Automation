@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -33,6 +34,7 @@ public class RunnerClass
     public static String buildingAbbreviation;
     public static String ownerName;
     public static WebDriver driver;
+    public static Alert alert;
     
 	public static ChromeOptions options;
 	public static Actions actions;
@@ -63,10 +65,8 @@ public class RunnerClass
 	
 	public static void main(String[] args) throws Exception 
 	{
-		String a = "4102 - hVAC Filter Fee";
-		System.out.println(a.replaceAll("[^A-Za-z0-9-]", ""));
 		
-		//RunnerClass.monthDifference("02/01/2023", "01/31/2025");
+		RunnerClass.firstDayOfMonth("04/01/2023",-1);
 		//Get Pending Renewal Leases
 		//Company,BuildingAbbreviation, LeaseNae
 		DataBase.getBuildingsList();
@@ -176,7 +176,7 @@ public class RunnerClass
 			catch(Exception e) {}
 		   RunnerClass.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 	        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(15));
-	        driver.quit();
+	        //driver.quit();
 		  }
 		  catch(Exception e)
 		  {
