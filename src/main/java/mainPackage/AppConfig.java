@@ -2,7 +2,7 @@ package mainPackage;
 
 public class AppConfig 
 {
-	public static boolean saveButtonOnAndOff= true;
+	public static boolean saveButtonOnAndOff= false;
 	
 	public static String username= "mds0418@gmail.com";
 	public static String password="HomeRiver1#";
@@ -47,6 +47,8 @@ public class AppConfig
 		   return "4000 - Rent";
 	   case "North Carolina":
 		   return "4000 - Rent";
+	   case "Dallas/Fort Worth":
+		   return "4000 - Rent";
 	   }
 	   return "";
    }
@@ -60,6 +62,8 @@ public class AppConfig
 	   case "Alabama":
 		   return "4311 - Pet Rent";
 	   case "North Carolina":
+		   return "4311 - Pet Rent";
+	   case "Dallas/Fort Worth":
 		   return "4311 - Pet Rent";
 	   }
 	   return "";
@@ -75,6 +79,8 @@ public class AppConfig
 		   return "4311 - Pet Rent";
 	   case "North Carolina":
 		   return "4311 - Pet Rent";
+	   case "Dallas/Fort Worth":
+		   return "4311 - Pet Rent";
 	   }
 	   return "";
    }
@@ -88,6 +94,8 @@ public class AppConfig
 		   return "4000 - Rent";
 	   case "North Carolina":
 		   return "4000 - Rent";
+	   case "Dallas/Fort Worth":
+		   return "4000 - Rent";
 	   }
 	   return "";
    }
@@ -100,6 +108,8 @@ public class AppConfig
 	   case "Alabama":
 		   return "4102 - Air Filter Fee";
 	   case "North Carolina":
+		   return "4102 - Air Filter Fee";
+	   case "Dallas/Fort Worth":
 		   return "4102 - Air Filter Fee";
 	   }
 	   return "";
@@ -115,6 +125,8 @@ public class AppConfig
 		   return "4318 - Resident Benefits Package";
 	   case "North Carolina":
 		   return "4318 - Resident Benefits Package";
+	   case "Dallas/Fort Worth":
+		   return "4318 - Resident Benefits Package";
 	   }
 	   return "";
    }
@@ -128,6 +140,38 @@ public class AppConfig
 		   return "4315 - Resident Renewal Admin Fee";
 	   case "North Carolina":
 		   return "4315 - Resident Renewal Admin Fee";
+	   case "Dallas/Fort Worth":
+		   return "4315 - Resident Renewal Admin Fee"; 
+	   }
+	   return "";
+   }
+   public static String getEnrolledINRBPForPMUse(String company)
+   {
+	   switch(company)
+	   {
+	   case "Florida":
+		   return "YES";
+	   case "Alabama":
+		   return "YES";
+	   case "North Carolina":
+		   return "YES";
+	   case "Dallas/Fort Worth":
+		   return "YES"; 
+	   }
+	   return "";
+   }
+   public static String getRBPenrollmentCompleteForSNUseOnly(String company)
+   {
+	   switch(company)
+	   {
+	   case "Florida":
+		   return "Yes";
+	   case "Alabama":
+		   return "Yes";
+	   case "North Carolina":
+		   return "Yes";
+	   case "Dallas/Fort Worth":
+		   return "Yes"; 
 	   }
 	   return "";
    }

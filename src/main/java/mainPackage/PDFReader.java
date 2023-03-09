@@ -87,28 +87,46 @@ public class PDFReader
 		    
 			switch(market)
 			{
-			case "Alabama":
-				PDFDataExtract.Alabama.alabama();
-				if(RunnerClass.monthlyRent=="Error"||RunnerClass.startDate=="Error")
-				{
-					System.out.println("Unable to fetch Monthly Rent and Start Date from Lease Agreement");
-					RunnerClass.failedReaonsList.put(RunnerClass.buildingAbbreviation, "Unable to fetch Monthly Rent and Start Date from Lease Agreement");
-				    RunnerClass.failedReason = "Unable to fetch Monthly Rent and Start Date from Lease Agreement";
-					RunnerClass.updateStatus=1;
-					return false;
-				}
-				else return true;
 			case "Florida":
-				PDFDataExtract.Florida.florida();
-				if(RunnerClass.monthlyRent=="Error"||RunnerClass.startDate=="Error")
+				String pdfFormatType_florida = PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_florida);
+				if(pdfFormatType_florida=="Format1")
 				{
-					System.out.println("Unable to fetch Monthly Rent and Start Date from Lease Agreement");
-					RunnerClass.failedReaonsList.put(RunnerClass.buildingAbbreviation, "Unable to fetch Monthly Rent and Start Date from Lease Agreement");
-				    RunnerClass.failedReason = "Unable to fetch Monthly Rent and Start Date from Lease Agreement";
-					RunnerClass.updateStatus=1;
-					return false;
+					if(PDFDataExtract.Florida_Format1.florida()==false)
+						return false;
 				}
-				else return true;
+				else 
+					if(pdfFormatType_florida=="Format2")
+				     {
+					if(PDFDataExtract.Florida_Format2.florida()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				
+			case "Dallas/Fort Worth":
+				String pdfFormatType_dallasFortWorth = PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_dallasFortWorth);
+				if(pdfFormatType_dallasFortWorth=="Format1")
+				{
+					if(PDFDataExtract.DallasFortWorth_Format1.dallasFortWorth()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_dallasFortWorth=="Format2")
+				     {
+					if(PDFDataExtract.DallasFortWorth_Format2.dallasFortWorth()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				
 			case "North Carolina":
 				String pdfFormatType = PDFReader.decidePDFFormat(market);
 				System.out.println("PDF Format Type = "+pdfFormatType);
@@ -146,6 +164,16 @@ public class PDFReader
 			format1Text  = PDFAppConfig.PDFFormatDecider.northCarolina_Format1;
 			format2Text  = PDFAppConfig.PDFFormatDecider.northCarolina_Format2;
 			break;
+			
+			case "Florida":
+		        format1Text = PDFAppConfig.PDFFormatDecider.florida_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.florida_Format2;
+		        break;
+		        
+			case "DallasFortWorth":
+		        format1Text = PDFAppConfig.PDFFormatDecider.dallasFortWorth_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.dallasFortWorth_Format2;
+		        break;
 			}
 			
 			File file = RunnerClass.getLastModified();

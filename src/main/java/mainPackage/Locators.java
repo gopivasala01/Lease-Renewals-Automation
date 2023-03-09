@@ -58,6 +58,8 @@ public class Locators
     public static By autoCharge_Description = By.name("charge.description");
     
     //Other information
+    public static By enrolledInRBPForPMUse = By.xpath("//*[contains(text(),'Enrolled in RBP')]/following::select[1]");
+    public static By RBPEnrollmentCompleteForSNUseOnly = By.xpath("//*[contains(text(),'For SN Use')]/following::select[1]");
     public static By renewalStatusDropdown = By.xpath("//*[text()='Renewal Status']/following::select[1]");
     public static By renewalFollowUpNotes = By.xpath("//*[text()='Renewal Follow-Up Notes']/following::input[1]");
     public static By renewalExecutionDate = By.xpath("//*[text()='Renewal Execution Date']/following::input[1]");

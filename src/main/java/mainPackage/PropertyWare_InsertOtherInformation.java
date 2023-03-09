@@ -5,6 +5,8 @@ import org.openqa.selenium.support.ui.Select;
 
 public class PropertyWare_InsertOtherInformation 
 {
+	public static String enrolledInRBPForPMUse = "";
+	public static String RBPenrollmentCompleteForSNUseOnly = "";
 	public static String renewalStatus="";
 	public static String reneWalFollowupNotes = "";
 	public static String renewalExecutionDate = "";
@@ -16,6 +18,7 @@ public class PropertyWare_InsertOtherInformation
 	public static String newStartDate = "";
 	public static String newEndDate = "";
 	public static String renewalOnDate = "";
+	
 	
 	public static void addingOtherInformation() throws Exception
 	{
@@ -31,6 +34,8 @@ public class PropertyWare_InsertOtherInformation
 		PropertyWare_InsertOtherInformation.clearExistingVariableValues();
 		//Adding values to all variables 
 		
+		enrolledInRBPForPMUse = AppConfig.getEnrolledINRBPForPMUse(RunnerClass.company);
+		RBPenrollmentCompleteForSNUseOnly = AppConfig.getRBPenrollmentCompleteForSNUseOnly(RunnerClass.company);
 		renewalStatus = "CHARGE+RENEWAL+FEE+-+ANNUAL";
 		reneWalFollowupNotes = "Full Lease Executed From "+PDFReader.startDate+" - "+PDFReader.endDate+" - HRG Automation - "; //Need to calculate Month's difference between StartDate and EndDate
 		renewalExecutionDate = RunnerClass.getCurrentDate();
@@ -40,6 +45,39 @@ public class PropertyWare_InsertOtherInformation
 		newStartDate = PDFReader.startDate;
 		newEndDate = PDFReader.endDate;
 		renewalOnDate = RunnerClass.getCurrentDate();
+		
+		if(PDFReader.residentBenefitsPackageAvailabilityCheck==true)
+		{
+		//Enrolled In RBP For PM Use
+		 try
+		 {
+		 RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.enrolledInRBPForPMUse)).build().perform();
+		 Select renewalStatusDropdown = new Select(RunnerClass.driver.findElement(Locators.enrolledInRBPForPMUse));
+		 renewalStatusDropdown.selectByValue(enrolledInRBPForPMUse);
+		 }
+		 catch(Exception e)
+		 {
+			RunnerClass.statusID=1;
+			e.printStackTrace();
+			RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Enrolled In RBP For PM Use";
+		    System.out.println("Issue - Other information - Enrolled In RBP For PM Use");
+		 }
+		
+		 //RBP Enrollment Complete For SN Use Only
+		 try
+		 {
+		 RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.RBPEnrollmentCompleteForSNUseOnly)).build().perform();
+		 Select renewalStatusDropdown = new Select(RunnerClass.driver.findElement(Locators.RBPEnrollmentCompleteForSNUseOnly));
+		 renewalStatusDropdown.selectByValue(RBPenrollmentCompleteForSNUseOnly);
+		 }
+		 catch(Exception e)
+		 {
+		 	RunnerClass.statusID=1;
+			e.printStackTrace();
+			RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - RBP Enrollment Complete For SN Use Only";
+			System.out.println("Issue - Other information - RBP Enrollment Complete For SN Use Only");
+		 }
+		}
 		
 		//Renewal Status
 		try

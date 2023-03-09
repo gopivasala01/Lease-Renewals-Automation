@@ -82,9 +82,9 @@ public class RunnerClass
 		  //Change the Status of the Lease to Started so that it won't run again in the Jenkins scheduling Process
 		  DataBase.insertData(buildingAbbreviation,"Started",6);
 		  
-		  if(buildingAbbreviation.split("-")[0].trim().contains(" "))
-			  buildingAbbreviation = buildingAbbreviation;
-				else 
+		  //if(buildingAbbreviation.split("-")[0].trim().contains(" "))
+			  //buildingAbbreviation = buildingAbbreviation;
+				//else 
 					buildingAbbreviation = buildingAbbreviation.split("-")[0].trim();
           // Login to the PropertyWare		  
 		 

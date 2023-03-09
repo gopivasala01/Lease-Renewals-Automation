@@ -178,35 +178,39 @@ public class PropertyWare_InsertData
 					
 					if(endDateAutoCharge.trim().equals(""))
 					{
-						if(autoChargeCodes.equals(AppConfig.getMonthlyRentChargeCode(RunnerClass.company))&&monthlyRentChargeClosed== false)
+ 						if(autoChargeCodes.equals(AppConfig.getMonthlyRentChargeCode(RunnerClass.company))&&monthlyRentChargeClosed== false)
 						{
 							PDFReader.previousMonthlyRent = autoChargeAmount;
 							editButtons.get(k).click();
 							PropertyWare_InsertData.editingExistingAutoCharge();
 	                		//chargeModified = true;
 	                		monthlyRentChargeClosed = true;
+	                		PropertyWare_InsertData.saveAnAutoCharge();
 	                		continue;
 	                		//break;
 						}
-						if((autoChargeCodes.equals(AppConfig.getHVACAirFilterFeeChargeCode(RunnerClass.company))&&PDFReader.residentBenefitsPackageAvailabilityCheck==true)&&(!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.HVACAirFilterFee.replaceAll("[^0-9]", ""))&&PDFReader.HVACAirFilterFee!=""))
+						if((autoChargeCodes.equals(AppConfig.getHVACAirFilterFeeChargeCode(RunnerClass.company))&&PDFReader.residentBenefitsPackageAvailabilityCheck==true)&&(!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.HVACAirFilterFee.replaceAll("[^0-9]", ""))||PDFReader.HVACAirFilterFee!=""))
 						{
 							editButtons.get(k).click();
 							PropertyWare_InsertData.editingExistingAutoCharge();
 							//break;
+							PropertyWare_InsertData.saveAnAutoCharge();
 							continue;
 						}
-						if((autoChargeCodes.equals(AppConfig.getResidentBenefitsPackageChargeCode(RunnerClass.company))&&PDFReader.HVACFilterFlag==true)&&(!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.residentBenefitsPackage.replaceAll("[^0-9]", ""))&&PDFReader.residentBenefitsPackage!=""))
+						if((autoChargeCodes.equals(AppConfig.getResidentBenefitsPackageChargeCode(RunnerClass.company))&&PDFReader.HVACFilterFlag==true)&&(!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.residentBenefitsPackage.replaceAll("[^0-9]", ""))||PDFReader.residentBenefitsPackage!=""))
 						{
 							editButtons.get(k).click();
 							PropertyWare_InsertData.editingExistingAutoCharge();
 							//break;
+							PropertyWare_InsertData.saveAnAutoCharge();
 							continue;
 						}
-						if(autoChargeCodes.equals(AppConfig.getPetRentChargeCode(RunnerClass.company))&&(!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.petRent.replaceAll("[^0-9]", ""))&&PDFReader.petRent!=""))
+						if(autoChargeCodes.equals(AppConfig.getPetRentChargeCode(RunnerClass.company))&&(!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.petRent.replaceAll("[^0-9]", ""))||PDFReader.petRent!=""))
 						{
 							editButtons.get(k).click();
 							PropertyWare_InsertData.editingExistingAutoCharge();
 							//break;
+							PropertyWare_InsertData.saveAnAutoCharge();
 							continue;
 						}
 						/*
@@ -221,12 +225,7 @@ public class PropertyWare_InsertData
 					
 				}	   
 				
-				 RunnerClass.js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
-				  if(AppConfig.saveButtonOnAndOff==true)
-					RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.saveLease)).click(RunnerClass.driver.findElement(Locators.saveLease)).build().perform();
-				  else
-					RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.cancelLease)).click(RunnerClass.driver.findElement(Locators.cancelLease)).build().perform();
-	     Thread.sleep(2000);
+				 
 			//} //for loop close
 			
 	     return true;
@@ -241,6 +240,20 @@ public class PropertyWare_InsertData
 			RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 			return false;
 		}
+	}
+	
+	public static void saveAnAutoCharge() throws Exception
+	{
+		  RunnerClass.js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+		  if(AppConfig.saveButtonOnAndOff==true)
+			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.saveLease)).click(RunnerClass.driver.findElement(Locators.saveLease)).build().perform();
+		  else
+			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.cancelLease)).click(RunnerClass.driver.findElement(Locators.cancelLease)).build().perform();
+          Thread.sleep(2000);
+          RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+			RunnerClass.driver.findElement(Locators.summaryEditButton).click();
+		     RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.newAutoCharge)).build().perform();
+          
 	}
 	
 	public static void editingExistingAutoCharge() throws Exception
@@ -270,11 +283,11 @@ public class PropertyWare_InsertData
       try
       {
 		
-		RunnerClass.driver.navigate().refresh();
-		RunnerClass.driver.findElement(Locators.summaryEditButton).click();
+		//RunnerClass.driver.navigate().refresh();
+		//RunnerClass.driver.findElement(Locators.summaryEditButton).click();
 		Thread.sleep(2000);
-		RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
-		RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.newAutoCharge)).build().perform();
+		//RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+		//RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.newAutoCharge)).build().perform();
 		List<WebElement> existingAutoCharges = RunnerClass.driver.findElements(Locators.autoCharge_List);
 		List<WebElement> existingAutoChargeAmounts = RunnerClass.driver.findElements(Locators.autoCharge_List_Amounts);
 		List<WebElement> startDates = RunnerClass.driver.findElements(Locators.autoCharge_List_startDates);

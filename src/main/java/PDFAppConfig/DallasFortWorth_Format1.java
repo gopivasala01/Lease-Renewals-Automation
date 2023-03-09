@@ -1,6 +1,6 @@
 package PDFAppConfig;
 
-public class Florida_Format1 
+public class DallasFortWorth_Format1 
 {
 	public static String commencementDate_Prior = "Commencement Date:";
 	public static String commencementDate_After = "Expiration Date:";
@@ -24,5 +24,5 @@ public class Florida_Format1
 	public static String RBP_Prior = "Resident Benefits Package Fee of $";
 	
 	public static String leaseRenewalFee_Prior = "A lease renewal fee in the amount of $";
-	
+
 }
