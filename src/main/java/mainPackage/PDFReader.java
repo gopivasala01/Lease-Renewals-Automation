@@ -106,7 +106,27 @@ public class PDFReader
 					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
 					return false;
 				    }
-				
+				break;
+			case "Alabama":
+				String pdfFormatType_alabama = PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_alabama);
+				if(pdfFormatType_alabama=="Format1")
+				{
+					if(PDFDataExtract.Alabama_Format1.alabama()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_alabama=="Format2")
+				     {
+					if(PDFDataExtract.Alabama_Format2.alabama()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			case "Dallas/Fort Worth":
 				String pdfFormatType_dallasFortWorth = PDFReader.decidePDFFormat(market);
 				System.out.println("PDF Format Type = "+pdfFormatType_dallasFortWorth);
@@ -126,7 +146,7 @@ public class PDFReader
 					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
 					return false;
 				    }
-				
+				break;
 			case "North Carolina":
 				String pdfFormatType = PDFReader.decidePDFFormat(market);
 				System.out.println("PDF Format Type = "+pdfFormatType);
@@ -146,7 +166,7 @@ public class PDFReader
 					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
 					return false;
 				    }
-
+                break;
 			}
 			return true;
 			
@@ -173,6 +193,11 @@ public class PDFReader
 			case "DallasFortWorth":
 		        format1Text = PDFAppConfig.PDFFormatDecider.dallasFortWorth_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.dallasFortWorth_Format2;
+		        break;
+		        
+			case "Alabama":
+		        format1Text = PDFAppConfig.PDFFormatDecider.alabama_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.alabama_Format2;
 		        break;
 			}
 			

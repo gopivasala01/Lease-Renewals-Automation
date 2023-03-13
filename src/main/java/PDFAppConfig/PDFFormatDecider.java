@@ -13,5 +13,9 @@ public class PDFFormatDecider
 	// DallasFortWorth
 	public static String dallasFortWorth_Format1 = "The parties to this Lease are the owner of the Property";
 	public static String dallasFortWorth_Format2 = "THIS RESIDENTIAL LEASE AGREEMENT";
+	
+	// Alabama
+	public static String alabama_Format1 = "The parties to this Lease are the owner of the Property";
+	public static String alabama_Format2 = "THIS RESIDENTIAL LEASE AGREEMENT";
 
 }
