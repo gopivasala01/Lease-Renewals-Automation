@@ -35,7 +35,7 @@ public class PropertyWare
         // Adding cpabilities to ChromeOptions
         ChromeOptions options = new ChromeOptions();
         options.setExperimentalOption("prefs", prefs);
-        
+        options.addArguments("--remote-allow-origins=*");
 		WebDriverManager.chromedriver().setup();
         RunnerClass.driver= new ChromeDriver(options);
         RunnerClass.driver.manage().window().maximize();
@@ -73,6 +73,7 @@ public class PropertyWare
 	{
 		try
 		{
+	    RunnerClass.driver.findElement(Locators.dashboardsTab).click();
 		RunnerClass.driver.findElement(Locators.searchbox).clear();
 		RunnerClass.driver.findElement(Locators.searchbox).sendKeys(building);
 			try

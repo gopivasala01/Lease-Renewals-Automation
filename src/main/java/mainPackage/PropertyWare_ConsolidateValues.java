@@ -94,10 +94,21 @@ public class PropertyWare_ConsolidateValues
 		    PropertyWare_InsertData.proratedRent_StartDate ="";
 		    if(PDFReader.startDate.split("/")[1].equals("1")||PDFReader.startDate.split("/")[1].equals("01"))
 		    {
+		    	//If there is already a monthly rent charge in Ledger,then auto charge start date is first full month
+		    	if(PDFReader.dateCheckInLedgerForMonthlyRentStartDate = true)
+		    	{
+		    		PropertyWare_InsertData.monthlyRent_StartDate = PDFReader.firstFullMonth;
+					PropertyWare_InsertData.ResidentBenefitPackage_StartDate = PDFReader.firstFullMonth;
+					PropertyWare_InsertData.HVACAirFilterFee_StartDate = PDFReader.firstFullMonth;
+					PropertyWare_InsertData.petRent_StartDate = PDFReader.firstFullMonth;
+		    	}
+		    	else
+		    	{
 		    	PropertyWare_InsertData.monthlyRent_StartDate = PDFReader.startDate;
 				PropertyWare_InsertData.ResidentBenefitPackage_StartDate = PDFReader.startDate;
 				PropertyWare_InsertData.HVACAirFilterFee_StartDate = PDFReader.startDate;
 				PropertyWare_InsertData.petRent_StartDate = PDFReader.startDate;
+		    	}
 		    }
 		    else
 		    {
@@ -108,19 +119,5 @@ public class PropertyWare_ConsolidateValues
 		    }
 			PropertyWare_InsertData.increasedRent_previousRentStartDate = PDFReader.startDate;
 		    
-		/*
-		}
-		else 
-		{
-			PropertyWare_InsertData.proratedRent_StartDate =PDFReader.firstFullMonth;
-			if(PDFReader.proratedRent=="Error")
-			    PropertyWare_InsertData.monthlyRent_StartDate = PDFReader.firstFullMonth;
-			else 
-				PropertyWare_InsertData.monthlyRent_StartDate = PDFReader.secondFullMonth;
-			PropertyWare_InsertData.ResidentBenefitPackage_StartDate = PDFReader.firstFullMonth;
-			PropertyWare_InsertData.HVACAirFilterFee_StartDate = PDFReader.firstFullMonth;
-			PropertyWare_InsertData.petRent_StartDate = PDFReader.firstFullMonth;
-		}
-		*/
 	}
 }

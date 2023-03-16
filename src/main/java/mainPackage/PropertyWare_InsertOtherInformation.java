@@ -229,10 +229,10 @@ public class PropertyWare_InsertOtherInformation
 				}
 				catch(Exception e)
 				{
-					RunnerClass.statusID=1;
-					e.printStackTrace();
-					RunnerClass.failedReason = RunnerClass.failedReason+","+"Issue in adding Related Activities";
-					System.out.println("Issue in adding Related Activities");	
+					//RunnerClass.statusID=1;
+					//e.printStackTrace();
+					//RunnerClass.failedReason = RunnerClass.failedReason+","+"Issue in adding Related Activities";
+					System.out.println("Related Activities - Previous Leasing Fee is not available");	
 				}
 				
 				//Related Activities - New Start Date

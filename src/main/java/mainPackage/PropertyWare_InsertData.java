@@ -40,6 +40,9 @@ public class PropertyWare_InsertData
 		PDFReader.firstFullMonth = RunnerClass.firstDayOfMonth(PDFReader.startDate,1);
 		PDFReader.secondFullMonth = RunnerClass.firstDayOfMonth(PDFReader.startDate,2);
 		
+		//Check if the Monthly Rent is already added in the Ledger, then take the Monthly Rent Start Date as "First Full Month" in Auto charges.
+		PropertyWare_InsertData.verifyLedgerForMonhtlyRentStartDate();
+		
 		}
 		catch(Exception e)
 		{
@@ -59,6 +62,33 @@ public class PropertyWare_InsertData
 		PropertyWare_ConsolidateValues.decideAutoCharges();
 		return true;
 	}
+	public static boolean verifyLedgerForMonhtlyRentStartDate()
+	{
+		try
+		{
+		RunnerClass.driver.navigate().refresh();
+		RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+		RunnerClass.driver.findElement(Locators.ledgerTab).click();
+		List<WebElement> existingMoveInCharges_ChargeCode = RunnerClass.driver.findElements(Locators.moveInCharges_List);
+		List<WebElement> existingMoveInCharges_Date = RunnerClass.driver.findElements(Locators.moveInCharge_List_Amount);
+		for(int i=0;i<existingMoveInCharges_ChargeCode.size();i++)
+		{
+			String chargeCode = existingMoveInCharges_ChargeCode.get(i).getText().trim();
+			String date = existingMoveInCharges_Date.get(i).getText().trim();
+			if(chargeCode.equals(AppConfig.getMonthlyRentChargeCode(RunnerClass.company))&&RunnerClass.startDate.equals(date))
+			{
+				PDFReader.dateCheckInLedgerForMonthlyRentStartDate = true;
+				break;
+			}
+		}
+		return true;
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
+	}
+	
 	
 	//Add Move In Charges
 	public static boolean addingMoveInCharges() throws Exception
@@ -67,10 +97,11 @@ public class PropertyWare_InsertData
 		{
 		 //Get All Auto Charges from Table
 	     DataBase.getMoveInCharges();
-		
+		/*
 		RunnerClass.driver.navigate().refresh();
 		RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 		RunnerClass.driver.findElement(Locators.ledgerTab).click();
+		*/
 		Thread.sleep(2000);
 		List<WebElement> existingMoveInCharges_ChargeCodes = RunnerClass.driver.findElements(Locators.moveInCharges_List);
 		List<WebElement> existingMoveInCharges_Amount = RunnerClass.driver.findElements(Locators.moveInCharge_List_Amount);
