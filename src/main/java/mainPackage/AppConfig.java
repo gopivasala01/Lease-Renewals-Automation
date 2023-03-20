@@ -2,7 +2,7 @@ package mainPackage;
 
 public class AppConfig 
 {
-	public static boolean saveButtonOnAndOff= true;
+	public static boolean saveButtonOnAndOff= false;
 	
 	public static String username= "mds0418@gmail.com";
 	public static String password="HomeRiver1#";
@@ -37,144 +37,176 @@ public class AppConfig
 	   
 	   public static String[] IAGClientList = {"510","AVE","BTH","CAP","FOR","HRG","HS","MAN","MCH","OFF","PIN","RF","SFR3","TH","HH","Lofty.Ai"};
 	
-   public static String getMonthlyRentChargeCode(String company)
-   {
-	   switch(company)
+	   public static String getMonthlyRentChargeCode(String company)
 	   {
-	   case "Florida":
-		   return "4000 - Rent";
-	   case "Alabama":
-		   return "4000 - Rent";
-	   case "North Carolina":
-		   return "4000 - Rent";
-	   case "Dallas/Fort Worth":
-		   return "4000 - Rent";
+		   switch(company)
+		   {
+		   case "Florida":
+			   return "4000 - Rent";
+		   case "Alabama":
+			   return "4000 - Rent";
+		   case "North Carolina":
+			   return "4000 - Rent";
+		   case "Dallas/Fort Worth":
+			   return "4000 - Rent";
+		   case "Arkansas":
+			   return "4000 - Rent";
+		   }
+		   return "";
 	   }
-	   return "";
-   }
-   
-   public static String getPetRentChargeCode(String company)
-   {
-	   switch(company)
+	   
+	   public static String getPetRentChargeCode(String company)
 	   {
-	   case "Florida":
-		   return "4311 - Pet Rent";
-	   case "Alabama":
-		   return "4311 - Pet Rent";
-	   case "North Carolina":
-		   return "4311 - Pet Rent";
-	   case "Dallas/Fort Worth":
-		   return "4311 - Pet Rent";
+		   switch(company)
+		   {
+		   case "Florida":
+			   return "4311 - Pet Rent";
+		   case "Alabama":
+			   return "4311 - Pet Rent";
+		   case "North Carolina":
+			   return "4311 - Pet Rent";
+		   case "Dallas/Fort Worth":
+			   return "4311 - Pet Rent";
+		   case "Arkansas":
+			   return "4311 - Pet Rent";
+		   }
+		   return "";
 	   }
-	   return "";
-   }
-   
-   public static String getProrateRentChargeCode(String company)
-   {
-	   switch(company)
+	   
+	   public static String getProrateRentChargeCode(String company)
 	   {
-	   case "Florida":
-		   return "4311 - Pet Rent";
-	   case "Alabama":
-		   return "4311 - Pet Rent";
-	   case "North Carolina":
-		   return "4311 - Pet Rent";
-	   case "Dallas/Fort Worth":
-		   return "4311 - Pet Rent";
+		   switch(company)
+		   {
+		   case "Florida":
+			   return "4311 - Pet Rent";
+		   case "Alabama":
+			   return "4311 - Pet Rent";
+		   case "North Carolina":
+			   return "4311 - Pet Rent";
+		   case "Dallas/Fort Worth":
+			   return "4311 - Pet Rent";
+		   case "Arkansas":
+			   return "4311 - Pet Rent";
+		   case "Georgia":
+			   return "4311 - Pet Rent";
+		   }
+		   return "";
 	   }
-	   return "";
-   }
-   public static String getIncreasedRentChargeCode(String company)
-   {
-	   switch(company)
+	   public static String getIncreasedRentChargeCode(String company)
 	   {
-	   case "Florida":
-		   return "4000 - Rent";
-	   case "Alabama":
-		   return "4000 - Rent";
-	   case "North Carolina":
-		   return "4000 - Rent";
-	   case "Dallas/Fort Worth":
-		   return "4000 - Rent";
+		   switch(company)
+		   {
+		   case "Florida":
+			   return "4000 - Rent";
+		   case "Alabama":
+			   return "4000 - Rent";
+		   case "North Carolina":
+			   return "4000 - Rent";
+		   case "Dallas/Fort Worth":
+			   return "4000 - Rent";
+		   case "Arkansas":
+			   return "4000 - Rent";
+		   case "Georgia":
+			   return "4000 - Rent";
+		   }
+		   return "";
 	   }
-	   return "";
-   }
-   public static String getHVACAirFilterFeeChargeCode(String company)
-   {
-	   switch(company)
+	   public static String getHVACAirFilterFeeChargeCode(String company)
 	   {
-	   case "Florida":
-		   return "4102 - Air Filter Fee";
-	   case "Alabama":
-		   return "4102 - Air Filter Fee";
-	   case "North Carolina":
-		   return "4102 - Air Filter Fee";
-	   case "Dallas/Fort Worth":
-		   return "4102 - Air Filter Fee";
+		   switch(company)
+		   {
+		   case "Florida":
+			   return "4102 - Air Filter Fee";
+		   case "Alabama":
+			   return "4102 - Air Filter Fee";
+		   case "North Carolina":
+			   return "4102 - Air Filter Fee";
+		   case "Dallas/Fort Worth":
+			   return "4102 - Air Filter Fee";
+		   case "Arkansas":
+			   return "4102 - Air Filter Fee";
+		   case "Georgia":
+			   return "4102 - Air Filter Fee";
+		   }
+		   return "";
 	   }
-	   return "";
-   }
-   
-   public static String getResidentBenefitsPackageChargeCode(String company)
-   {
-	   switch(company)
+	   
+	   public static String getResidentBenefitsPackageChargeCode(String company)
 	   {
-	   case "Florida":
-		   return "4318 - Resident Benefits Package";
-	   case "Alabama":
-		   return "4318 - Resident Benefits Package";
-	   case "North Carolina":
-		   return "4318 - Resident Benefits Package";
-	   case "Dallas/Fort Worth":
-		   return "4318 - Resident Benefits Package";
+		   switch(company)
+		   {
+		   case "Florida":
+			   return "4318 - Resident Benefits Package";
+		   case "Alabama":
+			   return "4318 - Resident Benefits Package";
+		   case "North Carolina":
+			   return "4318 - Resident Benefits Package";
+		   case "Dallas/Fort Worth":
+			   return "4318 - Resident Benefits Package";
+		   case "Arkansas":
+			   return "4318 - Resident Benefits Package";
+		   case "Georgia":
+			   return "4318 - Resident Benefits Package";
+		   }
+		   return "";
 	   }
-	   return "";
-   }
-   public static String getResidentRenewalAdminFee(String company)
-   {
-	   switch(company)
+	   public static String getResidentRenewalAdminFee(String company)
 	   {
-	   case "Florida":
-		   return "4315 - Resident Renewal Admin Fee";
-	   case "Alabama":
-		   return "4315 - Resident Renewal Admin Fee";
-	   case "North Carolina":
-		   return "4315 - Resident Renewal Admin Fee";
-	   case "Dallas/Fort Worth":
-		   return "4315 - Resident Renewal Admin Fee"; 
+		   switch(company)
+		   {
+		   case "Florida":
+			   return "4315 - Resident Renewal Admin Fee";
+		   case "Alabama":
+			   return "4315 - Resident Renewal Admin Fee";
+		   case "North Carolina":
+			   return "4315 - Resident Renewal Admin Fee";
+		   case "Dallas/Fort Worth":
+			   return "4315 - Resident Renewal Admin Fee"; 
+		   case "Arkansas":
+			   return "4315 - Resident Renewal Admin Fee"; 
+		   case "Georgia":
+			   return "4315 - Resident Renewal Admin Fee"; 
+		   }
+		   return "";
 	   }
-	   return "";
-   }
-   public static String getEnrolledINRBPForPMUse(String company)
-   {
-	   switch(company)
+	   public static String getEnrolledINRBPForPMUse(String company)
 	   {
-	   case "Florida":
-		   return "YES";
-	   case "Alabama":
-		   return "YES";
-	   case "North Carolina":
-		   return "YES";
-	   case "Dallas/Fort Worth":
-		   return "YES"; 
+		   switch(company)
+		   {
+		   case "Florida":
+			   return "YES";
+		   case "Alabama":
+			   return "YES";
+		   case "North Carolina":
+			   return "YES";
+		   case "Dallas/Fort Worth":
+			   return "YES"; 
+		   case "Arkansas":
+			   return "YES"; 
+		   case "Georgia":
+			   return "YES"; 
+		   }
+		   return "";
 	   }
-	   return "";
-   }
-   public static String getRBPenrollmentCompleteForSNUseOnly(String company)
-   {
-	   switch(company)
+	   public static String getRBPenrollmentCompleteForSNUseOnly(String company)
 	   {
-	   case "Florida":
-		   return "Yes";
-	   case "Alabama":
-		   return "Yes";
-	   case "North Carolina":
-		   return "Yes";
-	   case "Dallas/Fort Worth":
-		   return "Yes"; 
+		   switch(company)
+		   {
+		   case "Florida":
+			   return "Yes";
+		   case "Alabama":
+			   return "Yes";
+		   case "North Carolina":
+			   return "Yes";
+		   case "Dallas/Fort Worth":
+			   return "Yes"; 
+		   case "Arkansas":
+			   return "Yes";
+		   case "Georgia":
+			   return "Yes";
+		   }
+		   return "";
 	   }
-	   return "";
-   }
    
 
 }

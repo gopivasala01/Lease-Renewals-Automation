@@ -167,6 +167,46 @@ public class PDFReader
 					return false;
 				    }
                 break;
+			case "Arkansas":
+				String pdfFormatType_arkansas = PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_arkansas);
+				if(pdfFormatType_arkansas=="Format1")
+				{
+					if(PDFDataExtract.Arkansas_Format1.arkansas()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_arkansas=="Format2")
+				     {
+					if(PDFDataExtract.Arkansas_Format2.arkansas()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
+			case "Georgia":
+				String pdfFormatType_georgia= PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_georgia);
+				if(pdfFormatType_georgia=="Format1")
+				{
+					if(PDFDataExtract.Georgia_Format1.georgia()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_georgia=="Format2")
+				     {
+					if(PDFDataExtract.Georgia_Format2.georgia()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
@@ -198,6 +238,14 @@ public class PDFReader
 			case "Alabama":
 		        format1Text = PDFAppConfig.PDFFormatDecider.alabama_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.alabama_Format2;
+		        break;
+			case "Arkansas":
+		        format1Text = PDFAppConfig.PDFFormatDecider.arkansas_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.arkansas_Format2;
+		        break;
+			case "Georgia":
+		        format1Text = PDFAppConfig.PDFFormatDecider.georgia_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.georgia_Format2;
 		        break;
 			}
 			
