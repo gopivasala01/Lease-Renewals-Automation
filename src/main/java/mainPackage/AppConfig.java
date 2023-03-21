@@ -2,7 +2,7 @@ package mainPackage;
 
 public class AppConfig 
 {
-	public static boolean saveButtonOnAndOff= true;
+	public static boolean saveButtonOnAndOff= false;
 	
 	public static String username= "mds0418@gmail.com";
 	public static String password="HomeRiver1#";
@@ -51,6 +51,12 @@ public class AppConfig
 			   return "4000 - Rent";
 		   case "Arkansas":
 			   return "4000 - Rent";
+		   case "Indiana":
+			   return "4700 - Rent";
+		   case "Little Rock":
+			   return "4000 - Rent";
+		   case "Georgia":
+			   return "4000 - Rent";
 		   }
 		   return "";
 	   }
@@ -68,6 +74,12 @@ public class AppConfig
 		   case "Dallas/Fort Worth":
 			   return "4311 - Pet Rent";
 		   case "Arkansas":
+			   return "4311 - Pet Rent";
+		   case "Georgia":
+			   return "4311 - Pet Rent";
+		   case "Indiana":
+			   return "4311 - Pet Rent";
+		   case "Little Rock":
 			   return "4311 - Pet Rent";
 		   }
 		   return "";
@@ -89,6 +101,10 @@ public class AppConfig
 			   return "4311 - Pet Rent";
 		   case "Georgia":
 			   return "4311 - Pet Rent";
+		   case "Indiana":
+			   return "4311 - Pet Rent";
+		   case "Little Rock":
+			   return "4311 - Pet Rent";
 		   }
 		   return "";
 	   }
@@ -108,6 +124,10 @@ public class AppConfig
 			   return "4000 - Rent";
 		   case "Georgia":
 			   return "4000 - Rent";
+		   case "Indiana":
+			   return "4700 - Rent";
+		   case "Little Rock	":
+			   return "4000 - Rent";
 		   }
 		   return "";
 	   }
@@ -126,6 +146,10 @@ public class AppConfig
 		   case "Arkansas":
 			   return "4102 - Air Filter Fee";
 		   case "Georgia":
+			   return "4102 - Air Filter Fee";
+		   case "Indiana":
+			   return "4102 - Air FIlter Fee";
+		   case "Little Rock":
 			   return "4102 - Air Filter Fee";
 		   }
 		   return "";
@@ -147,6 +171,10 @@ public class AppConfig
 			   return "4318 - Resident Benefits Package";
 		   case "Georgia":
 			   return "4318 - Resident Benefits Package";
+		   case "Indiana":
+			   return "4318 - Resident Benefits Package";
+		   case "Little Rock":
+			   return "4318 - Resident Benefits Package";
 		   }
 		   return "";
 	   }
@@ -165,6 +193,10 @@ public class AppConfig
 		   case "Arkansas":
 			   return "4315 - Resident Renewal Admin Fee"; 
 		   case "Georgia":
+			   return "4315 - Resident Renewal Admin Fee"; 
+		   case "Indiana":
+			   return "4315 - Resident Renewal Admin Fee"; 
+		   case "Little Rock":
 			   return "4315 - Resident Renewal Admin Fee"; 
 		   }
 		   return "";
@@ -185,6 +217,10 @@ public class AppConfig
 			   return "YES"; 
 		   case "Georgia":
 			   return "YES"; 
+		   case "Indiana":
+			   return "YES"; 
+		   case "Little Rock":
+			   return "YES"; 
 		   }
 		   return "";
 	   }
@@ -203,6 +239,10 @@ public class AppConfig
 		   case "Arkansas":
 			   return "Yes";
 		   case "Georgia":
+			   return "Yes";
+		   case "Indiana":
+			   return "Yes";
+		   case "Little Rock":
 			   return "Yes";
 		   }
 		   return "";

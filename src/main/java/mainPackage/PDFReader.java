@@ -207,6 +207,46 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "Indiana":
+				String pdfFormatType_indiana= PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_indiana);
+				if(pdfFormatType_indiana=="Format1")
+				{
+					if(PDFDataExtract.Indiana_Format1.indiana()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_indiana=="Format2")
+				     {
+					if(PDFDataExtract.Indiana_Format2.indiana()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
+			case "Little Rock":
+				String pdfFormatType_littleRock= PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_littleRock);
+				if(pdfFormatType_littleRock=="Format1")
+				{
+					if(PDFDataExtract.LittleRock_Format1.littleRock()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_littleRock=="Format2")
+				     {
+					if(PDFDataExtract.LittleRock_Format2.littleRock()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
@@ -246,6 +286,14 @@ public class PDFReader
 			case "Georgia":
 		        format1Text = PDFAppConfig.PDFFormatDecider.georgia_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.georgia_Format2;
+		        break;
+			case "Indiana":
+		        format1Text = PDFAppConfig.PDFFormatDecider.indiana_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.indiana_Format2;
+		        break;
+			case "Little Rock":
+		        format1Text = PDFAppConfig.PDFFormatDecider.littleRock_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.littleRock_Format2;
 		        break;
 			}
 			

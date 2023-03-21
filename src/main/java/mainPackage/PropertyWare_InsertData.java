@@ -70,12 +70,12 @@ public class PropertyWare_InsertData
 		RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 		RunnerClass.driver.findElement(Locators.ledgerTab).click();
 		List<WebElement> existingMoveInCharges_ChargeCode = RunnerClass.driver.findElements(Locators.moveInCharges_List);
-		List<WebElement> existingMoveInCharges_Date = RunnerClass.driver.findElements(Locators.moveInCharge_List_Amount);
+		List<WebElement> existingMoveInCharges_Date = RunnerClass.driver.findElements(Locators.moveInCharge_List_Date);
 		for(int i=0;i<existingMoveInCharges_ChargeCode.size();i++)
 		{
 			String chargeCode = existingMoveInCharges_ChargeCode.get(i).getText().trim();
 			String date = existingMoveInCharges_Date.get(i).getText().trim();
-			if(chargeCode.equals(AppConfig.getMonthlyRentChargeCode(RunnerClass.company))&&RunnerClass.startDate.equals(date))
+			if (date.trim().equals(PDFReader.startDate.trim()) && chargeCode.trim().equals(AppConfig.getMonthlyRentChargeCode(RunnerClass.company)))
 			{
 				PDFReader.dateCheckInLedgerForMonthlyRentStartDate = true;
 				break;

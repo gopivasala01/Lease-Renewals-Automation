@@ -95,7 +95,7 @@ public class PropertyWare_ConsolidateValues
 		    if(PDFReader.startDate.split("/")[1].equals("1")||PDFReader.startDate.split("/")[1].equals("01"))
 		    {
 		    	//If there is already a monthly rent charge in Ledger,then auto charge start date is first full month
-		    	if(PDFReader.dateCheckInLedgerForMonthlyRentStartDate = true)
+		    	if(PDFReader.dateCheckInLedgerForMonthlyRentStartDate == true)
 		    	{
 		    		PropertyWare_InsertData.monthlyRent_StartDate = PDFReader.firstFullMonth;
 					PropertyWare_InsertData.ResidentBenefitPackage_StartDate = PDFReader.firstFullMonth;

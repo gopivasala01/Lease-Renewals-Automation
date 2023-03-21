@@ -82,6 +82,7 @@ public class Locators
     
     public static By moveInCharges_List =By.xpath("//*[@id='ledgerDataTable']/tbody/tr/td[5]");
     public static By moveInCharge_List_Amount = By.xpath("//*[@id='ledgerDataTable']/tbody/tr/td[8]");
+    public static By moveInCharge_List_Date= By.xpath("//*[@id='ledgerDataTable']/tbody/tr/td[3]");
     
     public static By newCharge = By.xpath("//*[@value='New Charge']");
     public static By accountList = By.xpath("(//*[@class='edit'])[9]/descendant::select[1]/optgroup/option");
