@@ -1,4 +1,4 @@
-package mainPackage;
+ package mainPackage;
 
 import java.awt.Robot;
 import java.io.File;
@@ -247,6 +247,26 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "Tennessee":
+				String pdfFormatType_tennessee= PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_tennessee);
+				if(pdfFormatType_tennessee=="Format1")
+				{
+					if(PDFDataExtract.Tennessee_Format1.tennessee()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_tennessee=="Format2")
+				     {
+					if(PDFDataExtract.Tennessee_Format2.tennessee()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
@@ -292,6 +312,10 @@ public class PDFReader
 		        format2Text = PDFAppConfig.PDFFormatDecider.indiana_Format2;
 		        break;
 			case "Little Rock":
+		        format1Text = PDFAppConfig.PDFFormatDecider.littleRock_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.littleRock_Format2;
+		        break;
+			case "Tennessee":
 		        format1Text = PDFAppConfig.PDFFormatDecider.littleRock_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.littleRock_Format2;
 		        break;

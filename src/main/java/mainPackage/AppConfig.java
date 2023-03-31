@@ -2,7 +2,7 @@ package mainPackage;
 
 public class AppConfig 
 {
-	public static boolean saveButtonOnAndOff= true;
+	public static boolean saveButtonOnAndOff= false;
 	
 	public static String username= "mds0418@gmail.com";
 	public static String password="HomeRiver1#";
@@ -57,6 +57,8 @@ public class AppConfig
 			   return "4000 - Rent";
 		   case "Georgia":
 			   return "4000 - Rent";
+		   case "Tennessee":
+			   return "4700 - Rent";
 		   }
 		   return "";
 	   }
@@ -80,6 +82,8 @@ public class AppConfig
 		   case "Indiana":
 			   return "4311 - Pet Rent";
 		   case "Little Rock":
+			   return "4311 - Pet Rent";
+		   case "Tennessee":
 			   return "4311 - Pet Rent";
 		   }
 		   return "";
@@ -105,6 +109,8 @@ public class AppConfig
 			   return "4311 - Pet Rent";
 		   case "Little Rock":
 			   return "4311 - Pet Rent";
+		   case "Tennessee":
+			   return "4311 - Pet Rent";
 		   }
 		   return "";
 	   }
@@ -128,6 +134,8 @@ public class AppConfig
 			   return "4700 - Rent";
 		   case "Little Rock	":
 			   return "4000 - Rent";
+		   case "Tennessee	":
+			   return "4700 - Rent";
 		   }
 		   return "";
 	   }
@@ -150,6 +158,8 @@ public class AppConfig
 		   case "Indiana":
 			   return "4102 - Air FIlter Fee";
 		   case "Little Rock":
+			   return "4102 - Air Filter Fee";
+		   case "Tennessee":
 			   return "4102 - Air Filter Fee";
 		   }
 		   return "";
@@ -175,6 +185,8 @@ public class AppConfig
 			   return "4318 - Resident Benefits Package";
 		   case "Little Rock":
 			   return "4318 - Resident Benefits Package";
+		   case "Tennessee":
+			   return "4318 - Resident Benefits Package";
 		   }
 		   return "";
 	   }
@@ -197,6 +209,8 @@ public class AppConfig
 		   case "Indiana":
 			   return "4315 - Resident Renewal Admin Fee"; 
 		   case "Little Rock":
+			   return "4315 - Resident Renewal Admin Fee"; 
+		   case "Tennessee":
 			   return "4315 - Resident Renewal Admin Fee"; 
 		   }
 		   return "";
@@ -221,6 +235,8 @@ public class AppConfig
 			   return "YES"; 
 		   case "Little Rock":
 			   return "YES"; 
+		   case "Tennessee":
+			   return "YES"; 
 		   }
 		   return "";
 	   }
@@ -243,6 +259,8 @@ public class AppConfig
 		   case "Indiana":
 			   return "Yes";
 		   case "Little Rock":
+			   return "Yes";
+		   case "Tennessee":
 			   return "Yes";
 		   }
 		   return "";
