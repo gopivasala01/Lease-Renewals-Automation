@@ -267,6 +267,26 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "California":
+				String pdfFormatType_california= PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_california);
+				if(pdfFormatType_california=="Format1")
+				{
+					if(PDFDataExtract.California_Format1.california()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_california=="Format2")
+				     {
+					if(PDFDataExtract.California_Format2.california()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
@@ -316,8 +336,12 @@ public class PDFReader
 		        format2Text = PDFAppConfig.PDFFormatDecider.littleRock_Format2;
 		        break;
 			case "Tennessee":
-		        format1Text = PDFAppConfig.PDFFormatDecider.littleRock_Format1;
-		        format2Text = PDFAppConfig.PDFFormatDecider.littleRock_Format2;
+		        format1Text = PDFAppConfig.PDFFormatDecider.tennessee_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.tennessee_Format2;
+		        break;
+			case "California":
+		        format1Text = PDFAppConfig.PDFFormatDecider.california_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.california_Format2;
 		        break;
 			}
 			

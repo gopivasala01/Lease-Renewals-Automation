@@ -2,7 +2,7 @@ package mainPackage;
 
 public class AppConfig 
 {
-	public static boolean saveButtonOnAndOff= false;
+	public static boolean saveButtonOnAndOff= true;
 	
 	public static String username= "mds0418@gmail.com";
 	public static String password="HomeRiver1#";
@@ -59,6 +59,8 @@ public class AppConfig
 			   return "4000 - Rent";
 		   case "Tennessee":
 			   return "4700 - Rent";
+		   case "California":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -85,6 +87,8 @@ public class AppConfig
 			   return "4311 - Pet Rent";
 		   case "Tennessee":
 			   return "4311 - Pet Rent";
+		   case "California":
+			   return "40230 - Pet Rent";
 		   }
 		   return "";
 	   }
@@ -111,6 +115,8 @@ public class AppConfig
 			   return "4311 - Pet Rent";
 		   case "Tennessee":
 			   return "4311 - Pet Rent";
+		   case "California":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -136,6 +142,8 @@ public class AppConfig
 			   return "4000 - Rent";
 		   case "Tennessee	":
 			   return "4700 - Rent";
+		   case "California":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -161,6 +169,9 @@ public class AppConfig
 			   return "4102 - Air Filter Fee";
 		   case "Tennessee":
 			   return "4102 - Air Filter Fee";
+		   case "California":
+			   return "43060 - Filter Fee";
+			   
 		   }
 		   return "";
 	   }
@@ -187,6 +198,8 @@ public class AppConfig
 			   return "4318 - Resident Benefits Package";
 		   case "Tennessee":
 			   return "4318 - Resident Benefits Package";
+		   case "California":
+			   return "43070 - Resident Benefit Package Fee";
 		   }
 		   return "";
 	   }
@@ -212,6 +225,9 @@ public class AppConfig
 			   return "4315 - Resident Renewal Admin Fee"; 
 		   case "Tennessee":
 			   return "4315 - Resident Renewal Admin Fee"; 
+		   case "California":
+			   return "43040 - Resident Renewal Admin Fee"; 
+		    
 		   }
 		   return "";
 	   }
@@ -237,6 +253,8 @@ public class AppConfig
 			   return "YES"; 
 		   case "Tennessee":
 			   return "YES"; 
+		   case "California":
+			   return "YES";
 		   }
 		   return "";
 	   }
@@ -262,9 +280,38 @@ public class AppConfig
 			   return "Yes";
 		   case "Tennessee":
 			   return "Yes";
+		   case "California":
+			   return "Yes";
 		   }
 		   return "";
 	   }
-   
+      /*public static String getRenewalStatus (String company)
+      {
+    	  switch(company)
+    	  {
+    	  case "California":
+    	       return "RW-4a: CHARGE RENEWAL FEE - ANNUAL";
+    	  case "Georgia":
+   	       return "RW-4a: CHARGE RENEWAL FEE - ANNUAL";
+    	  case "Alabama":
+   	       return "RW-4a: CHARGE RENEWAL FEE - ANNUAL";
+    	  case "Tennessee":
+   	       return "RW-4a: CHARGE RENEWAL FEE - ANNUAL";
+    	  case "North Carolina":
+   	       return "RW-4a: CHARGE RENEWAL FEE - ANNUAL";
+    	  case "Dallas/Fort Worth":
+   	       return "RW-4a: CHARGE RENEWAL FEE - ANNUAL";
+    	  case "Little Rock":
+   	       return "RW-4a: CHARGE RENEWAL FEE - ANNUAL";
+    	  case "Indiana":
+   	       return "RW-4a: CHARGE RENEWAL FEE - ANNUAL";
+    	  case "Florida":
+   	       return "RW-4a: CHARGE RENEWAL FEE - ANNUAL";
+    	  case "Arkansas":
+   	       return "RW-4a: CHARGE RENEWAL FEE - ANNUAL";
+    	       
+    	  }
+    	  return"";*/
+    	  		
+      }
 
-}
