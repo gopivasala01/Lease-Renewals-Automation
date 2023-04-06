@@ -1,6 +1,8 @@
 package mainPackage;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -309,6 +311,60 @@ public class PropertyWare_InsertData
 		Thread.sleep(2000);
 	}
 	
+	/*public static void currentMonthlyRentUpdate() throws InterruptedException, Exception {
+	    LocalDate today = LocalDate.now();
+	    String currentMonthlyRent = null;
+	    LocalDate monthlyRentStartDate = LocalDate.parse(RunnerClass.convertDate(PDFReader.monthlyRent));
+	    LocalDate increasedRentStartDate = null;
+	    if (PDFReader.incrementRentFlag) {
+	        increasedRentStartDate = LocalDate.parse(PDFReader.increasedRent_previousRentEndDate);
+	    }
+
+	    if (increasedRentStartDate != null && (today.isAfter(increasedRentStartDate) || today.equals(increasedRentStartDate))) {
+	        currentMonthlyRent = PDFReader.increasedRent_amount;
+	    }
+
+	    if (currentMonthlyRent == null && (today.isAfter(monthlyRentStartDate) || today.equals(monthlyRentStartDate))) {
+	        currentMonthlyRent = monthlyRentStartDate.toString();
+	    }
+
+	    RunnerClass.driver.navigate().refresh();
+	    RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+	    RunnerClass.driver.findElement(Locators.summaryTab).click();
+	    Thread.sleep(2000);
+	    RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+	    RunnerClass.driver.findElement(Locators.summaryEditButton).click();
+
+	    String rentAutoChargeAmountText = null;
+	    List<WebElement> existingAutoCharges = RunnerClass.driver.findElements(Locators.autoCharge_List);
+	    List<WebElement> existingAutoChargeAmounts = RunnerClass.driver.findElements(Locators.autoCharge_List_Amounts);
+
+	    for (int i = 0; i < existingAutoCharges.size(); i++) {
+	        WebElement autoCharge = existingAutoCharges.get(i);
+	        WebElement autoChargeAmount = existingAutoChargeAmounts.get(i);
+	        String autoChargeText = autoCharge.getText();
+	        String autoChargeAmountText = autoChargeAmount.getText();
+
+	        if (autoChargeText.equalsIgnoreCase("4000 - Rent")) {
+	            rentAutoChargeAmountText = autoChargeAmountText;
+	            break;
+	        }
+	    }
+	    
+	    try {
+	        RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.currentMonthlyRent)).build().perform();
+	        RunnerClass.driver.findElement(Locators.currentMonthlyRent).click();
+	        RunnerClass.driver.findElement(Locators.currentMonthlyRent).sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+	        RunnerClass.driver.findElement(Locators.currentMonthlyRent).sendKeys(currentMonthlyRent);
+	    } catch (Exception e) {
+	        RunnerClass.statusID = 1;
+	        e.printStackTrace();
+	        RunnerClass.failedReason = RunnerClass.failedReason + "," + "Other information - Current Monthly Rent";
+	        System.out.println("Issue - Other information - Current Monthly Rent");
+	    }
+	}*/
+
+
 	public static boolean addingNewAutoCharges() throws Exception
 	{
       try

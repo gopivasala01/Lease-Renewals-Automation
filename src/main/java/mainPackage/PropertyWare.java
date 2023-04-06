@@ -109,7 +109,7 @@ public class PropertyWare
 				for(int i =0;i<displayedCompanies.size();i++)
 				{
 					String companyName = displayedCompanies.get(i).getText();
-					if(companyName.contains(company)&&!companyName.contains("Legacy"))
+					if(companyName.toLowerCase().contains(company.toLowerCase())&&!companyName.contains("Legacy"))
 					{
 						
 						List<WebElement> leaseList = RunnerClass.driver.findElements(By.xpath("(//*[@class='section'])["+(i+1)+"]/ul/li/a"));

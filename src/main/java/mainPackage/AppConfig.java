@@ -61,6 +61,8 @@ public class AppConfig
 			   return "4700 - Rent";
 		   case "California":
 			   return "40010 - Rent Income";
+		   case "California PFW":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -88,6 +90,8 @@ public class AppConfig
 		   case "Tennessee":
 			   return "4311 - Pet Rent";
 		   case "California":
+			   return "40230 - Pet Rent";
+		   case "California PFW":
 			   return "40230 - Pet Rent";
 		   }
 		   return "";
@@ -117,6 +121,8 @@ public class AppConfig
 			   return "4311 - Pet Rent";
 		   case "California":
 			   return "40010 - Rent Income";
+		   case "California PFW":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -144,6 +150,8 @@ public class AppConfig
 			   return "4700 - Rent";
 		   case "California":
 			   return "40010 - Rent Income";
+		   case "California PFW":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -170,6 +178,8 @@ public class AppConfig
 		   case "Tennessee":
 			   return "4102 - Air Filter Fee";
 		   case "California":
+			   return "43060 - Filter Fee";
+		   case "California PFW":
 			   return "43060 - Filter Fee";
 			   
 		   }
@@ -200,6 +210,8 @@ public class AppConfig
 			   return "4318 - Resident Benefits Package";
 		   case "California":
 			   return "43070 - Resident Benefit Package Fee";
+		   case "California PFW":
+			   return "43070 - Resident Benefit Package Fee";
 		   }
 		   return "";
 	   }
@@ -226,6 +238,8 @@ public class AppConfig
 		   case "Tennessee":
 			   return "4315 - Resident Renewal Admin Fee"; 
 		   case "California":
+			   return "43040 - Resident Renewal Admin Fee"; 
+		   case "California PFW":
 			   return "43040 - Resident Renewal Admin Fee"; 
 		    
 		   }
@@ -255,6 +269,8 @@ public class AppConfig
 			   return "YES"; 
 		   case "California":
 			   return "YES";
+		   case "California PFW":
+			   return "YES";
 		   }
 		   return "";
 	   }
@@ -281,6 +297,8 @@ public class AppConfig
 		   case "Tennessee":
 			   return "Yes";
 		   case "California":
+			   return "Yes";
+		   case "California PFW":
 			   return "Yes";
 		   }
 		   return "";

@@ -103,6 +103,7 @@ public class RunnerClass
 						PropertyWare_InsertData.configureValues();
 						PropertyWare_InsertData.addingMoveInCharges();
 						PropertyWare_InsertData.clearExistingAutoCharges();
+						//PropertyWare_InsertData.currentMonthlyRentUpdate();
 						PropertyWare_InsertData.addingNewAutoCharges();
 						PropertyWare_InsertOtherInformation.addingOtherInformation();
 						

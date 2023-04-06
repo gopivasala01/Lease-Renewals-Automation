@@ -287,6 +287,26 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "California PFW":
+				String pdfFormatType_californiapfw = PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_californiapfw);
+				if(pdfFormatType_californiapfw=="Format1")
+				{
+					if(PDFDataExtract.California_PFW_Format1.californiapfw()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_californiapfw=="Format2")
+				     {
+					if(PDFDataExtract.California_PFW_Format2.californiapfw()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
@@ -342,6 +362,10 @@ public class PDFReader
 			case "California":
 		        format1Text = PDFAppConfig.PDFFormatDecider.california_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.california_Format2;
+		        break;
+			case "California PFW":
+		        format1Text = PDFAppConfig.PDFFormatDecider.california_pfw_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.california_pfw_Format2;
 		        break;
 			}
 			
