@@ -307,6 +307,26 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "Houston":
+				String pdfFormatType_houston= PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_houston);
+				if(pdfFormatType_houston=="Format1")
+				{
+					if(PDFDataExtract.Houston_Format1.houston()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_houston=="Format2")
+				     {
+					if(PDFDataExtract.Houston_Format2.houston()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
@@ -366,6 +386,10 @@ public class PDFReader
 			case "California PFW":
 		        format1Text = PDFAppConfig.PDFFormatDecider.california_pfw_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.california_pfw_Format2;
+		        break;
+			case "Houston":
+		        format1Text = PDFAppConfig.PDFFormatDecider.houston_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.houston_Format2;
 		        break;
 			}
 			

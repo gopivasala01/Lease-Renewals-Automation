@@ -302,7 +302,7 @@ public class PropertyWare_InsertData
 			RunnerClass.driver.findElement(Locators.autoCharge_SaveButton).click();
 		
 		Thread.sleep(2000);
-		try
+		try 
 		{
 		RunnerClass.driver.switchTo().alert().accept();
 	    }

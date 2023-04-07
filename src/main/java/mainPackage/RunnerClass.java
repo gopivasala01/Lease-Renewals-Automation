@@ -109,7 +109,7 @@ public class RunnerClass
 						
 						//Update Completed Status
 						if(failedReason=="")
-							failedReason="";
+			 				failedReason="";
 						else if(failedReason.charAt(0)==',')
 							failedReason = failedReason.substring(1);
 						String updateSuccessStatus ="";
