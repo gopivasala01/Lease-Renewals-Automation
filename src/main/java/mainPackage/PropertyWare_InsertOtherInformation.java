@@ -205,7 +205,7 @@ public class PropertyWare_InsertOtherInformation
 		
 	}
 	
-	public static boolean RelatedActivities() throws Exception
+	public static void RelatedActivities() throws Exception
 	{
 		
 		
@@ -215,9 +215,17 @@ public class PropertyWare_InsertOtherInformation
 		    RunnerClass.driver.findElement(Locators.relatedActivities_LeaseRenewal).click();
 		    Thread.sleep(2000);
 		    
+		    try {
 		    RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.removeLeasingFee)).build().perform();
+		    
+		    
+		    if(RunnerClass.driver.findElement(Locators.removeLeasingFee).isDisplayed()) 
+		    {
 		    RunnerClass.driver.findElement(Locators.removeLeasingFee).click();
-		       
+		    }}
+		    catch (Exception e1){}
+		    
+		    {
 		    //Related Activities - New Start Date
 		    RunnerClass.driver.findElement(Locators.relatedActivities_newStartDate).click();
 		    RunnerClass.driver.findElement(Locators.relatedActivities_newStartDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
@@ -246,8 +254,8 @@ public class PropertyWare_InsertOtherInformation
 		    }
 		    Thread.sleep(3000);
 		    
-		    return true;
 		    
+		}
 		}
 		catch (Exception e) 
 		{
@@ -255,7 +263,7 @@ public class PropertyWare_InsertOtherInformation
 		    RunnerClass.failedReason = RunnerClass.failedReason + "," + "Issue in adding Related Activities";
 		    System.out.println("Issue in adding Related Activities");
 		    e.printStackTrace();
-		    return false;
+		    
 		} finally 
 		{
 		    try {

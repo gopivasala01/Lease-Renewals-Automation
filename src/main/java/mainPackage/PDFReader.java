@@ -327,6 +327,26 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "Austin":
+				String pdfFormatType_austin= PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_austin);
+				if(pdfFormatType_austin=="Format1")
+				{
+					if(PDFDataExtract.Austin_Format1.austin()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_austin=="Format2")
+				     {
+					if(PDFDataExtract.Austin_Format2.austin()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
@@ -390,6 +410,10 @@ public class PDFReader
 			case "Houston":
 		        format1Text = PDFAppConfig.PDFFormatDecider.houston_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.houston_Format2;
+		        break;
+			case "Austin":
+		        format1Text = PDFAppConfig.PDFFormatDecider.austin_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.austin_Format2;
 		        break;
 			}
 			
