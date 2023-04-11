@@ -2,7 +2,7 @@ package mainPackage;
 
 public class AppConfig 
 {
-	public static boolean saveButtonOnAndOff= false;
+	public static boolean saveButtonOnAndOff= true;
 	
 	public static String username= "mds0418@gmail.com";
 	public static String password="HomeRiver1#";
@@ -67,6 +67,8 @@ public class AppConfig
 			   return "4000 - Rent";
 		   case "Austin":
 			   return "4000 - Rent";
+		   case "Chattanooga":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -101,6 +103,8 @@ public class AppConfig
 			   return "4311 - Pet Rent";
 		   case "Austin":
 			   return "4311 - Pet Rent";
+		   case "Chattanooga":
+			   return "40230 - Pet Rent";
 		   }
 		   return "";
 	   }
@@ -135,6 +139,8 @@ public class AppConfig
 			   return "4311 - Pet Rent";
 		   case "Austin":
 			   return "4311 - Pet Rent";
+		   case "Chattanooga":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -168,6 +174,8 @@ public class AppConfig
 			   return "4000 - Rent";
 		   case "Austin":
 			   return "4000 - Rent";
+		   case "Chattanooga":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -201,6 +209,8 @@ public class AppConfig
 			   return "4102 - Air Filter Fee";
 		   case "Austin":
 			   return "4102 - Air Filter Fee";
+		   case "Chattanooga":
+			   return "43060 - Filter Fee";
 			   
 		   }
 		   return "";
@@ -236,6 +246,8 @@ public class AppConfig
 			   return "4318 - Resident Benefits Package";
 		   case "Austin":
 			   return "4318 - Resident Benefits Package";
+		   case "Chattanooga":
+			   return "43070 - Resident Benefit Package Fee";
 		   }
 		   return "";
 	   }
@@ -269,6 +281,8 @@ public class AppConfig
 			   return "4315 - Resident Renewal Admin Fee";
 		   case "Austin":
 			   return "4315 - Resident Renewal Admin Fee";
+		   case "Chattanooga":
+			   return "43040 - Resident Renewal Admin Fee"; 
 		    
 		   }
 		   return "";
@@ -303,6 +317,8 @@ public class AppConfig
 			   return "YES";
 		   case "Austin":
 			   return "YES";
+		   case "Chattanooga":
+			   return "YES";
 		   }
 		   return "";
 	   }
@@ -336,8 +352,10 @@ public class AppConfig
 			   return "Yes";
 		   case "Austin":
 			   return "Yes";
+		   case "Chattanooga":
+			   return "Yes";
 		   }
-		   return "";  
+		   return "";    
 	   }
       /*public static String getRenewalStatus (String company)
       {

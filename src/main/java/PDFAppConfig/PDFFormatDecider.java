@@ -51,5 +51,8 @@ public class PDFFormatDecider
 	// Houston
 		public static String houston_Format1 = "The parties to this Lease are the owner of the Property";
 		public static String houston_Format2 = "THIS RESIDENTIAL LEASE AGREEMENT";
+	// Chattanooga
+		public static String chattanooga_Format1 = "The parties to this Lease are the owner of the Property";
+		public static String chattanooga_Format2 = "THIS RESIDENTIAL LEASE AGREEMENT";
 		
 }
