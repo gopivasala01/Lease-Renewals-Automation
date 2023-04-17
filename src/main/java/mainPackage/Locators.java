@@ -68,6 +68,7 @@ public class Locators
     public static By renewalCoordinatorName = By.xpath("//*[text()='Renewal Coordinator Name']/following::input[1]");
     public static By saveLease = By.xpath("(//*[@class='primaryButtons'])[2]/input[1]");
     public static By cancelLease = By.xpath("(//*[@class='primaryButtons'])[2]/input[2]");
+    public static By petRentAmount = By.xpath("//*[text()='Pet Rent Amount']/following::input[1]");
     
     //Related Activities
     public static By relatedActivities_LeaseRenewal = By.xpath("//*[text()=' Lease Renewal ']");

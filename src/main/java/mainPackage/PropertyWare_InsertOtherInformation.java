@@ -15,6 +15,7 @@ public class PropertyWare_InsertOtherInformation
 	public static String currentMonthlyRent = "";
 	public static String priorMonthlyRent = "";
 	public static String renewalCoordinatorName = "";
+	public static String petRentAmount = "";
 	
 	//Related Activities - Lease Renewal
 	public static String newStartDate = "";
@@ -47,6 +48,7 @@ public class PropertyWare_InsertOtherInformation
 		newStartDate = PDFReader.startDate;
 		newEndDate = PDFReader.endDate;
 		renewalOnDate = RunnerClass.getCurrentDate();
+		petRentAmount = PDFReader.petRent;
 		
 		if(PDFReader.residentBenefitsPackageAvailabilityCheck==true)
 		{
@@ -174,6 +176,26 @@ public class PropertyWare_InsertOtherInformation
 			System.out.println("Issue - Other information - Renewal Coordinator Name");		
 		}
 		
+		// Pet Rent Amount
+				if(PDFReader.petFlag== true)
+				{
+					try
+					{
+					RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.petRentAmount)).build().perform();
+					RunnerClass.driver.findElement(Locators.petRentAmount).click();
+					RunnerClass.driver.findElement(Locators.petRentAmount).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+					RunnerClass.driver.findElement(Locators.petRentAmount).sendKeys(petRentAmount);
+					}
+					catch(Exception e)
+					{
+						RunnerClass.statusID=1;
+						e.printStackTrace();
+						RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Pet Rent Amount";
+						System.out.println("Issue - Other information - Pet Rent Amount");
+					}
+					
+				}
+				
 		RunnerClass.js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
 		Thread.sleep(3000);
 		try
@@ -200,6 +222,7 @@ public class PropertyWare_InsertOtherInformation
 			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.cancelLease)).click(RunnerClass.driver.findElement(Locators.cancelLease)).build().perform();
 	  }
 		
+			
 		//Related Activities
 		PropertyWare_InsertOtherInformation.RelatedActivities();
 		

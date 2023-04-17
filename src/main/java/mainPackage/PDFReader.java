@@ -347,6 +347,7 @@ public class PDFReader
 					return false;
 				    }
 				break;
+
 			case "Chattanooga":
 				String pdfFormatType_chattanooga= PDFReader.decidePDFFormat(market);
 				System.out.println("PDF Format Type = "+pdfFormatType_chattanooga);
@@ -359,6 +360,26 @@ public class PDFReader
 					if(pdfFormatType_chattanooga=="Format2")
 				     {
 					if(PDFDataExtract.Chattanooga_Format2.chattanooga()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
+			case "Chicago":
+				String pdfFormatType_chicago= PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_chicago);
+				if(pdfFormatType_chicago=="Format1")
+				{
+					if(PDFDataExtract.Chicago_Format1.chicago()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_chicago=="Format2")
+				     {
+					if(PDFDataExtract.Chicago_Format2.chicago()==false)
 						return false;
 			        }
 				    else 
@@ -438,6 +459,10 @@ public class PDFReader
 			case "Chattanooga":
 		        format1Text = PDFAppConfig.PDFFormatDecider.chattanooga_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.chattanooga_Format2;
+		        break;
+			case "Chicago":
+		        format1Text = PDFAppConfig.PDFFormatDecider.chicago_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.chicago_Format2;
 		        break;
 			}
 			

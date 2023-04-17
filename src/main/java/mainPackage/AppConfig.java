@@ -2,7 +2,7 @@ package mainPackage;
 
 public class AppConfig 
 {
-	public static boolean saveButtonOnAndOff= true;
+	public static boolean saveButtonOnAndOff= false;
 	
 	public static String username= "mds0418@gmail.com";
 	public static String password="HomeRiver1#";
@@ -44,7 +44,7 @@ public class AppConfig
 		   case "Florida":
 			   return "4000 - Rent";
 		   case "Alabama":
-			   return "4000 - Rent";
+			  return "40010 - Rent Income";
 		   case "North Carolina":
 			   return "4000 - Rent";
 		   case "Dallas/Fort Worth":
@@ -68,6 +68,8 @@ public class AppConfig
 		   case "Austin":
 			   return "4000 - Rent";
 		   case "Chattanooga":
+			   return "40010 - Rent Income";
+		   case "Chicago":
 			   return "40010 - Rent Income";
 		   }
 		   return "";
@@ -80,7 +82,7 @@ public class AppConfig
 		   case "Florida":
 			   return "4311 - Pet Rent";
 		   case "Alabama":
-			   return "4311 - Pet Rent";
+			   return "40230 - Pet Rent";
 		   case "North Carolina":
 			   return "4311 - Pet Rent";
 		   case "Dallas/Fort Worth":
@@ -104,6 +106,8 @@ public class AppConfig
 		   case "Austin":
 			   return "4311 - Pet Rent";
 		   case "Chattanooga":
+			   return "40230 - Pet Rent";
+		   case "Chicago":
 			   return "40230 - Pet Rent";
 		   }
 		   return "";
@@ -116,7 +120,7 @@ public class AppConfig
 		   case "Florida":
 			   return "4311 - Pet Rent";
 		   case "Alabama":
-			   return "4311 - Pet Rent";
+			   return "40010 - Rent Income";
 		   case "North Carolina":
 			   return "4311 - Pet Rent";
 		   case "Dallas/Fort Worth":
@@ -141,6 +145,8 @@ public class AppConfig
 			   return "4311 - Pet Rent";
 		   case "Chattanooga":
 			   return "40010 - Rent Income";
+		   case "Chicago":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -151,7 +157,7 @@ public class AppConfig
 		   case "Florida":
 			   return "4000 - Rent";
 		   case "Alabama":
-			   return "4000 - Rent";
+			   return "40010 - Rent Income";
 		   case "North Carolina":
 			   return "4000 - Rent";
 		   case "Dallas/Fort Worth":
@@ -176,6 +182,8 @@ public class AppConfig
 			   return "4000 - Rent";
 		   case "Chattanooga":
 			   return "40010 - Rent Income";
+		   case "Chicago":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -186,7 +194,7 @@ public class AppConfig
 		   case "Florida":
 			   return "4102 - Air Filter Fee";
 		   case "Alabama":
-			   return "4102 - Air Filter Fee";
+			   return "43060 - Filter Fee";
 		   case "North Carolina":
 			   return "4102 - Air Filter Fee";
 		   case "Dallas/Fort Worth":
@@ -211,6 +219,8 @@ public class AppConfig
 			   return "4102 - Air Filter Fee";
 		   case "Chattanooga":
 			   return "43060 - Filter Fee";
+		   case "Chicago":
+			   return "43060 - Filter Fee";
 			   
 		   }
 		   return "";
@@ -223,7 +233,7 @@ public class AppConfig
 		   case "Florida":
 			   return "4318 - Resident Benefits Package";
 		   case "Alabama":
-			   return "4318 - Resident Benefits Package";
+			   return "43070 - Resident Benefit Package Fee";
 		   case "North Carolina":
 			   return "4318 - Resident Benefits Package";
 		   case "Dallas/Fort Worth":
@@ -247,6 +257,8 @@ public class AppConfig
 		   case "Austin":
 			   return "4318 - Resident Benefits Package";
 		   case "Chattanooga":
+			   return "43070 - Resident Benefit Package Fee";
+		   case "Chicago":
 			   return "43070 - Resident Benefit Package Fee";
 		   }
 		   return "";
@@ -258,7 +270,7 @@ public class AppConfig
 		   case "Florida":
 			   return "4315 - Resident Renewal Admin Fee";
 		   case "Alabama":
-			   return "4315 - Resident Renewal Admin Fee";
+			   return "43040 - Resident Renewal Admin Fee"; 
 		   case "North Carolina":
 			   return "4315 - Resident Renewal Admin Fee";
 		   case "Dallas/Fort Worth":
@@ -282,6 +294,8 @@ public class AppConfig
 		   case "Austin":
 			   return "4315 - Resident Renewal Admin Fee";
 		   case "Chattanooga":
+			   return "43040 - Resident Renewal Admin Fee"; 
+		   case "Chicago":
 			   return "43040 - Resident Renewal Admin Fee"; 
 		    
 		   }
@@ -319,6 +333,8 @@ public class AppConfig
 			   return "YES";
 		   case "Chattanooga":
 			   return "YES";
+		   case "Chicago":
+			   return "YES";
 		   }
 		   return "";
 	   }
@@ -353,6 +369,8 @@ public class AppConfig
 		   case "Austin":
 			   return "Yes";
 		   case "Chattanooga":
+			   return "Yes";
+		   case "Chicago":
 			   return "Yes";
 		   }
 		   return "";    
