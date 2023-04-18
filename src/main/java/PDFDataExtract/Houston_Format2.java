@@ -2,6 +2,8 @@ package PDFDataExtract;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -16,17 +18,37 @@ public class Houston_Format2
 		{
 			try
 			{
-			File file = RunnerClass.getLastModified();
-			//File file = new File("E:\\Automation\\SantoshMurthy\\DownloadedLease\\Full_lease_[4.01.2023]_[4569_Brookshire_Loop]_[AL]_[Hinton,_C._1].pdf");
-			System.out.println(file);
-			FileInputStream fis = new FileInputStream(file);
-			PDDocument document = PDDocument.load(fis);
-			String text = new PDFTextStripper().getText(document);
-			text = text.replaceAll(System.lineSeparator(), " ");
-		    text = text.replaceAll(" +", " ");
-		    System.out.println(text);
+				File file = RunnerClass.getLastModified();
+				System.out.println(file);
+				FileInputStream fis = new FileInputStream(file);
+				PDDocument document = PDDocument.load(fis);
+				PDFTextStripper stripper = new PDFTextStripper();
+				String text = stripper.getText(document);
+				stripper.setStartPage(1);
+				stripper.setEndPage(1);
+				String firstPageText = stripper.getText(document);
+				text = text.replaceAll(System.lineSeparator(), " ");
+				text = text.replaceAll(" +", " ");
+				firstPageText = firstPageText.replaceAll(System.lineSeparator(), " ");
+				firstPageText = firstPageText.replaceAll(" +", " ");
+				System.out.println("First page text:\n" + firstPageText);
+				System.out.println("All pages text:\n" + text);
+				document.close();
 		    
 		    System.out.println("------------------------------------------------------------------");
+		    
+		    String pattern = "\\d{1,2}/\\d{1,2}/\\d{4}"; 
+		    Pattern datePattern = Pattern.compile(pattern);
+
+		    Matcher matcher = datePattern.matcher(firstPageText);
+		    String renewalExecutionDate = "";
+
+		    
+		    while (matcher.find()) {
+		    	PDFReader.renewalExecutionDate = matcher.group();
+		    }
+
+		    System.out.println("Last date mentioned on the page: " + renewalExecutionDate);
 		    
 		    
 		    try

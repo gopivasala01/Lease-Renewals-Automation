@@ -21,6 +21,7 @@ public class PDFReader
     public static String petRent="";
     public static String petFee;
     public static String pdfText="";
+    public static String renewalExecutionDate = "";
     public static String securityDeposit="";
     public static String leaseStartDate_PW="";
     public static String leaseEndDate_PW="";
@@ -80,6 +81,7 @@ public class PDFReader
 		    petRent ="";
 		    incrementRentFlag = false;
 		    increasedRent_previousRentEndDate ="";
+		    renewalExecutionDate = "";
 		    increasedRent_amount ="";
 		    increasedRent_newStartDate ="";
 		    increasedRent_newEndDate ="";

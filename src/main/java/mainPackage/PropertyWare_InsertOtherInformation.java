@@ -41,7 +41,7 @@ public class PropertyWare_InsertOtherInformation
 		RBPenrollmentCompleteForSNUseOnly = AppConfig.getRBPenrollmentCompleteForSNUseOnly(RunnerClass.company);
 		renewalStatus = "RW-4a%3A+CHARGE+RENEWAL+FEE+-+ANNUAL";
 		reneWalFollowupNotes = "Full Lease Executed From "+PDFReader.startDate+" - "+PDFReader.endDate+" - HRG Automation - "; //Need to calculate Month's difference between StartDate and EndDate
-		renewalExecutionDate = RunnerClass.getCurrentDate();
+		renewalExecutionDate = PDFReader.renewalExecutionDate;
 		currentMonthlyRent = PDFReader.startDate;
 		priorMonthlyRent = PDFReader.previousMonthlyRent;
 		renewalCoordinatorName = "HRG - Automation"; 

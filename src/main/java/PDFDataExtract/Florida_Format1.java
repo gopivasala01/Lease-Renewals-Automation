@@ -2,6 +2,8 @@ package PDFDataExtract;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -16,16 +18,36 @@ public class Florida_Format1
 		try
 		{
 			File file = RunnerClass.getLastModified();
-			//File file = new File("C:\\SantoshMurthyP\\Lease Audit Automation\\RENEWAL_[13411_Gorgona_Isle_Dr]_[Acee,_C.]_[03.01.23-02.29.24].pdf");
 			System.out.println(file);
 			FileInputStream fis = new FileInputStream(file);
 			PDDocument document = PDDocument.load(fis);
-			String text = new PDFTextStripper().getText(document);
+			PDFTextStripper stripper = new PDFTextStripper();
+			String text = stripper.getText(document);
+			stripper.setStartPage(1);
+			stripper.setEndPage(1);
+			String firstPageText = stripper.getText(document);
 			text = text.replaceAll(System.lineSeparator(), " ");
-		    text = text.replaceAll(" +", " ");
-		    System.out.println(text);
-		    
-		    System.out.println("------------------------------------------------------------------");
+			text = text.replaceAll(" +", " ");
+			firstPageText = firstPageText.replaceAll(System.lineSeparator(), " ");
+			firstPageText = firstPageText.replaceAll(" +", " ");
+			System.out.println("First page text:\n" + firstPageText);
+			System.out.println("All pages text:\n" + text);
+			document.close();
+	    
+	    System.out.println("------------------------------------------------------------------");
+	    
+	    String pattern = "\\d{1,2}/\\d{1,2}/\\d{4}"; 
+	    Pattern datePattern = Pattern.compile(pattern);
+
+	    Matcher matcher = datePattern.matcher(firstPageText);
+	    
+
+	    
+	    while (matcher.find()) {
+	    	PDFReader.renewalExecutionDate = matcher.group();
+	    }
+
+	    System.out.println("Last date mentioned on the page: " + PDFReader.renewalExecutionDate);
 		    try
 		    {
 		    	PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.Florida_Format1.commencementDate_Prior)+PDFAppConfig.Florida_Format1.commencementDate_Prior.length(),text.indexOf(PDFAppConfig.Florida_Format1.commencementDate_After));

@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.text.PDFTextStripper;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import mainPackage.PDFReader;
 import mainPackage.RunnerClass;
@@ -17,16 +20,36 @@ public class Alabama_Format1 {
 		try
 		{
 			File file = RunnerClass.getLastModified();
-			//File file = new File("E:\\Automation\\SantoshMurthy\\DownloadedLease\\Full_lease_[4.01.2023]_[4569_Brookshire_Loop]_[AL]_[Hinton,_C._1].pdf");
 			System.out.println(file);
 			FileInputStream fis = new FileInputStream(file);
 			PDDocument document = PDDocument.load(fis);
-			String text = new PDFTextStripper().getText(document);
+			PDFTextStripper stripper = new PDFTextStripper();
+			String text = stripper.getText(document);
+			stripper.setStartPage(1);
+			stripper.setEndPage(1);
+			String firstPageText = stripper.getText(document);
 			text = text.replaceAll(System.lineSeparator(), " ");
-		    text = text.replaceAll(" +", " ");
-		    System.out.println(text);
-		    
-		    System.out.println("------------------------------------------------------------------");
+			text = text.replaceAll(" +", " ");
+			firstPageText = firstPageText.replaceAll(System.lineSeparator(), " ");
+			firstPageText = firstPageText.replaceAll(" +", " ");
+			System.out.println("First page text:\n" + firstPageText);
+			System.out.println("All pages text:\n" + text);
+			document.close();
+	    
+	    System.out.println("------------------------------------------------------------------");
+	    
+	    String pattern = "\\d{1,2}/\\d{1,2}/\\d{4}"; 
+	    Pattern datePattern = Pattern.compile(pattern);
+
+	    Matcher matcher = datePattern.matcher(firstPageText);
+	    
+
+	    
+	    while (matcher.find()) {
+	    	PDFReader.renewalExecutionDate = matcher.group();
+	    }
+
+	    System.out.println("Last date mentioned on the page: " + PDFReader.renewalExecutionDate);
 		    try
 		    {
 		    	PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.Alabama_Format1.commencementDate_Prior)+PDFAppConfig.Alabama_Format1.commencementDate_Prior.length(),text.indexOf(PDFAppConfig.Alabama_Format1.commencementDate_After));
