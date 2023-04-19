@@ -49,7 +49,7 @@ public class California_PFW_Format2
 		    	PDFReader.renewalExecutionDate = matcher.group();
 		    }
 
-		    System.out.println("Last date mentioned on the page: " + renewalExecutionDate);
+		    System.out.println("Last date mentioned on the page: " + PDFReader.renewalExecutionDate);
 		    
 		    
 		    try

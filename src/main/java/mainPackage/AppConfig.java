@@ -2,7 +2,7 @@ package mainPackage;
 
 public class AppConfig 
 {
-	public static boolean saveButtonOnAndOff= false;
+	public static boolean saveButtonOnAndOff= true;
 	
 	public static String username= "mds0418@gmail.com";
 	public static String password="HomeRiver1#";
@@ -71,6 +71,10 @@ public class AppConfig
 			   return "40010 - Rent Income";
 		   case "Chicago":
 			   return "40010 - Rent Income";
+		   case "Savannah":
+			   return "40010 - Rent Income";
+		   case "South Carolina":
+			   return "4000 - Rent";
 		   }
 		   return "";
 	   }
@@ -109,6 +113,10 @@ public class AppConfig
 			   return "40230 - Pet Rent";
 		   case "Chicago":
 			   return "40230 - Pet Rent";
+		   case "Savannah":
+			   return "40230 - Pet Rent";
+		   case "South Carolina":
+			   return "4311 - Pet Rent";
 		   }
 		   return "";
 	   }
@@ -147,6 +155,10 @@ public class AppConfig
 			   return "40010 - Rent Income";
 		   case "Chicago":
 			   return "40010 - Rent Income";
+		   case "Savannah":
+			   return "40010 - Rent Income";
+		   case "South Carolina":
+			   return "4311 - Pet Rent";
 		   }
 		   return "";
 	   }
@@ -184,6 +196,10 @@ public class AppConfig
 			   return "40010 - Rent Income";
 		   case "Chicago":
 			   return "40010 - Rent Income";
+		   case "Savannah":
+			   return "40010 - Rent Income";
+		   case "South Carolina":
+			   return "4000 - Rent";
 		   }
 		   return "";
 	   }
@@ -221,6 +237,10 @@ public class AppConfig
 			   return "43060 - Filter Fee";
 		   case "Chicago":
 			   return "43060 - Filter Fee";
+		   case "Savannah":
+			   return "43060 - Filter Fee";
+		   case "South Carolina":
+			   return "4102 - Air Filter Fee";
 			   
 		   }
 		   return "";
@@ -260,6 +280,10 @@ public class AppConfig
 			   return "43070 - Resident Benefit Package Fee";
 		   case "Chicago":
 			   return "43070 - Resident Benefit Package Fee";
+		   case "Savannah":
+			   return "43070 - Resident Benefit Package Fee";
+		   case "South Carolina":
+			   return "4318 - Resident Benefits Package";
 		   }
 		   return "";
 	   }
@@ -297,6 +321,10 @@ public class AppConfig
 			   return "43040 - Resident Renewal Admin Fee"; 
 		   case "Chicago":
 			   return "43040 - Resident Renewal Admin Fee"; 
+		   case "Savannah":
+			   return "43040 - Resident Renewal Admin Fee"; 
+		   case "South Carolina":
+			   return "4315 - Resident Renewal Admin Fee"; 
 		    
 		   }
 		   return "";
@@ -335,6 +363,10 @@ public class AppConfig
 			   return "YES";
 		   case "Chicago":
 			   return "YES";
+		   case "Savannah":
+			   return "YES";
+		   case "South Carolina":
+			   return "YES";
 		   }
 		   return "";
 	   }
@@ -371,6 +403,10 @@ public class AppConfig
 		   case "Chattanooga":
 			   return "Yes";
 		   case "Chicago":
+			   return "Yes";
+		   case "Savannah":
+			   return "Yes";
+		   case "South Carolina":
 			   return "Yes";
 		   }
 		   return "";    

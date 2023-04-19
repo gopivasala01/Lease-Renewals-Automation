@@ -48,7 +48,7 @@ public class DallasFortWorth_Format1
 		    	PDFReader.renewalExecutionDate = matcher.group();
 		    }
 
-		    System.out.println("Last date mentioned on the page: " + renewalExecutionDate);
+		    System.out.println("Last date mentioned on the page: " + PDFReader.renewalExecutionDate);
 			    try
 			    {
 			    	PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.DallasFortWorth_Format1.commencementDate_Prior)+PDFAppConfig.DallasFortWorth_Format1.commencementDate_Prior.length(),text.indexOf(PDFAppConfig.DallasFortWorth_Format1.commencementDate_After));

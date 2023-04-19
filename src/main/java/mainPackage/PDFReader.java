@@ -390,6 +390,46 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "Savannah":
+				String pdfFormatType_savannah= PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_savannah);
+				if(pdfFormatType_savannah=="Format1")
+				{
+					if(PDFDataExtract.Savannah_Format1.savannah()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_savannah=="Format2")
+				     {
+					if(PDFDataExtract.Savannah_Format2.savannah()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
+			case "South Carolina":
+				String pdfFormatType_southCarolina= PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_southCarolina);
+				if(pdfFormatType_southCarolina=="Format1")
+				{
+					if(PDFDataExtract.SouthCarolina_Format1.southCarolina()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_southCarolina=="Format2")
+				     {
+					if(PDFDataExtract.SouthCarolina_Format2.southCarolina()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
@@ -465,6 +505,14 @@ public class PDFReader
 			case "Chicago":
 		        format1Text = PDFAppConfig.PDFFormatDecider.chicago_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.chicago_Format2;
+		        break;
+			case "Savannah":
+		        format1Text = PDFAppConfig.PDFFormatDecider.savannah_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.savannah_Format2;
+		        break;
+			case "South Carolina":
+		        format1Text = PDFAppConfig.PDFFormatDecider.southCarolina_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.southCarolina_Format2;
 		        break;
 			}
 			

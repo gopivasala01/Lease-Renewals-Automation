@@ -11,11 +11,12 @@ import org.apache.pdfbox.text.PDFTextStripper;
 import mainPackage.PDFReader;
 import mainPackage.RunnerClass;
 
-public class Georgia_Format2 
+public class SouthCarolina_Format2 
 {
-	//public static void main(String[] args) 
-			public static boolean georgia() throws Exception
+	//public static void main(String[] args)
+			public static boolean southCarolina() throws Exception
 			{
+
 				try
 				{
 					File file = RunnerClass.getLastModified();
@@ -53,7 +54,7 @@ public class Georgia_Format2
 			    
 			    try
 			    {
-			    	PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.Georgia_Format2.commencementDate_Prior)+PDFAppConfig.Georgia_Format2.commencementDate_Prior.length());
+			    	PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.SouthCarolina_Format2.commencementDate_Prior)+PDFAppConfig.SouthCarolina_Format2.commencementDate_Prior.length());
 			    	PDFReader.commencementDate =  PDFReader.commencementDate.substring(0,PDFReader.commencementDate.indexOf("(the")).trim();
 			    }
 			    catch(Exception e)
@@ -64,7 +65,7 @@ public class Georgia_Format2
 			    System.out.println("Commensement Date = "+PDFReader.commencementDate);
 			   try
 			    {
-				   PDFReader.expirationDate = text.substring(text.indexOf(PDFAppConfig.Georgia_Format2.expirationDate_Prior)+PDFAppConfig.Georgia_Format2.expirationDate_Prior.length());
+				   PDFReader.expirationDate = text.substring(text.indexOf(PDFAppConfig.SouthCarolina_Format2.expirationDate_Prior)+PDFAppConfig.SouthCarolina_Format2.expirationDate_Prior.length());
 			    	PDFReader.expirationDate = PDFReader.expirationDate.substring(0,PDFReader.expirationDate.indexOf("(the")).trim();
 			    }
 			    catch(Exception e)
@@ -78,7 +79,7 @@ public class Georgia_Format2
 				//Monthly Rent
 			    try
 			    {
-			    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.Georgia_Format2.monthlyRent_Prior)+PDFAppConfig.Georgia_Format2.monthlyRent_Prior.length()).trim().split(" ")[0];
+			    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.SouthCarolina_Format2.monthlyRent_Prior2)+PDFAppConfig.SouthCarolina_Format2.monthlyRent_Prior2.length()).trim().split(" ")[0];
 			    	if(PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*"))
 			    		PDFReader.monthlyRent = "Error";
 			    	if(PDFReader.monthlyRent.contains("$"))
@@ -92,13 +93,13 @@ public class Georgia_Format2
 			    System.out.println("Monthly Rent = "+PDFReader.monthlyRent);
 			    
 			    //HVAC Air Filter Fee (OR) Resident Benefits Package
-			    if(text.contains(PDFAppConfig.Georgia_Format2.HVACFilterAddendumTextAvailabilityCheck))
+			    if(text.contains(PDFAppConfig.SouthCarolina_Format2.HVACFilterAddendumTextAvailabilityCheck))
 			    {
 			    	PDFReader.HVACFilterFlag = true;
 			    	//HVAC Air Filter Fee
 			    	 try
 					    {
-					    	PDFReader.HVACAirFilterFee = text.substring(text.indexOf(PDFAppConfig.Georgia_Format2.HVACAirFilterFee)+PDFAppConfig.Georgia_Format2.HVACAirFilterFee.length()).trim().split(" ")[0];
+					    	PDFReader.HVACAirFilterFee = text.substring(text.indexOf(PDFAppConfig.SouthCarolina_Format2.HVACAirFilterFee)+PDFAppConfig.SouthCarolina_Format2.HVACAirFilterFee.length()).trim().split(" ")[0];
 					    	if(PDFReader.HVACAirFilterFee.matches(".*[a-zA-Z]+.*"))
 					    		PDFReader.HVACAirFilterFee = "Error";
 					    }
@@ -110,13 +111,13 @@ public class Georgia_Format2
 					    System.out.println("HVAC Air Filter Fee = "+PDFReader.HVACAirFilterFee);
 			    }
 			    
-			    if(text.contains(PDFAppConfig.Georgia_Format2.residentBenefitsPackageCheck))
+			    if(text.contains(PDFAppConfig.SouthCarolina_Format2.residentBenefitsPackageCheck))
 			    {
 			    	PDFReader.residentBenefitsPackageAvailabilityCheck = true;
 			    	//HVAC Air Filter Fee
 			    	 try
 					    {
-					    	PDFReader.residentBenefitsPackage = text.substring(text.indexOf(PDFAppConfig.Georgia_Format2.RBP_Prior)+PDFAppConfig.Georgia_Format2.RBP_Prior.length()).trim().split(" ")[0];
+					    	PDFReader.residentBenefitsPackage = text.substring(text.indexOf(PDFAppConfig.SouthCarolina_Format2.RBP_Prior)+PDFAppConfig.SouthCarolina_Format2.RBP_Prior.length()).trim().split(" ")[0];
 					    	if(PDFReader.residentBenefitsPackage.matches(".*[a-zA-Z]+.*"))
 					    		PDFReader.residentBenefitsPackage = "Error";
 					    }
@@ -132,7 +133,7 @@ public class Georgia_Format2
 			    //Prorate Rent
 			    try
 			    {
-			    	PDFReader.proratedRent = text.substring(text.indexOf(PDFAppConfig.Georgia_Format2.prorateRent_Prior)+PDFAppConfig.Georgia_Format2.prorateRent_Prior.length());
+			    	PDFReader.proratedRent = text.substring(text.indexOf(PDFAppConfig.SouthCarolina_Format2.prorateRent_Prior)+PDFAppConfig.SouthCarolina_Format2.prorateRent_Prior.length());
 			    	PDFReader.proratedRent = PDFReader.proratedRent.substring(0,PDFReader.proratedRent.indexOf("as prorated rent")).trim();
 			    	if(PDFReader.proratedRent.matches(".*[a-zA-Z]+.*")||PDFReader.proratedRent.equals("0.00"))
 			    		PDFReader.proratedRent = "Error";
@@ -147,7 +148,7 @@ public class Georgia_Format2
 			  //Lease Renewal Admin Fee
 			    try
 			    {
-			    	PDFReader.leaseRenewalFee = text.substring(text.indexOf(PDFAppConfig.Georgia_Format2.leaseRenewalAdminFee_Prior)+PDFAppConfig.Georgia_Format2.leaseRenewalAdminFee_Prior.length()).trim().split(" ")[0];
+			    	PDFReader.leaseRenewalFee = text.substring(text.indexOf(PDFAppConfig.SouthCarolina_Format2.leaseRenewalAdminFee_Prior)+PDFAppConfig.SouthCarolina_Format2.leaseRenewalAdminFee_Prior.length()).trim().split(" ")[0];
 			    	if(PDFReader.leaseRenewalFee.matches(".*[a-zA-Z]+.*")||PDFReader.proratedRent.equals("0.00"))
 			    		PDFReader.leaseRenewalFee = "Error";
 			    }
@@ -159,14 +160,14 @@ public class Georgia_Format2
 			    System.out.println("Lease Renewal Admin Fee = "+PDFReader.leaseRenewalFee);
 			    
 				//Pet Rent
-			    if(text.contains(PDFAppConfig.Georgia_Format2.petAgreementAvailabilityCheck))
+			    if(text.contains(PDFAppConfig.SouthCarolina_Format2.petAgreementAvailabilityCheck))
 			    {
 			    	PDFReader.petFlag = true;
 			    	System.out.println("Pet Addendum Available = "+PDFReader.petFlag);
 			    	
 			    	try
 			    	{
-			    		PDFReader.petRent = text.substring(text.indexOf(PDFAppConfig.Georgia_Format2.petRent_Prior)+PDFAppConfig.Georgia_Format2.petRent_Prior.length()).trim().split(" ")[0].trim();
+			    		PDFReader.petRent = text.substring(text.indexOf(PDFAppConfig.SouthCarolina_Format2.petRent_Prior)+PDFAppConfig.SouthCarolina_Format2.petRent_Prior.length()).trim().split(" ")[0].trim();
 			    		if(PDFReader.petRent.matches(".*[a-zA-Z]+.*")||PDFReader.petRent.equals("0.00"))
 				    		PDFReader.petRent = "Error";
 			    	}
@@ -186,7 +187,7 @@ public class Georgia_Format2
 			    		//Increased Rent
 			    		try
 			    		{
-			    		PDFReader.increasedRent_amount = text.substring(text.indexOf(PDFAppConfig.Georgia_Format2.increasedRent_Prior1)+PDFAppConfig.Georgia_Format2.increasedRent_Prior1.length()).trim().split(" ")[0].trim();
+			    		PDFReader.increasedRent_amount = text.substring(text.indexOf(PDFAppConfig.SouthCarolina_Format2.increasedRent_Prior1)+PDFAppConfig.SouthCarolina_Format2.increasedRent_Prior1.length()).trim().split(" ")[0].trim();
 			    		if(PDFReader.increasedRent_amount.matches(".*[a-zA-Z]+.*")||PDFReader.increasedRent_amount.equals("0.00"))
 				    		PDFReader.increasedRent_amount = "Error";
 			    		}
@@ -223,7 +224,7 @@ public class Georgia_Format2
 			    		//Increased Rent
 			    		try
 			    		{
-			    		PDFReader.increasedRent_amount = text.substring(text.indexOf(PDFAppConfig.Georgia_Format2.increasedRent_Prior2)+PDFAppConfig.Georgia_Format2.increasedRent_Prior2.length()).trim().split(" ")[0].trim();
+			    		PDFReader.increasedRent_amount = text.substring(text.indexOf(PDFAppConfig.SouthCarolina_Format2.increasedRent_Prior2)+PDFAppConfig.SouthCarolina_Format2.increasedRent_Prior2.length()).trim().split(" ")[0].trim();
 			    		if(PDFReader.increasedRent_amount.matches(".*[a-zA-Z]+.*")||PDFReader.increasedRent_amount.equals("0.00"))
 				    		PDFReader.increasedRent_amount = "Error";
 			    		}
@@ -316,6 +317,6 @@ public class Georgia_Format2
 					return false;
 				}
 
-		}
+			}
 
 }
