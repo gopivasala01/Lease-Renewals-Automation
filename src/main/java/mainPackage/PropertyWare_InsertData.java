@@ -122,6 +122,8 @@ public class PropertyWare_InsertData
 				{
 					String autoChargeCodes = existingMoveInCharges_ChargeCodes.get(k).getText();
 					String autoChargeAmount = existingMoveInCharges_Amount.get(k).getText();
+					System.out.println(autoChargeAmount);
+					System.out.println(autoChargeCodes);
 					if(chargeCode.contains(autoChargeCodes)&&autoChargeAmount.substring(1).equals(amount))//&&(startDate.equals(autoChargeStartDate)||autoChargeEndDate.trim().equals("")))
 					{
 						availabilityCheck = true;
@@ -409,8 +411,7 @@ public class PropertyWare_InsertData
 			if(availabilityCheck==false)
 			{
 				if(amount=="Error")
-				{
-					System.out.println(" issue in adding Auto Charge - "+description);
+				{					System.out.println(" issue in adding Auto Charge - "+description);
 					RunnerClass.failedReason = RunnerClass.failedReason+","+" issue in adding Auto Charge - "+description;
 					RunnerClass.statusID=1;
 				}

@@ -430,6 +430,26 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "Tulsa":
+				String pdfFormatType_tulsa= PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_tulsa);
+				if(pdfFormatType_tulsa=="Format1")
+				{
+					if(PDFDataExtract.Tulsa_Format1.tulsa()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_tulsa=="Format2")
+				     {
+					if(PDFDataExtract.Tulsa_Format2.tulsa()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
@@ -513,6 +533,10 @@ public class PDFReader
 			case "South Carolina":
 		        format1Text = PDFAppConfig.PDFFormatDecider.southCarolina_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.southCarolina_Format2;
+		        break;
+			case "Tulsa":
+		        format1Text = PDFAppConfig.PDFFormatDecider.tulsa_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.tulsa_Format2;
 		        break;
 			}
 			

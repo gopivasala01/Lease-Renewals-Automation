@@ -2,7 +2,7 @@ package mainPackage;
 
 public class AppConfig 
 {
-	public static boolean saveButtonOnAndOff= true;
+	public static boolean saveButtonOnAndOff= false;
 	
 	public static String username= "mds0418@gmail.com";
 	public static String password="HomeRiver1#";
@@ -75,6 +75,8 @@ public class AppConfig
 			   return "40010 - Rent Income";
 		   case "South Carolina":
 			   return "4000 - Rent";
+		   case "Tulsa":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -117,6 +119,8 @@ public class AppConfig
 			   return "40230 - Pet Rent";
 		   case "South Carolina":
 			   return "4311 - Pet Rent";
+		   case "Tulsa":
+			   return "40230 - Pet Rent";
 		   }
 		   return "";
 	   }
@@ -159,6 +163,8 @@ public class AppConfig
 			   return "40010 - Rent Income";
 		   case "South Carolina":
 			   return "4311 - Pet Rent";
+		   case "Tulsa":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -200,6 +206,8 @@ public class AppConfig
 			   return "40010 - Rent Income";
 		   case "South Carolina":
 			   return "4000 - Rent";
+		   case "Tulsa":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -241,6 +249,8 @@ public class AppConfig
 			   return "43060 - Filter Fee";
 		   case "South Carolina":
 			   return "4102 - Air Filter Fee";
+		   case "Tulsa":
+			   return "43060 - Filter Fee";
 			   
 		   }
 		   return "";
@@ -284,6 +294,8 @@ public class AppConfig
 			   return "43070 - Resident Benefit Package Fee";
 		   case "South Carolina":
 			   return "4318 - Resident Benefits Package";
+		   case "Tulsa":
+			   return "43070 - Resident Benefit Package Fee";
 		   }
 		   return "";
 	   }
@@ -325,6 +337,8 @@ public class AppConfig
 			   return "43040 - Resident Renewal Admin Fee"; 
 		   case "South Carolina":
 			   return "4315 - Resident Renewal Admin Fee"; 
+		   case "Tulsa":
+			   return "43040 - Resident Renewal Admin Fee";
 		    
 		   }
 		   return "";
@@ -367,6 +381,8 @@ public class AppConfig
 			   return "YES";
 		   case "South Carolina":
 			   return "YES";
+		   case "Tulsa":
+			   return "YES";
 		   }
 		   return "";
 	   }
@@ -407,6 +423,8 @@ public class AppConfig
 		   case "Savannah":
 			   return "Yes";
 		   case "South Carolina":
+			   return "Yes";
+		   case "Tulsa":
 			   return "Yes";
 		   }
 		   return "";    

@@ -235,7 +235,7 @@ public class PropertyWare
 		{
 		for(int i =0;i<documents.size();i++)
 		{
-			if(documents.get(i).getText().toLowerCase().contains("TTO Lease -"))//&&documents.get(i).getText().contains(leaseFirstName))
+			if(documents.get(i).getText().toLowerCase().contains("TTO_Renewal"))//&&documents.get(i).getText().contains(leaseFirstName))
 			{
 				documents.get(i).click();
 				checkLeaseAgreementAvailable = true;
@@ -248,7 +248,7 @@ public class PropertyWare
 		{
 		for(int i =0;i<documents.size();i++)
 		{
-			if(documents.get(i).getText().toLowerCase().startsWith("TTO_Lease"))//&&documents.get(i).getText().contains(leaseFirstName))
+			if(documents.get(i).getText().startsWith("TTO_Renewal"))//&&documents.get(i).getText().contains(leaseFirstName))
 			{
 				documents.get(i).click();
 				checkLeaseAgreementAvailable = true;
