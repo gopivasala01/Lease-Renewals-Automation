@@ -6,7 +6,6 @@
   <name>LeaseRenewalsAutomation</name>
   <description>LeaseRenewalsAutomation</description>
   
-  
   <dependencies>
   <dependency>
 		    <groupId>io.github.bonigarcia</groupId>
@@ -51,11 +50,6 @@
         </dependency>
 
 
-        <dependency>
-        	<groupId>ConEdAutomation</groupId>
-        	<artifactId>ConEdAutomation</artifactId>
-        	<version>0.0.1-SNAPSHOT</version>
-        </dependency>
   </dependencies>
   <build>
   <plugins>
