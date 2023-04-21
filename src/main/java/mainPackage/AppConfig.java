@@ -2,7 +2,7 @@ package mainPackage;
 
 public class AppConfig 
 {
-	public static boolean saveButtonOnAndOff= false;
+	public static boolean saveButtonOnAndOff= true;
 	
 	public static String username= "mds0418@gmail.com";
 	public static String password="HomeRiver1#";
@@ -77,6 +77,8 @@ public class AppConfig
 			   return "4000 - Rent";
 		   case "Tulsa":
 			   return "40010 - Rent Income";
+		   case "Ohio":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -86,7 +88,7 @@ public class AppConfig
 		   switch(company)
 		   {
 		   case "Florida":
-			   return "40230 - Pet Rent";
+			   return "4311 - Pet Rent";
 		   case "Alabama":
 			   return "40230 - Pet Rent";
 		   case "North Carolina":
@@ -120,6 +122,8 @@ public class AppConfig
 		   case "South Carolina":
 			   return "4311 - Pet Rent";
 		   case "Tulsa":
+			   return "40230 - Pet Rent";
+		   case "Ohio":
 			   return "40230 - Pet Rent";
 		   }
 		   return "";
@@ -165,6 +169,8 @@ public class AppConfig
 			   return "40230 - Pet Rent";
 		   case "Tulsa":
 			   return "40230 - Pet Rent";
+		   case "Ohio":
+			   return "40230 - Pet Rent";
 		   }
 		   return "";
 	   }
@@ -208,6 +214,8 @@ public class AppConfig
 			   return "4000 - Rent";
 		   case "Tulsa":
 			   return "40010 - Rent Income";
+		   case "Ohio":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -250,6 +258,8 @@ public class AppConfig
 		   case "South Carolina":
 			   return "4102 - Air Filter Fee";
 		   case "Tulsa":
+			   return "43060 - Filter Fee";
+		   case "Ohio":
 			   return "43060 - Filter Fee";
 			   
 		   }
@@ -296,6 +306,8 @@ public class AppConfig
 			   return "4318 - Resident Benefits Package";
 		   case "Tulsa":
 			   return "43070 - Resident Benefit Package Fee";
+		   case "Ohio":
+			   return "43070 - Resident Benefit Package Fee";
 		   }
 		   return "";
 	   }
@@ -338,6 +350,8 @@ public class AppConfig
 		   case "South Carolina":
 			   return "4315 - Resident Renewal Admin Fee"; 
 		   case "Tulsa":
+			   return "43040 - Resident Renewal Admin Fee";
+		   case "Ohio":
 			   return "43040 - Resident Renewal Admin Fee";
 		    
 		   }
@@ -383,6 +397,8 @@ public class AppConfig
 			   return "YES";
 		   case "Tulsa":
 			   return "YES";
+		   case "Ohio":
+			   return "YES";
 		   }
 		   return "";
 	   }
@@ -425,6 +441,8 @@ public class AppConfig
 		   case "South Carolina":
 			   return "Yes";
 		   case "Tulsa":
+			   return "Yes";
+		   case "Ohio":
 			   return "Yes";
 		   }
 		   return "";    
