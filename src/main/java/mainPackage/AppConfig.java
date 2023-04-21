@@ -46,15 +46,15 @@ public class AppConfig
 		   case "Alabama":
 			  return "40010 - Rent Income";
 		   case "North Carolina":
-			   return "4000 - Rent";
+			   return "40010 - Rent Income";
 		   case "Dallas/Fort Worth":
-			   return "4000 - Rent";
+			   return "40010 - Rent Income";
 		   case "Arkansas":
-			   return "4000 - Rent";
+			   return "40010 - Rent Income";
 		   case "Indiana":
-			   return "4700 - Rent";
+			   return "40010 - Rent Income";
 		   case "Little Rock":
-			   return "4000 - Rent";
+			   return "40010 - Rent Income";
 		   case "Georgia":
 			   return "4000 - Rent";
 		   case "Tennessee":
@@ -86,21 +86,21 @@ public class AppConfig
 		   switch(company)
 		   {
 		   case "Florida":
-			   return "4311 - Pet Rent";
+			   return "40230 - Pet Rent";
 		   case "Alabama":
 			   return "40230 - Pet Rent";
 		   case "North Carolina":
-			   return "4311 - Pet Rent";
+			   return "40230 - Pet Rent";
 		   case "Dallas/Fort Worth":
-			   return "4311 - Pet Rent";
+			   return "40230 - Pet Rent";
 		   case "Arkansas":
-			   return "4311 - Pet Rent";
+			   return "40230 - Pet Rent";
 		   case "Georgia":
 			   return "4311 - Pet Rent";
 		   case "Indiana":
-			   return "4311 - Pet Rent";
+			   return "40230 - Pet Rent";
 		   case "Little Rock":
-			   return "4311 - Pet Rent";
+			   return "40230 - Pet Rent";
 		   case "Tennessee":
 			   return "4311 - Pet Rent";
 		   case "California":
@@ -130,41 +130,41 @@ public class AppConfig
 		   switch(company)
 		   {
 		   case "Florida":
-			   return "4311 - Pet Rent";
+			   return "40230 - Pet Rent";
 		   case "Alabama":
-			   return "40010 - Rent Income";
+			   return "40230 - Pet Rent";
 		   case "North Carolina":
-			   return "4311 - Pet Rent";
+			   return "40230 - Pet Rent";
 		   case "Dallas/Fort Worth":
-			   return "4311 - Pet Rent";
+			   return "40230 - Pet Rent";
 		   case "Arkansas":
-			   return "4311 - Pet Rent";
+			   return "40230 - Pet Rent";
 		   case "Georgia":
 			   return "4311 - Pet Rent";
 		   case "Indiana":
-			   return "4311 - Pet Rent";
+			   return "40230 - Pet Rent";
 		   case "Little Rock":
-			   return "4311 - Pet Rent";
+			   return "40230 - Pet Rent";
 		   case "Tennessee":
 			   return "4311 - Pet Rent";
 		   case "California":
-			   return "40010 - Rent Income";
+			   return "40230 - Pet Rent";
 		   case "California PFW":
-			   return "40010 - Rent Income";
+			   return "40230 - Pet Rent";
 		   case "Houston":
 			   return "4311 - Pet Rent";
 		   case "Austin":
 			   return "4311 - Pet Rent";
 		   case "Chattanooga":
-			   return "40010 - Rent Income";
+			   return "40230 - Pet Rent";
 		   case "Chicago":
-			   return "40010 - Rent Income";
+			   return "40230 - Pet Rent";
 		   case "Savannah":
-			   return "40010 - Rent Income";
+			   return "40230 - Pet Rent";
 		   case "South Carolina":
-			   return "4311 - Pet Rent";
+			   return "40230 - Pet Rent";
 		   case "Tulsa":
-			   return "40010 - Rent Income";
+			   return "40230 - Pet Rent";
 		   }
 		   return "";
 	   }
@@ -173,21 +173,21 @@ public class AppConfig
 		   switch(company)
 		   {
 		   case "Florida":
-			   return "4000 - Rent";
+			   return "40010 - Rent Income";
 		   case "Alabama":
 			   return "40010 - Rent Income";
 		   case "North Carolina":
-			   return "4000 - Rent";
+			   return "40010 - Rent Income";
 		   case "Dallas/Fort Worth":
-			   return "4000 - Rent";
+			   return "40010 - Rent Income";
 		   case "Arkansas":
-			   return "4000 - Rent";
+			   return "40010 - Rent Income";
 		   case "Georgia":
 			   return "4000 - Rent";
 		   case "Indiana":
-			   return "4700 - Rent";
+			   return "40010 - Rent Income";
 		   case "Little Rock	":
-			   return "4000 - Rent";
+			   return "40010 - Rent Income";
 		   case "Tennessee	":
 			   return "4700 - Rent";
 		   case "California":
@@ -216,21 +216,21 @@ public class AppConfig
 		   switch(company)
 		   {
 		   case "Florida":
-			   return "4102 - Air Filter Fee";
+			   return "43060 - Filter Fee";
 		   case "Alabama":
 			   return "43060 - Filter Fee";
 		   case "North Carolina":
-			   return "4102 - Air Filter Fee";
+			   return "43060 - Filter Fee";
 		   case "Dallas/Fort Worth":
-			   return "4102 - Air Filter Fee";
+			   return "43060 - Filter Fee";
 		   case "Arkansas":
-			   return "4102 - Air Filter Fee";
+			   return "43060 - Filter Fee";
 		   case "Georgia":
 			   return "4102 - Air Filter Fee";
 		   case "Indiana":
-			   return "4102 - Air FIlter Fee";
+			   return "43060 - Filter Fee";
 		   case "Little Rock":
-			   return "4102 - Air Filter Fee";
+			   return "43060 - Filter Fee";
 		   case "Tennessee":
 			   return "4102 - Air Filter Fee";
 		   case "California":
@@ -261,21 +261,21 @@ public class AppConfig
 		   switch(company)
 		   {
 		   case "Florida":
-			   return "4318 - Resident Benefits Package";
+			   return "43070 - Resident Benefit Package Fee";
 		   case "Alabama":
 			   return "43070 - Resident Benefit Package Fee";
 		   case "North Carolina":
-			   return "4318 - Resident Benefits Package";
+			   return "43070 - Resident Benefit Package Fee";
 		   case "Dallas/Fort Worth":
-			   return "4318 - Resident Benefits Package";
+			   return "43070 - Resident Benefit Package Fee";
 		   case "Arkansas":
-			   return "4318 - Resident Benefits Package";
+			   return "43070 - Resident Benefit Package Fee";
 		   case "Georgia":
-			   return "4318 - Resident Benefits Package";
+			   return "43070 - Resident Benefit Package Fee";
 		   case "Indiana":
-			   return "4318 - Resident Benefits Package";
+			   return "43070 - Resident Benefit Package Fee";
 		   case "Little Rock":
-			   return "4318 - Resident Benefits Package";
+			   return "43070 - Resident Benefit Package Fee";
 		   case "Tennessee":
 			   return "4318 - Resident Benefits Package";
 		   case "California":
@@ -304,21 +304,21 @@ public class AppConfig
 		   switch(company)
 		   {
 		   case "Florida":
-			   return "4315 - Resident Renewal Admin Fee";
+			   return "43040 - Resident Renewal Admin Fee";
 		   case "Alabama":
 			   return "43040 - Resident Renewal Admin Fee"; 
 		   case "North Carolina":
-			   return "4315 - Resident Renewal Admin Fee";
+			   return "43040 - Resident Renewal Admin Fee"; 
 		   case "Dallas/Fort Worth":
-			   return "4315 - Resident Renewal Admin Fee"; 
+			   return "43040 - Resident Renewal Admin Fee";  
 		   case "Arkansas":
-			   return "4315 - Resident Renewal Admin Fee"; 
+			   return "43040 - Resident Renewal Admin Fee";
 		   case "Georgia":
 			   return "4315 - Resident Renewal Admin Fee"; 
 		   case "Indiana":
-			   return "4315 - Resident Renewal Admin Fee"; 
+			   return "43040 - Resident Renewal Admin Fee";
 		   case "Little Rock":
-			   return "4315 - Resident Renewal Admin Fee"; 
+			   return "43040 - Resident Renewal Admin Fee"; 
 		   case "Tennessee":
 			   return "4315 - Resident Renewal Admin Fee"; 
 		   case "California":
