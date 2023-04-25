@@ -69,9 +69,12 @@ public class PDFFormatDecider
 	// Ohio
 		public static String ohio_Format1 = "The parties to this Lease are the owner of the Property";
 		public static String ohio_Format2 = "THIS RESIDENTIAL LEASE AGREEMENT";
-	// Houston
+	// Maine
 		public static String maine_Format1 = "The parties to this Lease are the owner of the Property";
 		public static String maine_Format2 = "THIS RESIDENTIAL LEASE AGREEMENT";	
+	// OKC
+		public static String okc_Format1 = "The parties to this Lease are the owner of the Property";
+		public static String okc_Format2 = "This is a legally binding Contract;";
 		
 		
 }

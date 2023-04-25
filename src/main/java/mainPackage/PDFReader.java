@@ -490,6 +490,26 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "OKC":
+				String pdfFormatType_okc = PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_okc);
+				if(pdfFormatType_okc=="Format1")
+				{
+					if(PDFDataExtract.OKC_Format1.okc()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_okc=="Format2")
+				     {
+					if(PDFDataExtract.OKC_Format2.okc()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
@@ -585,6 +605,10 @@ public class PDFReader
 			case "Maine":
 		        format1Text = PDFAppConfig.PDFFormatDecider.maine_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.maine_Format2;
+		        break;
+			case "OKC":
+		        format1Text = PDFAppConfig.PDFFormatDecider.okc_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.okc_Format2;
 		        break;
 			}
 			

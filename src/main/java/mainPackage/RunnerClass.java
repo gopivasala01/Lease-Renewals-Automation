@@ -1,4 +1,4 @@
-   package mainPackage;
+      package mainPackage;
 
 import java.io.File;
 import java.text.DateFormat;
@@ -72,7 +72,7 @@ public class RunnerClass
 		//Get Pending Renewal Leases
 		//Company,BuildingAbbreviation, LeaseNae
 		DataBase.getBuildingsList();
-		for(int i=0;i<pendingRenewalLeases.length;i++)
+		for(int i=0;i<pendingRenewalLeases.length;i++) 
 		{
 			System.out.println(" Record -- "+(i+1));
 		  company = pendingRenewalLeases[i][0];
