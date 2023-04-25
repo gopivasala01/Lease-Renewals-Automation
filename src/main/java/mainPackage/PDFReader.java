@@ -470,6 +470,26 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "Maine":
+				String pdfFormatType_maine = PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_maine);
+				if(pdfFormatType_maine=="Format1")
+				{
+					if(PDFDataExtract.Maine_Format1.maine()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_maine=="Format2")
+				     {
+					if(PDFDataExtract.Maine_Format2.maine()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
@@ -561,6 +581,10 @@ public class PDFReader
 			case "Ohio":
 		        format1Text = PDFAppConfig.PDFFormatDecider.ohio_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.ohio_Format2;
+		        break;
+			case "Maine":
+		        format1Text = PDFAppConfig.PDFFormatDecider.maine_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.maine_Format2;
 		        break;
 			}
 			
