@@ -2,7 +2,7 @@ package mainPackage;
 
 public class AppConfig 
 {
-	public static boolean saveButtonOnAndOff= true;
+	public static boolean saveButtonOnAndOff= false;
 	
 	public static String username= "mds0418@gmail.com";
 	public static String password="HomeRiver1#";
@@ -56,7 +56,7 @@ public class AppConfig
 		   case "Little Rock":
 			   return "40010 - Rent Income";
 		   case "Georgia":
-			   return "4000 - Rent";
+			   return "40010 - Rent Income";
 		   case "Tennessee":
 			   return "4700 - Rent";
 		   case "California":
@@ -102,7 +102,7 @@ public class AppConfig
 		   case "Arkansas":
 			   return "40230 - Pet Rent";
 		   case "Georgia":
-			   return "4311 - Pet Rent";
+			   return "40230 - Pet Rent";
 		   case "Indiana":
 			   return "40230 - Pet Rent";
 		   case "Little Rock":
@@ -152,7 +152,7 @@ public class AppConfig
 		   case "Arkansas":
 			   return "40230 - Pet Rent";
 		   case "Georgia":
-			   return "4311 - Pet Rent";
+			   return "40230 - Pet Rent";
 		   case "Indiana":
 			   return "40230 - Pet Rent";
 		   case "Little Rock":
@@ -201,7 +201,7 @@ public class AppConfig
 		   case "Arkansas":
 			   return "40010 - Rent Income";
 		   case "Georgia":
-			   return "4000 - Rent";
+			   return "40010 - Rent Income";
 		   case "Indiana":
 			   return "40010 - Rent Income";
 		   case "Little Rock	":
@@ -250,7 +250,7 @@ public class AppConfig
 		   case "Arkansas":
 			   return "43060 - Filter Fee";
 		   case "Georgia":
-			   return "4102 - Air Filter Fee";
+			   return "43060 - Filter Fee";
 		   case "Indiana":
 			   return "43060 - Filter Fee";
 		   case "Little Rock":
@@ -350,7 +350,7 @@ public class AppConfig
 		   case "Arkansas":
 			   return "43040 - Resident Renewal Admin Fee";
 		   case "Georgia":
-			   return "4315 - Resident Renewal Admin Fee"; 
+			   return "43040 - Resident Renewal Admin Fee";
 		   case "Indiana":
 			   return "43040 - Resident Renewal Admin Fee";
 		   case "Little Rock":
