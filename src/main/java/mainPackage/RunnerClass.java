@@ -125,7 +125,7 @@ public class RunnerClass
 					{
 						if(failedReason.charAt(0)==',')
 						failedReason = failedReason.substring(1);
-						String updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Failed', StatusID=3,NotAutomatedFields='"+failedReason+"',LeaseCompletionDate= getDate() where BuildingName like '%"+buildingAbbreviation+"%'";
+	  					String updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Failed', StatusID=3,NotAutomatedFields='"+failedReason+"',LeaseCompletionDate= getDate() where BuildingName like '%"+buildingAbbreviation+"%'";
 				    	DataBase.updateTable(updateSuccessStatus);
 					}
 				}

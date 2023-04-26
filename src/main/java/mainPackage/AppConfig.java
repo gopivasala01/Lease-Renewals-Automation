@@ -83,6 +83,8 @@ public class AppConfig
 				  return "40010 - Rent Income";
 		   case "OKC":
 				  return "40010 - Rent Income";
+		   case "San Antonio":
+				  return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -132,6 +134,8 @@ public class AppConfig
 		   case "Maine":
 			   return "40230 - Pet Rent";
 		   case "OKC":
+			   return "40230 - Pet Rent";
+		   case "San Antonio":
 			   return "40230 - Pet Rent";
 		   }
 		   return "";
@@ -183,6 +187,8 @@ public class AppConfig
 			   return "40230 - Pet Rent";
 		   case "OKC":
 			   return "40230 - Pet Rent";
+		   case "San Antonio":
+			   return "40230 - Pet Rent";
 		   }
 		   return "";
 	   }
@@ -232,6 +238,8 @@ public class AppConfig
 			   return "40010 - Rent Income";
 		   case "OKC":
 			   return "40010 - Rent Income";
+		   case "San Antonio":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -280,6 +288,8 @@ public class AppConfig
 		   case "Maine":
 			   return "43060 - Filter Fee";
 		   case "OKC":
+			   return "43060 - Filter Fee";
+		   case "San Antonio":
 			   return "43060 - Filter Fee";
 			   
 		   }
@@ -332,6 +342,8 @@ public class AppConfig
 			   return "43070 - Resident Benefit Package Fee";
 		   case "OKC":
 			   return "43070 - Resident Benefits Package";
+		   case "San Antonio":
+			   return "43070 - Resident Benefit Package Fee";
 		   }
 		   return "";
 	   }
@@ -380,6 +392,8 @@ public class AppConfig
 		   case "Maine":
 			   return "43040 - Resident Renewal Admin Fee";
 		   case "OKC":
+			   return "43040 - Resident Renewal Admin Fee";
+		   case "San Antonio":
 			   return "43040 - Resident Renewal Admin Fee";
 		    
 		   }
@@ -431,6 +445,8 @@ public class AppConfig
 			   return "YES";
 		   case "OKC":
 			   return "YES";
+		   case "San Antonio":
+			   return "YES";
 		   }
 		   return "";
 	   }
@@ -479,6 +495,8 @@ public class AppConfig
 		   case "Maine":
 			   return "Yes";
 		   case "OKC":
+			   return "Yes";
+		   case "San Antonio":
 			   return "Yes";
 		   }
 		   return "";    

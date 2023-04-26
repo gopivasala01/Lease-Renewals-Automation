@@ -75,6 +75,9 @@ public class PDFFormatDecider
 	// OKC
 		public static String okc_Format1 = "The parties to this Lease are the owner of the Property";
 		public static String okc_Format2 = "This is a legally binding Contract;";
+	// San Antonio
+		public static String sanAntonio_Format1 = "The parties to this Lease are the owner of the Property";
+		public static String sanAntonio_Format2 = "This is a legally binding Contract;";	
 		
 		
 }

@@ -510,6 +510,26 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "San Antonio":
+				String pdfFormatType_sanAntonio = PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_sanAntonio);
+				if(pdfFormatType_sanAntonio=="Format1")
+				{
+					if(PDFDataExtract.SanAntonio_Format1.sanAntonio()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_sanAntonio=="Format2")
+				     {
+					if(PDFDataExtract.SanAntonio_Format2.sanAntonio()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
