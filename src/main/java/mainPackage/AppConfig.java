@@ -2,7 +2,7 @@ package mainPackage;
 
 public class AppConfig 
 {
-	public static boolean saveButtonOnAndOff= true;
+	public static boolean saveButtonOnAndOff= false;
 	
 	public static String username= "mds0418@gmail.com";
 	public static String password="HomeRiver1#";
@@ -58,13 +58,13 @@ public class AppConfig
 		   case "Georgia":
 			   return "40010 - Rent Income";
 		   case "Tennessee":
-			   return "4700 - Rent";
+			   return "40010 - Rent Income";
 		   case "California":
 			   return "40010 - Rent Income";
 		   case "California PFW":
 			   return "40010 - Rent Income";
 		   case "Houston":
-			   return "4000 - Rent";
+			   return "40010 - Rent Income";
 		   case "Austin":
 			   return "4000 - Rent";
 		   case "Chattanooga":
@@ -110,13 +110,13 @@ public class AppConfig
 		   case "Little Rock":
 			   return "40230 - Pet Rent";
 		   case "Tennessee":
-			   return "4311 - Pet Rent";
+			   return "40230 - Pet Rent";
 		   case "California":
 			   return "40230 - Pet Rent";
 		   case "California PFW":
 			   return "40230 - Pet Rent";
 		   case "Houston":
-			   return "4311 - Pet Rent";
+			   return "40230 - Pet Rent";
 		   case "Austin":
 			   return "4311 - Pet Rent";
 		   case "Chattanooga":
@@ -162,13 +162,13 @@ public class AppConfig
 		   case "Little Rock":
 			   return "40230 - Pet Rent";
 		   case "Tennessee":
-			   return "4311 - Pet Rent";
+			   return "40230 - Pet Rent";
 		   case "California":
 			   return "40230 - Pet Rent";
 		   case "California PFW":
 			   return "40230 - Pet Rent";
 		   case "Houston":
-			   return "4311 - Pet Rent";
+			   return "40230 - Pet Rent";
 		   case "Austin":
 			   return "4311 - Pet Rent";
 		   case "Chattanooga":
@@ -213,13 +213,13 @@ public class AppConfig
 		   case "Little Rock	":
 			   return "40010 - Rent Income";
 		   case "Tennessee	":
-			   return "4700 - Rent";
+			   return "40010 - Rent Income";
 		   case "California":
 			   return "40010 - Rent Income";
 		   case "California PFW":
 			   return "40010 - Rent Income";
 		   case "Houston":
-			   return "4000 - Rent";
+			   return "40010 - Rent Income";
 		   case "Austin":
 			   return "4000 - Rent";
 		   case "Chattanooga":
@@ -264,13 +264,13 @@ public class AppConfig
 		   case "Little Rock":
 			   return "43060 - Filter Fee";
 		   case "Tennessee":
-			   return "4102 - Air Filter Fee";
+			   return "43060 - Filter Fee";
 		   case "California":
 			   return "43060 - Filter Fee";
 		   case "California PFW":
 			   return "43060 - Filter Fee";
 		   case "Houston":
-			   return "4102 - Air Filter Fee";
+			   return "43060 - Filter Fee";
 		   case "Austin":
 			   return "4102 - Air Filter Fee";
 		   case "Chattanooga":
@@ -317,13 +317,13 @@ public class AppConfig
 		   case "Little Rock":
 			   return "43070 - Resident Benefit Package Fee";
 		   case "Tennessee":
-			   return "4318 - Resident Benefits Package";
+			   return "43070 - Resident Benefit Package Fee";
 		   case "California":
 			   return "43070 - Resident Benefit Package Fee";
 		   case "California PFW":
 			   return "43070 - Resident Benefit Package Fee";
 		   case "Houston":
-			   return "4318 - Resident Benefits Package";
+			   return "43070 - Resident Benefit Package Fee";
 		   case "Austin":
 			   return "4318 - Resident Benefits Package";
 		   case "Chattanooga":
@@ -368,13 +368,13 @@ public class AppConfig
 		   case "Little Rock":
 			   return "43040 - Resident Renewal Admin Fee"; 
 		   case "Tennessee":
-			   return "4315 - Resident Renewal Admin Fee"; 
+			   return "43040 - Resident Renewal Admin Fee"; 
 		   case "California":
 			   return "43040 - Resident Renewal Admin Fee"; 
 		   case "California PFW":
 			   return "43040 - Resident Renewal Admin Fee"; 
 		   case "Houston":
-			   return "4315 - Resident Renewal Admin Fee";
+			   return "43040 - Resident Renewal Admin Fee"; 
 		   case "Austin":
 			   return "4315 - Resident Renewal Admin Fee";
 		   case "Chattanooga":

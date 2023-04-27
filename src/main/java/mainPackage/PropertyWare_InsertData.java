@@ -6,8 +6,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -22,9 +24,14 @@ public class PropertyWare_InsertData
 	public static String petRent_StartDate = "";
 	public static String increasedRent_previousRentStartDate ="";
 	
+	
+	
+	
 	//ConfigureValues
+
 	public static boolean configureValues() throws Exception
 	{
+		
 		try
 		{
 		//Clear all values in Auto Charges first
@@ -66,11 +73,13 @@ public class PropertyWare_InsertData
 	}
 	public static boolean verifyLedgerForMonhtlyRentStartDate()
 	{
+		
 		try
 		{
 		RunnerClass.driver.navigate().refresh();
 		RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 		RunnerClass.driver.findElement(Locators.ledgerTab).click();
+		
 		List<WebElement> existingMoveInCharges_ChargeCode = RunnerClass.driver.findElements(Locators.moveInCharges_List);
 		List<WebElement> existingMoveInCharges_Date = RunnerClass.driver.findElements(Locators.moveInCharge_List_Date);
 		for(int i=0;i<existingMoveInCharges_ChargeCode.size();i++)
@@ -122,9 +131,8 @@ public class PropertyWare_InsertData
 				{
 					String autoChargeCodes = existingMoveInCharges_ChargeCodes.get(k).getText();
 					String autoChargeAmount = existingMoveInCharges_Amount.get(k).getText();
-					System.out.println(autoChargeAmount);
-					System.out.println(autoChargeCodes);
-					if(chargeCode.contains(autoChargeCodes)&&autoChargeAmount.substring(1).equals(amount))//&&(startDate.equals(autoChargeStartDate)||autoChargeEndDate.trim().equals("")))
+					
+					if(chargeCode.contains(autoChargeCodes) && !autoChargeAmount.isEmpty() && autoChargeAmount.substring(1).equals(amount))//&&(startDate.equals(autoChargeStartDate)||autoChargeEndDate.trim().equals("")))
 					{
 						availabilityCheck = true;
 						System.out.println(description+" already available");
@@ -143,6 +151,12 @@ public class PropertyWare_InsertData
 					}
 					
 					else
+						if(RunnerClass.driver.findElements(By.id("viewStickyDiv")).size() > 0) 
+						{
+						    WebElement element = RunnerClass.driver.findElement(By.xpath("//*[@id=\"editStickyBtnDiv\"]/input[2]"));
+						    Actions actions = new Actions(RunnerClass.driver);
+						    actions.moveToElement(element).click().build().perform();
+						}
 					PropertyWare_InsertData.addingMoveInCharge(chargeCode, amount, startDate, endDate, description);
 				}
 				
@@ -158,6 +172,11 @@ public class PropertyWare_InsertData
 			RunnerClass.driver.navigate().refresh();
 			RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 			RunnerClass.driver.findElement(Locators.summaryTab).click();
+			if(RunnerClass.driver.findElements(By.id("viewStickyDiv")).size() > 0) {
+			    WebElement element = RunnerClass.driver.findElement(By.xpath("//*[@id=\"editStickyBtnDiv\"]/input[2]"));
+			    Actions actions = new Actions(RunnerClass.driver);
+			    actions.moveToElement(element).click().build().perform();
+			}
 			return false;
 		}
 	}
@@ -494,6 +513,11 @@ public class PropertyWare_InsertData
 	
 	public static boolean addingMoveInCharge(String accountCode, String amount, String startDate,String endDate,String description) throws Exception
 	{
+		if(RunnerClass.driver.findElements(By.id("viewStickyDiv")).size() > 0) {
+		    WebElement element = RunnerClass.driver.findElement(By.xpath("//*[@id=\"editStickyBtnDiv\"]/input[2]"));
+		    Actions actions = new Actions(RunnerClass.driver);
+		    actions.moveToElement(element).click().build().perform();
+		}
 		try
 		{
 		RunnerClass.driver.findElement(Locators.newCharge).click();
@@ -543,7 +567,12 @@ public class PropertyWare_InsertData
 			RunnerClass.statusID=1;
 			RunnerClass.driver.navigate().refresh();
 			RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+			if(RunnerClass.driver.findElements(By.id("viewStickyDiv")).size() > 0) {
+	    	    RunnerClass.driver.findElement(By.xpath("//*[@id=\"editStickyBtnDiv\"]/input[2]"))
+	    	        .click();
+	    	}
 			RunnerClass.driver.findElement(Locators.summaryTab).click();
+			
 			e.printStackTrace();
 			System.out.println("Issue in adding Move in Charge"+description);
 			RunnerClass.failedReason =  RunnerClass.failedReason+","+"Issue in adding Move in Charge - "+description;

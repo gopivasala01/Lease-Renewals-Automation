@@ -89,9 +89,12 @@ public class RunnerClass
 				//else 
 					buildingAbbreviation = buildingAbbreviation.split("-")[0].trim();
           // Login to the PropertyWare		  
-		 
-		  try
-		  {
+		 if (company.contains("Alabama")|| company.contains("Arkansas")|| company.contains("Austin")|| company.contains("Dallas/Fort Worth")|| company.contains("Florida")||company.contains("North Carolina")|| company.contains("Georgia")||company.contains("Indiana")|| company.contains("Little Rock")|| company.contains("Tennessee")|| company.contains("California")|| company.contains("California PFW")|| company.contains("Houston")|| company.contains("Chattanooga")|| company.contains("Chicago")|| company.contains("South Carolina")|| company.contains("Tulsa")|| company.contains("Ohio")|| company.contains("Savannah")|| company.contains("Maine")|| company.contains("OKC")|| company.contains("San Antonio"))
+      {		 
+    	  try
+      
+		  
+      {
 		  //Login 
 		  if( PropertyWare.login()==true)
 		  {
@@ -187,7 +190,8 @@ public class RunnerClass
 			  driver.navigate().refresh();
 			  RunnerClass.js.executeScript("window.scrollBy(document.body.scrollHeight,0)");
 		  }
-		}
+	}
+}
 
 	}   
 
