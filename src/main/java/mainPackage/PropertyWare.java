@@ -92,6 +92,11 @@ public class PropertyWare
 			}
 			catch(Exception e)
 			{
+				 if(RunnerClass.driver.findElements(By.id("viewStickyDiv")).size() > 0) {
+			    	    WebElement element = RunnerClass.driver.findElement(By.xpath("//*[@id=\"editStickyBtnDiv\"]/input[2]"));
+			    	    Actions actions = new Actions(RunnerClass.driver);
+			    	    actions.moveToElement(element).click().build().perform();
+			    	}
 				try
 				{
 				if(RunnerClass.driver.findElement(Locators.noItemsFound).isDisplayed())
@@ -235,7 +240,7 @@ public class PropertyWare
 		{
 		for(int i =0;i<documents.size();i++)
 		{
-			if(documents.get(i).getText().toLowerCase().contains("TTO_Renewal"))//&&documents.get(i).getText().contains(leaseFirstName))
+			if(documents.get(i).getText().startsWith("RENEWAL-"))//&&documents.get(i).getText().contains(leaseFirstName))
 			{
 				documents.get(i).click();
 				checkLeaseAgreementAvailable = true;
