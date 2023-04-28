@@ -85,6 +85,8 @@ public class AppConfig
 				  return "40010 - Rent Income";
 		   case "San Antonio":
 				  return "40010 - Rent Income";
+		   case "Pennsylvania":
+				  return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -136,6 +138,8 @@ public class AppConfig
 		   case "OKC":
 			   return "40230 - Pet Rent";
 		   case "San Antonio":
+			   return "40230 - Pet Rent";
+		   case "Pennsylvania":
 			   return "40230 - Pet Rent";
 		   }
 		   return "";
@@ -189,6 +193,8 @@ public class AppConfig
 			   return "40230 - Pet Rent";
 		   case "San Antonio":
 			   return "40230 - Pet Rent";
+		   case "Pennsylvania":
+			   return "40230 - Pet Rent";
 		   }
 		   return "";
 	   }
@@ -240,6 +246,8 @@ public class AppConfig
 			   return "40010 - Rent Income";
 		   case "San Antonio":
 			   return "40010 - Rent Income";
+		   case "Pennsylvania":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -290,6 +298,8 @@ public class AppConfig
 		   case "OKC":
 			   return "43060 - Filter Fee";
 		   case "San Antonio":
+			   return "43060 - Filter Fee";
+		   case "Pennsylvania":
 			   return "43060 - Filter Fee";
 			   
 		   }
@@ -344,6 +354,8 @@ public class AppConfig
 			   return "43070 - Resident Benefits Package";
 		   case "San Antonio":
 			   return "43070 - Resident Benefit Package Fee";
+		   case "Pennsylvania":
+			   return "43070 - Resident Benefit Package Fee";
 		   }
 		   return "";
 	   }
@@ -394,6 +406,8 @@ public class AppConfig
 		   case "OKC":
 			   return "43040 - Resident Renewal Admin Fee";
 		   case "San Antonio":
+			   return "43040 - Resident Renewal Admin Fee";
+		   case "Pennsylvania":
 			   return "43040 - Resident Renewal Admin Fee";
 		    
 		   }
@@ -447,6 +461,8 @@ public class AppConfig
 			   return "YES";
 		   case "San Antonio":
 			   return "YES";
+		   case "Pennsylvania":
+			   return "YES";
 		   }
 		   return "";
 	   }
@@ -498,9 +514,119 @@ public class AppConfig
 			   return "Yes";
 		   case "San Antonio":
 			   return "Yes";
+		   case "Pennsylvania":
+			   return "Yes";
 		   }
 		   return "";    
 	   }
+	   
+	   public static String getEnrolledINRBPForPMUseNo(String company)
+	   {
+		   switch(company)
+		   {
+		   case "Florida":
+			   return "NO";
+		   case "Alabama":
+			   return "NO";
+		   case "North Carolina":
+			   return "NO";
+		   case "Dallas/Fort Worth":
+			   return "NO"; 
+		   case "Arkansas":
+			   return "NO"; 
+		   case "Georgia":
+			   return "NO"; 
+		   case "Indiana":
+			   return "NO"; 
+		   case "Little Rock":
+			   return "NO"; 
+		   case "Tennessee":
+			   return "NO"; 
+		   case "California":
+			   return "NO";
+		   case "California PFW":
+			   return "NO";
+		   case "Houston":
+			   return "NO";
+		   case "Austin":
+			   return "NO";
+		   case "Chattanooga":
+			   return "NO";
+		   case "Chicago":
+			   return "NO";
+		   case "Savannah":
+			   return "NO";
+		   case "South Carolina":
+			   return "NO";
+		   case "Tulsa":
+			   return "NO";
+		   case "Ohio":
+			   return "NO";
+		   case "Maine":
+			   return "NO";
+		   case "OKC":
+			   return "NO";
+		   case "San Antonio":
+			   return "NO";
+		   case "Pennsylvania":
+			   return "NO";
+		   }
+		   return "";
+	   }
+		   public static String getRBPenrollmentCompleteForSNUseOnlyNo(String company)
+		   {
+			   switch(company)
+			   {
+			   case "Florida":
+				   return "No";
+			   case "Alabama":
+				   return "No";
+			   case "North Carolina":
+				   return "No";
+			   case "Dallas/Fort Worth":
+				   return "No"; 
+			   case "Arkansas":
+				   return "No";
+			   case "Georgia":
+				   return "No";
+			   case "Indiana":
+				   return "No";
+			   case "Little Rock":
+				   return "No";
+			   case "Tennessee":
+				   return "No";
+			   case "California":
+				   return "No";
+			   case "California PFW":
+				   return "No";
+			   case "Houston":
+				   return "No";
+			   case "Austin":
+				   return "No";
+			   case "Chattanooga":
+				   return "No";
+			   case "Chicago":
+				   return "No";
+			   case "Savannah":
+				   return "No";
+			   case "South Carolina":
+				   return "No";
+			   case "Tulsa":
+				   return "No";
+			   case "Ohio":
+				   return "No";
+			   case "Maine":
+				   return "No";
+			   case "OKC":
+				   return "No";
+			   case "San Antonio":
+				   return "No";
+			   case "Pennsylvania":
+				   return "No";
+			   }
+			   return "";    
+		   }
+	   
       /*public static String getRenewalStatus (String company)
       {
     	  switch(company)
@@ -530,4 +656,3 @@ public class AppConfig
     	  return"";*/
     	  		
       }
-

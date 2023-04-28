@@ -92,11 +92,10 @@ public class PropertyWare
 			}
 			catch(Exception e)
 			{
-				 if(RunnerClass.driver.findElements(By.id("viewStickyDiv")).size() > 0) {
-			    	    WebElement element = RunnerClass.driver.findElement(By.xpath("//*[@id=\"editStickyBtnDiv\"]/input[2]"));
-			    	    Actions actions = new Actions(RunnerClass.driver);
-			    	    actions.moveToElement(element).click().build().perform();
-			    	}
+				if(RunnerClass.driver.findElement(Locators.renewalPopup).isDisplayed())
+				{
+					RunnerClass.driver.findElement(Locators.renewalPoupCloseButton).click();
+				}
 				try
 				{
 				if(RunnerClass.driver.findElement(Locators.noItemsFound).isDisplayed())

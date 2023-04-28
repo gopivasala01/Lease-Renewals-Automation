@@ -530,6 +530,26 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "Pennsylvania":
+				String pdfFormatType_pennsylvania = PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_pennsylvania);
+				if(pdfFormatType_pennsylvania=="Format1")
+				{
+					if(PDFDataExtract.Pennsylvania_Format1.pennsylvania()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_pennsylvania=="Format2")
+				     {
+					if(PDFDataExtract.Pennsylvania_Format2.pennsylvania()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
@@ -629,6 +649,14 @@ public class PDFReader
 			case "OKC":
 		        format1Text = PDFAppConfig.PDFFormatDecider.okc_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.okc_Format2;
+		        break;
+			case "San Antonio":
+		        format1Text = PDFAppConfig.PDFFormatDecider.sanAntonio_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.sanAntonio_Format2;
+		        break;
+			case "Pennsylvania":
+		        format1Text = PDFAppConfig.PDFFormatDecider.pennsylvania_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.pennsylvania_Format2;
 		        break;
 			}
 			

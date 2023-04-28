@@ -77,7 +77,12 @@ public class PropertyWare_InsertData
 		try
 		{
 		RunnerClass.driver.navigate().refresh();
+		
 		RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+		if(RunnerClass.driver.findElement(Locators.renewalPopup).isDisplayed())
+		{
+			RunnerClass.driver.findElement(Locators.renewalPoupCloseButton).click();
+		}
 		RunnerClass.driver.findElement(Locators.ledgerTab).click();
 		
 		List<WebElement> existingMoveInCharges_ChargeCode = RunnerClass.driver.findElements(Locators.moveInCharges_List);
@@ -151,12 +156,7 @@ public class PropertyWare_InsertData
 					}
 					
 					else
-						if(RunnerClass.driver.findElements(By.id("viewStickyDiv")).size() > 0) 
-						{
-						    WebElement element = RunnerClass.driver.findElement(By.xpath("//*[@id=\"editStickyBtnDiv\"]/input[2]"));
-						    Actions actions = new Actions(RunnerClass.driver);
-						    actions.moveToElement(element).click().build().perform();
-						}
+						
 					PropertyWare_InsertData.addingMoveInCharge(chargeCode, amount, startDate, endDate, description);
 				}
 				
@@ -190,7 +190,7 @@ public class PropertyWare_InsertData
 		RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 		RunnerClass.driver.findElement(Locators.summaryTab).click();
 		Thread.sleep(2000);
-	     RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+	     
 	     RunnerClass.driver.findElement(Locators.summaryEditButton).click();
 	     RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.newAutoCharge)).build().perform();
 	     List<WebElement> existingAutoCharges = RunnerClass.driver.findElements(Locators.autoCharge_List);
@@ -286,6 +286,7 @@ public class PropertyWare_InsertData
 		}
 		catch(Exception e)
 		{
+			
 			RunnerClass.statusID=1;
 			e.printStackTrace();
 			RunnerClass.failedReason = RunnerClass.failedReason+","+"Something went wrong in clearing previous auto charges";
@@ -306,6 +307,10 @@ public class PropertyWare_InsertData
           Thread.sleep(2000);
           RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 			RunnerClass.driver.findElement(Locators.summaryEditButton).click();
+			if(RunnerClass.driver.findElement(Locators.renewalPopup).isDisplayed())
+			{
+				RunnerClass.driver.findElement(Locators.renewalPoupCloseButton).click();
+			}
 		     RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.newAutoCharge)).build().perform();
           
 	}
@@ -464,6 +469,11 @@ public class PropertyWare_InsertData
 		try
 		{
 		RunnerClass.driver.findElement(Locators.newAutoCharge).click();
+		if(RunnerClass.driver.findElements(By.id("viewStickyDiv")).size() > 0) {
+		    WebElement element = RunnerClass.driver.findElement(By.xpath("//*[@id=\"editStickyBtnDiv\"]/input[2]"));
+		    Actions actions = new Actions(RunnerClass.driver);
+		    actions.moveToElement(element).click().build().perform();
+		}
 		 
 	    //Charge Code
 		Select autoChargesDropdown = new Select(RunnerClass.driver.findElement(Locators.accountDropdown));
@@ -513,11 +523,7 @@ public class PropertyWare_InsertData
 	
 	public static boolean addingMoveInCharge(String accountCode, String amount, String startDate,String endDate,String description) throws Exception
 	{
-		if(RunnerClass.driver.findElements(By.id("viewStickyDiv")).size() > 0) {
-		    WebElement element = RunnerClass.driver.findElement(By.xpath("//*[@id=\"editStickyBtnDiv\"]/input[2]"));
-		    Actions actions = new Actions(RunnerClass.driver);
-		    actions.moveToElement(element).click().build().perform();
-		}
+		
 		try
 		{
 		RunnerClass.driver.findElement(Locators.newCharge).click();

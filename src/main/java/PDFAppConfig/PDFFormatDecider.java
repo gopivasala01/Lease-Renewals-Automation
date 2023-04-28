@@ -79,5 +79,8 @@ public class PDFFormatDecider
 		public static String sanAntonio_Format1 = "The parties to this Lease are the owner of the Property";
 		public static String sanAntonio_Format2 = "This is a legally binding Contract;";	
 		
+	// CaliforniaPFW
+		public static String pennsylvania_Format1 = "The parties to this lease are:";
+		public static String pennsylvania_Format2 = "THIS RESIDENTIAL LEASE AGREEMENT";
 		
 }

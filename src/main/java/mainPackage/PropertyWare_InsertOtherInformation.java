@@ -8,7 +8,9 @@ import org.openqa.selenium.support.ui.Select;
 public class PropertyWare_InsertOtherInformation 
 {
 	public static String enrolledInRBPForPMUse = "";
+	public static String enrolledInRBPForPMUseNo = "";
 	public static String RBPenrollmentCompleteForSNUseOnly = "";
+	public static String RBPenrollmentCompleteForSNUseOnlyNo= "";
 	public static String renewalStatus="";
 	public static String reneWalFollowupNotes = "";
 	public static String renewalExecutionDate = "";
@@ -38,11 +40,13 @@ public class PropertyWare_InsertOtherInformation
 		//Adding values to all variables 
 		
 		enrolledInRBPForPMUse = AppConfig.getEnrolledINRBPForPMUse(RunnerClass.company);
+		enrolledInRBPForPMUseNo = AppConfig.getEnrolledINRBPForPMUseNo(RunnerClass.company);
 		RBPenrollmentCompleteForSNUseOnly = AppConfig.getRBPenrollmentCompleteForSNUseOnly(RunnerClass.company);
+		RBPenrollmentCompleteForSNUseOnlyNo = AppConfig.getRBPenrollmentCompleteForSNUseOnlyNo(RunnerClass.company);
 		renewalStatus = "RW-4a%3A+CHARGE+RENEWAL+FEE+-+ANNUAL";
 		reneWalFollowupNotes = "Full Lease Executed From "+PDFReader.startDate+" - "+PDFReader.endDate+" - HRG Automation - "; //Need to calculate Month's difference between StartDate and EndDate
 		renewalExecutionDate = PDFReader.renewalExecutionDate;
-		currentMonthlyRent = PDFReader.startDate;
+		currentMonthlyRent = PDFReader.monthlyRent;
 		priorMonthlyRent = PDFReader.previousMonthlyRent;
 		renewalCoordinatorName = "HRG - Automation"; 
 		newStartDate = PDFReader.startDate;
@@ -50,37 +54,71 @@ public class PropertyWare_InsertOtherInformation
 		renewalOnDate = RunnerClass.getCurrentDate();
 		petRentAmount = PDFReader.petRent;
 		
-		if(PDFReader.residentBenefitsPackageAvailabilityCheck==true)
-		{
-		//Enrolled In RBP For PM Use
-		 try
-		 {
-		 RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.enrolledInRBPForPMUse)).build().perform();
-		 Select renewalStatusDropdown = new Select(RunnerClass.driver.findElement(Locators.enrolledInRBPForPMUse));
-		 renewalStatusDropdown.selectByValue(enrolledInRBPForPMUse);
-		 }
-		 catch(Exception e)
-		 {
-			RunnerClass.statusID=1;
-			e.printStackTrace();
-			RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Enrolled In RBP For PM Use";
-		    System.out.println("Issue - Other information - Enrolled In RBP For PM Use");
-		 }
+		if (PDFReader.residentBenefitsPackageAvailabilityCheck == true) 
+		{ // If residentBenefitsPackageAvailabilityCheck is true,
+			// Select the option for "enrolled in RBP for PM use"
+			try 
+			{
+				RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.enrolledInRBPForPMUse)).build().perform();
+				Select renewalStatusDropdown = new Select(RunnerClass.driver.findElement(Locators.enrolledInRBPForPMUse));
+				renewalStatusDropdown.selectByValue(enrolledInRBPForPMUse);
+			} catch (Exception e) 
+			{
+				RunnerClass.statusID=1;
+				e.printStackTrace();
+				RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Enrolled In RBP For PM Use";
+				System.out.println("Issue - Other information - Enrolled In RBP For PM Use");
+			}
+		} 
 		
-		 //RBP Enrollment Complete For SN Use Only
-		 try
-		 {
-		 RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.RBPEnrollmentCompleteForSNUseOnly)).build().perform();
-		 Select renewalStatusDropdown = new Select(RunnerClass.driver.findElement(Locators.RBPEnrollmentCompleteForSNUseOnly));
-		 renewalStatusDropdown.selectByValue(RBPenrollmentCompleteForSNUseOnly);
-		 }
-		 catch(Exception e)
-		 {
-		 	RunnerClass.statusID=1;
-			e.printStackTrace();
-			RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - RBP Enrollment Complete For SN Use Only";
-			System.out.println("Issue - Other information - RBP Enrollment Complete For SN Use Only");
-		 }
+		else 
+		{ // If residentBenefitsPackageAvailabilityCheck is false,
+			// Select the option for "not enrolled in RBP for PM use"
+			try 
+			{
+				RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.enrolledInRBPForPMUseNo)).build().perform();
+				Select renewalStatusDropdown = new Select(RunnerClass.driver.findElement(Locators.enrolledInRBPForPMUseNo));
+				renewalStatusDropdown.selectByValue(enrolledInRBPForPMUseNo);
+			} catch (Exception e) 
+			{
+				RunnerClass.statusID=1;
+				e.printStackTrace();
+				RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Enrolled In RBP For PM Use (No)";
+				System.out.println("Issue - Other information - Enrolled In RBP For PM Use (No)");
+			}
+		}
+
+		if (PDFReader.residentBenefitsPackageAvailabilityCheck == true) 
+		{ // If residentBenefitsPackageAvailabilityCheck is true,
+			// Select the option for "RBP enrollment complete for SN use only"
+			try 
+			{
+				RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.RBPEnrollmentCompleteForSNUseOnly)).build().perform();
+				Select renewalStatusDropdown = new Select(RunnerClass.driver.findElement(Locators.RBPEnrollmentCompleteForSNUseOnly));
+				renewalStatusDropdown.selectByValue(RBPenrollmentCompleteForSNUseOnly);
+			} catch (Exception e) 
+			{
+				RunnerClass.statusID=1;
+				e.printStackTrace();
+				RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - RBP Enrollment Complete For SN Use Only";
+				System.out.println("Issue - Other information - RBP Enrollment Complete For SN Use Only");
+			}
+		} 
+		else 
+		{ // If residentBenefitsPackageAvailabilityCheck is false,
+			// Select the option for "RBP enrollment not complete for SN use only"
+			try 
+			{
+				RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.RBPEnrollmentCompleteForSNUseOnlyNo)).build().perform();
+				Select renewalStatusDropdown = new Select(RunnerClass.driver.findElement(Locators.RBPEnrollmentCompleteForSNUseOnlyNo));
+				renewalStatusDropdown.selectByValue(RBPenrollmentCompleteForSNUseOnlyNo);
+			} catch (Exception e) 
+			{
+				RunnerClass.statusID=1;
+				e.printStackTrace();
+				RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - RBP Enrollment Complete For SN Use Only (No)";
+				System.out.println("Issue - Other information - RBP Enrollment Complete For SN Use Only (No)");
+			}
 		}
 		
 		//Renewal Status
@@ -211,8 +249,8 @@ public class PropertyWare_InsertOtherInformation
 			RunnerClass.statusID=1;
 			e.printStackTrace();
 		}
+		}
 		
-	  }
 	  catch(Exception e)
 	  {
 		  RunnerClass.js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
