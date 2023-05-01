@@ -169,11 +169,7 @@ public class PropertyWare_InsertData
 			RunnerClass.driver.navigate().refresh();
 			RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 			RunnerClass.driver.findElement(Locators.summaryTab).click();
-			if(RunnerClass.driver.findElements(By.id("viewStickyDiv")).size() > 0) {
-			    WebElement element = RunnerClass.driver.findElement(By.xpath("//*[@id=\"editStickyBtnDiv\"]/input[2]"));
-			    Actions actions = new Actions(RunnerClass.driver);
-			    actions.moveToElement(element).click().build().perform();
-			}
+			
 			return false;
 		}
 	}
@@ -303,6 +299,7 @@ public class PropertyWare_InsertData
 			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.cancelLease)).click(RunnerClass.driver.findElement(Locators.cancelLease)).build().perform();
           Thread.sleep(2000);
           RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+          Thread.sleep(2000);
 			RunnerClass.driver.findElement(Locators.summaryEditButton).click();
 			
 		     RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.newAutoCharge)).build().perform();
@@ -563,10 +560,7 @@ public class PropertyWare_InsertData
 			RunnerClass.statusID=1;
 			RunnerClass.driver.navigate().refresh();
 			RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
-			if(RunnerClass.driver.findElements(By.id("viewStickyDiv")).size() > 0) {
-	    	    RunnerClass.driver.findElement(By.xpath("//*[@id=\"editStickyBtnDiv\"]/input[2]"))
-	    	        .click();
-	    	}
+			
 			RunnerClass.driver.findElement(Locators.summaryTab).click();
 			
 			e.printStackTrace();
