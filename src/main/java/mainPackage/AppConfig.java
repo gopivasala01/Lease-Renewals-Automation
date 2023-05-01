@@ -42,7 +42,7 @@ public class AppConfig
 		   switch(company)
 		   {
 		   case "Florida":
-			   return "4000 - Rent";
+			   return "40010 - Rent Income";
 		   case "Alabama":
 			  return "40010 - Rent Income";
 		   case "North Carolina":
@@ -319,7 +319,7 @@ public class AppConfig
 		   case "Dallas/Fort Worth":
 			   return "43070 - Resident Benefit Package Fee";
 		   case "Arkansas":
-			   return "43070 - Resident Benefit Package Fee";
+			   return "43070 - Resident Benefits Package";
 		   case "Georgia":
 			   return "43070 - Resident Benefit Package Fee";
 		   case "Indiana":

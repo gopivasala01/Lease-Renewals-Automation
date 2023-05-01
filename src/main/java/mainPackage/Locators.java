@@ -63,7 +63,7 @@ public class Locators
     public static By enrolledInRBPForPMUseNo = By.xpath("//*[contains(text(),'Enrolled in RBP')]/following::select[1]");
     public static By RBPEnrollmentCompleteForSNUseOnlyNo = By.xpath("//*[contains(text(),'For SN Use')]/following::select[1]");
     public static By renewalStatusDropdown = By.xpath("//*[text()='Renewal Status']/following::select[1]");
-    public static By renewalFollowUpNotes = By.xpath("/html/body/div[3]/div[2]/table/tbody/tr/td/div[1]/form/div[6]/table[8]/tbody/tr[133]/td/textarea");
+    public static By renewalFollowUpNotes = By.xpath("//*[text()='Renewal Follow-Up Notes']/following::textarea[1]");
     public static By renewalExecutionDate = By.xpath("//*[text()='Renewal Execution Date']/following::input[1]");
     public static By currentMonthlyRent = By.xpath("//*[text()='Current Monthly Rent']/following::input[1]");
     public static By priorMonthlyRent = By.xpath("//*[text()='Prior Monthly Rent']/following::input[1]");
