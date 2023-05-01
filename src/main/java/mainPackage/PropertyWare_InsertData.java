@@ -300,7 +300,7 @@ public class PropertyWare_InsertData
           Thread.sleep(2000);
           RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
           Thread.sleep(2000);
-			RunnerClass.driver.findElement(Locators.summaryEditButton).click();
+		RunnerClass.driver.findElement(Locators.summaryEditButton).click();
 			
 		     RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.newAutoCharge)).build().perform();
           

@@ -1,9 +1,16 @@
 package mainPackage;
 
+import java.time.Duration;
 import java.util.NoSuchElementException;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.JavascriptExecutor;
+
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PropertyWare_InsertOtherInformation 
 {
@@ -151,52 +158,49 @@ public class PropertyWare_InsertOtherInformation
 			RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Renewal Follow up Notes";
 			System.out.println("Issue - Other information - Renewal Follow up Notes");
 	    }
-		//Renewal Execution Date
-		try
-		{
-		RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.renewalExecutionDate)).build().perform();
-		RunnerClass.driver.findElement(Locators.renewalExecutionDate).click();
-		RunnerClass.driver.findElement(Locators.renewalExecutionDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
-		RunnerClass.driver.findElement(Locators.renewalExecutionDate).sendKeys(renewalExecutionDate);
-		}
-	    catch(Exception e)
-	    {
-	    	RunnerClass.statusID=1;
-	    	e.printStackTrace();
-			RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Renewal Execution Date";
-			System.out.println("Issue - Other information - Renewal Renewal Execution Date");
-	    }
-        //Current Monthly Rent
-		try
-		{
-		RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.currentMonthlyRent)).build().perform();
-		RunnerClass.driver.findElement(Locators.currentMonthlyRent).click();
-		RunnerClass.driver.findElement(Locators.currentMonthlyRent).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
-		RunnerClass.driver.findElement(Locators.currentMonthlyRent).sendKeys(currentMonthlyRent);
-		}
-		catch(Exception e)
-		{
-			RunnerClass.statusID=1;
-			e.printStackTrace();
-			RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Current Monthly Rent";
-			System.out.println("Issue - Other information - Current Monthly Rent");
-		}
 		
+		//Renewal Execution Date
+		try {
+		    RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.renewalExecutionDate)).build().perform();
+		    RunnerClass.driver.findElement(Locators.renewalExecutionDate).click();
+		    RunnerClass.driver.findElement(Locators.renewalExecutionDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+		    RunnerClass.driver.findElement(Locators.renewalExecutionDate).sendKeys(renewalExecutionDate);
+		} catch(Exception e) {
+		    RunnerClass.statusID=1;
+		    e.printStackTrace();
+		    RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Renewal Execution Date";
+		    System.out.println("Issue - Other information - Renewal Renewal Execution Date");
+		}
+
+		//Current Monthly Rent
+		try {
+		    RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.currentMonthlyRent)).build().perform();
+		    RunnerClass.driver.findElement(Locators.currentMonthlyRent).click();
+		    RunnerClass.driver.findElement(Locators.currentMonthlyRent).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+		    RunnerClass.driver.findElement(Locators.currentMonthlyRent).sendKeys(currentMonthlyRent);
+		    Thread.sleep(3000);
+		} catch(Exception e) {
+		    RunnerClass.statusID=1;
+		    e.printStackTrace();
+		    RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Current Monthly Rent";
+		    System.out.println("Issue - Other information - Current Monthly Rent");
+		}
+
 		//Prior Monthly Rent
-		try
-		{
-		RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.priorMonthlyRent)).build().perform();
-		RunnerClass.driver.findElement(Locators.priorMonthlyRent).click();
-		RunnerClass.driver.findElement(Locators.priorMonthlyRent).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
-		RunnerClass.driver.findElement(Locators.priorMonthlyRent).sendKeys(priorMonthlyRent);
+		try {
+		    RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.priorMonthlyRent)).build().perform();
+		    RunnerClass.driver.findElement(Locators.priorMonthlyRent).click();
+		    RunnerClass.driver.findElement(Locators.priorMonthlyRent).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+		    RunnerClass.driver.findElement(Locators.priorMonthlyRent).sendKeys(priorMonthlyRent);
+		    Thread.sleep(3000);
+		} catch(Exception e) {
+		    RunnerClass.statusID=1;
+		    e.printStackTrace();
+		    RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Prior Monthly Rent";
+		    System.out.println("Issue - Other information - Prior Monthly Rent");
 		}
-		catch(Exception e)
-		{
-			RunnerClass.statusID=1;
-			e.printStackTrace();
-			RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Prior Monthly Rent";
-			System.out.println("Issue - Other information - Prior Monthly Rent");
-		}
+
+		
 		
 		//Renewal Coordinator Name
 		try
