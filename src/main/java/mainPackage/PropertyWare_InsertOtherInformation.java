@@ -165,6 +165,7 @@ public class PropertyWare_InsertOtherInformation
 		    RunnerClass.driver.findElement(Locators.renewalExecutionDate).click();
 		    RunnerClass.driver.findElement(Locators.renewalExecutionDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
 		    RunnerClass.driver.findElement(Locators.renewalExecutionDate).sendKeys(renewalExecutionDate);
+		    Thread.sleep(2000);
 		} catch(Exception e) {
 		    RunnerClass.statusID=1;
 		    e.printStackTrace();
@@ -174,7 +175,7 @@ public class PropertyWare_InsertOtherInformation
 
 		//Current Monthly Rent
 		try {
-		    RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.currentMonthlyRent)).build().perform();
+			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.currentMonthlyRent)).click().build().perform();
 		    RunnerClass.driver.findElement(Locators.currentMonthlyRent).click();
 		    RunnerClass.driver.findElement(Locators.currentMonthlyRent).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
 		    RunnerClass.driver.findElement(Locators.currentMonthlyRent).sendKeys(currentMonthlyRent);
