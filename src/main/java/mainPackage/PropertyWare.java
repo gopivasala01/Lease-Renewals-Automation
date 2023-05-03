@@ -210,8 +210,8 @@ public class PropertyWare
 			}
 		}
 		catch(Exception e) {}
-		String status = RunnerClass.driver.findElement(By.xpath("//*[@id=\"infoTable\"]/tbody/tr[6]/td[2]")).getText();
-		if(status.contains("Active - Month to Month") || status.contains("Active - Notice Given"))
+		String leaseStatus = RunnerClass.driver.findElement(By.xpath("//*[@id=\"infoTable\"]/tbody/tr[6]/td[2]")).getText();
+		if(leaseStatus.equals("Active - Month to Month") || leaseStatus.equals("Active - Notice Given"))
 		{
 			RunnerClass.driver.findElement(Locators.summaryEditButton).click();
 			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.activeStatus)).build().perform();

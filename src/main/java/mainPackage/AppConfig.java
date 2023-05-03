@@ -89,6 +89,8 @@ public class AppConfig
 				  return "40010 - Rent Income";
 		   case "Colorado Springs":
 				  return "40010 - Rent Income";
+		   case "Kansas City":
+				  return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -144,6 +146,8 @@ public class AppConfig
 		   case "Pennsylvania":
 			   return "40230 - Pet Rent";
 		   case "Colorado Springs":
+			   return "40230 - Pet Rent";
+		   case "Kansas City":
 			   return "40230 - Pet Rent";
 		   }
 		   return "";
@@ -201,6 +205,8 @@ public class AppConfig
 			   return "40230 - Pet Rent";
 		   case "Colorado Springs":
 			   return "40230 - Pet Rent";
+		   case "Kansas City":
+			   return "40230 - Pet Rent";
 		   }
 		   return "";
 	   }
@@ -256,6 +262,8 @@ public class AppConfig
 			   return "40010 - Rent Income";
 		   case "Colorado Springs":
 			   return "40010 - Rent Income";
+		   case "Kansas City":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -310,6 +318,8 @@ public class AppConfig
 		   case "Pennsylvania":
 			   return "43060 - Filter Fee";
 		   case "Colorado Springs":
+			   return "43060 - Filter Fee";
+		   case "Kansas City":
 			   return "43060 - Filter Fee";
 			   
 		   }
@@ -368,6 +378,8 @@ public class AppConfig
 			   return "43070 - Resident Benefit Package Fee";
 		   case "Colorado Springs":
 			   return "43070 - Resident Benefit Package Fee";
+		   case "Kansas City":
+			   return "43070 - Resident Benefit Package Fee";
 		   }
 		   return "";
 	   }
@@ -422,6 +434,8 @@ public class AppConfig
 		   case "Pennsylvania":
 			   return "43040 - Resident Renewal Admin Fee";
 		   case "Colorado Springs":
+			   return "43040 - Resident Renewal Admin Fee";
+		   case "Kansas City":
 			   return "43040 - Resident Renewal Admin Fee";
 		    
 		   }
@@ -479,6 +493,8 @@ public class AppConfig
 			   return "YES";
 		   case "Colorado Springs":
 			   return "YES";
+		   case "Kansas City":
+			   return "YES";
 		   }
 		   return "";
 	   }
@@ -533,6 +549,8 @@ public class AppConfig
 		   case "Pennsylvania":
 			   return "Yes";
 		   case "Colorado Springs":
+			   return "Yes";
+		   case "Kansas City":
 			   return "Yes";
 		   }
 		   return "";    
@@ -590,6 +608,8 @@ public class AppConfig
 			   return "NO";
 		   case "Colorado Springs":
 			   return "NO";
+		   case "Kansas City":
+			   return "NO";
 		   }
 		   return "";
 	   }
@@ -644,6 +664,8 @@ public class AppConfig
 			   case "Pennsylvania":
 				   return "No";
 			   case "Colorado Springs":
+				   return "No";
+			   case "Kansas City":
 				   return "No";
 			   }
 			   return "";    
