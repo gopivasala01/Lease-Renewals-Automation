@@ -17,6 +17,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -128,9 +129,14 @@ public class PropertyWare
 								break;
 							}
 						}
+						
+						
+							
+					
 					}
 					if(leaseSelected==true)
 					{
+						
 					     return true;
 					}
 				}
@@ -146,6 +152,7 @@ public class PropertyWare
 		     }
 		return true;
 	}
+	
 	
 	public static boolean downloadLeaseAgreement(String building, String ownerName) throws Exception
 	{
@@ -203,6 +210,19 @@ public class PropertyWare
 			}
 		}
 		catch(Exception e) {}
+		String status = RunnerClass.driver.findElement(By.xpath("//*[@id=\"infoTable\"]/tbody/tr[6]/td[2]")).getText();
+		if(status.contains("Active - Month to Month") || status.contains("Active - Notice Given"))
+		{
+			RunnerClass.driver.findElement(Locators.summaryEditButton).click();
+			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.activeStatus)).build().perform();
+			Select statusDropdown = new Select(RunnerClass.driver.findElement(Locators.activeStatus));
+			statusDropdown.selectByVisibleText("Active");
+			RunnerClass.js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+			  if(AppConfig.saveButtonOnAndOff==true)
+				RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.saveLease)).click(RunnerClass.driver.findElement(Locators.saveLease)).build().perform();
+			  else
+				RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.cancelLease)).click(RunnerClass.driver.findElement(Locators.cancelLease)).build().perform();
+		}
 		RunnerClass.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(15));
 		RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
