@@ -550,6 +550,26 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "Colorado Springs":
+				String pdfFormatType_coloradoSprings = PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_coloradoSprings);
+				if(pdfFormatType_coloradoSprings=="Format1")
+				{
+					if(PDFDataExtract.ColoradoSprings_Format1.coloradoSprings()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_coloradoSprings=="Format2")
+				     {
+					if(PDFDataExtract.ColoradoSprings_Format2.coloradoSprings()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
@@ -657,6 +677,10 @@ public class PDFReader
 			case "Pennsylvania":
 		        format1Text = PDFAppConfig.PDFFormatDecider.pennsylvania_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.pennsylvania_Format2;
+		        break;
+			case "Colorado Springs":
+		        format1Text = PDFAppConfig.PDFFormatDecider.coloradoSprings_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.coloradoSprings_Format2;
 		        break;
 			}
 			
