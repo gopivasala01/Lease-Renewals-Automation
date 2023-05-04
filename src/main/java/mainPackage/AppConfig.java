@@ -74,7 +74,7 @@ public class AppConfig
 		   case "Savannah":
 			   return "40010 - Rent Income";
 		   case "South Carolina":
-			   return "4000 - Rent";
+			   return "40010 - Rent Income";
 		   case "Tulsa":
 			   return "40010 - Rent Income";
 		   case "Ohio":
@@ -91,6 +91,8 @@ public class AppConfig
 				  return "40010 - Rent Income";
 		   case "Kansas City":
 				  return "40010 - Rent Income";
+		   case "Lake Havasu":
+				  return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -100,7 +102,7 @@ public class AppConfig
 		   switch(company)
 		   {
 		   case "Florida":
-			   return "4311 - Pet Rent";
+			   return "40230 - Pet Rent";
 		   case "Alabama":
 			   return "40230 - Pet Rent";
 		   case "North Carolina":
@@ -132,7 +134,7 @@ public class AppConfig
 		   case "Savannah":
 			   return "40230 - Pet Rent";
 		   case "South Carolina":
-			   return "4311 - Pet Rent";
+			   return "40230 - Pet Rent";
 		   case "Tulsa":
 			   return "40230 - Pet Rent";
 		   case "Ohio":
@@ -148,6 +150,8 @@ public class AppConfig
 		   case "Colorado Springs":
 			   return "40230 - Pet Rent";
 		   case "Kansas City":
+			   return "40230 - Pet Rent";
+		   case "Lake Havasu":
 			   return "40230 - Pet Rent";
 		   }
 		   return "";
@@ -207,6 +211,8 @@ public class AppConfig
 			   return "40230 - Pet Rent";
 		   case "Kansas City":
 			   return "40230 - Pet Rent";
+		   case "Lake Havasu":
+			   return "40230 - Pet Rent";
 		   }
 		   return "";
 	   }
@@ -247,7 +253,7 @@ public class AppConfig
 		   case "Savannah":
 			   return "40010 - Rent Income";
 		   case "South Carolina":
-			   return "4000 - Rent";
+			   return "40010 - Rent Income";
 		   case "Tulsa":
 			   return "40010 - Rent Income";
 		   case "Ohio":
@@ -263,6 +269,8 @@ public class AppConfig
 		   case "Colorado Springs":
 			   return "40010 - Rent Income";
 		   case "Kansas City":
+			   return "40010 - Rent Income";
+		   case "Lake Havasu":
 			   return "40010 - Rent Income";
 		   }
 		   return "";
@@ -304,7 +312,7 @@ public class AppConfig
 		   case "Savannah":
 			   return "43060 - Filter Fee";
 		   case "South Carolina":
-			   return "4102 - Air Filter Fee";
+			   return "43060 - Filter Fee";
 		   case "Tulsa":
 			   return "43060 - Filter Fee";
 		   case "Ohio":
@@ -320,6 +328,8 @@ public class AppConfig
 		   case "Colorado Springs":
 			   return "43060 - Filter Fee";
 		   case "Kansas City":
+			   return "43060 - Filter Fee";
+		   case "Lake Havasu":
 			   return "43060 - Filter Fee";
 			   
 		   }
@@ -363,7 +373,7 @@ public class AppConfig
 		   case "Savannah":
 			   return "43070 - Resident Benefit Package Fee";
 		   case "South Carolina":
-			   return "4318 - Resident Benefits Package";
+			   return "43070 - Resident Benefit Package Fee";
 		   case "Tulsa":
 			   return "43070 - Resident Benefit Package Fee";
 		   case "Ohio":
@@ -371,7 +381,7 @@ public class AppConfig
 		   case "Maine":
 			   return "43070 - Resident Benefit Package Fee";
 		   case "OKC":
-			   return "43070 - Resident Benefits Package";
+			   return "43070 - Resident Benefit Package Fee";
 		   case "San Antonio":
 			   return "43070 - Resident Benefit Package Fee";
 		   case "Pennsylvania":
@@ -379,6 +389,8 @@ public class AppConfig
 		   case "Colorado Springs":
 			   return "43070 - Resident Benefit Package Fee";
 		   case "Kansas City":
+			   return "43070 - Resident Benefit Package Fee";
+		   case "Lake Havasu":
 			   return "43070 - Resident Benefit Package Fee";
 		   }
 		   return "";
@@ -420,7 +432,7 @@ public class AppConfig
 		   case "Savannah":
 			   return "43040 - Resident Renewal Admin Fee"; 
 		   case "South Carolina":
-			   return "4315 - Resident Renewal Admin Fee"; 
+			   return "43070 - Resident Benefit Package Fee"; 
 		   case "Tulsa":
 			   return "43040 - Resident Renewal Admin Fee";
 		   case "Ohio":
@@ -436,6 +448,8 @@ public class AppConfig
 		   case "Colorado Springs":
 			   return "43040 - Resident Renewal Admin Fee";
 		   case "Kansas City":
+			   return "43040 - Resident Renewal Admin Fee";
+		   case "Lake Havasu":
 			   return "43040 - Resident Renewal Admin Fee";
 		    
 		   }
@@ -495,6 +509,8 @@ public class AppConfig
 			   return "YES";
 		   case "Kansas City":
 			   return "YES";
+		   case "Lake Havasu":
+			   return "YES";
 		   }
 		   return "";
 	   }
@@ -551,6 +567,8 @@ public class AppConfig
 		   case "Colorado Springs":
 			   return "Yes";
 		   case "Kansas City":
+			   return "Yes";
+		   case "Lake Havasu":
 			   return "Yes";
 		   }
 		   return "";    
@@ -610,6 +628,8 @@ public class AppConfig
 			   return "NO";
 		   case "Kansas City":
 			   return "NO";
+		   case "Lake Havasu":
+			   return "NO";
 		   }
 		   return "";
 	   }
@@ -666,6 +686,8 @@ public class AppConfig
 			   case "Colorado Springs":
 				   return "No";
 			   case "Kansas City":
+				   return "No";
+			   case "Lake Havasu":
 				   return "No";
 			   }
 			   return "";    

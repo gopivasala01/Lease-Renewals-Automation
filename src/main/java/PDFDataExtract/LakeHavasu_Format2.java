@@ -11,12 +11,11 @@ import org.apache.pdfbox.text.PDFTextStripper;
 import mainPackage.PDFReader;
 import mainPackage.RunnerClass;
 
-public class SouthCarolina_Format2 
+public class LakeHavasu_Format2 
 {
-	//public static void main(String[] args)
-			public static boolean southCarolina() throws Exception
+	//public static void main(String[] args) 
+			public static boolean lakeHavasu() throws Exception
 			{
-
 				try
 				{
 					File file = RunnerClass.getLastModified();
@@ -52,34 +51,31 @@ public class SouthCarolina_Format2
 			    System.out.println("Last date mentioned on the page: " + PDFReader.renewalExecutionDate);
 			    
 			    
-			    try
-			    {
-			    	PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.SouthCarolina_Format2.commencementDate_Prior)+PDFAppConfig.SouthCarolina_Format2.commencementDate_Prior.length());
-			    	PDFReader.commencementDate =  PDFReader.commencementDate.substring(0,PDFReader.commencementDate.indexOf("(the")).trim();
+			    try {
+			        int commencementIndex = text.indexOf(PDFAppConfig.LakeHavasu_Format2.commencementDate_Prior) + PDFAppConfig.LakeHavasu_Format2.commencementDate_Prior.length();
+			        int commencementEndIndex = text.indexOf(PDFAppConfig.LakeHavasu_Format2.commencementDate_After, commencementIndex);
+			        PDFReader.commencementDate = text.substring(commencementIndex, commencementEndIndex).trim();
+			    } catch (Exception e) {
+			        PDFReader.commencementDate = "Error";
+			        e.printStackTrace();
 			    }
-			    catch(Exception e)
-			    {
-			    	PDFReader.commencementDate = "Error";
-			    	e.printStackTrace();
+			    System.out.println("Commencement Date = " + PDFReader.commencementDate);
+
+			    try {
+			        int expirationIndex = text.indexOf(PDFAppConfig.LakeHavasu_Format2.expirationDate_Prior) + PDFAppConfig.LakeHavasu_Format2.expirationDate_Prior.length();
+			        int expirationEndIndex = text.indexOf(PDFAppConfig.LakeHavasu_Format2.expirationDate_After, expirationIndex);
+			        PDFReader.expirationDate = text.substring(expirationIndex, expirationEndIndex).trim();
+			    } catch (Exception e) {
+			        PDFReader.expirationDate = "Error";
+			        e.printStackTrace();
 			    }
-			    System.out.println("Commensement Date = "+PDFReader.commencementDate);
-			   try
-			    {
-				   PDFReader.expirationDate = text.substring(text.indexOf(PDFAppConfig.SouthCarolina_Format2.expirationDate_Prior)+PDFAppConfig.SouthCarolina_Format2.expirationDate_Prior.length());
-			    	PDFReader.expirationDate = PDFReader.expirationDate.substring(0,PDFReader.expirationDate.indexOf("(the")).trim();
-			    }
-			    catch(Exception e)
-			    {
-			    	 PDFReader.expirationDate = "Error";
-			    	 e.printStackTrace();
-			    }
-			   System.out.println("Expiration Date = "+PDFReader.expirationDate);
+			    System.out.println("Expiration Date = " + PDFReader.expirationDate);
 			    
 				
 				//Monthly Rent
 			    try
 			    {
-			    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.SouthCarolina_Format2.monthlyRent_Prior)+PDFAppConfig.SouthCarolina_Format2.monthlyRent_Prior.length()).trim().split(" ")[0];
+			    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.LakeHavasu_Format2.monthlyRent_Prior)+PDFAppConfig.LakeHavasu_Format2.monthlyRent_Prior.length()).trim().split(" ")[0];
 			    	if(PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*"))
 			    		PDFReader.monthlyRent = "Error";
 			    	if(PDFReader.monthlyRent.contains("$"))
@@ -93,13 +89,13 @@ public class SouthCarolina_Format2
 			    System.out.println("Monthly Rent = "+PDFReader.monthlyRent);
 			    
 			    //HVAC Air Filter Fee (OR) Resident Benefits Package
-			    if(text.contains(PDFAppConfig.SouthCarolina_Format2.HVACFilterAddendumTextAvailabilityCheck))
+			    if(text.contains(PDFAppConfig.LakeHavasu_Format2.HVACFilterAddendumTextAvailabilityCheck))
 			    {
 			    	PDFReader.HVACFilterFlag = true;
 			    	//HVAC Air Filter Fee
 			    	 try
 					    {
-					    	PDFReader.HVACAirFilterFee = text.substring(text.indexOf(PDFAppConfig.SouthCarolina_Format2.HVACAirFilterFee)+PDFAppConfig.SouthCarolina_Format2.HVACAirFilterFee.length()).trim().split(" ")[0];
+					    	PDFReader.HVACAirFilterFee = text.substring(text.indexOf(PDFAppConfig.LakeHavasu_Format2.HVACAirFilterFee)+PDFAppConfig.LakeHavasu_Format2.HVACAirFilterFee.length()).trim().split(" ")[0];
 					    	if(PDFReader.HVACAirFilterFee.matches(".*[a-zA-Z]+.*"))
 					    		PDFReader.HVACAirFilterFee = "Error";
 					    }
@@ -111,13 +107,13 @@ public class SouthCarolina_Format2
 					    System.out.println("HVAC Air Filter Fee = "+PDFReader.HVACAirFilterFee);
 			    }
 			    
-			    if(text.contains(PDFAppConfig.SouthCarolina_Format2.residentBenefitsPackageCheck))
+			    if(text.contains(PDFAppConfig.LakeHavasu_Format2.residentBenefitsPackageCheck))
 			    {
 			    	PDFReader.residentBenefitsPackageAvailabilityCheck = true;
 			    	//HVAC Air Filter Fee
 			    	 try
 					    {
-					    	PDFReader.residentBenefitsPackage = text.substring(text.indexOf(PDFAppConfig.SouthCarolina_Format2.RBP_Prior)+PDFAppConfig.SouthCarolina_Format2.RBP_Prior.length()).trim().split(" ")[0];
+					    	PDFReader.residentBenefitsPackage = text.substring(text.indexOf(PDFAppConfig.LakeHavasu_Format2.RBP_Prior)+PDFAppConfig.LakeHavasu_Format2.RBP_Prior.length()).trim().split(" ")[0];
 					    	if(PDFReader.residentBenefitsPackage.matches(".*[a-zA-Z]+.*"))
 					    		PDFReader.residentBenefitsPackage = "Error";
 					    }
@@ -133,7 +129,7 @@ public class SouthCarolina_Format2
 			    //Prorate Rent
 			    try
 			    {
-			    	PDFReader.proratedRent = text.substring(text.indexOf(PDFAppConfig.SouthCarolina_Format2.prorateRent_Prior)+PDFAppConfig.SouthCarolina_Format2.prorateRent_Prior.length());
+			    	PDFReader.proratedRent = text.substring(text.indexOf(PDFAppConfig.LakeHavasu_Format2.prorateRent_Prior)+PDFAppConfig.LakeHavasu_Format2.prorateRent_Prior.length());
 			    	PDFReader.proratedRent = PDFReader.proratedRent.substring(0,PDFReader.proratedRent.indexOf("as prorated rent")).trim();
 			    	if(PDFReader.proratedRent.matches(".*[a-zA-Z]+.*")||PDFReader.proratedRent.equals("0.00"))
 			    		PDFReader.proratedRent = "Error";
@@ -148,7 +144,7 @@ public class SouthCarolina_Format2
 			  //Lease Renewal Admin Fee
 			    try
 			    {
-			    	PDFReader.leaseRenewalFee = text.substring(text.indexOf(PDFAppConfig.SouthCarolina_Format2.leaseRenewalAdminFee_Prior)+PDFAppConfig.SouthCarolina_Format2.leaseRenewalAdminFee_Prior.length()).trim().split(" ")[0];
+			    	PDFReader.leaseRenewalFee = text.substring(text.indexOf(PDFAppConfig.LakeHavasu_Format2.leaseRenewalAdminFee_Prior)+PDFAppConfig.LakeHavasu_Format2.leaseRenewalAdminFee_Prior.length()).trim().split(" ")[0];
 			    	if(PDFReader.leaseRenewalFee.matches(".*[a-zA-Z]+.*")||PDFReader.proratedRent.equals("0.00"))
 			    		PDFReader.leaseRenewalFee = "Error";
 			    }
@@ -160,14 +156,14 @@ public class SouthCarolina_Format2
 			    System.out.println("Lease Renewal Admin Fee = "+PDFReader.leaseRenewalFee);
 			    
 				//Pet Rent
-			    if(text.contains(PDFAppConfig.SouthCarolina_Format2.petAgreementAvailabilityCheck))
+			    if(text.contains(PDFAppConfig.LakeHavasu_Format2.petAgreementAvailabilityCheck))
 			    {
 			    	PDFReader.petFlag = true;
 			    	System.out.println("Pet Addendum Available = "+PDFReader.petFlag);
 			    	
 			    	try
 			    	{
-			    		PDFReader.petRent = text.substring(text.indexOf(PDFAppConfig.SouthCarolina_Format2.petRent_Prior)+PDFAppConfig.SouthCarolina_Format2.petRent_Prior.length()).trim().split(" ")[0].trim();
+			    		PDFReader.petRent = text.substring(text.indexOf(PDFAppConfig.LakeHavasu_Format2.petRent_Prior)+PDFAppConfig.LakeHavasu_Format2.petRent_Prior.length()).trim().split(" ")[0].trim();
 			    		if(PDFReader.petRent.matches(".*[a-zA-Z]+.*")||PDFReader.petRent.equals("0.00"))
 				    		PDFReader.petRent = "Error";
 			    	}
@@ -187,7 +183,7 @@ public class SouthCarolina_Format2
 			    		//Increased Rent
 			    		try
 			    		{
-			    		PDFReader.increasedRent_amount = text.substring(text.indexOf(PDFAppConfig.SouthCarolina_Format2.increasedRent_Prior1)+PDFAppConfig.SouthCarolina_Format2.increasedRent_Prior1.length()).trim().split(" ")[0].trim();
+			    		PDFReader.increasedRent_amount = text.substring(text.indexOf(PDFAppConfig.LakeHavasu_Format2.increasedRent_Prior1)+PDFAppConfig.LakeHavasu_Format2.increasedRent_Prior1.length()).trim().split(" ")[0].trim();
 			    		if(PDFReader.increasedRent_amount.matches(".*[a-zA-Z]+.*")||PDFReader.increasedRent_amount.equals("0.00"))
 				    		PDFReader.increasedRent_amount = "Error";
 			    		}
@@ -224,7 +220,7 @@ public class SouthCarolina_Format2
 			    		//Increased Rent
 			    		try
 			    		{
-			    		PDFReader.increasedRent_amount = text.substring(text.indexOf(PDFAppConfig.SouthCarolina_Format2.increasedRent_Prior2)+PDFAppConfig.SouthCarolina_Format2.increasedRent_Prior2.length()).trim().split(" ")[0].trim();
+			    		PDFReader.increasedRent_amount = text.substring(text.indexOf(PDFAppConfig.LakeHavasu_Format2.increasedRent_Prior2)+PDFAppConfig.LakeHavasu_Format2.increasedRent_Prior2.length()).trim().split(" ")[0].trim();
 			    		if(PDFReader.increasedRent_amount.matches(".*[a-zA-Z]+.*")||PDFReader.increasedRent_amount.equals("0.00"))
 				    		PDFReader.increasedRent_amount = "Error";
 			    		}
@@ -317,6 +313,6 @@ public class SouthCarolina_Format2
 					return false;
 				}
 
-			}
+		}
 
 }

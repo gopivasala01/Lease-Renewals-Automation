@@ -590,6 +590,26 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "Lake Havasu":
+				String pdfFormatType_lakeHavasu = PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_lakeHavasu);
+				if(pdfFormatType_lakeHavasu=="Format1")
+				{
+					if(PDFDataExtract.LakeHavasu_Format1.lakeHavasu()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_lakeHavasu=="Format2")
+				     {
+					if(PDFDataExtract.LakeHavasu_Format2.lakeHavasu()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
@@ -705,6 +725,10 @@ public class PDFReader
 			case "Kansas City":
 		        format1Text = PDFAppConfig.PDFFormatDecider.kansasCity_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.kansasCity_Format2;
+		        break;
+			case "Lake Havasu":
+		        format1Text = PDFAppConfig.PDFFormatDecider.lakeHavasu_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.lakeHavasu_Format2;
 		        break;
 			}
 			
