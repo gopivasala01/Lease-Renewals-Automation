@@ -93,6 +93,8 @@ public class AppConfig
 				  return "40010 - Rent Income";
 		   case "Lake Havasu":
 				  return "40010 - Rent Income";
+		   case "New Mexico":
+				  return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -152,6 +154,8 @@ public class AppConfig
 		   case "Kansas City":
 			   return "40230 - Pet Rent";
 		   case "Lake Havasu":
+			   return "40230 - Pet Rent";
+		   case "New Mexico":
 			   return "40230 - Pet Rent";
 		   }
 		   return "";
@@ -213,6 +217,8 @@ public class AppConfig
 			   return "40230 - Pet Rent";
 		   case "Lake Havasu":
 			   return "40230 - Pet Rent";
+		   case "New Mexico":
+			   return "40230 - Pet Rent";
 		   }
 		   return "";
 	   }
@@ -272,6 +278,8 @@ public class AppConfig
 			   return "40010 - Rent Income";
 		   case "Lake Havasu":
 			   return "40010 - Rent Income";
+		   case "New Mexico":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -330,6 +338,8 @@ public class AppConfig
 		   case "Kansas City":
 			   return "43060 - Filter Fee";
 		   case "Lake Havasu":
+			   return "43060 - Filter Fee";
+		   case "New Mexico":
 			   return "43060 - Filter Fee";
 			   
 		   }
@@ -392,6 +402,8 @@ public class AppConfig
 			   return "43070 - Resident Benefit Package Fee";
 		   case "Lake Havasu":
 			   return "43070 - Resident Benefit Package Fee";
+		   case "New Mexico":
+			   return "43070 - Resident Benefit Package Fee";
 		   }
 		   return "";
 	   }
@@ -450,6 +462,8 @@ public class AppConfig
 		   case "Kansas City":
 			   return "43040 - Resident Renewal Admin Fee";
 		   case "Lake Havasu":
+			   return "43040 - Resident Renewal Admin Fee";
+		   case "New Mexico":
 			   return "43040 - Resident Renewal Admin Fee";
 		    
 		   }
@@ -511,6 +525,8 @@ public class AppConfig
 			   return "YES";
 		   case "Lake Havasu":
 			   return "YES";
+		   case "New Mexico":
+			   return "YES";
 		   }
 		   return "";
 	   }
@@ -569,6 +585,8 @@ public class AppConfig
 		   case "Kansas City":
 			   return "Yes";
 		   case "Lake Havasu":
+			   return "Yes";
+		   case "New Mexico":
 			   return "Yes";
 		   }
 		   return "";    
@@ -630,6 +648,8 @@ public class AppConfig
 			   return "NO";
 		   case "Lake Havasu":
 			   return "NO";
+		   case "New Mexico":
+			   return "NO";
 		   }
 		   return "";
 	   }
@@ -688,6 +708,8 @@ public class AppConfig
 			   case "Kansas City":
 				   return "No";
 			   case "Lake Havasu":
+				   return "No";
+			   case "New Mexico":
 				   return "No";
 			   }
 			   return "";    

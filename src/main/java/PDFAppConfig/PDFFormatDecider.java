@@ -90,6 +90,9 @@ public class PDFFormatDecider
 		public static String kansasCity_Format2 = "This is a legally binding Contract;";
 	//  Lake Havasu
 		public static String lakeHavasu_Format1 = "The parties to this Lease are the owner of the Property";
-		public static String lakeHavasu_Format2 = "This is a legally binding contract;";		
+		public static String lakeHavasu_Format2 = "This is a legally binding contract;";	
+	// New Mexico
+		public static String newMexico_Format1 = "The parties to this Lease are the owner of the Property";
+		public static String newMexico_Format2 = "This is a legally binding Contract;";
 		
 }

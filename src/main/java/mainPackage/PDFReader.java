@@ -610,6 +610,26 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "New Mexico":
+				String pdfFormatType_newMexico = PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_newMexico);
+				if(pdfFormatType_newMexico=="Format1")
+				{
+					if(PDFDataExtract.NewMexico_Format1.newMexico()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_newMexico=="Format2")
+				     {
+					if(PDFDataExtract.NewMexico_Format2.newMexico()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
@@ -729,6 +749,10 @@ public class PDFReader
 			case "Lake Havasu":
 		        format1Text = PDFAppConfig.PDFFormatDecider.lakeHavasu_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.lakeHavasu_Format2;
+		        break;
+			case "New Mexico":
+		        format1Text = PDFAppConfig.PDFFormatDecider.newMexico_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.newMexico_Format2;
 		        break;
 			}
 			
