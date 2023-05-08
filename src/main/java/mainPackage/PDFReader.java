@@ -630,6 +630,26 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "Chicago PFW":
+				String pdfFormatType_chicagoPfw = PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_chicagoPfw);
+				if(pdfFormatType_chicagoPfw=="Format1")
+				{
+					if(PDFDataExtract.ChicagoPFW_Format1.chicagoPfw()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_chicagoPfw=="Format2")
+				     {
+					if(PDFDataExtract.ChicagoPFW_Format2.chicagoPfw()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
@@ -753,6 +773,10 @@ public class PDFReader
 			case "New Mexico":
 		        format1Text = PDFAppConfig.PDFFormatDecider.newMexico_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.newMexico_Format2;
+		        break;
+			case "Chicago PFW":
+		        format1Text = PDFAppConfig.PDFFormatDecider.chicagoPfw_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.chicagoPfw_Format2;
 		        break;
 			}
 			

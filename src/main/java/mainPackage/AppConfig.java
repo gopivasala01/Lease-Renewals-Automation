@@ -95,6 +95,8 @@ public class AppConfig
 				  return "40010 - Rent Income";
 		   case "New Mexico":
 				  return "40010 - Rent Income";
+		   case "Chicago PFW":
+				  return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -156,6 +158,8 @@ public class AppConfig
 		   case "Lake Havasu":
 			   return "40230 - Pet Rent";
 		   case "New Mexico":
+			   return "40230 - Pet Rent";
+		   case "Chicago PFW":
 			   return "40230 - Pet Rent";
 		   }
 		   return "";
@@ -219,6 +223,8 @@ public class AppConfig
 			   return "40230 - Pet Rent";
 		   case "New Mexico":
 			   return "40230 - Pet Rent";
+		   case "Chicago PFW":
+			   return "40230 - Pet Rent";
 		   }
 		   return "";
 	   }
@@ -279,6 +285,8 @@ public class AppConfig
 		   case "Lake Havasu":
 			   return "40010 - Rent Income";
 		   case "New Mexico":
+			   return "40010 - Rent Income";
+		   case "Chicago PFW":
 			   return "40010 - Rent Income";
 		   }
 		   return "";
@@ -341,6 +349,8 @@ public class AppConfig
 			   return "43060 - Filter Fee";
 		   case "New Mexico":
 			   return "43060 - Filter Fee";
+		   case "Chicago PFW":
+				   return "43060 - Filter Fee";
 			   
 		   }
 		   return "";
@@ -404,6 +414,8 @@ public class AppConfig
 			   return "43070 - Resident Benefit Package Fee";
 		   case "New Mexico":
 			   return "43070 - Resident Benefit Package Fee";
+		   case "Chicago PFW":
+			   return "43070 - Resident Benefit Package Fee";
 		   }
 		   return "";
 	   }
@@ -464,6 +476,8 @@ public class AppConfig
 		   case "Lake Havasu":
 			   return "43040 - Resident Renewal Admin Fee";
 		   case "New Mexico":
+			   return "43040 - Resident Renewal Admin Fee";
+		   case "Chicago PFW":
 			   return "43040 - Resident Renewal Admin Fee";
 		    
 		   }
@@ -527,6 +541,8 @@ public class AppConfig
 			   return "YES";
 		   case "New Mexico":
 			   return "YES";
+		   case "Chicago PFW":
+			   return "YES";
 		   }
 		   return "";
 	   }
@@ -587,6 +603,8 @@ public class AppConfig
 		   case "Lake Havasu":
 			   return "Yes";
 		   case "New Mexico":
+			   return "Yes";
+		   case "Chicago PFW":
 			   return "Yes";
 		   }
 		   return "";    
@@ -650,6 +668,8 @@ public class AppConfig
 			   return "NO";
 		   case "New Mexico":
 			   return "NO";
+		   case "Chicago PFW":
+			   return "NO";
 		   }
 		   return "";
 	   }
@@ -710,6 +730,8 @@ public class AppConfig
 			   case "Lake Havasu":
 				   return "No";
 			   case "New Mexico":
+				   return "No";
+			   case "Chicago PFW":
 				   return "No";
 			   }
 			   return "";    

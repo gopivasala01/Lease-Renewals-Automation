@@ -61,6 +61,19 @@ public class PropertyWare_InsertOtherInformation
 		renewalOnDate = RunnerClass.getCurrentDate();
 		petRentAmount = PDFReader.petRent;
 		
+		try {
+			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.baseRent)).click().build().perform();
+		    RunnerClass.driver.findElement(Locators.baseRent).click();
+		    RunnerClass.driver.findElement(Locators.baseRent).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+		    RunnerClass.driver.findElement(Locators.baseRent).sendKeys(currentMonthlyRent);
+		    Thread.sleep(3000);
+		} catch(Exception e) {
+		    RunnerClass.statusID=1;
+		    e.printStackTrace();
+		    RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Current Monthly Rent";
+		    System.out.println("Issue - Other information - Base Rent");
+		}
+		
 		if (PDFReader.residentBenefitsPackageAvailabilityCheck == true) 
 		{ // If residentBenefitsPackageAvailabilityCheck is true,
 			// Select the option for "enrolled in RBP for PM use"
@@ -93,6 +106,7 @@ public class PropertyWare_InsertOtherInformation
 				RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Enrolled In RBP For PM Use (No)";
 				System.out.println("Issue - Other information - Enrolled In RBP For PM Use (No)");
 			}
+			Thread.sleep(2000);
 		}
 
 		if (PDFReader.residentBenefitsPackageAvailabilityCheck == true) 
@@ -127,6 +141,7 @@ public class PropertyWare_InsertOtherInformation
 				System.out.println("Issue - Other information - RBP Enrollment Complete For SN Use Only (No)");
 			}
 		}
+		Thread.sleep(2000);
 		
 		//Renewal Status
 		try
