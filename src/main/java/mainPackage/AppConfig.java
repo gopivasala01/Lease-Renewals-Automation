@@ -66,7 +66,7 @@ public class AppConfig
 		   case "Houston":
 			   return "40010 - Rent Income";
 		   case "Austin":
-			   return "4000 - Rent";
+			   return "40010 - Rent Income";
 		   case "Chattanooga":
 			   return "40010 - Rent Income";
 		   case "Chicago":
@@ -130,7 +130,7 @@ public class AppConfig
 		   case "Houston":
 			   return "40230 - Pet Rent";
 		   case "Austin":
-			   return "4311 - Pet Rent";
+			   return "40230 - Pet Rent";
 		   case "Chattanooga":
 			   return "40230 - Pet Rent";
 		   case "Chicago":
@@ -194,7 +194,7 @@ public class AppConfig
 		   case "Houston":
 			   return "40230 - Pet Rent";
 		   case "Austin":
-			   return "4311 - Pet Rent";
+			   return "40230 - Pet Rent";
 		   case "Chattanooga":
 			   return "40230 - Pet Rent";
 		   case "Chicago":
@@ -257,7 +257,7 @@ public class AppConfig
 		   case "Houston":
 			   return "40010 - Rent Income";
 		   case "Austin":
-			   return "4000 - Rent";
+			   return "40010 - Rent Income";
 		   case "Chattanooga":
 			   return "40010 - Rent Income";
 		   case "Chicago":
@@ -320,7 +320,7 @@ public class AppConfig
 		   case "Houston":
 			   return "43060 - Filter Fee";
 		   case "Austin":
-			   return "4102 - Air Filter Fee";
+			   return "43060 - Filter Fee";
 		   case "Chattanooga":
 			   return "43060 - Filter Fee";
 		   case "Chicago":
@@ -385,7 +385,7 @@ public class AppConfig
 		   case "Houston":
 			   return "43070 - Resident Benefit Package Fee";
 		   case "Austin":
-			   return "4318 - Resident Benefits Package";
+			   return "43070 - Resident Benefit Package Fee";
 		   case "Chattanooga":
 			   return "43070 - Resident Benefit Package Fee";
 		   case "Chicago":
@@ -448,7 +448,7 @@ public class AppConfig
 		   case "Houston":
 			   return "43040 - Resident Renewal Admin Fee"; 
 		   case "Austin":
-			   return "4315 - Resident Renewal Admin Fee";
+			   return "43040 - Resident Renewal Admin Fee";
 		   case "Chattanooga":
 			   return "43040 - Resident Renewal Admin Fee"; 
 		   case "Chicago":

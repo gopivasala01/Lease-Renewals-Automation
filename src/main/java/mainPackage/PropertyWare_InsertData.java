@@ -189,6 +189,8 @@ public class PropertyWare_InsertData
 	     List<WebElement> existingAutoCharges = RunnerClass.driver.findElements(Locators.autoCharge_List);
 	     List<WebElement> existingAutoChargeAmounts = RunnerClass.driver.findElements(Locators.autoCharge_List_Amounts);
 		 List<WebElement> endDates = RunnerClass.driver.findElements(Locators.autoCharge_List_EndDates);
+		 List<WebElement> discription_List = RunnerClass.driver.findElements(Locators.discription_List);
+		 List<WebElement> startDateList = RunnerClass.driver.findElements(Locators.startdateList);
 		 List<WebElement> editButtons = RunnerClass.driver.findElements(Locators.autoCharge_MonthlyRentEditButton);
 	     //Get All Auto Charges from Table
 	     DataBase.getAutoCharges();
@@ -208,6 +210,8 @@ public class PropertyWare_InsertData
 					existingAutoCharges = RunnerClass.driver.findElements(Locators.autoCharge_List);
 				    existingAutoChargeAmounts = RunnerClass.driver.findElements(Locators.autoCharge_List_Amounts);
 					endDates = RunnerClass.driver.findElements(Locators.autoCharge_List_EndDates);
+					discription_List = RunnerClass.driver.findElements(Locators.discription_List);
+					startDateList = RunnerClass.driver.findElements(Locators.startdateList); 
 					editButtons = RunnerClass.driver.findElements(Locators.autoCharge_MonthlyRentEditButton);
 					
 					existingAutoCharges = RunnerClass.driver.findElements(Locators.autoCharge_List);
@@ -216,6 +220,7 @@ public class PropertyWare_InsertData
 					//autoChargeCode = autoChargeCodes;
 					String autoChargeAmount = existingAutoChargeAmounts.get(k).getText();
 					String endDateAutoCharge = endDates.get(k).getText();
+					
 					System.out.println(autoChargeCodes +"  ||  "+autoChargeAmount +"  ||  "+endDateAutoCharge);
 					//And Amount should not be Monthly Rent Amount -- Remove this condition for Demo and Prod as the current monthly rent could be previous monthly rent
 					//And End Date should be Empty
