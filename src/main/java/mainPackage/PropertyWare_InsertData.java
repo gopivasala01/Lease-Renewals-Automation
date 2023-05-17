@@ -536,7 +536,7 @@ public class PropertyWare_InsertData
 		//Start Date
 		RunnerClass.driver.findElement(Locators.moveInChargeDate).clear();
 		Thread.sleep(2000);
-		RunnerClass.driver.findElement(Locators.moveInChargeDate).sendKeys(RunnerClass.getCurrentDate());
+		RunnerClass.driver.findElement(Locators.moveInChargeDate).sendKeys(PropertyWare_InsertOtherInformation.renewalExecutionDate);
 		//Save or Cancel button
 		Thread.sleep(2000);
 		if(AppConfig.saveButtonOnAndOff==false)

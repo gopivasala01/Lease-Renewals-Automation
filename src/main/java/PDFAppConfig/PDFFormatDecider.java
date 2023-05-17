@@ -95,8 +95,12 @@ public class PDFFormatDecider
 		public static String newMexico_Format1 = "The parties to this Lease are the owner of the Property";
 		public static String newMexico_Format2 = "This is a legally binding Contract;";
 		
-   // Pennsylvania
+   // Chicago PFW
 		public static String chicagoPfw_Format1 = "PARTIES: The parties to this Single Family Residence or Condominium Lease";
 		public static String chicagoPfw_Format2 = "This is a legally binding Contract;";
+	
+	// Boise
+		public static String boise_Format1 = "PARTIES: The parties to this Single Family Residence or Condominium Lease";
+		public static String boise_Format2 = "This is a legally binding Contract;";
 		
 }

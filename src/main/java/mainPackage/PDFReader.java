@@ -650,6 +650,26 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "Boise":
+				String pdfFormatType_boise = PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_boise);
+				if(pdfFormatType_boise=="Format1")
+				{
+					if(PDFDataExtract.Boise_Format1.boise()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_boise=="Format2")
+				     {
+					if(PDFDataExtract.Boise_Format2.boise()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
@@ -777,6 +797,10 @@ public class PDFReader
 			case "Chicago PFW":
 		        format1Text = PDFAppConfig.PDFFormatDecider.chicagoPfw_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.chicagoPfw_Format2;
+		        break;
+			case "Boise":
+		        format1Text = PDFAppConfig.PDFFormatDecider.boise_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.boise_Format2;
 		        break;
 			}
 			
