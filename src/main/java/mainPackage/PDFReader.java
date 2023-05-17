@@ -670,6 +670,26 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "Spokane":
+				String pdfFormatType_spokane = PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_spokane);
+				if(pdfFormatType_spokane=="Format1")
+				{
+					if(PDFDataExtract.Spokane_Format1.spokane()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_spokane=="Format2")
+				     {
+					if(PDFDataExtract.Spokane_Format2.spokane()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
@@ -801,6 +821,10 @@ public class PDFReader
 			case "Boise":
 		        format1Text = PDFAppConfig.PDFFormatDecider.boise_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.boise_Format2;
+		        break;
+			case "Spokane":
+		        format1Text = PDFAppConfig.PDFFormatDecider.spokane_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.spokane_Format2;
 		        break;
 			}
 			

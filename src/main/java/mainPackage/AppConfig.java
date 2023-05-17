@@ -99,6 +99,8 @@ public class AppConfig
 				  return "40010 - Rent Income";
 		   case "Boise":
 				  return "40010 - Rent Income";
+		   case "Spokane":
+				  return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -164,6 +166,8 @@ public class AppConfig
 		   case "Chicago PFW":
 			   return "40230 - Pet Rent";
 		   case "Boise":
+			   return "40230 - Pet Rent";
+		   case "Spokane":
 			   return "40230 - Pet Rent";
 		   }
 		   return "";
@@ -231,6 +235,8 @@ public class AppConfig
 			   return "40230 - Pet Rent";
 		   case "Boise":
 			   return "40230 - Pet Rent";
+		   case "Spokane":
+			   return "40230 - Pet Rent";
 		   }
 		   return "";
 	   }
@@ -296,6 +302,8 @@ public class AppConfig
 			   return "40010 - Rent Income";
 		   case "Boise":
 			   return "40010 - Rent Income";
+		   case "Spokane":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -360,6 +368,8 @@ public class AppConfig
 		   case "Chicago PFW":
 				   return "43060 - Filter Fee";
 		   case "Boise":
+			   return "43060 - Filter Fee";
+		   case "Spokane":
 			   return "43060 - Filter Fee";
 			   
 		   }
@@ -428,6 +438,8 @@ public class AppConfig
 			   return "43070 - Resident Benefit Package Fee";
 		   case "Boise":
 			   return "43070 - Resident Benefit Package Fee";
+		   case "Spokane":
+			   return "43070 - Resident Benefit Package Fee";
 		   }
 		   return "";
 	   }
@@ -492,6 +504,8 @@ public class AppConfig
 		   case "Chicago PFW":
 			   return "43040 - Resident Renewal Admin Fee";
 		   case "Boise":
+			   return "43040 - Resident Renewal Admin Fee";
+		   case "Spokane":
 			   return "43040 - Resident Renewal Admin Fee";
 		    
 		   }
@@ -559,6 +573,8 @@ public class AppConfig
 			   return "YES";
 		   case "Boise":
 			   return "YES";
+		   case "Spokane":
+			   return "YES";
 		   }
 		   return "";
 	   }
@@ -623,6 +639,8 @@ public class AppConfig
 		   case "Chicago PFW":
 			   return "Yes";
 		   case "Boise":
+			   return "Yes";
+		   case "Spokane":
 			   return "Yes";
 		   }
 		   return "";    
@@ -690,6 +708,8 @@ public class AppConfig
 			   return "NO";
 		   case "Boise":
 			   return "NO";
+		   case "Spokane":
+			   return "NO";
 		   }
 		   return "";
 	   }
@@ -754,6 +774,8 @@ public class AppConfig
 			   case "Chicago PFW":
 				   return "No";
 			   case "Boise":
+				   return "No";
+			   case "Spokane":
 				   return "No";
 			   }
 			   return "";    
