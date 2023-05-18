@@ -64,6 +64,7 @@ public class RunnerClass
 	public static boolean listingAgent;
 	public static String currentTime;
 	public static int statusID;
+	public static String renewalExecutionDate = "";
 	
 	public static void main(String[] args) throws Exception 
 	{
@@ -84,12 +85,15 @@ public class RunnerClass
 		  //Change the Status of the Lease to Started so that it won't run again in the Jenkins scheduling Process
 		  DataBase.insertData(buildingAbbreviation,"Started",6);
 		  
-		  //if(buildingAbbreviation.split("-")[0].trim().contains(" "))
-			  //buildingAbbreviation = buildingAbbreviation;
-				//else 
+		  if(buildingAbbreviation.split("-")[0].trim().contains(" ")) 
+		  {
+			  buildingAbbreviation = buildingAbbreviation;
+			  }
+		  else {
 					buildingAbbreviation = buildingAbbreviation.split("-")[0].trim();
+					}
           // Login to the PropertyWare		  
-		 if (company.contains("Alabama")|| company.contains("Arkansas")|| company.contains("Austin")|| company.contains("Dallas/Fort Worth")|| company.contains("Florida")||company.contains("North Carolina")|| company.contains("Georgia")||company.contains("Indiana")|| company.contains("Little Rock")|| company.contains("Tennessee")|| company.contains("California")|| company.contains("California PFW")|| company.contains("Houston")|| company.contains("Chattanooga")|| company.contains("Chicago")|| company.contains("South Carolina")|| company.contains("Tulsa")|| company.contains("Ohio")|| company.contains("Savannah")|| company.contains("Maine")|| company.contains("OKC")|| company.contains("San Antonio")|| company.contains("Pennsylvania") || company.contains("Colorado Springs") || company.contains("Kansas City") || company.contains("Lake Havasu") || company.contains("New Mexico") || company.contains("Boise") || company.contains("Spokane"))
+		 if (company.contains("Alabama")|| company.contains("Arkansas")|| company.contains("Austin")|| company.contains("Dallas/Fort Worth")|| company.contains("Florida")||company.contains("North Carolina")|| company.contains("Georgia")||company.contains("Indiana")|| company.contains("Little Rock")|| company.contains("Tennessee")|| company.contains("California")|| company.contains("California PFW")|| company.contains("Houston")|| company.contains("Chattanooga")|| company.contains("Chicago")|| company.contains("South Carolina")|| company.contains("Tulsa")|| company.contains("Ohio")|| company.contains("Savannah")|| company.contains("Maine")|| company.contains("OKC")|| company.contains("San Antonio")|| company.contains("Pennsylvania") || company.contains("Colorado Springs") || company.contains("Kansas City") || company.contains("Lake Havasu") || company.contains("New Mexico") || company.contains("Boise") || company.contains("Spokane") || company.contains("Utah"))
        {		 
     	  try
       
@@ -262,12 +266,23 @@ public class RunnerClass
 					}
 					catch(Exception e4)
 					{
+						try
+						{
+						SimpleDateFormat format1 = new SimpleDateFormat("MMMM dd.yyyy");
+					    SimpleDateFormat format2 = new SimpleDateFormat("MM/dd/yyyy");
+					    Date date = format1.parse(dateRaw.trim().replaceAll(" +", " "));
+					    System.out.println(format2.format(date));
+						return format2.format(date).toString();
+						}
+						catch(Exception e5)
+						{
 					return "";
 					}
 				}
 			}
 		}
 	}
+	} 
 	
 	    public static String firstDayOfMonth(String date,int month) throws Exception 
 	    {
