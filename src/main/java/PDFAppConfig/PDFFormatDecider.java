@@ -109,4 +109,8 @@ public class PDFFormatDecider
 		public static String utah_Format1 = "PARTIES: The parties to this Single Family Residence or Condominium Lease";
 		public static String utah_Format2 = "This is a legally binding Contract;";
 		
+	// Hawaii
+		public static String hawaii_Format1 = "PARTIES: The parties to this Single Family Residence or Condominium Lease";
+		public static String hawaii_Format2 = "This is a legally binding Contract;";
+		
 }

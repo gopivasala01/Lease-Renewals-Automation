@@ -220,7 +220,7 @@ public class PropertyWare_InsertData
 					//autoChargeCode = autoChargeCodes;
 					String autoChargeAmount = existingAutoChargeAmounts.get(k).getText();
 					String endDateAutoCharge = endDates.get(k).getText();
-					
+					String startDatelist =  startDateList.get(k).getText();
 					System.out.println(autoChargeCodes +"  ||  "+autoChargeAmount +"  ||  "+endDateAutoCharge);
 					//And Amount should not be Monthly Rent Amount -- Remove this condition for Demo and Prod as the current monthly rent could be previous monthly rent
 					//And End Date should be Empty
@@ -230,7 +230,28 @@ public class PropertyWare_InsertData
 					
 					if(endDateAutoCharge.trim().equals(""))
 					{
- 						if(autoChargeCodes.equals(AppConfig.getMonthlyRentChargeCode(RunnerClass.company))&&monthlyRentChargeClosed== false)
+						{
+ 						if(autoChargeCodes.equals("43050 - Month to Month Fee")&&monthlyRentChargeClosed== false)
+ 						{
+ 							PDFReader.previousMonthlyRent = autoChargeAmount;
+ 							PDFReader.startDate = startDatelist;
+ 							editButtons.get(k).click();
+ 							RunnerClass.driver.findElement(Locators.autoCharge_EndDate).clear();
+ 							RunnerClass.driver.findElement(Locators.autoCharge_EndDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+ 							System.out.println("Existing Auto Charge is Edited");
+ 							RunnerClass.driver.findElement(Locators.autoCharge_EndDate).sendKeys(getLastDayOfMonth());
+ 							if(AppConfig.saveButtonOnAndOff==false)
+ 								RunnerClass.driver.findElement(Locators.autoCharge_CancelButton).click();
+ 								else 
+ 								RunnerClass.driver.findElement(Locators.autoCharge_SaveButton).click();
+ 							
+ 							Thread.sleep(2000);
+ 							monthlyRentChargeClosed = true;
+	                		PropertyWare_InsertData.saveAnAutoCharge();
+	                		continue;
+ 						}
+						
+ 						else if(autoChargeCodes.equals(AppConfig.getMonthlyRentChargeCode(RunnerClass.company))&&monthlyRentChargeClosed== false)
 						{
 							PDFReader.previousMonthlyRent = autoChargeAmount;
 							editButtons.get(k).click();
@@ -240,6 +261,7 @@ public class PropertyWare_InsertData
 	                		PropertyWare_InsertData.saveAnAutoCharge();
 	                		continue;
 	                		//break;
+						}
 						}
 						if((autoChargeCodes.equals(AppConfig.getHVACAirFilterFeeChargeCode(RunnerClass.company))&&PDFReader.residentBenefitsPackageAvailabilityCheck==true)&&(!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.HVACAirFilterFee.replaceAll("[^0-9]", ""))||PDFReader.HVACAirFilterFee!=""))
 						{
@@ -295,6 +317,10 @@ public class PropertyWare_InsertData
 		}
 	}
 	
+	public static CharSequence getLastDayOfMonth() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	public static void saveAnAutoCharge() throws Exception
 	{
 		  RunnerClass.js.executeScript("window.scrollTo(0,document.body.scrollHeight)");

@@ -5,7 +5,7 @@ public class AppConfig
 	public static boolean saveButtonOnAndOff= true;
 	
 	public static String username= "mds0418@gmail.com";
-	public static String password="HomeRiver1#";
+	public static String password="KRm#V39fecMDGg#";
 	public static String URL="https://app.propertyware.com/pw/login.jsp";
 	public static String[] Buildings= {"SABA2399"};
 	public static String[] Names= {"Baxter - Hernandez"};
