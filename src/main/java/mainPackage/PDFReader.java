@@ -710,6 +710,26 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "Hawaii":
+				String pdfFormatType_hawaii = PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_hawaii);
+				if(pdfFormatType_hawaii=="Format1")
+				{
+					if(PDFDataExtract.Hawaii_Format1.hawaii()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_hawaii=="Format2")
+				     {
+					if(PDFDataExtract.Hawaii_Format2.hawaii()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
@@ -849,6 +869,10 @@ public class PDFReader
 			case "Utah":
 		        format1Text = PDFAppConfig.PDFFormatDecider.utah_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.utah_Format2;
+		        break;
+			case "Hawaii":
+		        format1Text = PDFAppConfig.PDFFormatDecider.hawaii_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.hawaii_Format2;
 		        break;
 			}
 			

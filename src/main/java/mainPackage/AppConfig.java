@@ -103,6 +103,8 @@ public class AppConfig
 				  return "40010 - Rent Income";
 		   case "Utah":
 				  return "40010 - Rent Income";
+		   case "Hawaii":
+				  return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -172,6 +174,8 @@ public class AppConfig
 		   case "Spokane":
 			   return "40230 - Pet Rent";
 		   case "Utah":
+			   return "40230 - Pet Rent";
+		   case "Hawaii":
 			   return "40230 - Pet Rent";
 		   }
 		   return "";
@@ -243,6 +247,8 @@ public class AppConfig
 			   return "40230 - Pet Rent";
 		   case "Utah":
 			   return "40230 - Pet Rent";
+		   case "Hawaii":
+			   return "40230 - Pet Rent";
 		   }
 		   return "";
 	   }
@@ -312,6 +318,8 @@ public class AppConfig
 			   return "40010 - Rent Income";
 		   case "Utah":
 			   return "40010 - Rent Income";
+		   case "Hawaii":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -380,6 +388,8 @@ public class AppConfig
 		   case "Spokane":
 			   return "43060 - Filter Fee";
 		   case "Utah":
+			   return "43060 - Filter Fee";
+		   case "Hawaii":
 			   return "43060 - Filter Fee";
 			   
 		   }
@@ -452,6 +462,8 @@ public class AppConfig
 			   return "43070 - Resident Benefit Package Fee";
 		   case "Utah":
 			   return "43070 - Resident Benefit Package Fee";
+		   case "Hawaii":
+			   return "43070 - Resident Benefit Package Fee";
 		   }
 		   return "";
 	   }
@@ -520,6 +532,8 @@ public class AppConfig
 		   case "Spokane":
 			   return "43040 - Resident Renewal Admin Fee";
 		   case "Utah":
+			   return "43040 - Resident Renewal Admin Fee";
+		   case "Hawaii":
 			   return "43040 - Resident Renewal Admin Fee";
 		    
 		   }
@@ -591,6 +605,8 @@ public class AppConfig
 			   return "YES";
 		   case "Utah":
 			   return "YES";
+		   case "Hawaii":
+			   return "YES";
 		   }
 		   return "";
 	   }
@@ -659,6 +675,8 @@ public class AppConfig
 		   case "Spokane":
 			   return "Yes";
 		   case "Utah":
+			   return "Yes";
+		   case "Hawaii":
 			   return "Yes";
 		   }
 		   return "";    
@@ -730,6 +748,8 @@ public class AppConfig
 			   return "NO";
 		   case "Utah":
 			   return "NO";
+		   case "Hawaii":
+			   return "NO";
 		   }
 		   return "";
 	   }
@@ -798,6 +818,8 @@ public class AppConfig
 			   case "Spokane":
 				   return "No";
 			   case "Utah":
+				   return "No";
+			   case "Hawaii":
 				   return "No";
 			   }
 			   return "";    
