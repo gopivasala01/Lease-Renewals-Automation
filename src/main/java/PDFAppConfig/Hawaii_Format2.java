@@ -2,18 +2,18 @@ package PDFAppConfig;
 
 public class Hawaii_Format2 
 {
-	public static String commencementDate_Prior = "commences on";
-	public static String commencementDate_After = " (“Commencement Date”)";
-
-	public static String expirationDate_Prior = "expires on"; 
-	public static String expirationDate_After = " (“Expiration Date”).";
+	public static String commencementDate_Prior = "Commencement Date:";
+	public static String commencementDate_After = "Expiration Date:";
+	
+	public static String expirationDate_Prior = "Expiration Date:"; 
+	public static String expirationDate_After = "AUTOMATIC RENEWAL.";
 	
 	public static String proratedRentDate_Prior = "prorated rent, on or before";
 	public static String proratedRentDate_After = "Tenant will pay Landlord $";
 	
 	public static String proratedRent_Prior = "Tenant will pay Landlord $ ";
 	
-	public static String monthlyRent_Prior  = "Tenant will pay Landlord monthly rent in the amount of $"; 
+	public static String monthlyRent_Prior  = "each month, in the amount of $"; 
 	public static String monthlyRent_Prior2 = "monthly rent in the amount of";
 	
 	public static String adminFee_prior = "An annual lease preparation fee in the amount of $";
