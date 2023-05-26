@@ -105,6 +105,8 @@ public class AppConfig
 				  return "40010 - Rent Income";
 		   case "Hawaii":
 				  return "40010 - Rent Income";
+		   case "Saint Louis":
+				  return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -176,6 +178,8 @@ public class AppConfig
 		   case "Utah":
 			   return "40230 - Pet Rent";
 		   case "Hawaii":
+			   return "40230 - Pet Rent";
+		   case "Saint Louis":
 			   return "40230 - Pet Rent";
 		   }
 		   return "";
@@ -249,6 +253,8 @@ public class AppConfig
 			   return "40230 - Pet Rent";
 		   case "Hawaii":
 			   return "40230 - Pet Rent";
+		   case "Saint Louis":
+			   return "40230 - Pet Rent";
 		   }
 		   return "";
 	   }
@@ -320,6 +326,8 @@ public class AppConfig
 			   return "40010 - Rent Income";
 		   case "Hawaii":
 			   return "40010 - Rent Income";
+		   case "Saint Louis":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -390,6 +398,8 @@ public class AppConfig
 		   case "Utah":
 			   return "43060 - Filter Fee";
 		   case "Hawaii":
+			   return "43060 - Filter Fee";
+		   case "Saint Louis":
 			   return "43060 - Filter Fee";
 			   
 		   }
@@ -464,6 +474,8 @@ public class AppConfig
 			   return "43070 - Resident Benefit Package Fee";
 		   case "Hawaii":
 			   return "43070 - Resident Benefit Package Fee";
+		   case "Saint Louis":
+			   return "43070 - Resident Benefit Package Fee";
 		   }
 		   return "";
 	   }
@@ -534,6 +546,8 @@ public class AppConfig
 		   case "Utah":
 			   return "43040 - Resident Renewal Admin Fee";
 		   case "Hawaii":
+			   return "43040 - Resident Renewal Admin Fee";
+		   case "Saint Louis":
 			   return "43040 - Resident Renewal Admin Fee";
 		    
 		   }
@@ -607,6 +621,8 @@ public class AppConfig
 			   return "YES";
 		   case "Hawaii":
 			   return "YES";
+		   case "Saint Louis":
+			   return "YES";
 		   }
 		   return "";
 	   }
@@ -677,6 +693,8 @@ public class AppConfig
 		   case "Utah":
 			   return "Yes";
 		   case "Hawaii":
+			   return "Yes";
+		   case "Saint Louis":
 			   return "Yes";
 		   }
 		   return "";    
@@ -750,6 +768,8 @@ public class AppConfig
 			   return "NO";
 		   case "Hawaii":
 			   return "NO";
+		   case "Saint Louis":
+			   return "NO";
 		   }
 		   return "";
 	   }
@@ -820,6 +840,8 @@ public class AppConfig
 			   case "Utah":
 				   return "No";
 			   case "Hawaii":
+				   return "No";
+			   case "Saint Louis":
 				   return "No";
 			   }
 			   return "";    

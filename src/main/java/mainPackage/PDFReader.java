@@ -730,6 +730,26 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "Saint Louis":
+				String pdfFormatType_saintLouis = PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_saintLouis);
+				if(pdfFormatType_saintLouis=="Format1")
+				{
+					if(PDFDataExtract.SaintLouis_Format1.saintLouis()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_saintLouis=="Format2")
+				     {
+					if(PDFDataExtract.SaintLouis_Format2.saintLouis()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
@@ -873,6 +893,10 @@ public class PDFReader
 			case "Hawaii":
 		        format1Text = PDFAppConfig.PDFFormatDecider.hawaii_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.hawaii_Format2;
+		        break;
+			case "Saint Louis":
+		        format1Text = PDFAppConfig.PDFFormatDecider.saintLouis_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.saintLouis_Format2;
 		        break;
 			}
 			
