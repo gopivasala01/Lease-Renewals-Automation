@@ -750,6 +750,26 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "Idaho Falls":
+				String pdfFormatType_idahoFalls = PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_idahoFalls);
+				if(pdfFormatType_idahoFalls=="Format1")
+				{
+					if(PDFDataExtract.IdahoFalls_Format1.idahoFalls()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_idahoFalls=="Format2")
+				     {
+					if(PDFDataExtract.IdahoFalls_Format2.idahoFalls()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
@@ -897,6 +917,10 @@ public class PDFReader
 			case "Saint Louis":
 		        format1Text = PDFAppConfig.PDFFormatDecider.saintLouis_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.saintLouis_Format2;
+		        break;
+			case "Idaho Falls":
+		        format1Text = PDFAppConfig.PDFFormatDecider.idahoFalls_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.idahoFalls_Format2;
 		        break;
 			}
 			
