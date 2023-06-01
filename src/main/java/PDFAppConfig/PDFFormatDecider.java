@@ -121,4 +121,8 @@ public class PDFFormatDecider
 		public static String idahoFalls_Format1 = "PARTIES: The parties to this Single Family Residence or Condominium Lease";
 		public static String idahoFalls_Format2 = "This is a legally binding Contract;";
 		
+	// Idaho Falls
+		public static String arizona_Format1 = "PARTIES: The parties to this Single Family Residence or Condominium Lease";
+		public static String arizona_Format2 = "This is a legally binding contract;";
+		
 }

@@ -109,6 +109,8 @@ public class AppConfig
 				  return "40010 - Rent Income";
 		   case "Idaho Falls":
 				  return "40010 - Rent Income";
+		   case "Arizona":
+				  return "40018 - Rent-PHX";
 		   }
 		   return "";
 	   }
@@ -184,6 +186,8 @@ public class AppConfig
 		   case "Saint Louis":
 			   return "40230 - Pet Rent";
 		   case "Idaho Falls":
+			   return "40230 - Pet Rent";
+		   case "Arizona":
 			   return "40230 - Pet Rent";
 		   }
 		   return "";
@@ -261,6 +265,8 @@ public class AppConfig
 			   return "40230 - Pet Rent";
 		   case "Idaho Falls":
 			   return "40230 - Pet Rent";
+		   case "Arizona":
+			   return "40230 - Pet Rent";
 		   }
 		   return "";
 	   }
@@ -336,6 +342,8 @@ public class AppConfig
 			   return "40010 - Rent Income";
 		   case "Idaho Falls":
 			   return "40010 - Rent Income";
+		   case "Arizona":
+			   return "40018 - Rent-PHX";
 		   }
 		   return "";
 	   }
@@ -410,6 +418,8 @@ public class AppConfig
 		   case "Saint Louis":
 			   return "43060 - Filter Fee";
 		   case "Idaho Falls":
+			   return "43060 - Filter Fee";
+		   case "Arizona":
 			   return "43060 - Filter Fee";
 			   
 		   }
@@ -488,6 +498,8 @@ public class AppConfig
 			   return "43070 - Resident Benefit Package Fee";
 		   case "Idaho Falls":
 			   return "43070 - Resident Benefit Package Fee";
+		   case "Arizona":
+			   return "43070 - Resident Benefit Package Fee";
 		   }
 		   return "";
 	   }
@@ -562,6 +574,8 @@ public class AppConfig
 		   case "Saint Louis":
 			   return "43040 - Resident Renewal Admin Fee";
 		   case "Idaho Falls":
+			   return "43040 - Resident Renewal Admin Fee";
+		   case "Arizona":
 			   return "43040 - Resident Renewal Admin Fee";
 		    
 		   }
@@ -639,6 +653,8 @@ public class AppConfig
 			   return "YES";
 		   case "Idaho Falls":
 			   return "YES";
+		   case "Arizona":
+			   return "YES";
 		   }
 		   return "";
 	   }
@@ -713,6 +729,8 @@ public class AppConfig
 		   case "Saint Louis":
 			   return "Yes";
 		   case "Idaho Falls":
+			   return "Yes";
+		   case "Arizona":
 			   return "Yes";
 		   }
 		   return "";    
@@ -790,6 +808,8 @@ public class AppConfig
 			   return "NO";
 		   case "Idaho Falls":
 			   return "NO";
+		   case "Arizona":
+			   return "NO";
 		   }
 		   return "";
 	   }
@@ -864,6 +884,8 @@ public class AppConfig
 			   case "Saint Louis":
 				   return "No";
 			   case "Idaho Falls":
+				   return "No";
+			   case "Arizona":
 				   return "No";
 			   }
 			   return "";    

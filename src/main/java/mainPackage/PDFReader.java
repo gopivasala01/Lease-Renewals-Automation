@@ -770,6 +770,26 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "Arizona":
+				String pdfFormatType_arizona = PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_arizona);
+				if(pdfFormatType_arizona=="Format1")
+				{
+					if(PDFDataExtract.Arizona_Format1.arizona()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_arizona=="Format2")
+				     {
+					if(PDFDataExtract.Arizona_Format2.arizona()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
@@ -921,6 +941,11 @@ public class PDFReader
 			case "Idaho Falls":
 		        format1Text = PDFAppConfig.PDFFormatDecider.idahoFalls_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.idahoFalls_Format2;
+		        break;
+		        
+			case "Arizona":
+		        format1Text = PDFAppConfig.PDFFormatDecider.arizona_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.arizona_Format2;
 		        break;
 			}
 			
