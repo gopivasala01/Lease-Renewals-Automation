@@ -790,6 +790,26 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "Maryland":
+				String pdfFormatType_maryland = PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_maryland);
+				if(pdfFormatType_maryland=="Format1")
+				{
+					if(PDFDataExtract.Maryland_Format1.maryland()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_maryland=="Format2")
+				     {
+					if(PDFDataExtract.Maryland_Format2.maryland()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
@@ -946,6 +966,10 @@ public class PDFReader
 			case "Arizona":
 		        format1Text = PDFAppConfig.PDFFormatDecider.arizona_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.arizona_Format2;
+		        break;
+			case "Maryland":
+		        format1Text = PDFAppConfig.PDFFormatDecider.maryland_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.maryland_Format2;
 		        break;
 			}
 			
