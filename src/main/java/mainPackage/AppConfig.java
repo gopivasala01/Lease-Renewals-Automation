@@ -2,7 +2,7 @@ package mainPackage;
 
 public class AppConfig 
 {
-	public static boolean saveButtonOnAndOff= true;
+	public static boolean saveButtonOnAndOff= true ;
 	
 	public static String username= "mds0418@gmail.com";
 	public static String password="KRm#V39fecMDGg#";
@@ -113,6 +113,8 @@ public class AppConfig
 				  return "40010 - Rent Income";
 		   case "Maryland":
 				  return "40010 - Rent Income";
+		   case "Virginia":
+				  return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -192,6 +194,8 @@ public class AppConfig
 		   case "Arizona":
 			   return "40230 - Pet Rent";
 		   case "Maryland":
+			   return "40230 - Pet Rent";
+		   case "Virginia":
 			   return "40230 - Pet Rent";
 		   }
 		   return "";
@@ -273,6 +277,8 @@ public class AppConfig
 			   return "40230 - Pet Rent";
 		   case "Maryland":
 			   return "40230 - Pet Rent";
+		   case "Virginia":
+			   return "40230 - Pet Rent";
 		   }
 		   return "";
 	   }
@@ -352,6 +358,8 @@ public class AppConfig
 			   return "40010 - Rent Income";
 		   case "Maryland":
 			   return "40010 - Rent Income";
+		   case "Virginia":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -430,6 +438,8 @@ public class AppConfig
 		   case "Arizona":
 			   return "43060 - Filter Fee";
 		   case "Maryland":
+			   return "43060 - Filter Fee";
+		   case "Virginia":
 			   return "43060 - Filter Fee";
 			   
 		   }
@@ -512,6 +522,8 @@ public class AppConfig
 			   return "43070 - Resident Benefit Package Fee";
 		   case "Maryland":
 			   return "43070 - Resident Benefit Package Fee";
+		   case "Virginia":
+			   return "43070 - Resident Benefit Package Fee";
 		   }
 		   return "";
 	   }
@@ -590,6 +602,8 @@ public class AppConfig
 		   case "Arizona":
 			   return "43040 - Resident Renewal Admin Fee";
 		   case "Maryland":
+			   return "43040 - Resident Renewal Admin Fee";
+		   case "Virginia":
 			   return "43040 - Resident Renewal Admin Fee";
 		    
 		   }
@@ -671,6 +685,8 @@ public class AppConfig
 			   return "YES";
 		   case "Maryland":
 			   return "YES";
+		   case "Virginia":
+			   return "YES";
 		   }
 		   return "";
 	   }
@@ -749,6 +765,8 @@ public class AppConfig
 		   case "Arizona":
 			   return "Yes";
 		   case "Maryland":
+			   return "Yes";
+		   case "Virginia":
 			   return "Yes";
 		   }
 		   return "";    
@@ -830,6 +848,8 @@ public class AppConfig
 			   return "NO";
 		   case "Maryland":
 			   return "NO";
+		   case "Virginia":
+			   return "NO";
 		   }
 		   return "";
 	   }
@@ -908,6 +928,8 @@ public class AppConfig
 			   case "Arizona":
 				   return "No";
 			   case "Maryland":
+				   return "No";
+			   case "Virginia":
 				   return "No";
 			   }
 			   return "";    

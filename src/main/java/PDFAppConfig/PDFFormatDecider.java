@@ -128,6 +128,10 @@ public class PDFFormatDecider
 		public static String maryland_Format1 = "The parties to this Lease are the owner of the Property";
 		public static String maryland_Format2 = "This is a legally binding contract;";	
 		
+	//Virginia
+		public static String virginia_Format1 = "The parties to this Lease are the owner of the Property";
+		public static String virginia_Format2 = "This is a legally binding contract;";	
+		
 		
 		
 }
