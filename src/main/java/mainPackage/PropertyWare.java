@@ -48,14 +48,14 @@ public class PropertyWare
         RunnerClass.js = (JavascriptExecutor)RunnerClass.driver;
         RunnerClass.driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
         RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(2));
-        try
-        {
-        if(RunnerClass.driver.findElement(Locators.loginError).isDisplayed())
-        {
-        	System.out.println("Login failed");
-		    RunnerClass.failedReason = RunnerClass.failedReason+","+ "Login failed";
-			return false;
-        }
+        try {
+            if (RunnerClass.driver.findElement(Locators.loginError).isDisplayed()) 
+            {
+                System.out.println("Login failed");
+                String failedReason = ", Login failed";
+                MailActivities.sendEmail(failedReason);
+                return false;
+            }
         }
         catch(Exception e) {}
         RunnerClass.driver.manage().timeouts().implicitlyWait(100,TimeUnit.SECONDS);
@@ -70,6 +70,8 @@ public class PropertyWare
 		}
 	}
 	
+	
+
 	public static boolean searchBuilding(String company, String building)
 	{
 		try

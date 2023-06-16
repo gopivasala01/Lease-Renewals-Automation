@@ -90,7 +90,7 @@ public class Alabama_Format1 {
 		    System.out.println("Monthly Rent = "+PDFReader.monthlyRent);
 		    
 		    //HVAC Air Filter Fee (OR) Resident Benefits Package
-		    if(text.contains(PDFAppConfig.Alabama_Format1.HVACFilterAddendumTextAvailabilityCheck))
+		   if(text.contains(PDFAppConfig.Alabama_Format1.HVACFilterAddendumTextAvailabilityCheck))
 		    {
 		    	PDFReader.HVACFilterFlag = true;
 		    	//HVAC Air Filter Fee

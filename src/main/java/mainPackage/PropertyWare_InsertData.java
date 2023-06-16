@@ -483,7 +483,7 @@ public class PropertyWare_InsertData
       }
 		
 	}
-	
+	 
 	
 	
 	public static boolean addingAnAutoCharge(String accountCode, String amount, String startDate,String endDate,String description) throws Exception
@@ -494,7 +494,7 @@ public class PropertyWare_InsertData
 		
 		 
 	    //Charge Code
-		Select autoChargesDropdown = new Select(RunnerClass.driver.findElement(Locators.accountDropdown));
+		Select autoChargesDropdown = new Select(RunnerClass.driver.findElement(Locators.accountDropdown));  
 		autoChargesDropdown.selectByVisibleText(accountCode); //
 					
 		//Start Date
