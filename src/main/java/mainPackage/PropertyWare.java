@@ -212,7 +212,7 @@ public class PropertyWare
 			}
 		}
 		catch(Exception e) {}
-		String leaseStatus = RunnerClass.driver.findElement(By.xpath("//*[@id=\"infoTable\"]/tbody/tr[6]/td[2]")).getText();
+		String leaseStatus = RunnerClass.driver.findElement(Locators.status).getText();
 		if(leaseStatus.equals("Active - Month to Month") || leaseStatus.equals("Active - Notice Given"))
 		{
 			RunnerClass.driver.findElement(Locators.summaryEditButton).click();

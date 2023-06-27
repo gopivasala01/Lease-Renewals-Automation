@@ -32,6 +32,7 @@ public class PropertyWare_InsertOtherInformation
 	public static String renewalOnDate = "";
 	
 	
+	
 	public static void addingOtherInformation() throws Exception
 	{
 		
@@ -292,7 +293,7 @@ public class PropertyWare_InsertOtherInformation
 		
 		try {
 		    RunnerClass.driver.navigate().refresh();
-		    RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.relatedActivities_LeaseRenewal)).build().perform();
+ 
 		    RunnerClass.driver.findElement(Locators.relatedActivities_LeaseRenewal).click();
 		    Thread.sleep(2000);
 		    

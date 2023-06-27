@@ -115,6 +115,8 @@ public class AppConfig
 				  return "40010 - Rent Income";
 		   case "Virginia":
 				  return "40010 - Rent Income";
+		   case "Washington DC":
+				  return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -196,6 +198,8 @@ public class AppConfig
 		   case "Maryland":
 			   return "40230 - Pet Rent";
 		   case "Virginia":
+			   return "40230 - Pet Rent";
+		   case "Washington DC":
 			   return "40230 - Pet Rent";
 		   }
 		   return "";
@@ -279,6 +283,8 @@ public class AppConfig
 			   return "40230 - Pet Rent";
 		   case "Virginia":
 			   return "40230 - Pet Rent";
+		   case "Washington DC":
+			   return "40230 - Pet Rent";
 		   }
 		   return "";
 	   }
@@ -360,6 +366,8 @@ public class AppConfig
 			   return "40010 - Rent Income";
 		   case "Virginia":
 			   return "40010 - Rent Income";
+		   case "Washington DC":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -440,6 +448,8 @@ public class AppConfig
 		   case "Maryland":
 			   return "43060 - Filter Fee";
 		   case "Virginia":
+			   return "43060 - Filter Fee";
+		   case "Washington DC":
 			   return "43060 - Filter Fee";
 			   
 		   }
@@ -524,6 +534,8 @@ public class AppConfig
 			   return "43070 - Resident Benefit Package Fee";
 		   case "Virginia":
 			   return "43070 - Resident Benefit Package Fee";
+		   case "Washington DC":
+			   return "43070 - Resident Benefit Package Fee";
 		   }
 		   return "";
 	   }
@@ -604,6 +616,8 @@ public class AppConfig
 		   case "Maryland":
 			   return "43040 - Resident Renewal Admin Fee";
 		   case "Virginia":
+			   return "43040 - Resident Renewal Admin Fee";
+		   case "Washington DC":
 			   return "43040 - Resident Renewal Admin Fee";
 		    
 		   }
@@ -687,6 +701,8 @@ public class AppConfig
 			   return "YES";
 		   case "Virginia":
 			   return "YES";
+		   case "Washington DC":
+			   return "YES";
 		   }
 		   return "";
 	   }
@@ -767,6 +783,8 @@ public class AppConfig
 		   case "Maryland":
 			   return "Yes";
 		   case "Virginia":
+			   return "Yes";
+		   case "Washington DC":
 			   return "Yes";
 		   }
 		   return "";    
@@ -850,6 +868,8 @@ public class AppConfig
 			   return "NO";
 		   case "Virginia":
 			   return "NO";
+		   case "Washington DC":
+			   return "NO";
 		   }
 		   return "";
 	   }
@@ -930,6 +950,8 @@ public class AppConfig
 			   case "Maryland":
 				   return "No";
 			   case "Virginia":
+				   return "No";
+			   case "Washington DC":
 				   return "No";
 			   }
 			   return "";    
