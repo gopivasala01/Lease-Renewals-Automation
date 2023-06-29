@@ -36,6 +36,20 @@ public class PropertyWare_InsertOtherInformation
 	public static void addingOtherInformation() throws Exception
 	{
 		
+		String leaseStatus = RunnerClass.driver.findElement(Locators.status).getText();
+		if(leaseStatus.equals("Active - Month to Month") || leaseStatus.equals("Active - Notice Given"))
+		{
+			RunnerClass.driver.findElement(Locators.summaryEditButton).click();
+			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.activeStatus)).build().perform();
+			Select statusDropdown = new Select(RunnerClass.driver.findElement(Locators.activeStatus));
+			statusDropdown.selectByVisibleText("Active");
+			RunnerClass.js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+			  if(AppConfig.saveButtonOnAndOff==true)
+				RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.saveLease)).click(RunnerClass.driver.findElement(Locators.saveLease)).build().perform();
+			  else
+				RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.cancelLease)).click(RunnerClass.driver.findElement(Locators.cancelLease)).build().perform();
+		}
+		
 		RunnerClass.driver.navigate().refresh();
 		RunnerClass.driver.findElement(Locators.summaryEditButton).click();
 		Thread.sleep(2000);
@@ -326,12 +340,12 @@ public class PropertyWare_InsertOtherInformation
 		    RunnerClass.driver.findElement(Locators.relatedActivities_renewalOnDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
 		    RunnerClass.driver.findElement(Locators.relatedActivities_renewalOnDate).sendKeys(renewalOnDate);
 		    Thread.sleep(3000);
-		    
+		
 		    // Base Rent
-		   
 		    RunnerClass.driver.findElement(Locators.baseRentActivities).click();
 		    RunnerClass.driver.findElement(Locators.baseRentActivities).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
 		    RunnerClass.driver.findElement(Locators.baseRentActivities).sendKeys(currentMonthlyRent);
+		    
 		    
 		    if (AppConfig.saveButtonOnAndOff) 
 		    {
