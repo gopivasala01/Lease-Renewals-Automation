@@ -85,7 +85,7 @@ public class Locators
     public static By relatedActivities_renewalOnDate = By.xpath("//*[text()=' Renewed On Date']/following::input[1]");
     public static By relatedActivities_save = By.xpath("(//*[@class='primaryButtons'])[4]/input[1]");
     public static By relatedActivities_cancel = By.xpath("(//*[@class='primaryButtons'])[4]/input[2]");
-    public static By baseRentActivities = By.name("baseRentAsString");
+    public static By baseRentActivities = By.xpath("//*[text()=' Base Rent']/following::input[1]");
     
     public static By relatedActivities_newLeaseRenewalPopUpHeading = By.xpath("//*[text()='New Lease Renewal']");
     public static By ledgerTab = By.id("tab2");

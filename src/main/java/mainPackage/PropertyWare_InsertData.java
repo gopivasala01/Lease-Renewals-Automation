@@ -241,8 +241,8 @@ public class PropertyWare_InsertData
  							editButtons.get(k).click();
  							RunnerClass.driver.findElement(Locators.autoCharge_EndDate).clear();
  							RunnerClass.driver.findElement(Locators.autoCharge_EndDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
- 							System.out.println("Existing Auto Charge is Edited");
  							RunnerClass.driver.findElement(Locators.autoCharge_EndDate).sendKeys(getLastDayOfMonth());
+ 							System.out.println("Existing Auto Charge is Edited");
  							if(AppConfig.saveButtonOnAndOff==false)
  								RunnerClass.driver.findElement(Locators.autoCharge_CancelButton).click();
  								else 
