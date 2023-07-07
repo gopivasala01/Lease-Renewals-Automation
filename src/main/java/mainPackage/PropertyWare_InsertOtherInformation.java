@@ -340,8 +340,14 @@ public class PropertyWare_InsertOtherInformation
 		    RunnerClass.driver.findElement(Locators.relatedActivities_renewalOnDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
 		    RunnerClass.driver.findElement(Locators.relatedActivities_renewalOnDate).sendKeys(renewalOnDate);
 		    Thread.sleep(3000);
-		    RunnerClass.driver.findElement(By.xpath("/html/body/div[3]/div[2]/table/tbody/tr/td[2]/form/div[16]/div[2]/table[2]/caption")).click();
-		    
+		    if(RunnerClass.driver.findElement(Locators.clickPath).isDisplayed())
+		    {
+		    RunnerClass.driver.findElement(Locators.clickPath).click();
+		    }
+		    else 
+		    {
+		    	RunnerClass.driver.findElement(Locators.clickPath1).click();
+		    }
 		 // Base Rent
 		    RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.baseRentActivities)).click().build().perform();
 		    RunnerClass.driver.findElement(Locators.baseRentActivities).click();

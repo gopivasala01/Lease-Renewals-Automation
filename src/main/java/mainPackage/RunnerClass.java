@@ -186,7 +186,7 @@ public class RunnerClass
 			catch(Exception e) {}
 		   RunnerClass.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 	        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(15));
-	        //driver.quit();
+	        
 		  }
 		  catch(Exception e)
 		  {
@@ -196,6 +196,7 @@ public class RunnerClass
 		  }
 	}
 }
+		driver.quit();
 
 	}   
 
