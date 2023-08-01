@@ -254,6 +254,16 @@ public class PropertyWare
 				break;
 			}
 		}
+		if(checkLeaseAgreementAvailable == false)
+			for(int i =0;i<documents.size();i++)
+			{
+				if(documents.get(i).getText().contains("Renewal_"))//&&documents.get(i).getText().contains(leaseFirstName))
+				{
+					documents.get(i).click();
+					checkLeaseAgreementAvailable = true;
+					break;
+				}
+			}
 		
 		if(checkLeaseAgreementAvailable == false)
 		{
