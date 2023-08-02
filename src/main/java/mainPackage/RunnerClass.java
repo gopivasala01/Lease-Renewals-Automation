@@ -73,12 +73,12 @@ public class RunnerClass
 		//Get Pending Renewal Leases
 		//Company,BuildingAbbreviation, LeaseNae
 		DataBase.getBuildingsList();
-		//for(int i=0;i<pendingRenewalLeases.length;i++) 
+		for(int i=0;i<pendingRenewalLeases.length;i++) 
 		{
 			//System.out.println(" Record -- "+(i+1));
-		  company = "Florida";// pendingRenewalLeases[i][0];
-		  buildingAbbreviation = "WILL2925";//pendingRenewalLeases[i][1];
-		  ownerName = "Morgan - Morgan_5";//pendingRenewalLeases[i][2];
+		  company =  pendingRenewalLeases[i][0];
+		  buildingAbbreviation = pendingRenewalLeases[i][1];
+		  ownerName = pendingRenewalLeases[i][2];
 		  statusID =0;
 		  failedReason = "";
 		  

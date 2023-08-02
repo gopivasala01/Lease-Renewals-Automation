@@ -39,7 +39,7 @@ public class PDFFormatDecider
 	public static String littleRock_Format2 = "THIS RESIDENTIAL LEASE AGREEMENT";
 	
 	// Tennessee
-		public static String tennessee_Format1 = "The parties to this Lease are the owner of the Property";
+		public static String tennessee_Format1 = "This is a legally binding Contract;";
 		public static String tennessee_Format2 = "THIS RESIDENTIAL LEASE AGREEMENT";
 		
 	// California
