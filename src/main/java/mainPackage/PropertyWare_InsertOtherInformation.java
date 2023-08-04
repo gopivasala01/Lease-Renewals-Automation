@@ -301,97 +301,99 @@ public class PropertyWare_InsertOtherInformation
 		
 	}
 	
-	public static void RelatedActivities() throws Exception
+	public static void RelatedActivities() throws Exception 
 	{
-		
-		
-		try {
-		    RunnerClass.driver.navigate().refresh();
- 
-		    RunnerClass.driver.findElement(Locators.relatedActivities_LeaseRenewal).click();
-		    Thread.sleep(2000);
-		    
-		    try {
-		    RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.removeLeasingFee)).build().perform();
-		    
-		    
-		    if(RunnerClass.driver.findElement(Locators.removeLeasingFee).isDisplayed()) 
-		    {
-		    RunnerClass.driver.findElement(Locators.removeLeasingFee).click();
-		    }}
-		    catch (Exception e1){}
-		    
-		    {
-		    //Related Activities - New Start Date
-		    RunnerClass.driver.findElement(Locators.relatedActivities_newStartDate).click();
-		    RunnerClass.driver.findElement(Locators.relatedActivities_newStartDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
-		    RunnerClass.driver.findElement(Locators.relatedActivities_newStartDate).sendKeys(newStartDate);
-		    
-		    //Click this to remove Calendar 
-		    RunnerClass.driver.findElement(Locators.relatedActivities_newLeaseRenewalPopUpHeading).click();
-		    
-		    //Related Activities - New End Date
-		    RunnerClass.driver.findElement(Locators.relatedActivities_newEndDate).click();
-		    RunnerClass.driver.findElement(Locators.relatedActivities_newEndDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
-		    RunnerClass.driver.findElement(Locators.relatedActivities_newEndDate).sendKeys(newEndDate);
-		    
-		    //Related Activities - Renewal On Date
-		    RunnerClass.driver.findElement(Locators.relatedActivities_renewalOnDate).click();
-		    RunnerClass.driver.findElement(Locators.relatedActivities_renewalOnDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
-		    RunnerClass.driver.findElement(Locators.relatedActivities_renewalOnDate).sendKeys(renewalOnDate);
-		    Thread.sleep(3000);
-		    RunnerClass.driver.findElement(Locators.clickPath).click();
-		    /*if(RunnerClass.driver.findElement(Locators.clickPath).isDisplayed())
-		    {
-		    RunnerClass.driver.findElement(Locators.clickPath).click();
-		    }
-		    else 
-		    {
-		    	RunnerClass.driver.findElement(Locators.clickPath1).click();
-		    }*/
-		 // Base Rent
-		    RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.baseRentActivities)).click().build().perform();
-		    RunnerClass.driver.findElement(Locators.baseRentActivities).click();
-		    RunnerClass.driver.findElement(Locators.baseRentActivities).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
-		    RunnerClass.driver.findElement(Locators.baseRentActivities).sendKeys(currentMonthlyRent);
-		    Thread.sleep(3000);
-		    
-		    
-		    if (AppConfig.saveButtonOnAndOff) 
-		    {
-		        RunnerClass.driver.findElement(Locators.relatedActivities_save).click();
-		    } else 
-		    {
-		        RunnerClass.driver.findElement(Locators.relatedActivities_cancel).click();
-		    }
-		    Thread.sleep(3000);
-		    
-		    
-		}
-		}
-		catch (Exception e) 
-		{
-		    RunnerClass.statusID = 1;
-		    RunnerClass.failedReason = RunnerClass.failedReason + "," + "Issue in adding Related Activities";
-		    System.out.println("Issue in adding Related Activities");
-		    e.printStackTrace();
-		    
-		} finally 
-		{
-		    try {
-		        if (RunnerClass.driver.findElement(Locators.youMustCorrectTheFollowingErrorMessage).isDisplayed()) {
-		            RunnerClass.statusID = 1;
-		            RunnerClass.failedReason = RunnerClass.failedReason + "," + "Issue in adding Related Activities";
-		            System.out.println("Issue in adding Related Activities");
-		            RunnerClass.driver.findElement(Locators.relatedActivities_cancel).click();
-		        }
-		    } catch (Exception e) 
-		    {
-		        
-		    }
-		}
-		
-		}
+	    try {
+	        RunnerClass.driver.navigate().refresh();
+	        RunnerClass.driver.findElement(Locators.relatedActivities_LeaseRenewal).click();
+	        Thread.sleep(2000);
+
+	        try 
+	        {
+	            RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.removeLeasingFee)).build().perform();
+	            if (RunnerClass.driver.findElement(Locators.removeLeasingFee).isDisplayed()) {
+	                RunnerClass.driver.findElement(Locators.removeLeasingFee).click();
+	            }
+	        } catch (Exception e1) 
+	        {
+	            // Ignore any exception that might occur during lease fee removal
+	        }
+
+	        // Related Activities - New Start Date
+	        RunnerClass.driver.findElement(Locators.relatedActivities_newStartDate).click();
+	        RunnerClass.driver.findElement(Locators.relatedActivities_newStartDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+	        RunnerClass.driver.findElement(Locators.relatedActivities_newStartDate).sendKeys(newStartDate);
+
+	        // Click this to remove Calendar pop-up if present
+	        RunnerClass.driver.findElement(Locators.relatedActivities_newLeaseRenewalPopUpHeading).click();
+
+	        // Related Activities - New End Date
+	        RunnerClass.driver.findElement(Locators.relatedActivities_newEndDate).click();
+	        RunnerClass.driver.findElement(Locators.relatedActivities_newEndDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+	        RunnerClass.driver.findElement(Locators.relatedActivities_newEndDate).sendKeys(newEndDate);
+
+	        // Related Activities - Renewal On Date
+	        RunnerClass.driver.findElement(Locators.relatedActivities_renewalOnDate).click();
+	        RunnerClass.driver.findElement(Locators.relatedActivities_renewalOnDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+	        RunnerClass.driver.findElement(Locators.relatedActivities_renewalOnDate).sendKeys(renewalOnDate);
+	        Thread.sleep(3000);
+	        RunnerClass.driver.findElement(Locators.clickPath).click();
+
+	        // Base Rent
+	        RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.baseRentActivities)).click().build().perform();
+	        RunnerClass.driver.findElement(Locators.baseRentActivities).click();
+	        RunnerClass.driver.findElement(Locators.baseRentActivities).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+	        RunnerClass.driver.findElement(Locators.baseRentActivities).sendKeys(currentMonthlyRent);
+	        Thread.sleep(3000);
+
+	        if (AppConfig.saveButtonOnAndOff) 
+	        {
+	            RunnerClass.driver.findElement(Locators.relatedActivities_save).click();
+	        } else 
+	        {
+	            RunnerClass.driver.findElement(Locators.relatedActivities_cancel).click();
+	        }
+	        Thread.sleep(3000);
+
+	        // Check if an error message is displayed
+	        if (RunnerClass.driver.findElement(By.xpath("//*[@id=\"errorMessages\"]/ul/li[1]")).isDisplayed()) 
+	        {
+	            RunnerClass.statusID = 1;
+	            RunnerClass.failedReason = RunnerClass.failedReason + "," + "Issue in adding Related Activities & Start Date must be Previous to end Date";
+	            System.out.println("Issue in adding Related Activities");
+	        }
+	    } catch (InterruptedException e1) 
+	    {
+	        // Handle InterruptedException if it occurs during the Thread.sleep() calls
+	        RunnerClass.statusID = 1;
+	        RunnerClass.failedReason = RunnerClass.failedReason + "," + "Issue in adding Related Activities";
+	        System.out.println("Issue in adding Related Activities");
+	        e1.printStackTrace();
+	    } catch (Exception e) 
+	    {
+	        // Handle any other exceptions
+	        RunnerClass.statusID = 1;
+	        RunnerClass.failedReason = RunnerClass.failedReason + "," + "Issue in adding Related Activities";
+	        System.out.println("Issue in adding Related Activities");
+	        e.printStackTrace();
+	    } finally 
+	    {
+	        try {
+	            // Check if there is an error message and handle it if displayed
+	            if (RunnerClass.driver.findElement(Locators.youMustCorrectTheFollowingErrorMessage).isDisplayed()) 
+	            {
+	                RunnerClass.statusID = 1;
+	                RunnerClass.failedReason = RunnerClass.failedReason + "," + "Issue in adding Related Activities";
+	                System.out.println("Issue in adding Related Activities");
+	                RunnerClass.driver.findElement(Locators.relatedActivities_cancel).click();
+	            }
+	        } catch (NoSuchElementException e) 
+	        {
+	            // Ignore NoSuchElementException if the element is not found
+	        }
+	    }
+	}
+
 	
 	
 	public static void clearExistingVariableValues()
