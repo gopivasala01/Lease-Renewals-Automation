@@ -65,7 +65,8 @@ public class RunnerClass
 	public static String currentTime;
 	public static int statusID;
 	public static String renewalExecutionDate = "";
-	
+	public static boolean checkifMoveInDateIsLessThan5DaysToEOM = false;
+																							
 	public static void main(String[] args) throws Exception 
 	{
 		

@@ -2,11 +2,11 @@ package PDFAppConfig;
 
 public class Florida_Format2 
 {
-	public static String commencementDate_Prior = "shall commence on";
-	public static String commencementDate_After = "(the �Commencement Date�)";
+	public static String commencementDate_Prior = "shall commence on ";
+	public static String commencementDate_After = " Commencement Date ";
 	
-	public static String expirationDate_Prior = "Premises) on "; 
-	public static String expirationDate_After = " (the �Expiration Date�).";
+	public static String expirationDate_Prior = "the Premises) on "; 
+	public static String expirationDate_After = " Expiration Date";
 	
 	public static String proratedRentDate_Prior = "prorated rent, on or before";
 	public static String proratedRentDate_After = "Tenant will pay Landlord $";

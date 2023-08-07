@@ -60,6 +60,7 @@ public class PDFReader
     public static String HVACAirFilterFee ="";
     public static String previousMonthlyRent = "";
 	public static boolean dateCheckInLedgerForMonthlyRentStartDate = false;
+	
 		public static boolean readPDFPerMarket(String market) throws Exception  
 		{
 			//Initialize all PDF data variables

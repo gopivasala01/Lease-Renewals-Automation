@@ -54,7 +54,7 @@ public class Florida_Format2
 		    try
 		    {
 		    	PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.Florida_Format2.commencementDate_Prior)+PDFAppConfig.Florida_Format2.commencementDate_Prior.length());
-		    	PDFReader.commencementDate =  PDFReader.commencementDate.substring(0,PDFReader.commencementDate.indexOf("(the")).trim();
+		    	PDFReader.commencementDate =  PDFReader.commencementDate.substring(0, PDFReader.commencementDate.indexOf(" Commencement")).trim();
 		    }
 		    catch(Exception e)
 		    {
@@ -65,7 +65,7 @@ public class Florida_Format2
 		   try
 		    {
 			   PDFReader.expirationDate = text.substring(text.indexOf(PDFAppConfig.Florida_Format2.expirationDate_Prior)+PDFAppConfig.Florida_Format2.expirationDate_Prior.length());
-		    	PDFReader.expirationDate = PDFReader.expirationDate.substring(0,PDFReader.expirationDate.indexOf("(the")).trim();
+		    	PDFReader.expirationDate = PDFReader.expirationDate.substring(0, PDFReader.expirationDate.indexOf(" Expiration")).trim();
 		    }
 		    catch(Exception e)
 		    {

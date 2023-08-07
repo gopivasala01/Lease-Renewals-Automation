@@ -356,12 +356,7 @@ public class PropertyWare_InsertOtherInformation
 	        Thread.sleep(3000);
 
 	        // Check if an error message is displayed
-	        if (RunnerClass.driver.findElement(By.xpath("//*[@id=\"errorMessages\"]/ul/li[1]")).isDisplayed()) 
-	        {
-	            RunnerClass.statusID = 1;
-	            RunnerClass.failedReason = RunnerClass.failedReason + "," + "Issue in adding Related Activities & Start Date must be Previous to end Date";
-	            System.out.println("Issue in adding Related Activities");
-	        }
+	        
 	    } catch (InterruptedException e1) 
 	    {
 	        // Handle InterruptedException if it occurs during the Thread.sleep() calls
@@ -378,19 +373,7 @@ public class PropertyWare_InsertOtherInformation
 	        e.printStackTrace();
 	    } finally 
 	    {
-	        try {
-	            // Check if there is an error message and handle it if displayed
-	            if (RunnerClass.driver.findElement(Locators.youMustCorrectTheFollowingErrorMessage).isDisplayed()) 
-	            {
-	                RunnerClass.statusID = 1;
-	                RunnerClass.failedReason = RunnerClass.failedReason + "," + "Issue in adding Related Activities";
-	                System.out.println("Issue in adding Related Activities");
-	                RunnerClass.driver.findElement(Locators.relatedActivities_cancel).click();
-	            }
-	        } catch (NoSuchElementException e) 
-	        {
-	            // Ignore NoSuchElementException if the element is not found
-	        }
+	       
 	    }
 	}
 

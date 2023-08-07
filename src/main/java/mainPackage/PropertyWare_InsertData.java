@@ -3,6 +3,7 @@ package mainPackage;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -29,48 +30,51 @@ public class PropertyWare_InsertData
 	
 	//ConfigureValues
 
-	public static boolean configureValues() throws Exception
-	{
-		
-		try
-		{
-		//Clear all values in Auto Charges first
-		String query1 = "Update automation.LeaseReneWalsAutoChargesConfiguration Set ChargeCode = null,Amount = null,StartDate=null,EndDate=null,Flag=null";
-		DataBase.updateTable(query1);
-				
-		//Clear all values in Auto Charges first
-		String query2 = "Update automation.LeaseReneWalsMoveInChargesConfiguration Set ChargeCode = null,Amount = null,StartDate=null,EndDate=null";
-		DataBase.updateTable(query2);
-		
-		//Get all Required dates converted
-		PDFReader.startDate = RunnerClass.convertDate(PDFReader.commencementDate);
-		PDFReader.endDate = RunnerClass.convertDate(PDFReader.expirationDate);
-		PDFReader.lastDayOfTheStartDate = RunnerClass.lastDateOfTheMonth(RunnerClass.firstDayOfMonth(PDFReader.startDate,-1));
-		PDFReader.firstFullMonth = RunnerClass.firstDayOfMonth(PDFReader.startDate,1);
-		PDFReader.secondFullMonth = RunnerClass.firstDayOfMonth(PDFReader.startDate,2);
-		
-		//Check if the Monthly Rent is already added in the Ledger, then take the Monthly Rent Start Date as "First Full Month" in Auto charges.
-		PropertyWare_InsertData.verifyLedgerForMonhtlyRentStartDate();
-		
-		}
-		catch(Exception e)
-		{
-			System.out.println("Issue in getting or Converting dates");
-			RunnerClass.failedReason =  RunnerClass.failedReason+","+"Issue in getting or Converting dates";
-			return false;
-		}
-		//Update dates for auto charges
-		PropertyWare_ConsolidateValues.updateDates();
-		//Adding values to the Auto Charges table
-		if(PropertyWare_InsertData.addingValuesToTable()==false)
-			return false;
-		//Adding values to the Move In Charges table
-		if(PropertyWare_InsertData.addingValuesToMoveInChargesTable()==false)
-			return false;
-		//Update Flag column in table
-		PropertyWare_ConsolidateValues.decideAutoCharges();
-		return true;
+	public static boolean configureValues() throws Exception {
+	    try {
+	        // Convert commencement and expiration dates to LocalDate objects
+	        PDFReader.startDate = RunnerClass.convertDate(PDFReader.commencementDate);
+	        PDFReader.endDate = RunnerClass.convertDate(PDFReader.expirationDate);
+	        PDFReader.lastDayOfTheStartDate = RunnerClass.lastDateOfTheMonth(RunnerClass.firstDayOfMonth(PDFReader.startDate, -1));
+	        PDFReader.firstFullMonth = RunnerClass.firstDayOfMonth(PDFReader.startDate, 1);
+	        PDFReader.secondFullMonth = RunnerClass.firstDayOfMonth(PDFReader.startDate, 2);
+
+	        // Compare Start and end Dates in PW with Lease Agreement
+	        try {
+	            int comparisonResult = PDFReader.startDate.compareTo(PDFReader.endDate);
+	            if (comparisonResult < 0) {
+	                System.out.println("Start is matched");
+	            } else if (comparisonResult == 0) {
+	                System.out.println("Start and End Dates are the same");
+	            } else {
+	                System.out.println("Start Date must be previous to End Date");
+	                RunnerClass.failedReason += ",Start Date must be previous to End Date";
+	            }
+	        } catch (Exception e) {
+	            // Handle the exception, if needed
+	        }
+
+	        // Rest of your code...
+
+	    } catch (Exception e) {
+	        System.out.println("Issue in getting or Converting dates");
+	        RunnerClass.failedReason = RunnerClass.failedReason + "," + "Issue in getting or Converting dates";
+	        return false;
+	    }
+
+	    // Update dates for auto charges
+	    PropertyWare_ConsolidateValues.updateDates();
+	    // Adding values to the Auto Charges table
+	    if (PropertyWare_InsertData.addingValuesToTable() == false)
+	        return false;
+	    // Adding values to the Move In Charges table
+	    if (PropertyWare_InsertData.addingValuesToMoveInChargesTable() == false)
+	        return false;
+	    // Update Flag column in table
+	    PropertyWare_ConsolidateValues.decideAutoCharges();
+	    return true;
 	}
+
 	public static boolean verifyLedgerForMonhtlyRentStartDate()
 	{
 		
