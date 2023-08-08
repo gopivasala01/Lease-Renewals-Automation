@@ -41,15 +41,17 @@ public class PropertyWare_InsertData
 
 	        // Compare Start and end Dates in PW with Lease Agreement
 	        try {
-	            int comparisonResult = PDFReader.startDate.compareTo(PDFReader.endDate);
-	            if (comparisonResult < 0) {
-	                System.out.println("Start is matched");
-	            } else if (comparisonResult == 0) {
-	                System.out.println("Start and End Dates are the same");
-	            } else {
-	                System.out.println("Start Date must be previous to End Date");
-	                RunnerClass.failedReason += ",Start Date must be previous to End Date";
-	            }
+	        	int comparisonResult = PDFReader.endDate.compareTo(PDFReader.startDate);
+
+	        	if (comparisonResult < 0) {
+	        	    System.out.println("End Date is before Start Date");
+	        	    // Handle the situation where the End Date is before the Start Date
+	        	} else if (comparisonResult == 0) {
+	        	    System.out.println("Start Date and End Date are the same");
+	        	} else {
+	        	    System.out.println("End Date is after Start Date");
+	        	    // Handle the situation where the End Date is after the Start Date
+	        	}
 	        } catch (Exception e) {
 	            // Handle the exception, if needed
 	        }
