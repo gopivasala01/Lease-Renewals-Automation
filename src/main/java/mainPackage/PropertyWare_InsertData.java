@@ -43,20 +43,25 @@ public class PropertyWare_InsertData
 	        try {
 	        	int comparisonResult = PDFReader.endDate.compareTo(PDFReader.startDate);
 
-	        	if (comparisonResult < 0) {
+	        	if (comparisonResult < 0) 
+	        	{
 	        	    System.out.println("End Date is before Start Date");
 	        	    // Handle the situation where the End Date is before the Start Date
-	        	} else if (comparisonResult == 0) {
+	        	} 
+	        	else if (comparisonResult == 0) 
+	        	{
 	        	    System.out.println("Start Date and End Date are the same");
-	        	} else {
+	        	} else 
+	        	{
 	        	    System.out.println("End Date is after Start Date");
 	        	    // Handle the situation where the End Date is after the Start Date
 	        	}
-	        } catch (Exception e) {
-	            // Handle the exception, if needed
+	        } 
+	        catch (Exception e)
+	        {
+	        	RunnerClass.failedReason = RunnerClass.failedReason + "," + "Issue in getting or Converting dates- End Date is before Start Date";
+		        
 	        }
-
-	        // Rest of your code...
 
 	    } catch (Exception e) {
 	        System.out.println("Issue in getting or Converting dates");
@@ -553,6 +558,7 @@ public class PropertyWare_InsertData
 		
 		try
 		{
+			RunnerClass.driver.navigate().refresh();
 		RunnerClass.driver.findElement(Locators.newCharge).click();
 		Thread.sleep(2000);
 		//Account code
