@@ -37,13 +37,13 @@ public class PropertyWare_InsertOtherInformation
 	{
 		
 		String leaseStatus = RunnerClass.driver.findElement(Locators.status).getText();
-		if(leaseStatus.equals("Active - Month to Month") || leaseStatus.equals("Active - Notice Given"))
+
+		if (!leaseStatus.equals("Active")) 
 		{
-			RunnerClass.driver.findElement(Locators.summaryEditButton).click();
-			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.activeStatus)).build().perform();
-			Select statusDropdown = new Select(RunnerClass.driver.findElement(Locators.activeStatus));
-			statusDropdown.selectByVisibleText("Active");
-			RunnerClass.js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+		    RunnerClass.driver.findElement(Locators.summaryEditButton).click();
+		    RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.activeStatus)).build().perform();
+		    new Select(RunnerClass.driver.findElement(Locators.activeStatus)).selectByVisibleText("Active");
+		    RunnerClass.js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 			  if(AppConfig.saveButtonOnAndOff==true)
 				RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.saveLease)).click(RunnerClass.driver.findElement(Locators.saveLease)).build().perform();
 			  else
