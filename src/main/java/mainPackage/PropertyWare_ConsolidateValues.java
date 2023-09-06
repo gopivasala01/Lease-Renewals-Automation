@@ -12,18 +12,23 @@ public class PropertyWare_ConsolidateValues
 			{
 				if(PDFReader.residentBenefitsPackageAvailabilityCheck==true)
 				{
+					if(PDFReader.HVACFilterFlag==false)
+					{
 					if(PDFReader.incrementRentFlag == true)
-					autoCharges = "2,3,4";
-					else autoCharges = "2,4";
+						query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (2,3,4)";
+					else 
+						query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (2,4)";
+				}
 				}
 			   else
 			    {
 				if(PDFReader.incrementRentFlag == true)
-				autoCharges = "2,3,5";
-				else autoCharges = "2,5";
+					query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (2,3,5)";
+				else 
+					query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (2,5)";
 				}
-				query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in ("+autoCharges+")";
-               // DataBase.updateTable(query);				
+				
+              // DataBase.updateTable(query);				
 		     }
 			else
 			{
@@ -31,20 +36,30 @@ public class PropertyWare_ConsolidateValues
 				{
 					if(PDFReader.residentBenefitsPackageAvailabilityCheck==true)
 					{
+						if(PDFReader.HVACFilterFlag==false)
+						{
 					if(PDFReader.incrementRentFlag == true)
-					autoCharges = "2,3,4,6";
-					else autoCharges = "2,4,6";
-					}
+						query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (2,3,4,6)";
+					else 
+						query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (2,4,6)";
+						}
+						}
+				}
 					else
 					{
 						if(PDFReader.incrementRentFlag == true)
-						autoCharges = "2,3,5,6";
-						else autoCharges = "2,5,6";
+							query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (2,3,5,6)";
+						else 
+							query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (2,5,6)";
 					}
-					query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in ("+autoCharges+")";
+					
 				}
-	         }
-      //}
+	         
+			
+			
+			DataBase.updateTable(query);
+			
+			//}
 		/*
 		//Other Portfolios
 		if(RunnerClass.portfolioType=="Others")
@@ -86,7 +101,7 @@ public class PropertyWare_ConsolidateValues
 	         }
       }
       */
-		DataBase.updateTable(query);
+		
 	}
 	
 	public static void updateDates()
@@ -99,14 +114,12 @@ public class PropertyWare_ConsolidateValues
 		    	{
 		    		PropertyWare_InsertData.monthlyRent_StartDate = PDFReader.firstFullMonth;
 					PropertyWare_InsertData.ResidentBenefitPackage_StartDate = PDFReader.firstFullMonth;
-					PropertyWare_InsertData.HVACAirFilterFee_StartDate = PDFReader.firstFullMonth;
 					PropertyWare_InsertData.petRent_StartDate = PDFReader.firstFullMonth;
 		    	}
 		    	else
 		    	{
 		    	PropertyWare_InsertData.monthlyRent_StartDate = PDFReader.startDate;
 				PropertyWare_InsertData.ResidentBenefitPackage_StartDate = PDFReader.startDate;
-				PropertyWare_InsertData.HVACAirFilterFee_StartDate = PDFReader.startDate;
 				PropertyWare_InsertData.petRent_StartDate = PDFReader.startDate;
 		    	}
 		    }
@@ -114,7 +127,6 @@ public class PropertyWare_ConsolidateValues
 		    {
 			PropertyWare_InsertData.monthlyRent_StartDate = PDFReader.firstFullMonth;
 			PropertyWare_InsertData.ResidentBenefitPackage_StartDate = PDFReader.firstFullMonth;
-			PropertyWare_InsertData.HVACAirFilterFee_StartDate = PDFReader.firstFullMonth;
 			PropertyWare_InsertData.petRent_StartDate = PDFReader.firstFullMonth;
 		    }
 			PropertyWare_InsertData.increasedRent_previousRentStartDate = PDFReader.startDate;

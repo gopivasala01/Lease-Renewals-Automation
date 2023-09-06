@@ -193,6 +193,7 @@ public class RunnerClass
 		  catch(Exception e)
 		  {
 			  e.printStackTrace();
+			  Thread.sleep(5000);
 			  driver.navigate().refresh();
 			  RunnerClass.js.executeScript("window.scrollBy(document.body.scrollHeight,0)");
 		  }
