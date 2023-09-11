@@ -92,7 +92,7 @@ public class Austin_Format2
 		    System.out.println("Monthly Rent = "+PDFReader.monthlyRent);
 		    
 		    //HVAC Air Filter Fee (OR) Resident Benefits Package
-		    if(text.contains(PDFAppConfig.Austin_Format2.HVACFilterAddendumTextAvailabilityCheck))
+		    if(text.contains(PDFAppConfig.Austin_Format2.HVACFilterAddendumTextAvailabilityCheck)&&!text.contains("Resident Benefits Package Opt-Out Addendum"))
 		    {
 		    	PDFReader.HVACFilterFlag = true;
 		    	//HVAC Air Filter Fee

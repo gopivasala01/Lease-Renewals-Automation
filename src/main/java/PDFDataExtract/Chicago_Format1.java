@@ -107,7 +107,7 @@ public class Chicago_Format1
 					    System.out.println("HVAC Air Filter Fee = "+PDFReader.HVACAirFilterFee);
 			    }
 			    
-			    if(text.contains(PDFAppConfig.Chicago_Format1.residentBenefitsPackageCheck))
+			    if(text.contains(PDFAppConfig.Chicago_Format1.residentBenefitsPackageCheck)&&!text.contains("Resident Benefits Package Opt-Out Addendum"))
 			    {
 			    	PDFReader.residentBenefitsPackageAvailabilityCheck = true;
 			    	//HVAC Air Filter Fee

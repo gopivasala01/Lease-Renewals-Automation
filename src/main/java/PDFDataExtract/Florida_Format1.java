@@ -106,10 +106,10 @@ public class Florida_Format1
 				    System.out.println("HVAC Air Filter Fee = "+PDFReader.HVACAirFilterFee);
 		    }
 		    
-		    if(text.contains(PDFAppConfig.Florida_Format1.residentBenefitsPackageCheck))
+		    if(text.contains(PDFAppConfig.Florida_Format1.residentBenefitsPackageCheck)&&!text.contains("Resident Benefits Package Opt-Out Addendum"))
 		    {
 		    	PDFReader.residentBenefitsPackageAvailabilityCheck = true;
-		    	//HVAC Air Filter Fee
+		    	//RBP FEE
 		    	 try
 				    {
 				    	PDFReader.residentBenefitsPackage = text.substring(text.indexOf(PDFAppConfig.Florida_Format1.RBP_Prior)+PDFAppConfig.Florida_Format1.RBP_Prior.length()).trim().split(" ")[0];

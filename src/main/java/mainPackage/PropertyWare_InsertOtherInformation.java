@@ -337,7 +337,7 @@ public class PropertyWare_InsertOtherInformation
 	        RunnerClass.driver.findElement(Locators.relatedActivities_renewalOnDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
 	        RunnerClass.driver.findElement(Locators.relatedActivities_renewalOnDate).sendKeys(renewalOnDate);
 	        Thread.sleep(3000);
-	        RunnerClass.driver.findElement(Locators.clickPath).click();
+	        RunnerClass.driver.findElement(Locators.relatedActivities_newLeaseRenewalPopUpHeading).click();
 
 	        // Base Rent
 	        RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.baseRentActivities)).click().build().perform();

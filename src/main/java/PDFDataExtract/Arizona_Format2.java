@@ -115,7 +115,7 @@ public class Arizona_Format2
 					    System.out.println("HVAC Air Filter Fee = "+PDFReader.HVACAirFilterFee);
 			    }
 			    
-			    if(text.contains(PDFAppConfig.Arizona_Format1.residentBenefitsPackageCheck))
+			    if(text.contains(PDFAppConfig.Arizona_Format1.residentBenefitsPackageCheck)&&!text.contains("Resident Benefits Package Opt-Out Addendum"))
 			    {
 			    	PDFReader.residentBenefitsPackageAvailabilityCheck = true;
 			    	//HVAC Air Filter Fee
