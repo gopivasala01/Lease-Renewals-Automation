@@ -94,6 +94,8 @@ public class PropertyWare_InsertData
 		
 		RunnerClass.driver.findElement(Locators.ledgerTab).click();
 		
+		PropertyWare.intermittentPopUp();
+		
 		List<WebElement> existingMoveInCharges_ChargeCode = RunnerClass.driver.findElements(Locators.moveInCharges_List);
 		List<WebElement> existingMoveInCharges_Date = RunnerClass.driver.findElements(Locators.moveInCharge_List_Date);
 		for(int i=0;i<existingMoveInCharges_ChargeCode.size();i++)
@@ -197,7 +199,9 @@ public class PropertyWare_InsertData
 		RunnerClass.driver.navigate().refresh();
 		RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 		RunnerClass.driver.findElement(Locators.summaryTab).click();
+		
 		Thread.sleep(2000);
+		PropertyWare.intermittentPopUp();
 	     
 	     RunnerClass.driver.findElement(Locators.summaryEditButton).click();
 	     RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.newAutoCharge)).build().perform();
@@ -286,7 +290,7 @@ public class PropertyWare_InsertData
 							PropertyWare_InsertData.saveAnAutoCharge();
 							continue;
 						}
-						if((autoChargeCodes.equals(AppConfig.getResidentBenefitsPackageChargeCode(RunnerClass.company))&&PDFReader.HVACFilterFlag==true)&&(!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.residentBenefitsPackage.replaceAll("[^0-9]", ""))||PDFReader.residentBenefitsPackage!=""))
+						if((autoChargeCodes.equals(AppConfig.getResidentBenefitsPackageChargeCode(RunnerClass.company))&&PDFReader.residentBenefitsPackageAvailabilityCheck==true)&&(!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.residentBenefitsPackage.replaceAll("[^0-9]", ""))||PDFReader.residentBenefitsPackage!=""))
 						{
 							editButtons.get(k).click();
 							PropertyWare_InsertData.editingExistingAutoCharge();
@@ -486,6 +490,7 @@ public class PropertyWare_InsertData
 			  else
 				RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.cancelLease)).click(RunnerClass.driver.findElement(Locators.cancelLease)).build().perform();
   Thread.sleep(2000);
+  PropertyWare.intermittentPopUp();
 		return true;
       }
       catch(Exception e)
@@ -534,6 +539,7 @@ public class PropertyWare_InsertData
 		else 
 		RunnerClass.driver.findElement(Locators.autoCharge_SaveButton).click();
 		Thread.sleep(2000);
+		PropertyWare.intermittentPopUp();
 		}
 		catch(Exception e)
 		{
@@ -561,6 +567,7 @@ public class PropertyWare_InsertData
 		{
 			RunnerClass.driver.navigate().refresh();
 		RunnerClass.driver.findElement(Locators.newCharge).click();
+		PropertyWare.intermittentPopUp();
 		Thread.sleep(2000);
 		//Account code
 		Select AutoChargesDropdown = new Select(RunnerClass.driver.findElement(Locators.accountDropdown));
@@ -609,7 +616,7 @@ public class PropertyWare_InsertData
 			RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 			
 			RunnerClass.driver.findElement(Locators.summaryTab).click();
-			
+			PropertyWare.intermittentPopUp();
 			e.printStackTrace();
 			System.out.println("Issue in adding Move in Charge"+description);
 			RunnerClass.failedReason =  RunnerClass.failedReason+","+"Issue in adding Move in Charge - "+description;

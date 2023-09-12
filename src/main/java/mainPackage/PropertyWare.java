@@ -262,7 +262,7 @@ public class PropertyWare
 		 
 		for(int i =0;i<documents.size();i++)
 		{
-			if(documents.get(i).getText().startsWith("Full"))//&&documents.get(i).getText().contains(leaseFirstName))
+			if(documents.get(i).getText().startsWith("RENEWAL-"))//&&documents.get(i).getText().contains(leaseFirstName))
 			{
 				documents.get(i).click();
 				checkLeaseAgreementAvailable = true;
@@ -273,7 +273,7 @@ public class PropertyWare
 		if(checkLeaseAgreementAvailable == false)
 		for(int i =0;i<documents.size();i++)
 		{
-			if(documents.get(i).getText().startsWith("RENEWAL-"))//&&documents.get(i).getText().contains(leaseFirstName))
+			if(documents.get(i).getText().startsWith("Full"))//&&documents.get(i).getText().contains(leaseFirstName))
 			{
 				documents.get(i).click();
 				checkLeaseAgreementAvailable = true;

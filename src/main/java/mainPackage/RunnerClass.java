@@ -22,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -76,23 +77,29 @@ public class RunnerClass
 		DataBase.getBuildingsList();
 		for(int i=0;i<pendingRenewalLeases.length;i++) 
 		{
-			//System.out.println(" Record -- "+(i+1));
+		  System.out.println(" Record -- "+(i+1));
 		  company =  pendingRenewalLeases[i][0];
 		  buildingAbbreviation = pendingRenewalLeases[i][1];
 		  ownerName = pendingRenewalLeases[i][2];
 		  statusID =0;
 		  failedReason = "";
 		  
+		  
+		  try
+			{
+			FileUtils.cleanDirectory(new File(AppConfig.downloadFilePath));
+			}
+			catch(Exception e) {}
 		  //Change the Status of the Lease to Started so that it won't run again in the Jenkins scheduling Process
 		  DataBase.insertData(buildingAbbreviation,"Started",6);
 		  
-		  if(buildingAbbreviation.split("-")[0].trim().contains(" ")) 
+		  /*if(buildingAbbreviation.split("-")[0].trim().contains(" ")) 
 		  {
 			  buildingAbbreviation = buildingAbbreviation;
 			  }
 		  else {
 					buildingAbbreviation = buildingAbbreviation.split("-")[0].trim();
-					}
+					}*/
           // Login to the PropertyWare		  
 		 if (company.contains("Alabama")|| company.contains("Arkansas")|| company.contains("Austin")|| company.contains("Dallas/Fort Worth")|| company.contains("Florida")||company.contains("North Carolina")|| company.contains("Georgia")||company.contains("Indiana")|| company.contains("Little Rock")|| company.contains("Tennessee")|| company.contains("California")|| company.contains("California PFW")|| company.contains("Houston")|| company.contains("Chattanooga")|| company.contains("Chicago")|| company.contains("South Carolina")|| company.contains("Tulsa")|| company.contains("Ohio")|| company.contains("Savannah")|| company.contains("Maine")|| company.contains("OKC")|| company.contains("San Antonio")|| company.contains("Pennsylvania") || company.contains("Colorado Springs") || company.contains("Kansas City") || company.contains("Lake Havasu") || company.contains("New Mexico") || company.contains("Boise") || company.contains("Spokane") || company.contains("Utah") || company.contains("Hawaii") || company.contains("Saint Louis")|| company.contains("Idaho Falls") || company.contains("Arizona") || company.contains("Maryland") || company.contains("Virginia" ))
        {		 
@@ -163,15 +170,7 @@ public class RunnerClass
 		}
 		   RunnerClass.driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
 	        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(5));
-		   try
-			{
-				if(RunnerClass.driver.findElement(Locators.renewalPopup).isDisplayed())
-				{
-					RunnerClass.driver.findElement(Locators.renewalPoupCloseButton).click();
-				}
-
-			}
-			catch(Exception e) {}
+		   PropertyWare.intermittentPopUp();
 		   RunnerClass.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 	        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(15));
 		   driver.navigate().refresh();
