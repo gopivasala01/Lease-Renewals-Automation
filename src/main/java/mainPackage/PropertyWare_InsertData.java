@@ -89,12 +89,12 @@ public class PropertyWare_InsertData
 		try
 		{
 		RunnerClass.driver.navigate().refresh();
-		
+		PropertyWare.intermittentPopUp();
 		RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 		
 		RunnerClass.driver.findElement(Locators.ledgerTab).click();
 		
-		PropertyWare.intermittentPopUp();
+		
 		
 		List<WebElement> existingMoveInCharges_ChargeCode = RunnerClass.driver.findElements(Locators.moveInCharges_List);
 		List<WebElement> existingMoveInCharges_Date = RunnerClass.driver.findElements(Locators.moveInCharge_List_Date);
@@ -108,6 +108,7 @@ public class PropertyWare_InsertData
 				break;
 			}
 		}
+		PropertyWare.intermittentPopUp();
 		return true;
 		}
 		catch(Exception e)
@@ -197,6 +198,7 @@ public class PropertyWare_InsertData
 		try
 		{
 		RunnerClass.driver.navigate().refresh();
+		PropertyWare.intermittentPopUp();
 		RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 		RunnerClass.driver.findElement(Locators.summaryTab).click();
 		
@@ -348,9 +350,12 @@ public class PropertyWare_InsertData
 		  else
 			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.cancelLease)).click(RunnerClass.driver.findElement(Locators.cancelLease)).build().perform();
           Thread.sleep(2000);
+          PropertyWare.intermittentPopUp();
           RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
           Thread.sleep(2000);
+          
 		RunnerClass.driver.findElement(Locators.summaryEditButton).click();
+		PropertyWare.intermittentPopUp();
 			
 		     RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.newAutoCharge)).build().perform();
           
@@ -363,10 +368,19 @@ public class PropertyWare_InsertData
 		RunnerClass.driver.findElement(Locators.autoCharge_EndDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
 		System.out.println("Existing Auto Charge is Edited");
 		RunnerClass.driver.findElement(Locators.autoCharge_EndDate).sendKeys(PDFReader.lastDayOfTheStartDate);
-		if(AppConfig.saveButtonOnAndOff==false)
+		if(AppConfig.saveButtonOnAndOff==false) 
+		{
 			RunnerClass.driver.findElement(Locators.autoCharge_CancelButton).click();
-			else 
+		}
+			else
+			{
 			RunnerClass.driver.findElement(Locators.autoCharge_SaveButton).click();
+			if(RunnerClass.driver.findElement(By.xpath("//*[@id=\"errorMessages\"]/ul/li")).isDisplayed())
+			{
+				RunnerClass.driver.findElement(By.xpath("//*[@id=\"editAutoChargeForm\"]/div[3]/input[2]")).click();
+			}
+			
+			}
 		
 		Thread.sleep(2000);
 		try 

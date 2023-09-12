@@ -51,6 +51,7 @@ public class PropertyWare_InsertOtherInformation
 		}
 		
 		RunnerClass.driver.navigate().refresh();
+		PropertyWare.intermittentPopUp();
 		RunnerClass.driver.findElement(Locators.summaryEditButton).click();
 		Thread.sleep(2000);
 		RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
@@ -278,6 +279,7 @@ public class PropertyWare_InsertOtherInformation
 			else
 			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.cancelLease)).click(RunnerClass.driver.findElement(Locators.cancelLease)).build().perform();
 			Thread.sleep(3000);
+			PropertyWare.intermittentPopUp();
 		}
 		catch(Exception e)
 		{
@@ -294,7 +296,7 @@ public class PropertyWare_InsertOtherInformation
 		  else
 			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.cancelLease)).click(RunnerClass.driver.findElement(Locators.cancelLease)).build().perform();
 	  }
-		
+		PropertyWare.intermittentPopUp();
 			
 		//Related Activities
 		PropertyWare_InsertOtherInformation.RelatedActivities();
@@ -305,7 +307,9 @@ public class PropertyWare_InsertOtherInformation
 	{
 	    try {
 	        RunnerClass.driver.navigate().refresh();
+	        PropertyWare.intermittentPopUp();
 	        RunnerClass.driver.findElement(Locators.relatedActivities_LeaseRenewal).click();
+	        
 	        Thread.sleep(2000);
 
 	        try 
@@ -354,7 +358,7 @@ public class PropertyWare_InsertOtherInformation
 	            RunnerClass.driver.findElement(Locators.relatedActivities_cancel).click();
 	        }
 	        Thread.sleep(3000);
-
+	        PropertyWare.intermittentPopUp();
 	        // Check if an error message is displayed
 	        
 	    } catch (InterruptedException e1) 

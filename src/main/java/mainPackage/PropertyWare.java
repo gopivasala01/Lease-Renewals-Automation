@@ -232,10 +232,7 @@ public class PropertyWare
 		}
 		try
 		{
-			if(RunnerClass.driver.findElement(Locators.renewalPopup).isDisplayed())
-			{
-				RunnerClass.driver.findElement(Locators.renewalPoupCloseButton).click();
-			}
+			
 		}
 		catch(Exception e) {}
 		String leaseStatus = RunnerClass.driver.findElement(Locators.status).getText();
