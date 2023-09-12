@@ -87,6 +87,7 @@ public class PropertyWare
 			{}
 			Thread.sleep(1000);
 			System.out.println(building);
+			 
 		// Select Lease from multiple leases
 			List<WebElement> displayedCompanies =null;
 			try
@@ -95,10 +96,7 @@ public class PropertyWare
 			}
 			catch(Exception e)
 			{
-				if(RunnerClass.driver.findElement(Locators.renewalPopup).isDisplayed())
-				{
-					RunnerClass.driver.findElement(Locators.renewalPoupCloseButton).click();
-				}
+				 intermittentPopUp();
 				try
 				{
 				if(RunnerClass.driver.findElement(Locators.noItemsFound).isDisplayed())
@@ -133,7 +131,7 @@ public class PropertyWare
 						}
 						
 						
-							
+						 intermittentPopUp();
 					
 					}
 					if(leaseSelected==true)
@@ -155,6 +153,33 @@ public class PropertyWare
 		return true;
 	}
 	
+	 public static void intermittentPopUp() {
+	        try {
+	            RunnerClass.driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+	            RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(1));
+	            
+	            try {
+	                if (RunnerClass.driver.findElement(Locators.popUpAfterClickingLeaseName).isDisplayed()) {
+	                    RunnerClass.driver.findElement(Locators.popupClose).click();
+	                }
+	            } catch (Exception e) {}
+	            
+	            try {
+	                if (RunnerClass.driver.findElement(Locators.scheduledMaintanancePopUp).isDisplayed()) {
+	                    RunnerClass.driver.findElement(Locators.scheduledMaintanancePopUpOkButton).click();
+	                }
+	            } catch (Exception e) {}
+	            
+	            try {
+	                if (RunnerClass.driver.findElement(Locators.scheduledMaintanancePopUpOkButton).isDisplayed()) {
+	                    RunnerClass.driver.findElement(Locators.scheduledMaintanancePopUpOkButton).click();
+	                }
+	            } catch (Exception e) {}
+	            
+	            RunnerClass.driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	            RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(5));
+	        } catch (Exception e) {}
+	    }
 	
 	public static boolean downloadLeaseAgreement(String building, String ownerName) throws Exception
 	{
@@ -196,6 +221,7 @@ public class PropertyWare
 		try
 		{
 		RunnerClass.driver.findElement(By.partialLinkText(ownerName.trim())).click();
+		 intermittentPopUp();
 		}
 		catch(Exception e)
 		{
@@ -326,7 +352,7 @@ public class PropertyWare
 		}
 		for(int i =0;i<documents.size();i++)
 		{
-			if(documents.get(i).getText().startsWith("RT Full Lease"))//&&documents.get(i).getText().contains(leaseFirstName))
+			if(documents.get(i).getText().startsWith("RT_Full_Lease"))//&&documents.get(i).getText().contains(leaseFirstName))
 			{
 				documents.get(i).click();
 				checkLeaseAgreementAvailable = true;

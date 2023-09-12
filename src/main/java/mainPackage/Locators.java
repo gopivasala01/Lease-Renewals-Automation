@@ -24,8 +24,7 @@ public class Locators
     public static By RCDetails = By.xpath("//*[contains(text(),'Resident Coordinator [Name/Phone/Email]')]/following::td[1]/div");
     public static By leaseStartDate_PW = By.xpath("//*[@id='infoTable']/tbody/tr[3]/td[1]");
     public static By leaseEndDate_PW = By.xpath("//*[@id='infoTable']/tbody/tr[3]/td[2]");
-    public static By popUpAfterClickingLeaseName = By.id("viewStickyNoteForm");
-    public static By popupClose = By.xpath("//*[@id='editStickyBtnDiv']/input[2]");
+    
     public static By notesAndDocs = By.id("notesAndDocuments");
     public static By documentsList = By.xpath("//*[@id='documentHolderBody']/tr/td[1]/a"); 
     
@@ -41,8 +40,7 @@ public class Locators
     public static By published = By.xpath("//*[contains(text(),'Published Rental')]/following::td[1]");
     public static By listingAgent = By.xpath("//*[contains(text(),'Listing Agent [Name/Phone/Email]')]/following::td[1]");
     
-    public static By renewalPopup = By.id("viewStickyNoteForm");
-    public static By renewalPoupCloseButton = By.xpath("//*[@id='viewStickyNoteForm']/div/div[1]/input[2]");
+    
     
     public static By autoCharge_List = By.xpath("//*[@id='autoChargesTable']/tbody/tr/td[1]");
     public static By autoCharge_List_Amounts = By.xpath("//*[@id='autoChargesTable']/tbody/tr/td[3]");
@@ -89,7 +87,7 @@ public class Locators
     public static By clickPath = By.xpath("//*[@id=\"cal1\"]/table/tbody/tr[2]/td[3]/table[3]/tbody/tr/td[2]/a/img");
     public static By clickPath1 = By.xpath("/html/body/div[3]/div[2]/table/tbody/tr/td[2]/form/div[16]/table/tbody/tr/td[1]");
     
-    public static By relatedActivities_newLeaseRenewalPopUpHeading = By.xpath("//*[text()='Renewed On Date']");
+    public static By relatedActivities_newLeaseRenewalPopUpHeading = By.xpath("//*[@id=\"editLeaseRenewalContainer\"]/div[2]/table/tbody/tr[2]/th");
     public static By ledgerTab = By.xpath("//*[@id=\"tab2\"]");
     
     public static By moveInCharges_List =By.xpath("//*[@id='ledgerDataTable']/tbody/tr/td[5]");
@@ -111,6 +109,14 @@ public class Locators
     
     public static By removeLeasingFee = By.xpath("//*[@value='Remove Leasing Fee']");
     
-    
+    public static By popUpAfterClickingLeaseName = By.xpath("//*[@id='viewStickyNoteForm']");
+    public static By scheduledMaintanancePopUp = By.xpath("//*[text()='Scheduled Maintenance Notification']");
+    public static By scheduledMaintanancePopUpOkButton = By.id("alertDoNotShow");
+    public static By popupClose = By.xpath("//*[@id='editStickyBtnDiv']/input[2]");
+    public static By permissionDenied = By.xpath("//*[contains(text(),'Permission Denied')]");
+    public static By renewalPopup = By.id("viewStickyNoteForm");
+    public static By renewalPoupCloseButton = By.xpath("//*[@id='viewStickyNoteForm']/div/div[1]/input[2]");
+   
+   
     
 }

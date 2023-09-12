@@ -325,7 +325,7 @@ public class PropertyWare_InsertOtherInformation
 	        RunnerClass.driver.findElement(Locators.relatedActivities_newStartDate).sendKeys(newStartDate);
 
 	        // Click this to remove Calendar pop-up if present
-	        RunnerClass.driver.findElement(Locators.relatedActivities_newLeaseRenewalPopUpHeading).click();
+	       // RunnerClass.driver.findElement(Locators.relatedActivities_newLeaseRenewalPopUpHeading).click();
 
 	        // Related Activities - New End Date
 	        RunnerClass.driver.findElement(Locators.relatedActivities_newEndDate).click();

@@ -12,20 +12,19 @@ public class PropertyWare_ConsolidateValues
 			{
 				if(PDFReader.residentBenefitsPackageAvailabilityCheck==true)
 				{
-					if(PDFReader.HVACFilterFlag==false)
-					{
+					
 					if(PDFReader.incrementRentFlag == true)
 						query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (2,3,4)";
 					else 
 						query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (2,4)";
 				}
-				}
+				
 			   else
 			    {
 				if(PDFReader.incrementRentFlag == true)
-					query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (2,3,5)";
+					query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (2,3)";
 				else 
-					query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (2,5)";
+					query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (2)";
 				}
 				
               // DataBase.updateTable(query);				
@@ -36,21 +35,20 @@ public class PropertyWare_ConsolidateValues
 				{
 					if(PDFReader.residentBenefitsPackageAvailabilityCheck==true)
 					{
-						if(PDFReader.HVACFilterFlag==false)
-						{
+						
 					if(PDFReader.incrementRentFlag == true)
 						query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (2,3,4,6)";
 					else 
 						query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (2,4,6)";
 						}
-						}
+						
 				}
 					else
 					{
 						if(PDFReader.incrementRentFlag == true)
-							query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (2,3,5,6)";
+							query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (2,3,6)";
 						else 
-							query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (2,5,6)";
+							query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (2,6)";
 					}
 					
 				}
