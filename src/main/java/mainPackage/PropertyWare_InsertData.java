@@ -292,7 +292,7 @@ public class PropertyWare_InsertData
 							PropertyWare_InsertData.saveAnAutoCharge();
 							continue;
 						}
-						if((autoChargeCodes.equals(AppConfig.getResidentBenefitsPackageChargeCode(RunnerClass.company))&&PDFReader.residentBenefitsPackageAvailabilityCheck==true)&&(!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.residentBenefitsPackage.replaceAll("[^0-9]", ""))||PDFReader.residentBenefitsPackage!=""))
+						if(((autoChargeCodes.equals(AppConfig.getResidentBenefitsPackageChargeCode(RunnerClass.company))&&PDFReader.residentBenefitsPackageAvailabilityCheck==true)&&(!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.residentBenefitsPackage.replaceAll("[^0-9]", "")))||PDFReader.residentBenefitsPackage!=""))
 						{
 							editButtons.get(k).click();
 							PropertyWare_InsertData.editingExistingAutoCharge();
@@ -328,7 +328,7 @@ public class PropertyWare_InsertData
 		catch(Exception e)
 		{
 			
-			RunnerClass.statusID=1;
+ 			RunnerClass.statusID=1;
 			e.printStackTrace();
 			RunnerClass.failedReason = RunnerClass.failedReason+","+"Something went wrong in clearing previous auto charges";
 			System.out.println("Something went wrong in clearing previous auto charges");
@@ -375,12 +375,16 @@ public class PropertyWare_InsertData
 			else
 			{
 			RunnerClass.driver.findElement(Locators.autoCharge_SaveButton).click();
-			if(RunnerClass.driver.findElement(By.xpath("//*[@id=\"errorMessages\"]/ul/li")).isDisplayed())
-			{
-				RunnerClass.driver.findElement(By.xpath("//*[@id=\"editAutoChargeForm\"]/div[3]/input[2]")).click();
-			}
-			
-			}
+			try {
+			    if (RunnerClass.driver.findElement(By.xpath("//*[@id=\"errorMessages\"]/ul/li")).isDisplayed()) 
+			    {
+			        RunnerClass.driver.findElement(By.xpath("//*[@id=\"editAutoChargeForm\"]/div[3]/input[2]")).click();
+			    }
+			} catch (org.openqa.selenium.NoSuchElementException e) {
+			    // Handle the case where the element was not found
+			   
+			} 
+
 		
 		Thread.sleep(2000);
 		try 
@@ -391,7 +395,7 @@ public class PropertyWare_InsertData
 		{}
 		Thread.sleep(2000);
 	}
-	
+	}	
 	/*public static void currentMonthlyRentUpdate() throws InterruptedException, Exception {
 	    LocalDate today = LocalDate.now();
 	    String currentMonthlyRent = null;
