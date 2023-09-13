@@ -79,6 +79,7 @@ public class PropertyWare_InsertOtherInformation
 			  
 		}
 		} catch(Exception e) {}
+		
 	
 		try {
 			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.baseRent)).click().build().perform();

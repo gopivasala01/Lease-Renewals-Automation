@@ -365,41 +365,60 @@ public class PropertyWare_InsertData
 	
 	public static void editingExistingAutoCharge() throws Exception
 	{
-		
-		RunnerClass.driver.findElement(Locators.autoCharge_EndDate).clear();
-		RunnerClass.driver.findElement(Locators.autoCharge_EndDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
-		System.out.println("Existing Auto Charge is Edited");
-		RunnerClass.driver.findElement(Locators.autoCharge_EndDate).sendKeys(PDFReader.lastDayOfTheStartDate);
-		if(AppConfig.saveButtonOnAndOff==false) 
-		{
-			RunnerClass.driver.findElement(Locators.autoCharge_CancelButton).click();
-		}
-			else
-			{
-			RunnerClass.driver.findElement(Locators.autoCharge_SaveButton).click();
-			
-			Thread.sleep(3000);
-			try {
-			    if (RunnerClass.driver.findElement(By.xpath("//*[@id=\"errorMessages\"]/ul/li")).isDisplayed()) 
-			    {
-			        RunnerClass.driver.findElement(By.xpath("//*[@id=\"editAutoChargeForm\"]/div[3]/input[2]")).click();
-			    }
-			} catch (org.openqa.selenium.NoSuchElementException e) {
-			    // Handle the case where the element was not found
-			   
-			} 
+	    WebElement endDateField = RunnerClass.driver.findElement(Locators.autoCharge_EndDate);
+	    endDateField.clear();
+	    endDateField.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+	    RunnerClass.driver.findElement(Locators.autoCharge_EndDate).sendKeys(PDFReader.lastDayOfTheStartDate);
+	    
+	    if (!AppConfig.saveButtonOnAndOff) 
+	    {
+	        RunnerClass.driver.findElement(Locators.autoCharge_CancelButton).click();
+	    }
+	    else
+	    {
+	        RunnerClass.driver.findElement(Locators.autoCharge_SaveButton).click();
+	        Thread.sleep(3000);
+	        
+	        try 
+	        {
+	            org.openqa.selenium.Alert alert = RunnerClass.driver.switchTo().alert();
+	            alert.accept();
+	        }
+	        catch (org.openqa.selenium.NoAlertPresentException e)
+	        {
+	            // Alert not present, continue with the rest of the code
+	        }
+	        
+	        try 
+	        {
+	            WebElement errorMessage = RunnerClass.driver.findElement(By.xpath("//*[@id=\"errorMessages\"]/ul/li"));
+	            if (errorMessage.isDisplayed()) 
+	            {
+	                RunnerClass.driver.findElement(By.xpath("//*[@id=\"editAutoChargeForm\"]/div[3]/input[2]")).click();
+	            }
+	        } 
+	        catch (org.openqa.selenium.NoSuchElementException e) 
+	        {
+	        }
+	        
+	        Thread.sleep(2000);
+	        
+	        try 
+	        {
+	            org.openqa.selenium.Alert alert = RunnerClass.driver.switchTo().alert();
+	            alert.accept();
+	        }
+	        catch(org.openqa.selenium.NoAlertPresentException e)
+	        {
+	            // Alert not present, continue with the rest of the code
+	        }
+	    }
+	    
+	    Thread.sleep(2000);
+	}
+
 
 		
-		Thread.sleep(2000);
-		try 
-		{
-		RunnerClass.driver.switchTo().alert().accept();
-	    }
-	    catch(Exception e)
-		{}
-		Thread.sleep(2000);
-	}
-	}	
 	/*public static void currentMonthlyRentUpdate() throws InterruptedException, Exception {
 	    LocalDate today = LocalDate.now();
 	    String currentMonthlyRent = null;
