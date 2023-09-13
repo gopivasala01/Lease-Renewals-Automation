@@ -235,19 +235,7 @@ public class PropertyWare
 			
 		}
 		catch(Exception e) {}
-		String leaseStatus = RunnerClass.driver.findElement(Locators.status).getText();
-		if(leaseStatus.equals("Active - Month to Month") || leaseStatus.equals("Active - Notice Given"))
-		{
-			RunnerClass.driver.findElement(Locators.summaryEditButton).click();
-			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.activeStatus)).build().perform();
-			Select statusDropdown = new Select(RunnerClass.driver.findElement(Locators.activeStatus));
-			statusDropdown.selectByVisibleText("Active");
-			RunnerClass.js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
-			  if(AppConfig.saveButtonOnAndOff==true)
-				RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.saveLease)).click(RunnerClass.driver.findElement(Locators.saveLease)).build().perform();
-			  else
-				RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.cancelLease)).click(RunnerClass.driver.findElement(Locators.cancelLease)).build().perform();
-		}
+		
 		RunnerClass.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(15));
 		RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
@@ -259,7 +247,7 @@ public class PropertyWare
 		 
 		for(int i =0;i<documents.size();i++)
 		{
-			if(documents.get(i).getText().startsWith("RENEWAL-"))//&&documents.get(i).getText().contains(leaseFirstName))
+			if(documents.get(i).getText().startsWith("RT - RENEWAL"))//&&documents.get(i).getText().contains(leaseFirstName))
 			{
 				documents.get(i).click();
 				checkLeaseAgreementAvailable = true;
@@ -270,7 +258,7 @@ public class PropertyWare
 		if(checkLeaseAgreementAvailable == false)
 		for(int i =0;i<documents.size();i++)
 		{
-			if(documents.get(i).getText().startsWith("Full"))//&&documents.get(i).getText().contains(leaseFirstName))
+			if(documents.get(i).getText().startsWith("RT_Full_Lease"))//&&documents.get(i).getText().contains(leaseFirstName))
 			{
 				documents.get(i).click();
 				checkLeaseAgreementAvailable = true;
@@ -280,7 +268,7 @@ public class PropertyWare
 		if(checkLeaseAgreementAvailable == false)
 			for(int i =0;i<documents.size();i++)
 			{
-				if(documents.get(i).getText().contains("Renewal_"))//&&documents.get(i).getText().contains(leaseFirstName))
+				if(documents.get(i).getText().contains("RENEWAL"))//&&documents.get(i).getText().contains(leaseFirstName))
 				{
 					documents.get(i).click();
 					checkLeaseAgreementAvailable = true;
@@ -340,7 +328,7 @@ public class PropertyWare
 		}
 		for(int i =0;i<documents.size();i++)
 		{
-			if(documents.get(i).getText().startsWith("TTO_Renewal"))//&&documents.get(i).getText().contains(leaseFirstName))
+			if(documents.get(i).getText().startsWith("RENEWAL"))//&&documents.get(i).getText().contains(leaseFirstName))
 			{
 				documents.get(i).click();
 				checkLeaseAgreementAvailable = true;
@@ -349,7 +337,7 @@ public class PropertyWare
 		}
 		for(int i =0;i<documents.size();i++)
 		{
-			if(documents.get(i).getText().startsWith("RT_Full_Lease"))//&&documents.get(i).getText().contains(leaseFirstName))
+			if(documents.get(i).getText().startsWith("Full"))//&&documents.get(i).getText().contains(leaseFirstName))
 			{
 				documents.get(i).click();
 				checkLeaseAgreementAvailable = true;

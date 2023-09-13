@@ -133,6 +133,7 @@ public class PropertyWare_InsertData
 		Thread.sleep(2000);
 		List<WebElement> existingMoveInCharges_ChargeCodes = RunnerClass.driver.findElements(Locators.moveInCharges_List);
 		List<WebElement> existingMoveInCharges_Amount = RunnerClass.driver.findElements(Locators.moveInCharge_List_Amount);
+		List<WebElement> existingMoveInCharges_Date = RunnerClass.driver.findElements(Locators.moveInCharge_List_Date);
 		
 		for(int i=0;i<RunnerClass.moveInCharges.length;i++)
 		{
@@ -148,8 +149,9 @@ public class PropertyWare_InsertData
 				{
 					String autoChargeCodes = existingMoveInCharges_ChargeCodes.get(k).getText();
 					String autoChargeAmount = existingMoveInCharges_Amount.get(k).getText();
+					String autoChargeStartDate = existingMoveInCharges_Date.get(k).getText();
 					
-					if(chargeCode.contains(autoChargeCodes) && !autoChargeAmount.isEmpty() && autoChargeAmount.substring(1).equals(amount))//&&(startDate.equals(autoChargeStartDate)||autoChargeEndDate.trim().equals("")))
+					if(chargeCode.contains(autoChargeCodes) && !autoChargeAmount.isEmpty() && autoChargeAmount.substring(1).equals(amount)&&(startDate.equals(autoChargeStartDate)))
 					{
 						availabilityCheck = true;
 						System.out.println(description+" already available");
@@ -284,7 +286,7 @@ public class PropertyWare_InsertData
 	                		//break;
 						}
 						}
-						if((autoChargeCodes.equals(AppConfig.getHVACAirFilterFeeChargeCode(RunnerClass.company))&&PDFReader.residentBenefitsPackageAvailabilityCheck==true)&&(!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.HVACAirFilterFee.replaceAll("[^0-9]", ""))||PDFReader.HVACAirFilterFee!=""))
+						if(((autoChargeCodes.equals(AppConfig.getHVACAirFilterFeeChargeCode(RunnerClass.company))&&PDFReader.residentBenefitsPackageAvailabilityCheck==true)&&(!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.HVACAirFilterFee.replaceAll("[^0-9]", "")))||PDFReader.HVACAirFilterFee!=""))
 						{
 							editButtons.get(k).click();
 							PropertyWare_InsertData.editingExistingAutoCharge();
@@ -375,6 +377,8 @@ public class PropertyWare_InsertData
 			else
 			{
 			RunnerClass.driver.findElement(Locators.autoCharge_SaveButton).click();
+			
+			Thread.sleep(3000);
 			try {
 			    if (RunnerClass.driver.findElement(By.xpath("//*[@id=\"errorMessages\"]/ul/li")).isDisplayed()) 
 			    {

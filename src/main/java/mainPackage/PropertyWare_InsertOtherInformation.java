@@ -38,23 +38,15 @@ public class PropertyWare_InsertOtherInformation
 		
 		String leaseStatus = RunnerClass.driver.findElement(Locators.status).getText();
 
-		if (!leaseStatus.equals("Active")) 
-		{
-		    RunnerClass.driver.findElement(Locators.summaryEditButton).click();
-		    RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.activeStatus)).build().perform();
-		    new Select(RunnerClass.driver.findElement(Locators.activeStatus)).selectByVisibleText("Active");
-		    RunnerClass.js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-			  if(AppConfig.saveButtonOnAndOff==true)
-				RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.saveLease)).click(RunnerClass.driver.findElement(Locators.saveLease)).build().perform();
-			  else
-				RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.cancelLease)).click(RunnerClass.driver.findElement(Locators.cancelLease)).build().perform();
-		}
-		
 		RunnerClass.driver.navigate().refresh();
 		PropertyWare.intermittentPopUp();
 		RunnerClass.driver.findElement(Locators.summaryEditButton).click();
 		Thread.sleep(2000);
 		RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+		
+		
+		
+		
 		
 		try
 		{
@@ -77,6 +69,17 @@ public class PropertyWare_InsertOtherInformation
 		renewalOnDate = RunnerClass.getCurrentDate();
 		petRentAmount = PDFReader.petRent;
 		
+		try {
+		if (!leaseStatus.equals("Active")) 
+		{
+			
+		    RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.activeStatus)).build().perform();
+		    new Select(RunnerClass.driver.findElement(Locators.activeStatus)).selectByVisibleText("Active");
+		    RunnerClass.js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+			  
+		}
+		} catch(Exception e) {}
+	
 		try {
 			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.baseRent)).click().build().perform();
 		    RunnerClass.driver.findElement(Locators.baseRent).click();
