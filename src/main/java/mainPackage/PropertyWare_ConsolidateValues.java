@@ -10,7 +10,7 @@ public class PropertyWare_ConsolidateValues
 		//{
 			if(PDFReader.petFlag==false)
 			{
-				if(PDFReader.residentBenefitsPackageAvailabilityCheck==true)
+				if(PDFReader.residentBenefitsPackageAvailabilityCheck==true && RunnerClass.company!="Hawaii"&& RunnerClass.company!="Chicago PFW")
 				{
 					
 					if(PDFReader.incrementRentFlag == true)
@@ -33,7 +33,7 @@ public class PropertyWare_ConsolidateValues
 			{
 			   if(PDFReader.petFlag==true&&PDFReader.petSecurityDepositFlag==false)
 				{
-					if(PDFReader.residentBenefitsPackageAvailabilityCheck==true)
+				   if(PDFReader.residentBenefitsPackageAvailabilityCheck==true && RunnerClass.company!="Hawaii"&& RunnerClass.company!="Chicago PFW")
 					{
 						
 					if(PDFReader.incrementRentFlag == true)
