@@ -679,7 +679,7 @@ public class PropertyWare_InsertData
 		{
 					
 		String query =null;
-		for(int i=1;i<=7;i++)
+		for(int i=1;i<=6;i++)
 		{
 			switch(i)
 			{
@@ -702,7 +702,7 @@ public class PropertyWare_InsertData
 				query = query+"\n Update automation.LeaseReneWalsAutoChargesConfiguration Set ChargeCode = '"+AppConfig.getPetRentChargeCode(RunnerClass.company)+"',Amount = '"+PDFReader.petRent+"',StartDate='"+petRent_StartDate+"',EndDate='',Flag = '' where ID=6";
 				break;
 			case 7: 
-				query = query+"\n Update automation.LeaseCloseOutsChargeChargesConfiguration Set ChargeCode = '"+AppConfig.getResidentUtilityBillChargeCode(RunnerClass.company)+"',Amount = '"+PDFReader.RUBS+"',StartDate='"+monthlyRent_StartDate+"',EndDate='',Flag = '' where ID=7";
+				query = query+"\n Update automation.LeaseReneWalsAutoChargesConfiguration Set ChargeCode = '"+AppConfig.getResidentUtilityBillChargeCode(RunnerClass.company)+"',Amount = '"+PDFReader.RUBS+"',StartDate='"+monthlyRent_StartDate+"',EndDate='',Flag = '' where ID=7";
 			    break;
 			}
 		}
