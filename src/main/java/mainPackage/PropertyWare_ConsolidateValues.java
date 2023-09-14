@@ -54,7 +54,10 @@ public class PropertyWare_ConsolidateValues
 					}
 					
 				}
-	         
+			if((RunnerClass.company.equals("Boise")||RunnerClass.company.equals("Idaho Falls"))&&PDFReader.residentUtilityBillFlag==true&&!PDFReader.RUBS.equals("Error"))
+			{
+				autoCharges = autoCharges+",14";
+			}
 			
 			
 			DataBase.updateTable(query);

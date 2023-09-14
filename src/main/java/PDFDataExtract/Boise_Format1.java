@@ -175,6 +175,9 @@ public class Boise_Format1
 	    }
 	    
 	  //RUBS
+	    if(text.contains(PDFAppConfig.Boise_Format1.residentUtilityBillTextCheck))
+	    {
+	    	PDFReader.residentUtilityBillFlag = true;
     	try
 	    {
     		 PDFReader.RUBS = text.substring(text.indexOf(PDFAppConfig.Boise_Format1.RUBS_Prior)+PDFAppConfig.Boise_Format1.RUBS_Prior.length()).trim().split(" ")[0];
@@ -184,7 +187,7 @@ public class Boise_Format1
     		PDFReader.RUBS = "Error";
 	    }
     	System.out.println("RUBS = "+PDFReader.RUBS);
-    	
+	    }
     
 	    //Increased Rent
 	    try

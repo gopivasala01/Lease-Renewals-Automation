@@ -172,6 +172,9 @@ public class IdahoFalls_Format1
 	    	}
 	    	System.out.println("Lease Renewal Fee = "+PDFReader.leaseRenewalFee);
 	    	
+	    	if(text.contains(PDFAppConfig.IdahoFalls_Format1.residentUtilityBillTextCheck))
+		    {
+		    	PDFReader.residentUtilityBillFlag = true;
 	    	try
 		    {
 	    		 PDFReader.RUBS = text.substring(text.indexOf(PDFAppConfig.IdahoFalls_Format1.RUBS_Prior)+PDFAppConfig.IdahoFalls_Format1.RUBS_Prior.length()).trim().split(" ")[0];
@@ -185,7 +188,7 @@ public class IdahoFalls_Format1
 	    		PDFReader.RUBS = "Error";
 		    }
 	    	System.out.println("RUBS = "+PDFReader.RUBS);
-	    	
+		    }
 	    
 			return true;
 		}

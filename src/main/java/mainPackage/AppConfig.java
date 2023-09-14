@@ -957,6 +957,17 @@ public class AppConfig
 			   return "";    
 		   }
 	   
+		   public static String getResidentUtilityBillChargeCode(String company)
+		   {
+			   switch(company)
+			   {
+			   case "Idaho Falls":
+				   return "42030 - Utility Reimbursement";
+			   case "Utah":
+				   return "42030 - Utility Reimbursement";
+			   }
+			return "";
+		   }
       /*public static String getRenewalStatus (String company)
       {
     	  switch(company)

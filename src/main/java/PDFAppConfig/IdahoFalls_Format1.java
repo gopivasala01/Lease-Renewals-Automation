@@ -23,6 +23,7 @@ public class IdahoFalls_Format1
 	public static String residentBenefitsPackageCheck = "Resident Benefits Package (“RBP”) Program and Fee:";
 	public static String RBP_Prior = "Resident Benefits Package Fee of $";
 	public static String RUBS_Prior = "charge Tenant a flat fee of $";
+	public static String residentUtilityBillTextCheck = "SPECIAL PROVISIONS:";
 	public static String leaseRenewalFee_Prior = "A lease renewal fee in the amount of $";
 
 }

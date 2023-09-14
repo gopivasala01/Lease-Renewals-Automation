@@ -31,6 +31,7 @@ public class PDFReader
     public static ArrayList<String> petBreed;
     public static ArrayList<String> petWeight;
     public static Robot robot;
+    public static boolean residentUtilityBillFlag = false;
     public static boolean concessionAddendumFlag = false;
     public static boolean petSecurityDepositFlag = false;
     public static boolean petFlag = false;
