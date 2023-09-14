@@ -513,10 +513,18 @@ public class PropertyWare_InsertData
 					System.out.println(description+" already available");
 					break;
 				}
+				/*if(autoChargeAmount=="Error"||autoChargeAmount=="0") 
+				{
+					System.out.println(description+" Amount Error");
+					RunnerClass.failedReason = RunnerClass.failedReason+","+" issue in adding Auto Charge - "+description;
+					RunnerClass.statusID=1;
+					break;
+					
+				}*/
 			}
 			if(availabilityCheck==false)
 			{
-				if(amount=="Error")
+				if(amount=="Error" || amount=="0") 
 				{					System.out.println(" issue in adding Auto Charge - "+description);
 					RunnerClass.failedReason = RunnerClass.failedReason+","+" issue in adding Auto Charge - "+description;
 					RunnerClass.statusID=1;

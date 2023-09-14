@@ -15,6 +15,7 @@ public class PDFReader
 	public static String commencementDate ="";
     public static String expirationDate ="";
     public static String proratedRent ="";
+    public static String RUBS= "";
     public static String proratedRentDate ="";
     public static String monthlyRent="";
     public static String petRentWithTax="";
@@ -731,7 +732,7 @@ public class PDFReader
 					return false;
 				    }
 				break;
-			case "Saint Louis":
+			case "Columbia - St Louis":
 				String pdfFormatType_saintLouis = PDFReader.decidePDFFormat(market);
 				System.out.println("PDF Format Type = "+pdfFormatType_saintLouis);
 				if(pdfFormatType_saintLouis=="Format1")

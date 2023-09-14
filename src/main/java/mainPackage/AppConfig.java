@@ -105,7 +105,7 @@ public class AppConfig
 				  return "40010 - Rent Income";
 		   case "Hawaii":
 				  return "40010 - Rent Income";
-		   case "Saint Louis":
+		   case "Columbia - St Louis":
 				  return "40010 - Rent Income";
 		   case "Idaho Falls":
 				  return "40010 - Rent Income";
@@ -189,7 +189,7 @@ public class AppConfig
 			   return "40230 - Pet Rent";
 		   case "Hawaii":
 			   return "40230 - Pet Rent";
-		   case "Saint Louis":
+		   case "Columbia - St Louis":
 			   return "40230 - Pet Rent";
 		   case "Idaho Falls":
 			   return "40230 - Pet Rent";
@@ -273,7 +273,7 @@ public class AppConfig
 			   return "40230 - Pet Rent";
 		   case "Hawaii":
 			   return "40230 - Pet Rent";
-		   case "Saint Louis":
+		   case "Columbia - St Louis":
 			   return "40230 - Pet Rent";
 		   case "Idaho Falls":
 			   return "40230 - Pet Rent";
@@ -356,7 +356,7 @@ public class AppConfig
 			   return "40010 - Rent Income";
 		   case "Hawaii":
 			   return "40010 - Rent Income";
-		   case "Saint Louis":
+		   case "Columbia - St Louis":
 			   return "40010 - Rent Income";
 		   case "Idaho Falls":
 			   return "40010 - Rent Income";
@@ -439,7 +439,7 @@ public class AppConfig
 			   return "43060 - Filter Fee";
 		   case "Hawaii":
 			   return "43060 - Filter Fee";
-		   case "Saint Louis":
+		   case "Columbia - St Louis":
 			   return "43060 - Filter Fee";
 		   case "Idaho Falls":
 			   return "43060 - Filter Fee";
@@ -524,7 +524,7 @@ public class AppConfig
 			   return "43070 - Resident Benefit Package Fee";
 		   case "Hawaii":
 			   return "43070 - Resident Benefit Package Fee";
-		   case "Saint Louis":
+		   case "Columbia - St Louis":
 			   return "43070 - Resident Benefit Package Fee";
 		   case "Idaho Falls":
 			   return "43070 - Resident Benefit Package Fee";
@@ -607,7 +607,7 @@ public class AppConfig
 			   return "43040 - Resident Renewal Admin Fee";
 		   case "Hawaii":
 			   return "43040 - Resident Renewal Admin Fee";
-		   case "Saint Louis":
+		   case "Columbia - St Louis":
 			   return "43040 - Resident Renewal Admin Fee";
 		   case "Idaho Falls":
 			   return "43040 - Resident Renewal Admin Fee";
@@ -691,7 +691,7 @@ public class AppConfig
 			   return "YES";
 		   case "Hawaii":
 			   return "YES";
-		   case "Saint Louis":
+		   case "Columbia - St Louis":
 			   return "YES";
 		   case "Idaho Falls":
 			   return "YES";
@@ -774,7 +774,7 @@ public class AppConfig
 			   return "Yes";
 		   case "Hawaii":
 			   return "Yes";
-		   case "Saint Louis":
+		   case "Columbia - St Louis":
 			   return "Yes";
 		   case "Idaho Falls":
 			   return "Yes";
@@ -858,7 +858,7 @@ public class AppConfig
 			   return "NO";
 		   case "Hawaii":
 			   return "NO";
-		   case "Saint Louis":
+		   case "Columbia - St Louis":
 			   return "NO";
 		   case "Idaho Falls":
 			   return "NO";
@@ -941,7 +941,7 @@ public class AppConfig
 				   return "No";
 			   case "Hawaii":
 				   return "No";
-			   case "Saint Louis":
+			   case "Columbia - St Louis":
 				   return "No";
 			   case "Idaho Falls":
 				   return "No";

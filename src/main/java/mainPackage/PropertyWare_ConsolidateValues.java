@@ -31,18 +31,20 @@ public class PropertyWare_ConsolidateValues
 		     }
 			else
 			{
-				if(PDFReader.petFlag==true&&PDFReader.petSecurityDepositFlag==false)
+			   if(PDFReader.petFlag==true&&PDFReader.petSecurityDepositFlag==false)
 				{
 					if(PDFReader.residentBenefitsPackageAvailabilityCheck==true)
 					{
 						
 					if(PDFReader.incrementRentFlag == true)
+						
 						query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (2,3,4,6)";
 					else 
 						query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (2,4,6)";
 						}
 						
 				}
+			   
 					else
 					{
 						if(PDFReader.incrementRentFlag == true)

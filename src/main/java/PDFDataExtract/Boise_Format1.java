@@ -174,6 +174,18 @@ public class Boise_Format1
 	    	System.out.println("Pet Rent = "+PDFReader.petRent);
 	    }
 	    
+	  //RUBS
+    	try
+	    {
+    		 PDFReader.RUBS = text.substring(text.indexOf(PDFAppConfig.Boise_Format1.RUBS_Prior)+PDFAppConfig.Boise_Format1.RUBS_Prior.length()).trim().split(" ")[0];
+	    }
+    	catch(Exception e)
+	    {
+    		PDFReader.RUBS = "Error";
+	    }
+    	System.out.println("RUBS = "+PDFReader.RUBS);
+    	
+    
 	    //Increased Rent
 	    try
 	    {
@@ -297,7 +309,9 @@ public class Boise_Format1
 	    		}
 	    		System.out.println("Increased Rent Start Date = "+PDFReader.increasedRent_newStartDate);
 	    		
+	    	
 	    	}
+	    	
 	    }
         catch(Exception e)
 	    {
