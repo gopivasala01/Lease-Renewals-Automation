@@ -38,7 +38,7 @@ public class PropertyWare_InsertData
 	        // Convert commencement and expiration dates to LocalDate objects
 	        PDFReader.startDate = RunnerClass.convertDate(PDFReader.commencementDate);
 	        PDFReader.endDate = RunnerClass.convertDate(PDFReader.expirationDate);
-	        PDFReader.lastDayOfTheStartDate = RunnerClass.lastDateOfTheMonth(RunnerClass.firstDayOfMonth(PDFReader.startDate, 0));
+	        PDFReader.lastDayOfTheStartDate = RunnerClass.lastDateOfTheMonth(RunnerClass.firstDayOfMonth(PDFReader.startDate, -1));
 	        PDFReader.firstFullMonth = RunnerClass.firstDayOfMonth(PDFReader.startDate, 1);
 	        PDFReader.secondFullMonth = RunnerClass.firstDayOfMonth(PDFReader.startDate, 2);
 
