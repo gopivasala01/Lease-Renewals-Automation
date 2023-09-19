@@ -54,13 +54,16 @@ public class PropertyWare_ConsolidateValues
 					}
 					
 				}
-			if((RunnerClass.company.equals("Boise")||RunnerClass.company.equals("Idaho Falls"))&&PDFReader.residentUtilityBillFlag==true&&!PDFReader.RUBS.equals("Error"))
+			DataBase.updateTable(query);
+			
+			if(((RunnerClass.company.equals("Boise")||RunnerClass.company.equals("Idaho Falls"))&&PDFReader.residentUtilityBillFlag==true&&(!PDFReader.RUBS.equals("Error"))))
 			{
-				autoCharges = autoCharges+",7";
+				query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (7)";
+				DataBase.updateTable(query);
 			}
 			
 			
-			DataBase.updateTable(query);
+			
 			
 			//}
 		/*

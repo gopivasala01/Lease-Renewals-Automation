@@ -623,6 +623,90 @@ public class AppConfig
 		   }
 		   return "";
 	   }
+	   
+	   public static String getMonthOnMonthRentChargeCode(String company) {
+		    switch (company) {
+		        case "Florida":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Alabama":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "North Carolina":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Dallas/Fort Worth":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Arkansas":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Indiana":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Little Rock":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Georgia":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Tennessee":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "California":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "California PFW":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Houston":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Austin":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Chattanooga":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Chicago":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Savannah":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "South Carolina":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Tulsa":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Ohio":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Maine":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "OKC":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "San Antonio":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Pennsylvania":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Colorado Springs":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Kansas City":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Lake Havasu":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "New Mexico":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Chicago PFW":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Boise":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Spokane":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Utah":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Hawaii":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Columbia - St Louis":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Idaho Falls":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Arizona":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Maryland":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Virginia":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Washington DC":
+		            return "43050 - Month-to-Month Admin Fee";
+		        default:
+		            return "";
+		    }
+		}
+
 	   public static String getEnrolledINRBPForPMUse(String company)
 	   {
 		   switch(company)
@@ -963,7 +1047,7 @@ public class AppConfig
 			   {
 			   case "Idaho Falls":
 				   return "42030 - Utility Reimbursement";
-			   case "Utah":
+			   case "Boise":
 				   return "42030 - Utility Reimbursement";
 			   }
 			return "";

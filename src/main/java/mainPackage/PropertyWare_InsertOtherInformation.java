@@ -35,7 +35,9 @@ public class PropertyWare_InsertOtherInformation
 	
 	public static void addingOtherInformation() throws Exception
 	{
+	try {
 		
+	
 		String leaseStatus = RunnerClass.driver.findElement(Locators.status).getText();
 
 		RunnerClass.driver.navigate().refresh();
@@ -304,7 +306,8 @@ public class PropertyWare_InsertOtherInformation
 			
 		//Related Activities
 		PropertyWare_InsertOtherInformation.RelatedActivities();
-		
+	}
+	catch(Exception e) {}
 	}
 	
 	public static void RelatedActivities() throws Exception 

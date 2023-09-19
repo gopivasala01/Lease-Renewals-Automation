@@ -171,6 +171,24 @@ public class Boise_Format2
 	    		PDFReader.leaseRenewalFee = "Error";
 	    	}
 	    	System.out.println("Lease Renewal Fee = "+PDFReader.leaseRenewalFee);
+	    	
+	    	
+	    	 if(text.contains(PDFAppConfig.Boise_Format1.residentUtilityBillTextCheck))
+	 	    {
+	 	    	PDFReader.residentUtilityBillFlag = true;
+	     	try
+	 	    {
+	     		 PDFReader.RUBS = text.substring(text.indexOf(PDFAppConfig.Boise_Format1.RUBS_Prior)+PDFAppConfig.Boise_Format1.RUBS_Prior.length()).trim().split(" ")[0];
+	 	     
+	     		if(PDFReader.RUBS.matches(".*[a-zA-Z]+.*"))
+		    		PDFReader.RUBS = "Error";
+	 	    }
+	     	catch(Exception e)
+	 	    {
+	     		PDFReader.RUBS = "Error";
+	 	    }
+	     	System.out.println("RUBS = "+PDFReader.RUBS);
+	 	    }
 			return true;
 		}
 		catch(Exception e)

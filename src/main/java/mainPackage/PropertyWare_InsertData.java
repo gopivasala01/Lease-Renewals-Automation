@@ -35,7 +35,7 @@ public class PropertyWare_InsertData
 	        // Convert commencement and expiration dates to LocalDate objects
 	        PDFReader.startDate = RunnerClass.convertDate(PDFReader.commencementDate);
 	        PDFReader.endDate = RunnerClass.convertDate(PDFReader.expirationDate);
-	        PDFReader.lastDayOfTheStartDate = RunnerClass.lastDateOfTheMonth(RunnerClass.firstDayOfMonth(PDFReader.startDate, -1));
+	        PDFReader.lastDayOfTheStartDate = RunnerClass.lastDateOfTheMonth(RunnerClass.firstDayOfMonth(PDFReader.startDate, 0));
 	        PDFReader.firstFullMonth = RunnerClass.firstDayOfMonth(PDFReader.startDate, 1);
 	        PDFReader.secondFullMonth = RunnerClass.firstDayOfMonth(PDFReader.startDate, 2);
 
@@ -151,7 +151,7 @@ public class PropertyWare_InsertData
 					String autoChargeAmount = existingMoveInCharges_Amount.get(k).getText();
 					String autoChargeStartDate = existingMoveInCharges_Date.get(k).getText();
 					
-					if(chargeCode.contains(autoChargeCodes) && !autoChargeAmount.isEmpty() && autoChargeAmount.substring(1).equals(amount)&&(startDate.equals(autoChargeStartDate)))
+					if(chargeCode.contains(autoChargeCodes) && !autoChargeAmount.isEmpty() && autoChargeAmount.substring(1).equals(amount)&&(RunnerClass.getCurrentDate().equals(autoChargeStartDate)))
 					{
 						availabilityCheck = true;
 						System.out.println(description+" already available");
@@ -195,98 +195,116 @@ public class PropertyWare_InsertData
 
 	
 	//Navigate to Auto Charges Section and update existing auto charges
-	public static boolean clearExistingAutoCharges() throws Exception
-	{
-		try
-		{
-		RunnerClass.driver.navigate().refresh();
-		PropertyWare.intermittentPopUp();
-		RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
-		RunnerClass.driver.findElement(Locators.summaryTab).click();
-		
-		Thread.sleep(2000);
-		PropertyWare.intermittentPopUp();
-	     
-	     RunnerClass.driver.findElement(Locators.summaryEditButton).click();
-	     RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.newAutoCharge)).build().perform();
-	     List<WebElement> existingAutoCharges = RunnerClass.driver.findElements(Locators.autoCharge_List);
-	     List<WebElement> existingAutoChargeAmounts = RunnerClass.driver.findElements(Locators.autoCharge_List_Amounts);
-		 List<WebElement> endDates = RunnerClass.driver.findElements(Locators.autoCharge_List_EndDates);
-		 List<WebElement> discription_List = RunnerClass.driver.findElements(Locators.discription_List);
-		 List<WebElement> startDateList = RunnerClass.driver.findElements(Locators.startdateList);
-		 List<WebElement> editButtons = RunnerClass.driver.findElements(Locators.autoCharge_MonthlyRentEditButton);
-	     //Get All Auto Charges from Table
-	     DataBase.getAutoCharges();
-	     boolean monthlyRentChargeClosed = false;
-	     /*
-			for(int i=0;i<RunnerClass.autoCharges.length;i++)
-			{
-				boolean chargeModified = false;
-				String previousChargeDescription ="";
-				//String autoChargeCode ="";
-				String chargeCode = RunnerClass.autoCharges[i][0];
-				String amount = RunnerClass.autoCharges[i][1];
-				previousChargeDescription = RunnerClass.autoCharges[i][4];
-				*/
-				for(int k=0;k<existingAutoCharges.size();k++)
-				{
-					existingAutoCharges = RunnerClass.driver.findElements(Locators.autoCharge_List);
-				    existingAutoChargeAmounts = RunnerClass.driver.findElements(Locators.autoCharge_List_Amounts);
-					endDates = RunnerClass.driver.findElements(Locators.autoCharge_List_EndDates);
-					discription_List = RunnerClass.driver.findElements(Locators.discription_List);
-					startDateList = RunnerClass.driver.findElements(Locators.startdateList); 
-					editButtons = RunnerClass.driver.findElements(Locators.autoCharge_MonthlyRentEditButton);
-					
-					existingAutoCharges = RunnerClass.driver.findElements(Locators.autoCharge_List);
-					
-					String autoChargeCodes = existingAutoCharges.get(k).getText();
-					//autoChargeCode = autoChargeCodes;
-					String autoChargeAmount = existingAutoChargeAmounts.get(k).getText();
-					String endDateAutoCharge = endDates.get(k).getText();
-					String startDatelist =  startDateList.get(k).getText();
-					System.out.println(autoChargeCodes +"  ||  "+autoChargeAmount +"  ||  "+endDateAutoCharge);
-					//And Amount should not be Monthly Rent Amount -- Remove this condition for Demo and Prod as the current monthly rent could be previous monthly rent
-					//And End Date should be Empty
-				    //Or Current Month Amount can be error
-					//And Amount should not be Increased Rent amount
-					//And Increased Rent Should not be Empty
-					
-					if(endDateAutoCharge.trim().equals(""))
-					{
-						{
- 						if(autoChargeCodes.equals("43050 - Month to Month Fee")&&monthlyRentChargeClosed== false)
- 						{
- 							PDFReader.previousMonthlyRent = autoChargeAmount;
- 							PDFReader.startDate = startDatelist;
- 							editButtons.get(k).click();
- 							RunnerClass.driver.findElement(Locators.autoCharge_EndDate).clear();
- 							RunnerClass.driver.findElement(Locators.autoCharge_EndDate).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
- 							RunnerClass.driver.findElement(Locators.autoCharge_EndDate).sendKeys(getLastDayOfMonth());
- 							System.out.println("Existing Auto Charge is Edited");
- 							if(AppConfig.saveButtonOnAndOff==false)
- 								RunnerClass.driver.findElement(Locators.autoCharge_CancelButton).click();
- 								else 
- 								RunnerClass.driver.findElement(Locators.autoCharge_SaveButton).click();
- 							
- 							Thread.sleep(2000);
- 							monthlyRentChargeClosed = true;
-	                		PropertyWare_InsertData.saveAnAutoCharge();
-	                		continue;
- 						}
-						
- 						else if(autoChargeCodes.equals(AppConfig.getMonthlyRentChargeCode(RunnerClass.company))&&monthlyRentChargeClosed== false)
-						{
-							PDFReader.previousMonthlyRent = autoChargeAmount;
-							editButtons.get(k).click();
-							PropertyWare_InsertData.editingExistingAutoCharge();
-	                		//chargeModified = true;
-	                		monthlyRentChargeClosed = true;
-	                		PropertyWare_InsertData.saveAnAutoCharge();
-	                		continue;
-	                		//break;
-						}
-						}
-						if(((autoChargeCodes.equals(AppConfig.getHVACAirFilterFeeChargeCode(RunnerClass.company))&&PDFReader.residentBenefitsPackageAvailabilityCheck==true)&&(!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.HVACAirFilterFee.replaceAll("[^0-9]", "")))||PDFReader.HVACAirFilterFee!=""))
+	public static boolean clearExistingAutoCharges() throws Exception {
+	    try {
+	        RunnerClass.driver.navigate().refresh();
+	        PropertyWare.intermittentPopUp();
+	        RunnerClass.js.executeScript("window.scrollBy(0, document.body.scrollHeight)");
+	        RunnerClass.driver.findElement(Locators.summaryTab).click();
+
+	        Thread.sleep(2000);
+	        PropertyWare.intermittentPopUp();
+
+	        RunnerClass.driver.findElement(Locators.summaryEditButton).click();
+	        List<WebElement> existingAutoCharges = RunnerClass.driver.findElements(Locators.autoCharge_List);
+	        List<WebElement> existingAutoChargeAmounts = RunnerClass.driver.findElements(Locators.autoCharge_List_Amounts);
+	        List<WebElement> endDates = RunnerClass.driver.findElements(Locators.autoCharge_List_EndDates);
+	        List<WebElement> discription_List = RunnerClass.driver.findElements(Locators.discription_List);
+	        List<WebElement> startDateList = RunnerClass.driver.findElements(Locators.startdateList);
+	        List<WebElement> editButtons = RunnerClass.driver.findElements(Locators.autoCharge_MonthlyRentEditButton);
+
+	        // Get All Auto Charges from Table
+	        DataBase.getAutoCharges();
+	        boolean monthlyRentChargeClosed = false;
+
+ 	        for (int k = 0; k < existingAutoCharges.size(); k++) {
+	            existingAutoCharges = RunnerClass.driver.findElements(Locators.autoCharge_List);
+	            existingAutoChargeAmounts = RunnerClass.driver.findElements(Locators.autoCharge_List_Amounts);
+	            endDates = RunnerClass.driver.findElements(Locators.autoCharge_List_EndDates);
+	            discription_List = RunnerClass.driver.findElements(Locators.discription_List);
+	            startDateList = RunnerClass.driver.findElements(Locators.startdateList);
+	            editButtons = RunnerClass.driver.findElements(Locators.autoCharge_MonthlyRentEditButton);
+
+	            existingAutoCharges = RunnerClass.driver.findElements(Locators.autoCharge_List);
+
+	            String autoChargeCode = existingAutoCharges.get(k).getText();
+	            String autoChargeAmount = existingAutoChargeAmounts.get(k).getText();
+	            String endDateAutoCharge = endDates.get(k).getText();
+	            String startDatelist = startDateList.get(k).getText();
+	            System.out.println(autoChargeCode + "  ||  " + autoChargeAmount + "  ||  " + endDateAutoCharge);
+
+	            if (endDateAutoCharge.trim().isEmpty()) {
+	                if ((AppConfig.getMonthOnMonthRentChargeCode(RunnerClass.company)).contains(autoChargeCode.replaceAll("[.]", "")))
+	                      /*&& !monthlyRentChargeClosed)*/
+	                	
+	                
+	              {
+	                    editButtons.get(k).click();
+ 	                    WebElement endDateField = RunnerClass.driver.findElement(Locators.autoCharge_EndDate);
+	                    endDateField.clear();
+	                    endDateField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+	                    RunnerClass.driver.findElement(Locators.autoCharge_EndDate)
+	                            .sendKeys(RunnerClass.lastDateOfTheMonth(RunnerClass.firstDayOfMonth(PDFReader.startDate, 1)));
+
+	                    if (!AppConfig.saveButtonOnAndOff) {
+	                        RunnerClass.driver.findElement(Locators.autoCharge_CancelButton).click();
+	                    } else {
+	                        RunnerClass.driver.findElement(Locators.autoCharge_SaveButton).click();
+	                        Thread.sleep(3000);
+
+	                        try {
+	                            org.openqa.selenium.Alert alert = RunnerClass.driver.switchTo().alert();
+	                            alert.accept();
+	                        } catch (org.openqa.selenium.NoAlertPresentException e) {
+	                            // Alert not present, continue with the rest of the code
+	                        }
+
+	                        try {
+	                            WebElement errorMessage = RunnerClass.driver
+	                                    .findElement(By.xpath("//*[@id=\"errorMessages\"]/ul/li"));
+	                            if (errorMessage.isDisplayed()) {
+	                                RunnerClass.driver.findElement(By.xpath("//*[@id=\"editAutoChargeForm\"]/div[3]/input[2]"))
+	                                        .click();
+	                            }
+	                        } catch (org.openqa.selenium.NoSuchElementException e) {
+	                        }
+
+	                        Thread.sleep(2000);
+
+	                        try {
+	                            org.openqa.selenium.Alert alert = RunnerClass.driver.switchTo().alert();
+	                            alert.accept();
+	                        } catch (org.openqa.selenium.NoAlertPresentException e) {
+	                            // Alert not present, continue with the rest of the code
+	                        }
+	                    }
+
+	                    Thread.sleep(2000);
+	                    monthlyRentChargeClosed = true;
+	                    PropertyWare_InsertData.saveAnAutoCharge();
+	                }
+	            }  if (autoChargeCode.equals(AppConfig.getMonthlyRentChargeCode(RunnerClass.company))
+	                    && !monthlyRentChargeClosed) {
+	                PDFReader.previousMonthlyRent = autoChargeAmount;
+	                editButtons.get(k).click();
+	                PropertyWare_InsertData.editingExistingAutoCharge();
+	                monthlyRentChargeClosed = true;
+	                PropertyWare_InsertData.saveAnAutoCharge();
+	            }  if (autoChargeCode.equals(AppConfig.getHVACAirFilterFeeChargeCode(RunnerClass.company))
+	                    && PDFReader.residentBenefitsPackageAvailabilityCheck
+	                    && !autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.HVACAirFilterFee.replaceAll("[^0-9]", ""))) {
+	                editButtons.get(k).click();
+	                PropertyWare_InsertData.editingExistingAutoCharge();
+	                PropertyWare_InsertData.saveAnAutoCharge();
+	            }  if (autoChargeCode.equals(AppConfig.getResidentBenefitsPackageChargeCode(RunnerClass.company))
+	                    && PDFReader.residentBenefitsPackageAvailabilityCheck
+	                    && !autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.residentBenefitsPackage.replaceAll("[^0-9]", ""))) {
+	                editButtons.get(k).click();
+	                PropertyWare_InsertData.editingExistingAutoCharge();
+	                PropertyWare_InsertData.saveAnAutoCharge();
+	            }
+
+	                else  if(autoChargeCode.equals(AppConfig.getPetRentChargeCode(RunnerClass.company))&&(!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.petRent.replaceAll("[^0-9]", ""))||PDFReader.petRent!=""))
 						{
 							editButtons.get(k).click();
 							PropertyWare_InsertData.editingExistingAutoCharge();
@@ -294,51 +312,21 @@ public class PropertyWare_InsertData
 							PropertyWare_InsertData.saveAnAutoCharge();
 							continue;
 						}
-						if(((autoChargeCodes.equals(AppConfig.getResidentBenefitsPackageChargeCode(RunnerClass.company))&&PDFReader.residentBenefitsPackageAvailabilityCheck==true)&&(!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.residentBenefitsPackage.replaceAll("[^0-9]", "")))||PDFReader.residentBenefitsPackage!=""))
-						{
-							editButtons.get(k).click();
-							PropertyWare_InsertData.editingExistingAutoCharge();
-							//break;
-							PropertyWare_InsertData.saveAnAutoCharge();
-							continue;
-						}
-						if(autoChargeCodes.equals(AppConfig.getPetRentChargeCode(RunnerClass.company))&&(!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.petRent.replaceAll("[^0-9]", ""))||PDFReader.petRent!=""))
-						{
-							editButtons.get(k).click();
-							PropertyWare_InsertData.editingExistingAutoCharge();
-							//break;
-							PropertyWare_InsertData.saveAnAutoCharge();
-							continue;
-						}
-						/*
-						if(chargeCode.replaceAll("[^A-Za-z0-9-]", "").contains(autoChargeCodes.replaceAll("[^A-Za-z0-9-]", ""))&&!autoChargeAmount.substring(1).replaceAll("[^0-9]", "").equals(amount.replaceAll("[^0-9]", ""))&&!autoChargeCodes.equals(AppConfig.getMonthlyRentChargeCode(RunnerClass.company)))
-						{
-							editButtons.get(k).click();
-							PropertyWare_InsertData.editingExistingAutoCharge();
-							break;
-						}
-						*/
-					}
-					
-				}	   
-				
-				 
-			//} //for loop close
-			
-	     return true;
-		}
-		catch(Exception e)
-		{
-			
- 			RunnerClass.statusID=1;
-			e.printStackTrace();
-			RunnerClass.failedReason = RunnerClass.failedReason+","+"Something went wrong in clearing previous auto charges";
-			System.out.println("Something went wrong in clearing previous auto charges");
-			RunnerClass.driver.navigate().refresh();
-			RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
-			return false;
-		}
+	            
+	        }
+
+	        return true;
+	    } catch (Exception e) {
+	        RunnerClass.statusID = 1;
+	        e.printStackTrace();
+	        RunnerClass.failedReason = RunnerClass.failedReason + "," + "Something went wrong in clearing previous auto charges";
+	        System.out.println("Something went wrong in clearing previous auto charges");
+	        RunnerClass.driver.navigate().refresh();
+	        RunnerClass.js.executeScript("window.scrollBy(0, document.body.scrollHeight)");
+	        return false;
+	    }
 	}
+
 	
 	public static CharSequence getLastDayOfMonth() {
 		// TODO Auto-generated method stub
@@ -679,7 +667,7 @@ public class PropertyWare_InsertData
 		{
 					
 		String query =null;
-		for(int i=1;i<=6;i++)
+		for(int i=1;i<=7;i++)
 		{
 			switch(i)
 			{
