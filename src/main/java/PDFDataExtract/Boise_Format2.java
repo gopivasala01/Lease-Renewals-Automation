@@ -173,12 +173,12 @@ public class Boise_Format2
 	    	System.out.println("Lease Renewal Fee = "+PDFReader.leaseRenewalFee);
 	    	
 	    	
-	    	 if(text.contains(PDFAppConfig.Boise_Format1.residentUtilityBillTextCheck))
+	    	 if(text.contains(PDFAppConfig.Boise_Format2.residentUtilityBillTextCheck))
 	 	    {
 	 	    	PDFReader.residentUtilityBillFlag = true;
 	     	try
 	 	    {
-	     		 PDFReader.RUBS = text.substring(text.indexOf(PDFAppConfig.Boise_Format1.RUBS_Prior)+PDFAppConfig.Boise_Format1.RUBS_Prior.length()).trim().split(" ")[0];
+	     		 PDFReader.RUBS = text.substring(text.indexOf(PDFAppConfig.Boise_Format1.RUBS_Prior)+PDFAppConfig.Boise_Format2.RUBS_Prior.length()).trim().split(" ")[0];
 	 	     
 	     		if(PDFReader.RUBS.matches(".*[a-zA-Z]+.*"))
 		    		PDFReader.RUBS = "Error";

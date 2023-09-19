@@ -190,7 +190,24 @@ public class IdahoFalls_Format1
 	    	System.out.println("RUBS = "+PDFReader.RUBS);
 		    }
 	    
-			return true;
+	    	 if(text.contains(PDFAppConfig.IdahoFalls_Format2.residentUtilityBillTextCheck))
+		 	    {
+		 	    	PDFReader.residentUtilityBillFlag = true;
+		     	try
+		 	    {
+		     		 PDFReader.RUBS = text.substring(text.indexOf(PDFAppConfig.Boise_Format1.RUBS_Prior)+PDFAppConfig.IdahoFalls_Format2.RUBS_Prior.length()).trim().split(" ")[0];
+		 	     
+		     		if(PDFReader.RUBS.matches(".*[a-zA-Z]+.*"))
+			    		PDFReader.RUBS = "Error";
+		 	    }
+		     	catch(Exception e)
+		 	    {
+		     		PDFReader.RUBS = "Error";
+		 	    }
+		     	System.out.println("RUBS = "+PDFReader.RUBS);
+		 	    }
+				return true;
+			
 		}
 		catch(Exception e)
 		{

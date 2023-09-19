@@ -40,7 +40,7 @@ public class Boise_Format2
 	
 	public static String RBP_Prior = "home second nature at a cost of $";
 	
-	public static String RUBS_Prior = "charge Tenant a flat fee of $";
+	public static String RUBS_Prior = "Tenant responsible for $";
 	public static String residentUtilityBillTextCheck = "SPECIAL PROVISIONS:";
 	
 	public static String prorateRent_Prior = "Tenant will pay Landlord $ ";

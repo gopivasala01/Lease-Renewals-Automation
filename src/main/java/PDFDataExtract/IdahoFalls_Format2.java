@@ -174,6 +174,22 @@ public class IdahoFalls_Format2
 	    	System.out.println("Pet Rent = "+PDFReader.petRent);
 	    }
 	    
+	    if(text.contains(PDFAppConfig.IdahoFalls_Format1.residentUtilityBillTextCheck))
+ 	    {
+ 	    	PDFReader.residentUtilityBillFlag = true;
+     	try
+ 	    {
+     		 PDFReader.RUBS = text.substring(text.indexOf(PDFAppConfig.Boise_Format1.RUBS_Prior)+PDFAppConfig.IdahoFalls_Format1.RUBS_Prior.length()).trim().split(" ")[0];
+ 	     
+     		if(PDFReader.RUBS.matches(".*[a-zA-Z]+.*"))
+	    		PDFReader.RUBS = "Error";
+ 	    }
+     	catch(Exception e)
+ 	    {
+     		PDFReader.RUBS = "Error";
+ 	    }
+     	System.out.println("RUBS = "+PDFReader.RUBS);
+ 	    }
 	    //Increased Rent
 	    try
 	    {

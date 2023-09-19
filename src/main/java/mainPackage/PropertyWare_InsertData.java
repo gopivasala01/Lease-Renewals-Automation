@@ -1,11 +1,14 @@
 package mainPackage;
 
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.Date;
+
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -151,10 +154,17 @@ public class PropertyWare_InsertData
 					String autoChargeAmount = existingMoveInCharges_Amount.get(k).getText();
 					String autoChargeStartDate = existingMoveInCharges_Date.get(k).getText();
 					
-					if(chargeCode.contains(autoChargeCodes) && !autoChargeAmount.isEmpty() && autoChargeAmount.substring(1).equals(amount)&&(RunnerClass.getCurrentDate().equals(autoChargeStartDate)))
-					{
-						availabilityCheck = true;
-						System.out.println(description+" already available");
+					
+					    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+					    Date parsedAutoChargeStartDate = dateFormat.parse(autoChargeStartDate);
+					    Date parsedRenewalExecutionDate = dateFormat.parse(PDFReader.renewalExecutionDate);
+
+					    if (chargeCode.contains(autoChargeCodes)
+					            && !autoChargeAmount.isEmpty()
+					            && autoChargeAmount.substring(1).equals(amount)
+					            && parsedRenewalExecutionDate.before(parsedAutoChargeStartDate)) {
+					        availabilityCheck = true;
+					        System.out.println(description + " already available");
 						break;
 					}
 				}

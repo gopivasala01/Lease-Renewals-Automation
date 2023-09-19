@@ -184,6 +184,7 @@ public class Boise_Format1
 	    }
     	catch(Exception e)
 	    {
+    		if(PDFReader.RUBS.matches(".*[a-zA-Z]+.*"))
     		PDFReader.RUBS = "Error";
 	    }
     	System.out.println("RUBS = "+PDFReader.RUBS);
