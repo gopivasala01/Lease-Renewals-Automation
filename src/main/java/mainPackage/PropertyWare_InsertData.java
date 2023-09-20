@@ -254,7 +254,7 @@ public class PropertyWare_InsertData
 	                    endDateField.clear();
 	                    endDateField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
 	                    RunnerClass.driver.findElement(Locators.autoCharge_EndDate)
-	                            .sendKeys(RunnerClass.lastDateOfTheMonth(RunnerClass.firstDayOfMonth(PDFReader.startDate, 1)));
+	                            .sendKeys(RunnerClass.lastDateOfTheMonth(RunnerClass.firstDayOfMonth(startDatelist, 0)));
 
 	                    if (!AppConfig.saveButtonOnAndOff) {
 	                        RunnerClass.driver.findElement(Locators.autoCharge_CancelButton).click();

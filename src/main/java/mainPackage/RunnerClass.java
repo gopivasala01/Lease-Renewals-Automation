@@ -93,13 +93,13 @@ public class RunnerClass
 		  //Change the Status of the Lease to Started so that it won't run again in the Jenkins scheduling Process
 		  DataBase.insertData(buildingAbbreviation,"Started",6);
 		  
-		  /*if(buildingAbbreviation.split("-")[0].trim().contains(" ")) 
+		  if(buildingAbbreviation.split("-")[0].trim().contains(" ")) 
 		  {
 			  buildingAbbreviation = buildingAbbreviation;
 			  }
 		  else {
 					buildingAbbreviation = buildingAbbreviation.split("-")[0].trim();
-					}*/
+					}
           // Login to the PropertyWare		  
 		 if (company.contains("Alabama")|| company.contains("Arkansas")|| company.contains("Austin")|| company.contains("Dallas/Fort Worth")|| company.contains("Florida")||company.contains("North Carolina")|| company.contains("Georgia")||company.contains("Indiana")|| company.contains("Little Rock")|| company.contains("Tennessee")|| company.contains("California")|| company.contains("California PFW")|| company.contains("Houston")|| company.contains("Chattanooga")|| company.contains("Chicago")|| company.contains("South Carolina")|| company.contains("Tulsa")|| company.contains("Ohio")|| company.contains("Savannah")|| company.contains("Maine")|| company.contains("OKC")|| company.contains("San Antonio")|| company.contains("Pennsylvania") || company.contains("Colorado Springs") || company.contains("Kansas City") || company.contains("Lake Havasu") || company.contains("New Mexico") || company.contains("Boise") || company.contains("Spokane") || company.contains("Utah") || company.contains("Hawaii") || company.contains("Columbia - St Louis")|| company.contains("Idaho Falls") || company.contains("Arizona") || company.contains("Maryland") || company.contains("Virginia" )|| company.contains("Chicago PFW"))
        {		 
