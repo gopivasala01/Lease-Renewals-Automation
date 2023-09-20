@@ -113,7 +113,7 @@ public class WashingtonDC_Format1
 		    	//HVAC Air Filter Fee
 		    	 try
 				    {
-				    	PDFReader.residentBenefitsPackage = text.substring(text.indexOf(PDFAppConfig.WashingtonDC_Format1.RBP_Prior)+PDFAppConfig.WashingtonDC_Format1.RBP_Prior.length()).trim().split(" ")[0];
+				    	PDFReader.residentBenefitsPackage = text.substring(text.indexOf(PDFAppConfig.WashingtonDC_Format1.RBP_Prior)+PDFAppConfig.WashingtonDC_Format1.RBP_Prior.length()).trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "");
 				    	if(PDFReader.residentBenefitsPackage.matches(".*[a-zA-Z]+.*"))
 				    		PDFReader.residentBenefitsPackage = "Error";
 				    }

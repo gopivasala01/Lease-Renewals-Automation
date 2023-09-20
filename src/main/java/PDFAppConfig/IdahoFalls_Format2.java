@@ -40,7 +40,7 @@ public class IdahoFalls_Format2
 	public static String RUBS_Prior = "charge Tenant a flat fee of $";
 	public static String residentUtilityBillTextCheck = "SPECIAL PROVISIONS:";
 	
-	public static String RBP_Prior = "home second nature at a cost of $";
+	public static String RBP_Prior = "Benefits Package Fee of $";
 	
 	public static String prorateRent_Prior = "Tenant will pay Landlord $ ";
 	

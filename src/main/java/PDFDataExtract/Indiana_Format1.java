@@ -113,7 +113,7 @@ public class Indiana_Format1
 		    	//RBP
 		    	 try
 				    {
-				    	PDFReader.residentBenefitsPackage = text.substring(text.indexOf(PDFAppConfig.Indiana_Format1.RBP_Prior)+PDFAppConfig.Indiana_Format1.RBP_Prior.length()).trim().split(" ")[0];
+				    	PDFReader.residentBenefitsPackage = text.substring(text.indexOf(PDFAppConfig.Indiana_Format1.RBP_Prior)+PDFAppConfig.Indiana_Format1.RBP_Prior.length()).trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "");
 				    	if(PDFReader.residentBenefitsPackage.matches(".*[a-zA-Z]+.*"))
 				    		PDFReader.residentBenefitsPackage = "Error";
 				    }

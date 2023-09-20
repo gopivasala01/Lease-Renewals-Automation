@@ -38,7 +38,7 @@ public class ColoradoSprings_Format2
 	public static String HVACFilterAddendumTextAvailabilityCheck = "HVAC Filter Maintenance Program and Fee";
 	public static String residentBenefitsPackageCheck = "Resident Benefits Package (“RBP”) Program and Fee:";
 	
-	public static String RBP_Prior = "home second nature at a cost of $";
+	public static String RBP_Prior = "Benefits Package Fee of $";
 	
 	public static String prorateRent_Prior = "Tenant will pay Landlord $ ";
 	

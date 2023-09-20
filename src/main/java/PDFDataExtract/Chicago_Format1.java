@@ -75,7 +75,7 @@ public class Chicago_Format1
 				//Monthly Rent
 			    try
 			    {
-			    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.Chicago_Format1.monthlyRent_Prior)+PDFAppConfig.Chicago_Format1.monthlyRent_Prior.length()).trim().split(" ")[0];
+			    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.Chicago_Format1.monthlyRent_Prior)+PDFAppConfig.Chicago_Format1.monthlyRent_Prior.length()).trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "");
 			    	if(PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*"))
 			    		PDFReader.monthlyRent = "Error";
 			    	if(PDFReader.monthlyRent.contains("$"))
@@ -95,7 +95,7 @@ public class Chicago_Format1
 			    	//HVAC Air Filter Fee
 			    	 try
 					    {
-					    	PDFReader.HVACAirFilterFee = text.substring(text.indexOf(PDFAppConfig.Chicago_Format1.HVACAirFilterFee)+PDFAppConfig.Chicago_Format1.HVACAirFilterFee.length()).trim().split(" ")[0];
+					    	PDFReader.HVACAirFilterFee = text.substring(text.indexOf(PDFAppConfig.Chicago_Format1.HVACAirFilterFee)+PDFAppConfig.Chicago_Format1.HVACAirFilterFee.length()).trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "");
 					    	if(PDFReader.HVACAirFilterFee.matches(".*[a-zA-Z]+.*"))
 					    		PDFReader.HVACAirFilterFee = "Error";
 					    }
@@ -113,7 +113,7 @@ public class Chicago_Format1
 			    	//HVAC Air Filter Fee
 			    	 try
 					    {
-					    	PDFReader.residentBenefitsPackage = text.substring(text.indexOf(PDFAppConfig.Chicago_Format1.RBP_Prior)+PDFAppConfig.Chicago_Format1.RBP_Prior.length()).trim().split(" ")[0];
+					    	PDFReader.residentBenefitsPackage = text.substring(text.indexOf(PDFAppConfig.Chicago_Format1.RBP_Prior)+PDFAppConfig.Chicago_Format1.RBP_Prior.length()).trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "");
 					    	if(PDFReader.residentBenefitsPackage.matches(".*[a-zA-Z]+.*"))
 					    		PDFReader.residentBenefitsPackage = "Error";
 					    }
@@ -129,7 +129,7 @@ public class Chicago_Format1
 			    //Prorate Rent
 			    try
 			    {
-			    	PDFReader.proratedRent = text.substring(text.indexOf(PDFAppConfig.Chicago_Format1.prorateRent_Prior)+PDFAppConfig.Chicago_Format1.prorateRent_Prior.length()).trim().split(" ")[0];
+			    	PDFReader.proratedRent = text.substring(text.indexOf(PDFAppConfig.Chicago_Format1.prorateRent_Prior)+PDFAppConfig.Chicago_Format1.prorateRent_Prior.length()).trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "");
 			    	if(PDFReader.proratedRent.matches(".*[a-zA-Z]+.*"))
 			    		PDFReader.proratedRent = "Error";
 			    }
@@ -148,7 +148,7 @@ public class Chicago_Format1
 			    	
 			    	try
 			    	{
-			    		PDFReader.petRent = text.substring(text.indexOf(PDFAppConfig.Chicago_Format1.petRent_Prior)+PDFAppConfig.Chicago_Format1.petRent_Prior.length()).trim().split(" ")[0].trim();
+			    		PDFReader.petRent = text.substring(text.indexOf(PDFAppConfig.Chicago_Format1.petRent_Prior)+PDFAppConfig.Chicago_Format1.petRent_Prior.length()).trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "").trim();
 			    		if(PDFReader.petRent.matches(".*[a-zA-Z]+.*"))
 				    		PDFReader.petRent = "Error";
 			    	}
@@ -162,7 +162,7 @@ public class Chicago_Format1
 			    //Lease Renewal Admin Fee
 			    try
 		    	{
-		    		PDFReader.leaseRenewalFee = text.substring(text.indexOf(PDFAppConfig.Chicago_Format1.leaseRenewalFee_Prior)+PDFAppConfig.Chicago_Format1.leaseRenewalFee_Prior.length()).trim().split(" ")[0].trim();
+		    		PDFReader.leaseRenewalFee = text.substring(text.indexOf(PDFAppConfig.Chicago_Format1.leaseRenewalFee_Prior)+PDFAppConfig.Chicago_Format1.leaseRenewalFee_Prior.length()).trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "");
 		    		if(PDFReader.leaseRenewalFee.matches(".*[a-zA-Z]+.*"))
 			    		PDFReader.leaseRenewalFee = "Error";
 		    	}

@@ -117,7 +117,7 @@ public class LittleRock_Format2
 	    	//HVAC Air Filter Fee
 	    	 try
 			    {
-			    	PDFReader.residentBenefitsPackage = text.substring(text.indexOf(PDFAppConfig.LittleRock_Format2.RBP_Prior)+PDFAppConfig.LittleRock_Format2.RBP_Prior.length()).trim().split(" ")[0];
+			    	PDFReader.residentBenefitsPackage = text.substring(text.indexOf(PDFAppConfig.LittleRock_Format2.RBP_Prior)+PDFAppConfig.LittleRock_Format2.RBP_Prior.length()).trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "");
 			    	if(PDFReader.residentBenefitsPackage.matches(".*[a-zA-Z]+.*"))
 			    		PDFReader.residentBenefitsPackage = "Error";
 			    }

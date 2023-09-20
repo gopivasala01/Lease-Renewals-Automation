@@ -96,7 +96,7 @@ public class Alabama_Format1 {
 		    	//HVAC Air Filter Fee
 		    	 try
 				    {
-				    	PDFReader.HVACAirFilterFee = text.substring(text.indexOf(PDFAppConfig.Alabama_Format1.HVACAirFilterFee)+PDFAppConfig.Alabama_Format1.HVACAirFilterFee.length()).trim().split(" ")[0];
+				    	PDFReader.HVACAirFilterFee = text.substring(text.indexOf(PDFAppConfig.Alabama_Format1.HVACAirFilterFee)+PDFAppConfig.Alabama_Format1.HVACAirFilterFee.length()).trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "");
 				    	if(PDFReader.HVACAirFilterFee.matches(".*[a-zA-Z]+.*"))
 				    		PDFReader.HVACAirFilterFee = "Error";
 				    }
