@@ -162,7 +162,7 @@ public class PropertyWare_InsertData
 					    if (chargeCode.contains(autoChargeCodes)
 					            && !autoChargeAmount.isEmpty()
 					            && autoChargeAmount.substring(1).equals(amount)
-					            && parsedRenewalExecutionDate.before(parsedAutoChargeStartDate)) {
+					            && startDate.equals(PDFReader.renewalExecutionDate)) {
 					        availabilityCheck = true;
 					        System.out.println(description + " already available");
 						break;
@@ -245,46 +245,51 @@ public class PropertyWare_InsertData
 
 	            if (endDateAutoCharge.trim().isEmpty()) {
 	                if ((AppConfig.getMonthOnMonthRentChargeCode(RunnerClass.company)).contains(autoChargeCode.replaceAll("[.]", "")))
-	                      /*&& !monthlyRentChargeClosed)*/
-	                	
-	                
 	              {
 	                    editButtons.get(k).click();
  	                    WebElement endDateField = RunnerClass.driver.findElement(Locators.autoCharge_EndDate);
 	                    endDateField.clear();
 	                    endDateField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-	                    RunnerClass.driver.findElement(Locators.autoCharge_EndDate)
-	                            .sendKeys(RunnerClass.lastDateOfTheMonth(RunnerClass.firstDayOfMonth(startDatelist, 0)));
+	                    RunnerClass.driver.findElement(Locators.autoCharge_EndDate).sendKeys(RunnerClass.lastDateOfTheMonth(RunnerClass.firstDayOfMonth(startDatelist, 0)));
 
-	                    if (!AppConfig.saveButtonOnAndOff) {
+	                    if (!AppConfig.saveButtonOnAndOff) 
+	                    {
 	                        RunnerClass.driver.findElement(Locators.autoCharge_CancelButton).click();
-	                    } else {
+	                    } else 
+	                    {
 	                        RunnerClass.driver.findElement(Locators.autoCharge_SaveButton).click();
 	                        Thread.sleep(3000);
 
-	                        try {
+	                        try 
+	                        {
 	                            org.openqa.selenium.Alert alert = RunnerClass.driver.switchTo().alert();
 	                            alert.accept();
-	                        } catch (org.openqa.selenium.NoAlertPresentException e) {
+	                        } catch (org.openqa.selenium.NoAlertPresentException e) 
+	                        {
 	                            // Alert not present, continue with the rest of the code
 	                        }
 
-	                        try {
+	                        try 
+	                        {
 	                            WebElement errorMessage = RunnerClass.driver
 	                                    .findElement(By.xpath("//*[@id=\"errorMessages\"]/ul/li"));
-	                            if (errorMessage.isDisplayed()) {
+	                            if (errorMessage.isDisplayed()) 
+	                            {
 	                                RunnerClass.driver.findElement(By.xpath("//*[@id=\"editAutoChargeForm\"]/div[3]/input[2]"))
 	                                        .click();
 	                            }
-	                        } catch (org.openqa.selenium.NoSuchElementException e) {
+	                        } catch (org.openqa.selenium.NoSuchElementException e) 
+	                        {
 	                        }
 
 	                        Thread.sleep(2000);
 
-	                        try {
+	                        try 
+	                        {
 	                            org.openqa.selenium.Alert alert = RunnerClass.driver.switchTo().alert();
 	                            alert.accept();
-	                        } catch (org.openqa.selenium.NoAlertPresentException e) {
+	                        } catch (org.openqa.selenium.NoAlertPresentException e) 
+	                        {
 	                            // Alert not present, continue with the rest of the code
 	                        }
 	                    }
@@ -294,27 +299,29 @@ public class PropertyWare_InsertData
 	                    PropertyWare_InsertData.saveAnAutoCharge();
 	                }
 	            }  if (autoChargeCode.equals(AppConfig.getMonthlyRentChargeCode(RunnerClass.company))
-	                    && !monthlyRentChargeClosed) {
+	                    && !monthlyRentChargeClosed &&!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.monthlyRent) ) 
+	            {
 	                PDFReader.previousMonthlyRent = autoChargeAmount;
 	                editButtons.get(k).click();
 	                PropertyWare_InsertData.editingExistingAutoCharge();
 	                monthlyRentChargeClosed = true;
 	                PropertyWare_InsertData.saveAnAutoCharge();
-	            }  if (autoChargeCode.equals(AppConfig.getHVACAirFilterFeeChargeCode(RunnerClass.company))
+	            }  if (autoChargeCode.replaceAll("[.]", "").contains(AppConfig.getHVACAirFilterFeeChargeCode(RunnerClass.company))
 	                    && PDFReader.residentBenefitsPackageAvailabilityCheck
-	                    && !autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.HVACAirFilterFee.replaceAll("[^0-9]", ""))) {
+	                    && !autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.HVACAirFilterFee.replaceAll("[^0-9]", ""))) 
+	            {
 	                editButtons.get(k).click();
 	                PropertyWare_InsertData.editingExistingAutoCharge();
 	                PropertyWare_InsertData.saveAnAutoCharge();
-	            }  if (autoChargeCode.equals(AppConfig.getResidentBenefitsPackageChargeCode(RunnerClass.company))
+	            }  if ((AppConfig.getResidentBenefitsPackageChargeCode(RunnerClass.company).contains(autoChargeCode.replaceAll("[.]", ""))
 	                    && PDFReader.residentBenefitsPackageAvailabilityCheck
-	                    && !autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.residentBenefitsPackage.replaceAll("[^0-9]", ""))) {
+	                    && !autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.residentBenefitsPackage.replaceAll("[^0-9]", "")))) 
+	            {
 	                editButtons.get(k).click();
 	                PropertyWare_InsertData.editingExistingAutoCharge();
 	                PropertyWare_InsertData.saveAnAutoCharge();
 	            }
-
-	                else  if(autoChargeCode.equals(AppConfig.getPetRentChargeCode(RunnerClass.company))&&(!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.petRent.replaceAll("[^0-9]", ""))||PDFReader.petRent!=""))
+	               if(autoChargeCode.equals(AppConfig.getPetRentChargeCode(RunnerClass.company))&&(!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.petRent.replaceAll("[^0-9]", ""))||PDFReader.petRent!=""))
 						{
 							editButtons.get(k).click();
 							PropertyWare_InsertData.editingExistingAutoCharge();

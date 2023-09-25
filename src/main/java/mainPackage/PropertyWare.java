@@ -247,6 +247,24 @@ public class PropertyWare
 		 
 		for(int i =0;i<documents.size();i++)
 		{
+			if(documents.get(i).getText().startsWith("RT Renewal Signed"))//&&documents.get(i).getText().contains(leaseFirstName))
+			{
+				documents.get(i).click();
+				checkLeaseAgreementAvailable = true;
+				break;
+			}
+		}
+		for(int i =0;i<documents.size();i++)
+		{
+			if(documents.get(i).getText().startsWith("RT Renewal Signed"))//&&documents.get(i).getText().contains(leaseFirstName))
+			{
+				documents.get(i).click();
+				checkLeaseAgreementAvailable = true;
+				break;
+			}
+		}
+		for(int i =0;i<documents.size();i++)
+		{
 			if(documents.get(i).getText().startsWith("RT - RENEWAL"))//&&documents.get(i).getText().contains(leaseFirstName))
 			{
 				documents.get(i).click();
