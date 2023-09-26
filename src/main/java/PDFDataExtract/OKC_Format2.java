@@ -156,7 +156,7 @@ public class OKC_Format2
 			    System.out.println("Lease Renewal Admin Fee = "+PDFReader.leaseRenewalFee);
 			    
 				//Pet Rent
-			    if(text.contains(PDFAppConfig.OKC_Format2.petAgreementAvailabilityCheck))
+			    if(text.contains(PDFAppConfig.OKC_Format2.petAgreementAvailabilityCheck)||(text.contains(PDFAppConfig.OKC_Format2.petAgreementAvailabilityCheck2))||(text.contains(PDFAppConfig.OKC_Format2.petAgreementAvailabilityCheck3)))
 			    {
 			    	PDFReader.petFlag = true;
 			    	System.out.println("Pet Addendum Available = "+PDFReader.petFlag);

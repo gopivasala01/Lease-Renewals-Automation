@@ -306,9 +306,9 @@ public class PropertyWare_InsertData
 	                PropertyWare_InsertData.editingExistingAutoCharge();
 	                monthlyRentChargeClosed = true;
 	                PropertyWare_InsertData.saveAnAutoCharge();
-	            }  if (autoChargeCode.replaceAll("[.]", "").contains(AppConfig.getHVACAirFilterFeeChargeCode(RunnerClass.company))
+	            }  if (AppConfig.getHVACAirFilterFeeChargeCode(RunnerClass.company).contains(autoChargeCode.replaceAll("[.]", ""))
 	                    && PDFReader.residentBenefitsPackageAvailabilityCheck
-	                    && !autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.HVACAirFilterFee.replaceAll("[^0-9]", ""))) 
+	                    && !autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.HVACAirFilterFee.replaceAll("[^0-9]", "")))
 	            {
 	                editButtons.get(k).click();
 	                PropertyWare_InsertData.editingExistingAutoCharge();

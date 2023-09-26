@@ -23,6 +23,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -67,7 +68,7 @@ public class RunnerClass
 	public static int statusID;
 	public static String renewalExecutionDate = "";
 	public static boolean checkifMoveInDateIsLessThan5DaysToEOM = false;
-																							
+	private static final Logger logger = Logger.getLogger(RunnerClass.class);																						
 	public static void main(String[] args) throws Exception 
 	{
 		

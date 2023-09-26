@@ -17,7 +17,7 @@ public class OKC_Format1
 	public static String prorateRentDate_Prior = "Prorated Rent: On or before";
 	public static String prorateRentDate_After = "Tenant will pay Landlord $";
 	
-	public static String petRent_Prior = "monthly pet rent in the amount of $";
+	public static String petRent_Prior = "pet rent in the amount of $";
 	
 	public static String petAgreementAvailabilityCheck = "PET AUTHORIZATION AND PET DESCRIPTION:";
 	

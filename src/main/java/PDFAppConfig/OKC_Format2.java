@@ -34,6 +34,8 @@ public class OKC_Format2
 	
 	public static String petAgreementAvailabilityCheck = "THIS PET ADDENDUM (this";
 	public static String petAgreementAvailabilityCheck2="PET AUTHORIZATION AND PET DESCRIPTION:";
+	public static String petAgreementAvailabilityCheck3="PET AGREEMENT";
+	
 	
 	static String monthlyRentAvailabilityCheck ="*Per the Landlord, Monthly Rent";
 	public static String HVACFilterAddendumTextAvailabilityCheck = "HVAC Filter Maintenance Program and Fee";
