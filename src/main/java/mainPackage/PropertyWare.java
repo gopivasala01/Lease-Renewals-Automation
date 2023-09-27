@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -39,6 +40,8 @@ public class PropertyWare
         options.addArguments("--remote-allow-origins=*");
         WebDriverManager.chromedriver().clearDriverCache().setup();
         RunnerClass.driver= new ChromeDriver(options);
+        options.setPageLoadStrategy(PageLoadStrategy.NORMAL); // Or PageLoadStrategy.EAGER if needed
+        options.setPageLoadTimeout(Duration.ofSeconds(500));
         RunnerClass.driver.manage().window().maximize();
         RunnerClass.driver.get(AppConfig.URL);
         RunnerClass.driver.findElement(Locators.username).sendKeys(AppConfig.username); 
