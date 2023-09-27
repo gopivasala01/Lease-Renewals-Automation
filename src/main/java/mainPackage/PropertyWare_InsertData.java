@@ -156,8 +156,8 @@ public class PropertyWare_InsertData
 					
 					
 					    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-					    Date parsedAutoChargeStartDate = dateFormat.parse(autoChargeStartDate);
-					    Date parsedRenewalExecutionDate = dateFormat.parse(PDFReader.renewalExecutionDate);
+					   
+					    
 
 					    if (chargeCode.contains(autoChargeCodes)
 					            && !autoChargeAmount.isEmpty()
@@ -533,6 +533,7 @@ public class PropertyWare_InsertData
 				{					System.out.println(" issue in adding Auto Charge - "+description);
 					RunnerClass.failedReason = RunnerClass.failedReason+","+" issue in adding Auto Charge - "+description;
 					RunnerClass.statusID=1;
+					break;
 				}
 				else
 				PropertyWare_InsertData.addingAnAutoCharge(chargeCode, amount, startDate,endDate, description);
