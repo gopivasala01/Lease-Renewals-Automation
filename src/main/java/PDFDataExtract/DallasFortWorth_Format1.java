@@ -126,7 +126,9 @@ public class DallasFortWorth_Format1
 			    }*/
 			    
 			    System.out.println(text.contains(PDFAppConfig.DallasFortWorth_Format1.residentBenefitsPackageCheck)&&!text.contains("Resident Benefits Package Opt-Out Addendum"));
-			    if(text.contains(PDFAppConfig.DallasFortWorth_Format1.residentBenefitsPackageCheck)&&!text.contains("Resident Benefits Package Opt-Out Addendum"))
+			    String text2 = text.substring(text.indexOf(PDFAppConfig.DallasFortWorth_Format1.RBPCHeck_Prior)+PDFAppConfig.DallasFortWorth_Format1.RBPCHeck_Prior.length()).trim().split(":")[0];
+			    System.out.println(text2);
+			    if(text2.contains(PDFAppConfig.DallasFortWorth_Format1.residentBenefitsPackageCheck)&&!text2.contains("Resident Benefits Package Opt-Out Addendum"))
 			    {
 			    	PDFReader.residentBenefitsPackageAvailabilityCheck = true;
 			    	 try

@@ -20,9 +20,9 @@ public class DallasFortWorth_Format1
 	
 	public static String petAgreementAvailabilityCheck = "PET AUTHORIZATION AND PET DESCRIPTION:";
 	
-	public static String residentBenefitsPackageCheck = "Resident Benefits Package (“RBP”) Program and Fee:";
+	public static String residentBenefitsPackageCheck = "Resident Benefits Package (“RBP”) Program and Fee";
 	public static String RBP_Prior = "Resident Benefits Package Fee of $";
-	
+	public static String RBPCHeck_Prior = "not including any applicable rental rate increase. D.";
 	public static String leaseRenewalFee_Prior = "A lease renewal fee in the amount of $";
 
 }
