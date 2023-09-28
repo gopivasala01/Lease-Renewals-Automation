@@ -110,13 +110,13 @@ public class DallasFortWorth_Format2
 				    System.out.println("HVAC Air Filter Fee = "+PDFReader.HVACAirFilterFee);
 		    }
 		    
-		    if(text.contains(PDFAppConfig.Florida_Format2.residentBenefitsPackageCheck)&&!text.contains("Resident Benefits Package Opt-Out Addendum"))
+		    if(text.contains(PDFAppConfig.DallaFortWorth_Format2.residentBenefitsPackageCheck)&&!text.contains("Resident Benefits Package Opt-Out Addendum"))
 		    {
 		    	PDFReader.residentBenefitsPackageAvailabilityCheck = true;
 		    	//HVAC Air Filter Fee
 		    	 try
 				    {
-				    	PDFReader.residentBenefitsPackage = text.substring(text.indexOf(PDFAppConfig.Florida_Format2.RBP_Prior)+PDFAppConfig.Florida_Format2.RBP_Prior.length()).trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "");
+				    	PDFReader.residentBenefitsPackage = text.substring(text.indexOf(PDFAppConfig.DallaFortWorth_Format2.RBP_Prior)+PDFAppConfig.DallaFortWorth_Format2.RBP_Prior.length()).trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "");
 				    	if(PDFReader.residentBenefitsPackage.matches(".*[a-zA-Z]+.*"))
 				    		PDFReader.residentBenefitsPackage = "Error";
 				    }

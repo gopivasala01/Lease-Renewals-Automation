@@ -107,7 +107,7 @@ public class DallasFortWorth_Format1
 					    System.out.println("HVAC Air Filter Fee = "+PDFReader.HVACAirFilterFee);
 			    }
 			    
-			    if(text.contains(PDFAppConfig.DallasFortWorth_Format1.residentBenefitsPackageCheck)&&!text.contains("Resident Benefits Package Opt-Out Addendum"))
+			    /*if(text.contains(PDFAppConfig.DallasFortWorth_Format1.residentBenefitsPackageCheck)&&!text.contains("Resident Benefits Package Opt-Out Addendum"))
 			    {
 			    	PDFReader.residentBenefitsPackageAvailabilityCheck = true;
 			    	//HVAC Air Filter Fee
@@ -123,8 +123,27 @@ public class DallasFortWorth_Format1
 					    	e.printStackTrace();
 					    }
 					    System.out.println("Resident Benefits Package = "+PDFReader.residentBenefitsPackage);
-			    }
+			    }*/
 			    
+			    if(text.contains(PDFAppConfig.DallasFortWorth_Format1.residentBenefitsPackageCheck)&&!text.contains("Resident Benefits Package Opt-Out Addendum"))
+			    {
+			    	PDFReader.residentBenefitsPackageAvailabilityCheck = true;
+			    	 try
+			 	    {
+			 		    PDFReader.residentBenefitsPackage = text.substring(text.indexOf(PDFAppConfig.DallasFortWorth_Format1.RBP_Prior)+PDFAppConfig.DallasFortWorth_Format1.RBP_Prior.length()).trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "");
+			 		    if(PDFReader.residentBenefitsPackage.matches(".*[a-zA-Z]+.*"))
+			 		    {
+			 		    	PDFReader.residentBenefitsPackage = "Error";
+			 		    }
+			 	    }
+			 	    catch(Exception e)
+			 	    {
+			 		    PDFReader.residentBenefitsPackage = "Error";
+			 		    e.printStackTrace();
+			 	    }
+			    	 System.out.println("Resident Benefits Package  = "+PDFReader.residentBenefitsPackage.trim());
+			    	//PDFAppConfig.DFW_Format1.AB1_residentBenefitsPackage_Prior
+			    }
 			    
 			    //Prorate Rent
 			    try
