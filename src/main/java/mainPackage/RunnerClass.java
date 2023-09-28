@@ -118,6 +118,7 @@ public class RunnerClass
 				{
 					if(PDFReader.readPDFPerMarket(company)==true)
 					{
+						
 						PropertyWare_InsertData.configureValues();
 						PropertyWare_InsertData.verifyLedgerForMonhtlyRentStartDate();
 						PropertyWare_InsertData.addingMoveInCharges();
