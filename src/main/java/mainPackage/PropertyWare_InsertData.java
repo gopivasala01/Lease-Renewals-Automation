@@ -394,17 +394,21 @@ public class PropertyWare_InsertData
 	            // Alert not present, continue with the rest of the code
 	        }
 	        
-	        try 
-	        {
+	        try {
 	            WebElement errorMessage = RunnerClass.driver.findElement(By.xpath("//*[@id=\"errorMessages\"]/ul/li"));
-	            if (errorMessage.isDisplayed()) 
-	            {
+	            if (errorMessage.isDisplayed()) {
 	                RunnerClass.driver.findElement(By.xpath("//*[@id=\"editAutoChargeForm\"]/div[3]/input[2]")).click();
 	            }
-	        } 
-	        catch (org.openqa.selenium.NoSuchElementException e) 
-	        {
+	        } catch (org.openqa.selenium.NoSuchElementException e) {
+	            // Handle the NoSuchElementException here (if needed)
+	            // You can log the exception or perform other actions
+	            e.printStackTrace(); // This will print the exception to the console for debugging purposes
+	        } catch (org.openqa.selenium.UnhandledAlertException e) {
+	            // Handle the UnhandledAlertException here (if needed)
+	            // You can log the exception or perform other actions
+	            e.printStackTrace(); // This will print the exception to the console for debugging purposes
 	        }
+
 	        
 	        Thread.sleep(2000);
 	        
