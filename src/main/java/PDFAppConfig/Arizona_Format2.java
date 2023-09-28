@@ -36,7 +36,7 @@ public class Arizona_Format2
 	
 	static String monthlyRentAvailabilityCheck ="*Per the Landlord, Monthly Rent";
 	public static String HVACFilterAddendumTextAvailabilityCheck = "HVAC Filter Maintenance Program and Fee";
-	public static String residentBenefitsPackageCheck = "Resident Benefits Package (“RBP”) Program and Fee:";
+	public static String residentBenefitsPackageCheck = "Resident Benefits Package Fee of";
 	
 	public static String RBP_Prior = "home second nature at a cost of $";
 	
