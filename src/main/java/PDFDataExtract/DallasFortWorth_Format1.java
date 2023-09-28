@@ -125,6 +125,7 @@ public class DallasFortWorth_Format1
 					    System.out.println("Resident Benefits Package = "+PDFReader.residentBenefitsPackage);
 			    }*/
 			    
+			    System.out.println(text.contains(PDFAppConfig.DallasFortWorth_Format1.residentBenefitsPackageCheck)&&!text.contains("Resident Benefits Package Opt-Out Addendum"));
 			    if(text.contains(PDFAppConfig.DallasFortWorth_Format1.residentBenefitsPackageCheck)&&!text.contains("Resident Benefits Package Opt-Out Addendum"))
 			    {
 			    	PDFReader.residentBenefitsPackageAvailabilityCheck = true;
