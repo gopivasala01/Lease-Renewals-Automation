@@ -402,7 +402,7 @@ public class PropertyWare_InsertData
     public static WebElement findElementWithWait(By locator) {
         try {
             return RunnerClass.wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-        } catch (TimeoutException e)
+        } catch (Exception e)
         {
             return null;
         }
