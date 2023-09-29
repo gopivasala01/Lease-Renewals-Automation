@@ -9,13 +9,18 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.Date;
 
-
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 public class PropertyWare_InsertData 
 {
@@ -368,63 +373,49 @@ public class PropertyWare_InsertData
           
 	}
 	
-	public static void editingExistingAutoCharge() throws Exception
-	{
-	    WebElement endDateField = RunnerClass.driver.findElement(Locators.autoCharge_EndDate);
-	    endDateField.clear();
-	    endDateField.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
-	    RunnerClass.driver.findElement(Locators.autoCharge_EndDate).sendKeys(PDFReader.lastDayOfTheStartDate);
-	    
-	    if (!AppConfig.saveButtonOnAndOff) 
-	    {
-	        RunnerClass.driver.findElement(Locators.autoCharge_CancelButton).click();
-	    }
-	    else
-	    {
-	        RunnerClass.driver.findElement(Locators.autoCharge_SaveButton).click();
-	        Thread.sleep(3000);
-	        
-	        try 
-	        {
-	            org.openqa.selenium.Alert alert = RunnerClass.driver.switchTo().alert();
-	            alert.accept();
-	        }
-	        catch (org.openqa.selenium.NoAlertPresentException e)
-	        {
-	            // Alert not present, continue with the rest of the code
-	        }
-	        
-	        try {
-	            WebElement errorMessage = RunnerClass.driver.findElement(By.xpath("//*[@id=\"errorMessages\"]/ul/li"));
-	            if (errorMessage.isDisplayed()) {
-	                RunnerClass.driver.findElement(By.xpath("//*[@id=\"editAutoChargeForm\"]/div[3]/input[2]")).click();
-	            }
-	        } catch (org.openqa.selenium.NoSuchElementException e) {
-	            // Handle the NoSuchElementException here (if needed)
-	            // You can log the exception or perform other actions
-	            e.printStackTrace(); // This will print the exception to the console for debugging purposes
-	        } catch (org.openqa.selenium.UnhandledAlertException e) {
-	            // Handle the UnhandledAlertException here (if needed)
-	            // You can log the exception or perform other actions
-	            e.printStackTrace(); // This will print the exception to the console for debugging purposes
-	        }
+	
 
-	        
-	        Thread.sleep(2000);
-	        
-	        try 
-	        {
-	            org.openqa.selenium.Alert alert = RunnerClass.driver.switchTo().alert();
-	            alert.accept();
-	        }
-	        catch(org.openqa.selenium.NoAlertPresentException e)
-	        {
-	            // Alert not present, continue with the rest of the code
-	        }
-	    }
-	    
-	    Thread.sleep(2000);
-	}
+    public static void editingExistingAutoCharge() throws Exception {
+        WebElement endDateField = RunnerClass.driver.findElement(Locators.autoCharge_EndDate);
+        endDateField.clear();
+        endDateField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        endDateField.sendKeys(PDFReader.lastDayOfTheStartDate);
+
+        if (!AppConfig.saveButtonOnAndOff) {
+            RunnerClass.driver.findElement(Locators.autoCharge_CancelButton).click();
+        } else {
+            RunnerClass.driver.findElement(Locators.autoCharge_SaveButton).click();
+            Thread.sleep(3000);
+
+            handleAlerts();
+
+            WebElement errorMessage = findElementWithWait(By.xpath("//*[@id=\"errorMessages\"]/ul/li"));
+            if (errorMessage != null && errorMessage.isDisplayed()) {
+                RunnerClass.driver.findElement(By.xpath("//*[@id=\"editAutoChargeForm\"]/div[3]/input[2]")).click();
+            }
+
+            handleAlerts();
+        }
+
+        Thread.sleep(2000);
+    }
+    public static WebElement findElementWithWait(By locator) {
+        try {
+            return RunnerClass.wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        } catch (TimeoutException e)
+        {
+            return null;
+        }
+    }
+    
+    private static void handleAlerts() {
+        try {
+            Alert alert = RunnerClass.driver.switchTo().alert();
+            alert.accept();
+        } catch (NoAlertPresentException ignored) {
+            // Alert not present, continue with the rest of the code
+        }
+    }
 
 
 		

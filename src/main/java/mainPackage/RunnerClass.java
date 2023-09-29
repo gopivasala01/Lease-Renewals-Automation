@@ -79,8 +79,8 @@ public class RunnerClass
 		for(int i=0;i<pendingRenewalLeases.length;i++) 
 		{
 		  System.out.println(" Record -- "+(i+1));
-		  company =  pendingRenewalLeases[i][0];
-		  buildingAbbreviation = pendingRenewalLeases[i][1];
+		  company = pendingRenewalLeases[i][0];
+		  buildingAbbreviation =pendingRenewalLeases[i][1];
 		  ownerName = pendingRenewalLeases[i][2];
 		  statusID =0;
 		  failedReason = "";
@@ -179,14 +179,7 @@ public class RunnerClass
 		   RunnerClass.js.executeScript("window.scrollBy(document.body.scrollHeight,0)");
 		   RunnerClass.driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
 	        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(5));
-		   try
-			{
-				if(RunnerClass.driver.findElement(Locators.renewalPopup).isDisplayed())
-				{
-					RunnerClass.driver.findElement(Locators.renewalPoupCloseButton).click();
-				}
-			}
-			catch(Exception e) {}
+	        PropertyWare.intermittentPopUp();
 		   RunnerClass.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 	        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(15));
 	        

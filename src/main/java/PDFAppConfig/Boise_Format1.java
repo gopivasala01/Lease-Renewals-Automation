@@ -20,8 +20,8 @@ public class Boise_Format1
 	
 	public static String petAgreementAvailabilityCheck = "PET AUTHORIZATION AND PET DESCRIPTION:";
 	
-	public static String residentBenefitsPackageCheck = "Resident Benefits Package Fee of";
-	public static String RBP_Prior = "Resident Benefits Package Fee of $";
+	public static String residentBenefitsPackageCheck = "Benefits Package Fee of";
+	public static String RBP_Prior = "Benefits Package Fee of $";
 	public static String RUBS_Prior = "Tenant responsible for $";
 	public static String residentUtilityBillTextCheck = "SPECIAL PROVISIONS:";
 	public static String leaseRenewalFee_Prior = "A lease renewal fee in the amount of $";
