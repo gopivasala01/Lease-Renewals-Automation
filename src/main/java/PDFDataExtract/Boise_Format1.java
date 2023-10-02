@@ -48,7 +48,7 @@ public class Boise_Format1
 	    	PDFReader.renewalExecutionDate = matcher.group();
 	    }
 
-	    System.out.println("Last date mentioned on the page: " + PDFReader.renewalExecutionDate);
+	    System.out.println("Last date mentioned on the page: " + RunnerClass.convertDate(PDFReader.renewalExecutionDate));
 	    
 	    
 	    try {

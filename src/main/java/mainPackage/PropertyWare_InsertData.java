@@ -46,6 +46,7 @@ public class PropertyWare_InsertData
 	        PDFReader.lastDayOfTheStartDate = RunnerClass.lastDateOfTheMonth(RunnerClass.firstDayOfMonth(PDFReader.startDate, -1));
 	        PDFReader.firstFullMonth = RunnerClass.firstDayOfMonth(PDFReader.startDate, 1);
 	        PDFReader.secondFullMonth = RunnerClass.firstDayOfMonth(PDFReader.startDate, 2);
+	        RunnerClass.renewalExecutionDate = RunnerClass.convertDate(PDFReader.renewalExecutionDate);
 
 	        // Compare Start and end Dates in PW with Lease Agreement
 	        try {
@@ -142,7 +143,7 @@ public class PropertyWare_InsertData
 		List<WebElement> existingMoveInCharges_ChargeCodes = RunnerClass.driver.findElements(Locators.moveInCharges_List);
 		List<WebElement> existingMoveInCharges_Amount = RunnerClass.driver.findElements(Locators.moveInCharge_List_Amount);
 		List<WebElement> existingMoveInCharges_Date = RunnerClass.driver.findElements(Locators.moveInCharge_List_Date);
-		
+		//RunnerClass.renewalExecutionDate = RunnerClass.convertDate(PDFReader.renewalExecutionDate);
 		for(int i=0;i<RunnerClass.moveInCharges.length;i++)
 		{
 			
@@ -155,20 +156,16 @@ public class PropertyWare_InsertData
 				
 				for(int k=0;k<existingMoveInCharges_ChargeCodes.size();k++)
 				{
-					String autoChargeCodes = existingMoveInCharges_ChargeCodes.get(k).getText();
-					String autoChargeAmount = existingMoveInCharges_Amount.get(k).getText();
-					String autoChargeStartDate = existingMoveInCharges_Date.get(k).getText();
+					String moveinautoChargeCodes = existingMoveInCharges_ChargeCodes.get(k).getText();
+					String moveinautoChargeAmount = existingMoveInCharges_Amount.get(k).getText();
+					String moveinautoChargeStartDate = existingMoveInCharges_Date.get(k).getText();
 					
-					
-					    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-					   
-					    
-
-					    if (chargeCode.contains(autoChargeCodes)
-					            && !autoChargeAmount.isEmpty()
-					            && autoChargeAmount.substring(1).equals(amount)
-					            && startDate.equals(PDFReader.renewalExecutionDate)) {
-					        availabilityCheck = true;
+					    if (chargeCode.contains(moveinautoChargeCodes)
+					            && !moveinautoChargeAmount.isEmpty()
+					            && moveinautoChargeAmount.substring(1).equals(amount)
+					            && moveinautoChargeStartDate.equals(RunnerClass.renewalExecutionDate)) 
+					    {
+					        availabilityCheck = false;
 					        System.out.println(description + " already available");
 						break;
 					}
@@ -381,14 +378,17 @@ public class PropertyWare_InsertData
         endDateField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         endDateField.sendKeys(PDFReader.lastDayOfTheStartDate);
 
-        if (!AppConfig.saveButtonOnAndOff) {
+        if (!AppConfig.saveButtonOnAndOff) 
+        {
             RunnerClass.driver.findElement(Locators.autoCharge_CancelButton).click();
-        } else {
+        } else 
+        {
             RunnerClass.driver.findElement(Locators.autoCharge_SaveButton).click();
             Thread.sleep(3000);
 
             handleAlerts();
 
+            try {
             WebElement errorMessage = findElementWithWait(By.xpath("//*[@id=\"errorMessages\"]/ul/li"));
             if (errorMessage != null && errorMessage.isDisplayed()) {
                 RunnerClass.driver.findElement(By.xpath("//*[@id=\"editAutoChargeForm\"]/div[3]/input[2]")).click();
@@ -396,8 +396,11 @@ public class PropertyWare_InsertData
 
             handleAlerts();
         }
+            catch (Exception e){
+            	
+            }
 
-        Thread.sleep(2000);
+        }  Thread.sleep(2000);
     }
     public static WebElement findElementWithWait(By locator) {
         try {
@@ -635,7 +638,7 @@ public class PropertyWare_InsertData
 		//Start Date
 		RunnerClass.driver.findElement(Locators.moveInChargeDate).clear();
 		Thread.sleep(2000);
-		RunnerClass.driver.findElement(Locators.moveInChargeDate).sendKeys(RunnerClass.getCurrentDate());
+		RunnerClass.driver.findElement(Locators.moveInChargeDate).sendKeys(PDFReader.renewalExecutionDate);
 		//Save or Cancel button
 		Thread.sleep(2000);
 		if(AppConfig.saveButtonOnAndOff==false)

@@ -277,7 +277,19 @@ public class RunnerClass
 						}
 						catch(Exception e5)
 						{
+							try
+							{
+							SimpleDateFormat format1 = new SimpleDateFormat("M/dd/yyyy");
+						    SimpleDateFormat format2 = new SimpleDateFormat("MM/dd/yyyy");
+						    Date date = format1.parse(dateRaw.trim().replaceAll(" +", " "));
+						    System.out.println(format2.format(date));
+							return format2.format(date).toString();
+							}
+							catch(Exception e6)
+							{
+							
 					return "";
+							}
 					}
 				}
 			}
