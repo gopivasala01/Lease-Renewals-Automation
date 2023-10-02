@@ -46,7 +46,7 @@ public class PropertyWare_InsertData
 	        PDFReader.lastDayOfTheStartDate = RunnerClass.lastDateOfTheMonth(RunnerClass.firstDayOfMonth(PDFReader.startDate, -1));
 	        PDFReader.firstFullMonth = RunnerClass.firstDayOfMonth(PDFReader.startDate, 1);
 	        PDFReader.secondFullMonth = RunnerClass.firstDayOfMonth(PDFReader.startDate, 2);
-	        RunnerClass.renewalExecutionDate = RunnerClass.convertDate(PDFReader.renewalExecutionDate);
+	        RunnerClass.renewalExecutionDate = PDFReader.renewalExecutionDate;
 
 	        // Compare Start and end Dates in PW with Lease Agreement
 	        try {

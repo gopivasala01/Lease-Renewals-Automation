@@ -99,7 +99,7 @@ public class RunnerClass
 			  buildingAbbreviation = buildingAbbreviation;
 			  }
 		  else {
-					buildingAbbreviation = buildingAbbreviation.split("-")[0].trim();
+					buildingAbbreviation = buildingAbbreviation.split("-")[1].trim();
 					}
           // Login to the PropertyWare		  
 		 if (company.contains("Alabama")|| company.contains("Arkansas")|| company.contains("Austin")|| company.contains("Dallas/Fort Worth")|| company.contains("Florida")||company.contains("North Carolina")|| company.contains("Georgia")||company.contains("Indiana")|| company.contains("Little Rock")|| company.contains("Tennessee")|| company.contains("California")|| company.contains("California PFW")|| company.contains("Houston")|| company.contains("Chattanooga")|| company.contains("Chicago")|| company.contains("South Carolina")|| company.contains("Tulsa")|| company.contains("Ohio")|| company.contains("Savannah")|| company.contains("Maine")|| company.contains("OKC")|| company.contains("San Antonio")|| company.contains("Pennsylvania") || company.contains("Colorado Springs") || company.contains("Kansas City") || company.contains("Lake Havasu") || company.contains("New Mexico") || company.contains("Boise") || company.contains("Spokane") || company.contains("Utah") || company.contains("Hawaii") || company.contains("Columbia - St Louis")|| company.contains("Idaho Falls") || company.contains("Arizona") || company.contains("Maryland") || company.contains("Virginia" )|| company.contains("Chicago PFW"))
@@ -122,7 +122,7 @@ public class RunnerClass
 						PropertyWare_InsertData.configureValues();
 						PropertyWare_InsertData.verifyLedgerForMonhtlyRentStartDate();
 						PropertyWare_InsertData.addingMoveInCharges();
-						PropertyWare_InsertData.clearExistingAutoCharges();
+ 						PropertyWare_InsertData.clearExistingAutoCharges();
 						//PropertyWare_InsertData.currentMonthlyRentUpdate();
 						PropertyWare_InsertData.addingNewAutoCharges();
 						PropertyWare_InsertOtherInformation.addingOtherInformation();
