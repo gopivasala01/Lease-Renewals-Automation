@@ -155,7 +155,7 @@ public class PropertyWare
 		     }
 		return true;
 	}
-	
+
 	 public static void intermittentPopUp() {
 	        try {
 	            RunnerClass.driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);

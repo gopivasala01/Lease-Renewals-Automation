@@ -18,6 +18,10 @@ public class Locators
 	public static By dashboardsTab = By.linkText("Dashboards");
 	public static By searchingLoader = By.xpath("//*[@id='eqsResult']/h1");
 	public static By searchedLeaseCompanyHeadings = By.xpath("//*[@id='eqsResult']/div/div/h1");
+	public static By noItemsFoundMessagewhenLeaseNotFound = By.xpath("//*[text()='No Items Found']");
+	 public static By advancedSearch = By.linkText("Advanced Search >>");
+	    public static By advancedSearch_buildingsSection = By.id("searchResultTable_buildings");
+	    public static By advancedSearch_buildingAddresses = By.xpath("//*[@id='searchResultTable_buildings']/following::table[1]/tbody/tr/td[2]/a");
 	//public static By selectSearchedLease = By.partialLinkText(RunnerClass.buildingAbbreviation);
 	
 	public static By leasesTab = By.xpath("//*[@class='tabbedSection']/a[4]");	
