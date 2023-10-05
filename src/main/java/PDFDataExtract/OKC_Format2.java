@@ -107,7 +107,7 @@ public class OKC_Format2
 					    System.out.println("HVAC Air Filter Fee = "+PDFReader.HVACAirFilterFee);
 			    }
 			    
-			    if(text.contains(PDFAppConfig.OKC_Format2.residentBenefitsPackageCheck)&&!text.contains("Resident Benefits Package Opt-Out Addendum"))
+			    if(text.contains(PDFAppConfig.OKC_Format2.residentBenefitsPackageCheck)&&(!text.contains("Resident Benefits Package Opt-Out Addendum")||!text.contains("RESIDENT BENEFITS PACKAGE OPT-OUT ADDENDUM")))
 			    {
 			    	PDFReader.residentBenefitsPackageAvailabilityCheck = true;
 			    	//HVAC Air Filter Fee

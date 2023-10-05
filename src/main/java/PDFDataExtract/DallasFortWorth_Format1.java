@@ -107,7 +107,7 @@ public class DallasFortWorth_Format1
 					    System.out.println("HVAC Air Filter Fee = "+PDFReader.HVACAirFilterFee);
 			    }
 			    
-			    /*if(text.contains(PDFAppConfig.DallasFortWorth_Format1.residentBenefitsPackageCheck)&&!text.contains("Resident Benefits Package Opt-Out Addendum"))
+			    /*if(text.contains(PDFAppConfig.DallasFortWorth_Format1.residentBenefitsPackageCheck)&&(!text.contains("Resident Benefits Package Opt-Out Addendum")||!text.contains("RESIDENT BENEFITS PACKAGE OPT-OUT ADDENDUM")))
 			    {
 			    	PDFReader.residentBenefitsPackageAvailabilityCheck = true;
 			    	//HVAC Air Filter Fee
@@ -126,9 +126,9 @@ public class DallasFortWorth_Format1
 			    }*/
 			    
 			   
-			    if(text.contains(PDFAppConfig.DallasFortWorth_Format1.residentBenefitsPackageCheck)&&!text.contains("Resident Benefits Package Opt-Out Addendum"))
+			    if(text.contains(PDFAppConfig.DallasFortWorth_Format1.residentBenefitsPackageCheck)&&(!text.contains("Resident Benefits Package Opt-Out Addendum")||!text.contains("RESIDENT BENEFITS PACKAGE OPT-OUT ADDENDUM")))
 			    {
-			    	System.out.println(text.contains(PDFAppConfig.DallasFortWorth_Format1.residentBenefitsPackageCheck)&&!text.contains("Resident Benefits Package Opt-Out Addendum"));
+			    	System.out.println(text.contains(PDFAppConfig.DallasFortWorth_Format1.residentBenefitsPackageCheck)&&(!text.contains("Resident Benefits Package Opt-Out Addendum")||!text.contains("RESIDENT BENEFITS PACKAGE OPT-OUT ADDENDUM")));
 			    	PDFReader.residentBenefitsPackageAvailabilityCheck = true;
 			    	 try
 			 	    {

@@ -108,7 +108,7 @@ public class Pennsylvania_Format1
 						    System.out.println("HVAC Air Filter Fee = "+PDFReader.HVACAirFilterFee);
 				    }
 				    
-				    if(text.contains(PDFAppConfig.Pennsylvania_Format1.residentBenefitsPackageCheck)&&!text.contains("Resident Benefits Package Opt-Out Addendum"))
+				    if(text.contains(PDFAppConfig.Pennsylvania_Format1.residentBenefitsPackageCheck)&&(!text.contains("Resident Benefits Package Opt-Out Addendum")||!text.contains("RESIDENT BENEFITS PACKAGE OPT-OUT ADDENDUM")))
 				    {
 				    	PDFReader.residentBenefitsPackageAvailabilityCheck = true;
 				    	//HVAC Air Filter Fee

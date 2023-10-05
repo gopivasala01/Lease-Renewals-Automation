@@ -118,6 +118,8 @@ public class AppConfig
 				  return "40010 - Rent Income";
 		   case "Washington DC":
 				  return "40010 - Rent Income";
+		   case "New Jersey":
+				  return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -201,6 +203,8 @@ public class AppConfig
 		   case "Virginia":
 			   return "40230 - Pet Rent";
 		   case "Washington DC":
+			   return "40230 - Pet Rent";
+		   case "New Jersey":
 			   return "40230 - Pet Rent";
 		   }
 		   return "";
@@ -286,6 +290,8 @@ public class AppConfig
 			   return "40230 - Pet Rent";
 		   case "Washington DC":
 			   return "40230 - Pet Rent";
+		   case "New Jersey":
+			   return "40230 - Pet Rent";
 		   }
 		   return "";
 	   }
@@ -369,6 +375,8 @@ public class AppConfig
 			   return "40010 - Rent Income";
 		   case "Washington DC":
 			   return "40010 - Rent Income";
+		   case "New Jersey":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -451,6 +459,8 @@ public class AppConfig
 		   case "Virginia":
 			   return "43060 - Filter Fee";
 		   case "Washington DC":
+			   return "43060 - Filter Fee";
+		   case "New Jersey":
 			   return "43060 - Filter Fee";
 			   
 		   }
@@ -537,6 +547,8 @@ public class AppConfig
 			   return "43070 - Resident Benefit Package Fee";
 		   case "Washington DC":
 			   return "43070 - Resident Benefit Package Fee";
+		   case "New Jersey":
+			   return "43070 - Resident Benefit Package Fee";
 		   }
 		   return "";
 	   }
@@ -620,6 +632,8 @@ public class AppConfig
 			   return "43040 - Resident Renewal Admin Fee";
 		   case "Washington DC":
 			   return "43040 - Resident Renewal Admin Fee";
+		   case "New Jersey":
+			   return "43040 - Resident Renewal Admin Fee";
 		    
 		   }
 		   return "";
@@ -702,6 +716,8 @@ public class AppConfig
 		        case "Virginia":
 		            return "43050 - Month-to-Month Admin Fee";
 		        case "Washington DC":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "New Jersey":
 		            return "43050 - Month-to-Month Admin Fee";
 		        default:
 		            return "";
@@ -788,6 +804,8 @@ public class AppConfig
 			   return "YES";
 		   case "Washington DC":
 			   return "YES";
+		   case "New Jersey":
+			   return "YES";
 		   }
 		   return "";
 	   }
@@ -870,6 +888,8 @@ public class AppConfig
 		   case "Virginia":
 			   return "Yes";
 		   case "Washington DC":
+			   return "Yes";
+		   case "New Jersey":
 			   return "Yes";
 		   }
 		   return "";    
@@ -955,6 +975,8 @@ public class AppConfig
 			   return "NO";
 		   case "Washington DC":
 			   return "NO";
+		   case "New Jersey":
+			   return "NO";
 		   }
 		   return "";
 	   }
@@ -1037,6 +1059,8 @@ public class AppConfig
 			   case "Virginia":
 				   return "No";
 			   case "Washington DC":
+				   return "No";
+			   case "New Jersey":
 				   return "No";
 			   }
 			   return "";    

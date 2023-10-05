@@ -11,10 +11,9 @@ import org.apache.pdfbox.text.PDFTextStripper;
 import mainPackage.PDFReader;
 import mainPackage.RunnerClass;
 
-public class Utah_Format1 
+public class NewJersey_Format1 
 {
-	//public static void main(String[] args) 
-	public static boolean utah() throws Exception
+	public static boolean newJersey() throws Exception
 	{
 		try
 		{
@@ -41,7 +40,7 @@ public class Utah_Format1
 	    Pattern datePattern = Pattern.compile(pattern);
 
 	    Matcher matcher = datePattern.matcher(firstPageText);
-	    String renewalExecutionDate = "";
+	    
 
 	    
 	    while (matcher.find()) {
@@ -51,7 +50,7 @@ public class Utah_Format1
 	    System.out.println("Last date mentioned on the page: " + PDFReader.renewalExecutionDate);
 		    try
 		    {
-		    	PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.Utah_Format1.commencementDate_Prior)+PDFAppConfig.Utah_Format1.commencementDate_Prior.length(),text.indexOf(PDFAppConfig.Utah_Format1.commencementDate_After));
+		    	PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.NewJersey_Format1.commencementDate_Prior)+PDFAppConfig.NewJersey_Format1.commencementDate_Prior.length(),text.indexOf(PDFAppConfig.NewJersey_Format1.commencementDate_After));
 		    }
 		    catch(Exception e)
 		    {
@@ -61,7 +60,7 @@ public class Utah_Format1
 		    System.out.println("Commensement Date = "+PDFReader.commencementDate);
 		   try
 		    {
-			   PDFReader.expirationDate = text.substring(text.indexOf(PDFAppConfig.Utah_Format1.expirationDate_Prior)+PDFAppConfig.Utah_Format1.expirationDate_Prior.length(),text.indexOf(PDFAppConfig.Utah_Format1.expirationDate_After));
+			   PDFReader.expirationDate = text.substring(text.indexOf(PDFAppConfig.NewJersey_Format1.expirationDate_Prior)+PDFAppConfig.NewJersey_Format1.expirationDate_Prior.length(),text.indexOf(PDFAppConfig.NewJersey_Format1.expirationDate_After));
 		    	//PDFReader.expirationDate = PDFReader.expirationDate.substring(0,PDFReader.expirationDate.indexOf("(the")).trim();
 		    }
 		    catch(Exception e)
@@ -75,7 +74,7 @@ public class Utah_Format1
 			//Monthly Rent
 		    try
 		    {
-		    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.Utah_Format1.monthlyRent_Prior)+PDFAppConfig.Utah_Format1.monthlyRent_Prior.length()).trim().split(" ")[0];
+		    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.NewJersey_Format1.monthlyRent_Prior)+PDFAppConfig.NewJersey_Format1.monthlyRent_Prior.length()).trim().split(" ")[0];
 		    	if(PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*"))
 		    		PDFReader.monthlyRent = "Error";
 		    	if(PDFReader.monthlyRent.contains("$"))
@@ -89,13 +88,13 @@ public class Utah_Format1
 		    System.out.println("Monthly Rent = "+PDFReader.monthlyRent);
 		    
 		    //HVAC Air Filter Fee (OR) Resident Benefits Package
-		    if(text.contains(PDFAppConfig.Utah_Format1.HVACFilterAddendumTextAvailabilityCheck))
+		    if(text.contains(PDFAppConfig.NewJersey_Format1.HVACFilterAddendumTextAvailabilityCheck))
 		    {
 		    	PDFReader.HVACFilterFlag = true;
 		    	//HVAC Air Filter Fee
 		    	 try
 				    {
-				    	PDFReader.HVACAirFilterFee = text.substring(text.indexOf(PDFAppConfig.Utah_Format1.HVACAirFilterFee)+PDFAppConfig.Utah_Format1.HVACAirFilterFee.length()).trim().split(" ")[0];
+				    	PDFReader.HVACAirFilterFee = text.substring(text.indexOf(PDFAppConfig.NewJersey_Format1.HVACAirFilterFee)+PDFAppConfig.NewJersey_Format1.HVACAirFilterFee.length()).trim().split(" ")[0];
 				    	if(PDFReader.HVACAirFilterFee.matches(".*[a-zA-Z]+.*"))
 				    		PDFReader.HVACAirFilterFee = "Error";
 				    }
@@ -107,13 +106,13 @@ public class Utah_Format1
 				    System.out.println("HVAC Air Filter Fee = "+PDFReader.HVACAirFilterFee);
 		    }
 		    
-		    if(text.contains(PDFAppConfig.Utah_Format1.residentBenefitsPackageCheck)&&(!text.contains("Resident Benefits Package Opt-Out Addendum")||!text.contains("RESIDENT BENEFITS PACKAGE OPT-OUT ADDENDUM")))
+		    if(text.contains(PDFAppConfig.NewJersey_Format1.residentBenefitsPackageCheck)&&(!text.contains("Resident Benefits Package Opt-Out Addendum")||!text.contains("RESIDENT BENEFITS PACKAGE OPT-OUT ADDENDUM")))
 		    {
 		    	PDFReader.residentBenefitsPackageAvailabilityCheck = true;
 		    	//HVAC Air Filter Fee
 		    	 try
 				    {
-				    	PDFReader.residentBenefitsPackage = text.substring(text.indexOf(PDFAppConfig.Utah_Format1.RBP_Prior)+PDFAppConfig.Utah_Format1.RBP_Prior.length()).trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "");
+				    	PDFReader.residentBenefitsPackage = text.substring(text.indexOf(PDFAppConfig.NewJersey_Format1.RBP_Prior)+PDFAppConfig.NewJersey_Format1.RBP_Prior.length()).trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "");
 				    	if(PDFReader.residentBenefitsPackage.matches(".*[a-zA-Z]+.*"))
 				    		PDFReader.residentBenefitsPackage = "Error";
 				    }
@@ -129,7 +128,7 @@ public class Utah_Format1
 		    //Prorate Rent
 		    try
 		    {
-		    	PDFReader.proratedRent = text.substring(text.indexOf(PDFAppConfig.Utah_Format1.prorateRent_Prior)+PDFAppConfig.Utah_Format1.prorateRent_Prior.length()).trim().split(" ")[0];
+		    	PDFReader.proratedRent = text.substring(text.indexOf(PDFAppConfig.NewJersey_Format1.prorateRent_Prior)+PDFAppConfig.NewJersey_Format1.prorateRent_Prior.length()).trim().split(" ")[0];
 		    	if(PDFReader.proratedRent.matches(".*[a-zA-Z]+.*"))
 		    		PDFReader.proratedRent = "Error";
 		    }
@@ -141,14 +140,14 @@ public class Utah_Format1
 		    System.out.println("Prorate Rent = "+PDFReader.proratedRent);
 		    
 			//Pet Rent
-		    if(text.contains(PDFAppConfig.Utah_Format1.petAgreementAvailabilityCheck))
+		    if(text.contains(PDFAppConfig.NewJersey_Format1.petAgreementAvailabilityCheck))
 		    {
 		    	PDFReader.petFlag = true;
 		    	System.out.println("Pet Addendum Available = "+PDFReader.petFlag);
 		    	
 		    	try
 		    	{
-		    		PDFReader.petRent = text.substring(text.indexOf(PDFAppConfig.Utah_Format1.petRent_Prior)+PDFAppConfig.Utah_Format1.petRent_Prior.length()).trim().split(" ")[0].trim();
+		    		PDFReader.petRent = text.substring(text.indexOf(PDFAppConfig.NewJersey_Format1.petRent_Prior)+PDFAppConfig.NewJersey_Format1.petRent_Prior.length()).trim().split(" ")[0].trim();
 		    		if(PDFReader.petRent.matches(".*[a-zA-Z]+.*"))
 			    		PDFReader.petRent = "Error";
 		    	}
@@ -162,7 +161,7 @@ public class Utah_Format1
 		    //Lease Renewal Admin Fee
 		    try
 	    	{
-	    		PDFReader.leaseRenewalFee = text.substring(text.indexOf(PDFAppConfig.Utah_Format1.leaseRenewalFee_Prior)+PDFAppConfig.Utah_Format1.leaseRenewalFee_Prior.length()).trim().split(" ")[0].trim();
+	    		PDFReader.leaseRenewalFee = text.substring(text.indexOf(PDFAppConfig.NewJersey_Format1.leaseRenewalFee_Prior)+PDFAppConfig.NewJersey_Format1.leaseRenewalFee_Prior.length()).trim().split(" ")[0].trim();
 	    		if(PDFReader.leaseRenewalFee.matches(".*[a-zA-Z]+.*"))
 		    		PDFReader.leaseRenewalFee = "Error";
 	    	}
@@ -181,6 +180,5 @@ public class Utah_Format1
 		}
 
 	}
-
 
 }

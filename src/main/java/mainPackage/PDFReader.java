@@ -853,6 +853,26 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "New Jersey":
+				String pdfFormatType_newJersey = PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_newJersey);
+				if(pdfFormatType_newJersey=="Format1")
+				{
+					if(PDFDataExtract.NewJersey_Format1.newJersey()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_newJersey=="Format2")
+				     {
+					if(PDFDataExtract.NewJersey_Format2.newJersey()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
@@ -1019,6 +1039,10 @@ public class PDFReader
 		        format2Text = PDFAppConfig.PDFFormatDecider.virginia_Format2;
 		        break;
 			case "Washington DC":
+		        format1Text = PDFAppConfig.PDFFormatDecider.washingtonDC_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.washingtonDC_Format2;
+		        break;
+			case "New Jersey":
 		        format1Text = PDFAppConfig.PDFFormatDecider.washingtonDC_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.washingtonDC_Format2;
 		        break;
