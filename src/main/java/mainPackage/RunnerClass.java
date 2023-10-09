@@ -111,7 +111,7 @@ public class RunnerClass
 		  //Login 
 		  if( PropertyWare.login()==true)
 		  {
-		  //Search building in property Ware
+		  //Search building in property Ware4970 Perceptive Wy	
 		   if(PropertyWare.searchBuilding(company, buildingAbbreviation)==true)
 			{
 				if(PropertyWare.downloadLeaseAgreement(buildingAbbreviation, ownerName)==true)

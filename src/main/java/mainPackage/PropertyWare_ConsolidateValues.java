@@ -1,5 +1,10 @@
 package mainPackage;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.apache.hc.core5.http.ParseException;
+
 public class PropertyWare_ConsolidateValues 
 {
 	public static void decideAutoCharges()
@@ -110,13 +115,18 @@ public class PropertyWare_ConsolidateValues
 		
 	}
 	
-	public static void updateDates()
+	public static void updateDates() throws Exception
 	{
 		    PropertyWare_InsertData.proratedRent_StartDate ="";
+		    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		    Date startDate;
+		    Date renewalExecutionDate;
+		    startDate = dateFormat.parse(PDFReader.startDate);
+			renewalExecutionDate = dateFormat.parse(PDFReader.renewalExecutionDate);
 		    if(PDFReader.startDate.split("/")[1].equals("1")||PDFReader.startDate.split("/")[1].equals("01"))
 		    {
 		    	//If there is already a monthly rent charge in Ledger,then auto charge start date is first full month
-		    	if(PDFReader.dateCheckInLedgerForMonthlyRentStartDate == true)
+		    	if (PDFReader.dateCheckInLedgerForMonthlyRentStartDate || startDate.before(renewalExecutionDate)) 
 		    	{
 		    		PropertyWare_InsertData.monthlyRent_StartDate = PDFReader.firstFullMonth;
 					PropertyWare_InsertData.ResidentBenefitPackage_StartDate = PDFReader.firstFullMonth;

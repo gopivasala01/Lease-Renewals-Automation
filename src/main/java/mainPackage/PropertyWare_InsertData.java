@@ -163,7 +163,7 @@ public class PropertyWare_InsertData
 					    if (chargeCode.contains(moveinautoChargeCodes)
 					            && !moveinautoChargeAmount.isEmpty()
 					            && moveinautoChargeAmount.substring(1).equals(amount)
-					            && moveinautoChargeStartDate.equals(RunnerClass.renewalExecutionDate)) 
+					            && moveinautoChargeStartDate.equals(RunnerClass.getCurrentDate()))  
 					    {
 					        availabilityCheck = false;
 					        System.out.println(description + " already available");
@@ -331,6 +331,14 @@ public class PropertyWare_InsertData
 							PropertyWare_InsertData.saveAnAutoCharge();
 							continue;
 						}
+	               if(autoChargeCode.equals(AppConfig.getResidentUtilityBillChargeCode(RunnerClass.company))&&(!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.RUBS.replaceAll("[^0-9]", ""))||PDFReader.RUBS!=""))
+					{
+						editButtons.get(k).click();
+						PropertyWare_InsertData.editingExistingAutoCharge();
+						//break;
+						PropertyWare_InsertData.saveAnAutoCharge();
+						continue;
+					}
 	            
 	        }
 
