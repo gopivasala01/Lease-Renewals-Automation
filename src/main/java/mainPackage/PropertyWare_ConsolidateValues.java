@@ -2,8 +2,11 @@ package mainPackage;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.hc.core5.http.ParseException;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 
 public class PropertyWare_ConsolidateValues 
 {
@@ -147,5 +150,28 @@ public class PropertyWare_ConsolidateValues
 		    }
 			PropertyWare_InsertData.increasedRent_previousRentStartDate = PDFReader.startDate;
 		    
+	}
+	public static void getRentCodeForArizona() throws Exception
+	{
+		RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+		RunnerClass.driver.findElement(Locators.ledgerTab).click();
+		Thread.sleep(2000);
+		RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
+		RunnerClass.driver.findElement(Locators.newCharge).click();
+		Thread.sleep(2000);
+		//Account code
+		RunnerClass.driver.findElement(Locators.accountDropdown).click();
+		List<WebElement> chargeCodes = RunnerClass.driver.findElements(Locators.chargeCodesList);
+		for(int i=0;i<chargeCodes.size();i++)
+		{
+			String code = chargeCodes.get(i).getText();
+			if(code.contains(RunnerClass.arizonaCityFromBuildingAddress))
+			{
+				RunnerClass.arizonaRentCode = code;
+				RunnerClass.arizonaCodeAvailable = true;
+				break;
+				
+			}
+		}
 	}
 }

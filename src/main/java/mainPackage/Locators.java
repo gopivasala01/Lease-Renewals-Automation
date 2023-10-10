@@ -13,6 +13,7 @@ public class Locators
 	public static By Lease= By.xpath("//*[@class='tabbedSection']/a[4]");
 	public static By Edit= By.xpath("//*[@value='Edit']");
 	public static By AutoCharges=By.xpath("//*[text()=\"Auto Charges\"]");
+	public static By chargeCodesList = By.xpath("//*[@name='charge.GLAccountID']/optgroup/option");
 	
 	public static By searchbox = By.name("eqsSearchText");
 	public static By dashboardsTab = By.linkText("Dashboards");

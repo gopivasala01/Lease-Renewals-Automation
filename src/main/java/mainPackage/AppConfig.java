@@ -2,7 +2,7 @@ package mainPackage;
 
 public class AppConfig 
 {
-	public static boolean saveButtonOnAndOff= true;
+	public static boolean saveButtonOnAndOff= false;
 	
 	public static String username= "mds0418@gmail.com";
 	public static String password="KRm#V39fecMDGg#";
@@ -111,7 +111,11 @@ public class AppConfig
 		   case "Idaho Falls":
 				  return "40010 - Rent Income";
 		   case "Arizona":
-				  return "40010 - Rent Income";
+			   if(RunnerClass.arizonaCodeAvailable==false&&RunnerClass.arizonaCityFromBuildingAddress.contains("Phoenix"))
+				   return "40018 - Rent-PHX";
+			   else if(RunnerClass.arizonaCodeAvailable==false)
+			   return "40010 - Rent Income";
+			   else return RunnerClass.arizonaRentCode;
 		   case "Maryland":
 				  return "40010 - Rent Income";
 		   case "Virginia":

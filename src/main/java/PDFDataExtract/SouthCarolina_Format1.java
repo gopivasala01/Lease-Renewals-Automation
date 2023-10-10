@@ -42,11 +42,19 @@ public class SouthCarolina_Format1
 			    Pattern datePattern = Pattern.compile(pattern);
 
 			    Matcher matcher = datePattern.matcher(firstPageText);
-			    String renewalExecutionDate = "";
+			    
 
 			    
 			    while (matcher.find()) {
 			    	PDFReader.renewalExecutionDate = matcher.group();
+			    }
+			    if(PDFReader.renewalExecutionDate.isEmpty())
+			    {
+			    	 matcher = datePattern.matcher(text);
+			    	 while (matcher.find()) {
+			 	    	PDFReader.renewalExecutionDate = matcher.group();
+			 	    	
+			 	    }
 			    }
 
 			    System.out.println("Last date mentioned on the page: " + PDFReader.renewalExecutionDate);

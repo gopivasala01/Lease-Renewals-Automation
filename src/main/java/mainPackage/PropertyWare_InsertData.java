@@ -78,6 +78,8 @@ public class PropertyWare_InsertData
 	        return false;
 	    }
 
+	    if(RunnerClass.company.equals("Arizona"))
+			PropertyWare_ConsolidateValues.getRentCodeForArizona();
 	    // Update dates for auto charges
 	    PropertyWare_ConsolidateValues.updateDates();
 	    // Adding values to the Auto Charges table

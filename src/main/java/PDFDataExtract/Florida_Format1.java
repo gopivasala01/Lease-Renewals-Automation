@@ -33,7 +33,7 @@ public class Florida_Format1
 			System.out.println("First page text:\n" + firstPageText);
 			System.out.println("All pages text:\n" + text);
 			document.close();
-	    
+			
 	    System.out.println("------------------------------------------------------------------");
 	    
 	    String pattern = "\\d{1,2}/\\d{1,2}/\\d{4}"; 
@@ -45,6 +45,15 @@ public class Florida_Format1
 	    
 	    while (matcher.find()) {
 	    	PDFReader.renewalExecutionDate = matcher.group();
+	    	
+	    }
+	    if(PDFReader.renewalExecutionDate.isEmpty())
+	    {
+	    	 matcher = datePattern.matcher(text);
+	    	 while (matcher.find()) {
+	 	    	PDFReader.renewalExecutionDate = matcher.group();
+	 	    	
+	 	    }
 	    }
 
 	    System.out.println("Last date mentioned on the page: " + PDFReader.renewalExecutionDate);

@@ -68,6 +68,9 @@ public class RunnerClass
 	public static int statusID;
 	public static String renewalExecutionDate = "";
 	public static boolean checkifMoveInDateIsLessThan5DaysToEOM = false;
+	public static boolean arizonaCodeAvailable = false;
+	public static String arizonaCityFromBuildingAddress = "";
+	public static String arizonaRentCode = "";
 	private static final Logger logger = Logger.getLogger(RunnerClass.class);																						
 	public static void main(String[] args) throws Exception 
 	{

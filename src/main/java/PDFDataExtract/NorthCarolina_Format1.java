@@ -49,6 +49,15 @@ public class NorthCarolina_Format1
 	    while (matcher.find()) {
 	    	PDFReader.renewalExecutionDate = matcher.group();
 	    }
+	    if(PDFReader.renewalExecutionDate.isEmpty())
+	    {
+	    	 matcher = datePattern.matcher(text);
+	    	 while (matcher.find()) {
+	 	    	PDFReader.renewalExecutionDate = matcher.group();
+	 	    	
+	 	    }
+	    }
+
 
 	    System.out.println("Last date mentioned on the page: " + PDFReader.renewalExecutionDate);
 		    try
