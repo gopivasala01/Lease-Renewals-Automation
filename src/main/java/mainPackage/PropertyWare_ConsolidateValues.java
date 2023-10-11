@@ -121,7 +121,7 @@ public class PropertyWare_ConsolidateValues
 	public static void updateDates() throws Exception
 	{
 		    PropertyWare_InsertData.proratedRent_StartDate ="";
-		    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 		    Date startDate;
 		    Date renewalExecutionDate;
 		    startDate = dateFormat.parse(PDFReader.startDate);

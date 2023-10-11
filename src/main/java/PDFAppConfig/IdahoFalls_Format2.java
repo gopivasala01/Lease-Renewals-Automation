@@ -37,8 +37,12 @@ public class IdahoFalls_Format2
 	static String monthlyRentAvailabilityCheck ="*Per the Landlord, Monthly Rent";
 	public static String HVACFilterAddendumTextAvailabilityCheck = "HVAC Filter Maintenance Program and Fee";
 	public static String residentBenefitsPackageCheck = "Resident Benefits Package Fee of";
-	public static String RUBS_Prior = "charge Tenant a flat fee of $";
+	public static String RUBS_Prior = "Tenant responsible for $";
+	public static String RUBS_Prior2= "a flat rate utility fee of $";
+	public static String RUBS_Prior3= "Tenant shall pay a $";
+	
 	public static String residentUtilityBillTextCheck = "SPECIAL PROVISIONS:";
+	
 	
 	public static String RBP_Prior = "Benefits Package Fee of $";
 	

@@ -26,6 +26,7 @@ public class Locators
 	//public static By selectSearchedLease = By.partialLinkText(RunnerClass.buildingAbbreviation);
 	
 	public static By leasesTab = By.xpath("//*[@class='tabbedSection']/a[4]");	
+	 public static By leasesTab2 = By.xpath("(//a[text()='Leases'])[2]");
     public static By RCDetails = By.xpath("//*[contains(text(),'Resident Coordinator [Name/Phone/Email]')]/following::td[1]/div");
     public static By leaseStartDate_PW = By.xpath("//*[@id='infoTable']/tbody/tr[3]/td[1]");
     public static By leaseEndDate_PW = By.xpath("//*[@id='infoTable']/tbody/tr[3]/td[2]");

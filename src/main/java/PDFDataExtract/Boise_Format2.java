@@ -134,6 +134,32 @@ public class Boise_Format2
 				    System.out.println("Resident Benefits Package = "+PDFReader.residentBenefitsPackage);
 		    }
 		    
+		    if(text.contains(PDFAppConfig.Boise_Format1.residentUtilityBillTextCheck))
+		    {
+		    	PDFReader.residentUtilityBillFlag = true;
+	    	try
+		    {
+	    		if(text.indexOf(PDFAppConfig.Boise_Format1.RUBS_Prior)==-1)
+	    		{
+	    			if(text.indexOf(PDFAppConfig.Boise_Format1.RUBS_Prior2)==-1)
+	    			{
+	    				PDFReader.RUBS = text.substring(text.indexOf(PDFAppConfig.Boise_Format2.RUBS_Prior3)+PDFAppConfig.Utah_Format2.RUBS_Prior3.length()).trim().split(" ")[0];
+	    			}
+	    			else {
+	    			PDFReader.RUBS = text.substring(text.indexOf(PDFAppConfig.Boise_Format2.RUBS_Prior2)+PDFAppConfig.Boise_Format1.RUBS_Prior2.length()).trim().split(" ")[0];
+	    			}
+	    		}
+	    		else {
+	    			 PDFReader.RUBS = text.substring(text.indexOf(PDFAppConfig.Boise_Format2.RUBS_Prior)+PDFAppConfig.Boise_Format1.RUBS_Prior.length()).trim().split(" ")[0];
+	    		}
+		    }
+	    	catch(Exception e)
+		    {
+	    		if(PDFReader.RUBS.matches(".*[a-zA-Z]+.*"))
+	    		PDFReader.RUBS = "Error";
+		    }
+	    	System.out.println("RUBS = "+PDFReader.RUBS);
+		    }
 		    
 		    //Prorate Rent
 		    try

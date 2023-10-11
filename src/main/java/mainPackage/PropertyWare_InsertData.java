@@ -78,12 +78,12 @@ public class PropertyWare_InsertData
 	        return false;
 	    }
 
-	    if(RunnerClass.company.equals("Arizona"))
+	   /* if(RunnerClass.company.equals("Arizona"))
 			PropertyWare_ConsolidateValues.getRentCodeForArizona();
 	    // Update dates for auto charges
 	    PropertyWare_ConsolidateValues.updateDates();
 	    // Adding values to the Auto Charges table
-	   
+	    
 	    if (PropertyWare_InsertData.addingValuesToTable() == false)
 	        return false;
 	    // Adding values to the Move In Charges table
@@ -91,6 +91,7 @@ public class PropertyWare_InsertData
 	        return false;
 	    // Update Flag column in table
 	    PropertyWare_ConsolidateValues.decideAutoCharges();
+	    */
 	    return true;
 	}
 
@@ -120,6 +121,21 @@ public class PropertyWare_InsertData
 			}
 		}
 		PropertyWare.intermittentPopUp();
+		if(RunnerClass.company.equals("Arizona"))
+			PropertyWare_ConsolidateValues.getRentCodeForArizona();
+	    // Update dates for auto charges
+	    PropertyWare_ConsolidateValues.updateDates();
+	    // Adding values to the Auto Charges table
+	   
+	    if (PropertyWare_InsertData.addingValuesToTable() == false)
+	        return false;
+	    // Adding values to the Move In Charges table
+	    if (PropertyWare_InsertData.addingValuesToMoveInChargesTable() == false)
+	        return false;
+	    // Update Flag column in table
+	    PropertyWare_ConsolidateValues.decideAutoCharges();
+	 
+	
 		return true;
 		}
 		catch(Exception e)
@@ -303,7 +319,7 @@ public class PropertyWare_InsertData
 	                    PropertyWare_InsertData.saveAnAutoCharge();
 	                }
 	            }  if (autoChargeCode.equals(AppConfig.getMonthlyRentChargeCode(RunnerClass.company))
-	                    && !monthlyRentChargeClosed &&!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.monthlyRent) ) 
+	                    && !monthlyRentChargeClosed &&!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.monthlyRent.replaceAll("[^0-9]", "")) ) 
 	            {
 	                PDFReader.previousMonthlyRent = autoChargeAmount;
 	                editButtons.get(k).click();

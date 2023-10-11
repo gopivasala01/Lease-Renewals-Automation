@@ -41,6 +41,9 @@ public class Boise_Format2
 	public static String RBP_Prior = "Benefits Package Fee of $";
 	
 	public static String RUBS_Prior = "Tenant responsible for $";
+	public static String RUBS_Prior2= "a flat rate utility fee of $";
+	public static String RUBS_Prior3= "Tenant shall pay a $";
+	
 	public static String residentUtilityBillTextCheck = "SPECIAL PROVISIONS:";
 	
 	public static String prorateRent_Prior = "Tenant will pay Landlord $ ";

@@ -1074,11 +1074,86 @@ public class AppConfig
 		   {
 			   switch(company)
 			   {
-			   case "Idaho Falls":
-				   return "42030 - Utility Reimbursement";
-			   case "Boise":
-				   return "42030 - Utility Reimbursement";
+			       case "Florida":
+			           return "42030 - Utility Reimbursement";
+			       case "Alabama":
+			           return "42030 - Utility Reimbursement";
+			       case "North Carolina":
+			           return "42030 - Utility Reimbursement";
+			       case "Dallas/Fort Worth":
+			           return "42030 - Utility Reimbursement"; 
+			       case "Arkansas":
+			           return "42030 - Utility Reimbursement";
+			       case "Georgia":
+			           return "42030 - Utility Reimbursement";
+			       case "Indiana":
+			           return "42030 - Utility Reimbursement";
+			       case "Little Rock":
+			           return "42030 - Utility Reimbursement";
+			       case "Tennessee":
+			           return "42030 - Utility Reimbursement";
+			       case "California":
+			           return "42030 - Utility Reimbursement";
+			       case "California PFW":
+			           return "42030 - Utility Reimbursement";
+			       case "Houston":
+			           return "42030 - Utility Reimbursement";
+			       case "Austin":
+			           return "42030 - Utility Reimbursement";
+			       case "Chattanooga":
+			           return "42030 - Utility Reimbursement";
+			       case "Chicago":
+			           return "42030 - Utility Reimbursement";
+			       case "Savannah":
+			           return "42030 - Utility Reimbursement";
+			       case "South Carolina":
+			           return "42030 - Utility Reimbursement";
+			       case "Tulsa":
+			           return "42030 - Utility Reimbursement";
+			       case "Ohio":
+			           return "42030 - Utility Reimbursement";
+			       case "Maine":
+			           return "42030 - Utility Reimbursement";
+			       case "OKC":
+			           return "42030 - Utility Reimbursement";
+			       case "San Antonio":
+			           return "42030 - Utility Reimbursement";
+			       case "Pennsylvania":
+			           return "42030 - Utility Reimbursement";
+			       case "Colorado Springs":
+			           return "42030 - Utility Reimbursement";
+			       case "Kansas City":
+			           return "42030 - Utility Reimbursement";
+			       case "Lake Havasu":
+			           return "42030 - Utility Reimbursement";
+			       case "New Mexico":
+			           return "42030 - Utility Reimbursement";
+			       case "Chicago PFW":
+			           return "42030 - Utility Reimbursement";
+			       case "Boise":
+			           return "42030 - Utility Reimbursement";
+			       case "Spokane":
+			           return "42030 - Utility Reimbursement";
+			       case "Utah":
+			           return "42030 - Utility Reimbursement";
+			       case "Hawaii":
+			           return "42030 - Utility Reimbursement";
+			       case "Columbia - St Louis":
+			           return "42030 - Utility Reimbursement";
+			       case "Idaho Falls":
+			           return "42030 - Utility Reimbursement";
+			       case "Arizona":
+			           return "42030 - Utility Reimbursement";
+			       case "Maryland":
+			           return "42030 - Utility Reimbursement";
+			       case "Virginia":
+			           return "42030 - Utility Reimbursement";
+			       case "Washington DC":
+			           return "42030 - Utility Reimbursement";
+			       case "New Jersey":
+			           return "42030 - Utility Reimbursement";
 			   }
+
 			return "";
 		   }
       /*public static String getRenewalStatus (String company)

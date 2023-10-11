@@ -189,7 +189,19 @@ public class Boise_Format1
 	    	PDFReader.residentUtilityBillFlag = true;
     	try
 	    {
-    		 PDFReader.RUBS = text.substring(text.indexOf(PDFAppConfig.Boise_Format1.RUBS_Prior)+PDFAppConfig.Boise_Format1.RUBS_Prior.length()).trim().split(" ")[0];
+    		if(text.indexOf(PDFAppConfig.Boise_Format1.RUBS_Prior)==-1)
+    		{
+    			if(text.indexOf(PDFAppConfig.Boise_Format1.RUBS_Prior2)==-1)
+    			{
+    				PDFReader.RUBS = text.substring(text.indexOf(PDFAppConfig.Boise_Format1.RUBS_Prior3)+PDFAppConfig.Utah_Format2.RUBS_Prior3.length()).trim().split(" ")[0];
+    			}
+    			else {
+    			PDFReader.RUBS = text.substring(text.indexOf(PDFAppConfig.Boise_Format1.RUBS_Prior2)+PDFAppConfig.Boise_Format1.RUBS_Prior2.length()).trim().split(" ")[0];
+    			}
+    		}
+    		else {
+    			 PDFReader.RUBS = text.substring(text.indexOf(PDFAppConfig.Boise_Format1.RUBS_Prior)+PDFAppConfig.Boise_Format1.RUBS_Prior.length()).trim().split(" ")[0];
+    		}
 	    }
     	catch(Exception e)
 	    {
@@ -198,6 +210,7 @@ public class Boise_Format1
 	    }
     	System.out.println("RUBS = "+PDFReader.RUBS);
 	    }
+	    
     
 	    //Increased Rent
 	    try
