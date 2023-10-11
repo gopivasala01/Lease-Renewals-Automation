@@ -318,10 +318,11 @@ public class PropertyWare_InsertData
 	                    monthlyRentChargeClosed = true;
 	                    PropertyWare_InsertData.saveAnAutoCharge();
 	                }
+	                
 	            }  if (autoChargeCode.equals(AppConfig.getMonthlyRentChargeCode(RunnerClass.company))
 	                    && !monthlyRentChargeClosed &&!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.monthlyRent.replaceAll("[^0-9]", "")) ) 
 	            {
-	                PDFReader.previousMonthlyRent = autoChargeAmount;
+	            	PDFReader.previousMonthlyRent = autoChargeAmount;
 	                editButtons.get(k).click();
 	                PropertyWare_InsertData.editingExistingAutoCharge();
 	                monthlyRentChargeClosed = true;
@@ -341,7 +342,7 @@ public class PropertyWare_InsertData
 	                PropertyWare_InsertData.editingExistingAutoCharge();
 	                PropertyWare_InsertData.saveAnAutoCharge();
 	            }
-	               if(autoChargeCode.equals(AppConfig.getPetRentChargeCode(RunnerClass.company))&&(!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.petRent.replaceAll("[^0-9]", ""))||PDFReader.petRent!=""))
+	               if(AppConfig.getPetRentChargeCode(RunnerClass.company).contains(autoChargeCode.replaceAll("[.]", ""))&&(!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.petRent.replaceAll("[^0-9]", ""))||PDFReader.petRent!=""))
 						{
 							editButtons.get(k).click();
 							PropertyWare_InsertData.editingExistingAutoCharge();
@@ -349,7 +350,7 @@ public class PropertyWare_InsertData
 							PropertyWare_InsertData.saveAnAutoCharge();
 							continue;
 						}
-	               if(autoChargeCode.equals(AppConfig.getResidentUtilityBillChargeCode(RunnerClass.company))&&(!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.RUBS.replaceAll("[^0-9]", ""))||PDFReader.RUBS!=""))
+	               if(AppConfig.getResidentUtilityBillChargeCode(RunnerClass.company).contains(autoChargeCode.replaceAll("[.]", ""))&&(!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.RUBS.replaceAll("[^0-9]", ""))||PDFReader.RUBS!=""))
 					{
 						editButtons.get(k).click();
 						PropertyWare_InsertData.editingExistingAutoCharge();
@@ -553,7 +554,7 @@ public class PropertyWare_InsertData
 			}
 			if(availabilityCheck==false)
 			{
-				if(amount=="Error" || amount=="0") 
+				if(amount=="Error" || amount=="0" || amount=="0.00") 
 				{					System.out.println(" issue in adding Auto Charge - "+description);
 					RunnerClass.failedReason = RunnerClass.failedReason+","+" issue in adding Auto Charge - "+description;
 					RunnerClass.statusID=1;
