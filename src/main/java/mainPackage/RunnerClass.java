@@ -71,6 +71,8 @@ public class RunnerClass
 	public static boolean arizonaCodeAvailable = false;
 	public static String arizonaCityFromBuildingAddress = "";
 	public static String arizonaRentCode = "";
+	public static String completeBuildingAbbreviation;
+	public static String portfolioName;
 	private static final Logger logger = Logger.getLogger(RunnerClass.class);																						
 	public static void main(String[] args) throws Exception 
 	{
@@ -97,13 +99,21 @@ public class RunnerClass
 		  //Change the Status of the Lease to Started so that it won't run again in the Jenkins scheduling Process
 		  DataBase.insertData(buildingAbbreviation,"Started",6);
 		  
-		  if(buildingAbbreviation.split("-")[0].trim().contains(" ")) 
-		  {
-			  buildingAbbreviation = buildingAbbreviation;
-			  }
-		  else {
-					buildingAbbreviation = buildingAbbreviation.split("-")[0].trim();
-					}
+		  completeBuildingAbbreviation = buildingAbbreviation;  //This will be used when Building not found in first attempt
+          try
+          {
+           String a = buildingAbbreviation;
+           a = a.replace(" " , "");
+           int b = a.length()-1;
+          char c =  a.charAt(a.indexOf('-')+1);
+           if(a.indexOf('-')>=1&&a.indexOf('-')==(b-1))
+				buildingAbbreviation = buildingAbbreviation;
+			else
+				if(a.indexOf('-')>=1&&a.charAt(a.indexOf('-')+1)=='(')
+           buildingAbbreviation = buildingAbbreviation.split("-")[0].trim();
+				else buildingAbbreviation = buildingAbbreviation;
+          }
+          catch(Exception e) {}
           // Login to the PropertyWare		  
 		 if (company.contains("Washington DC")||company.contains("Alabama")|| company.contains("Arkansas")|| company.contains("Austin")|| company.contains("Dallas/Fort Worth")|| company.contains("Florida")||company.contains("North Carolina")|| company.contains("Georgia")||company.contains("Indiana")|| company.contains("Little Rock")|| company.contains("Tennessee")|| company.contains("California")|| company.contains("California PFW")|| company.contains("Houston")|| company.contains("Chattanooga")|| company.contains("Chicago")|| company.contains("South Carolina")|| company.contains("Tulsa")|| company.contains("Ohio")|| company.contains("Savannah")|| company.contains("Maine")|| company.contains("OKC")|| company.contains("San Antonio")|| company.contains("Pennsylvania") || company.contains("Colorado Springs") || company.contains("Kansas City") || company.contains("Lake Havasu") || company.contains("New Mexico") || company.contains("Boise") || company.contains("Spokane") || company.contains("Utah") || company.contains("Hawaii") || company.contains("Columbia - St Louis")|| company.contains("Idaho Falls") || company.contains("Arizona") || company.contains("Maryland") || company.contains("Virginia" )|| company.contains("Chicago PFW")|| company.contains("New Jersey"))
        {		 

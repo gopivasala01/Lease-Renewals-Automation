@@ -191,7 +191,7 @@ public class IdahoFalls_Format1
 		 		    {
 		    			 PDFReader.RUBS = "Error";
 		 		    }
-		    }
+		    } 
 	    	catch(Exception e)
 		    {
 	    		PDFReader.RUBS = "Error";
