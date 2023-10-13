@@ -64,7 +64,7 @@ public class PropertyWare_ConsolidateValues
 				}
 			DataBase.updateTable(query);
 			
-			if(((RunnerClass.company.equals("Boise")||RunnerClass.company.equals("Idaho Falls"))&&PDFReader.residentUtilityBillFlag==true&&(!PDFReader.RUBS.equals("Error"))))
+			if(((RunnerClass.company.equals("Boise")||RunnerClass.company.equals("Idaho Falls")||RunnerClass.company.equals("Utah"))&&PDFReader.residentUtilityBillFlag==true&&(!PDFReader.RUBS.equals("Error"))))
 			{
 				query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (7)";
 				DataBase.updateTable(query);
