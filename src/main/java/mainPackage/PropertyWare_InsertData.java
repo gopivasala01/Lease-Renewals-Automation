@@ -231,6 +231,7 @@ public class PropertyWare_InsertData
 	        PropertyWare.intermittentPopUp();
 	        RunnerClass.js.executeScript("window.scrollBy(0, document.body.scrollHeight)");
 	        RunnerClass.driver.findElement(Locators.summaryTab).click();
+	        RunnerClass.driver.manage().timeouts().implicitlyWait(300, TimeUnit.SECONDS);
 
 	        Thread.sleep(2000);
 	        PropertyWare.intermittentPopUp();
