@@ -181,7 +181,7 @@ public class PropertyWare_InsertData
 					    if (chargeCode.contains(moveinautoChargeCodes)
 					            && !moveinautoChargeAmount.isEmpty()
 					            && moveinautoChargeAmount.substring(1).equals(amount)
-					            && moveinautoChargeStartDate.equals(RunnerClass.getCurrentDate()))  
+					            && moveinautoChargeStartDate.equals(PDFReader.renewalExecutionDate))  
 					    {
 					        availabilityCheck = false;
 					        System.out.println(description + " already available");

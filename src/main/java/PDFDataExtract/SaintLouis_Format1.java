@@ -55,7 +55,16 @@ public class SaintLouis_Format1
 			 	    	
 			 	    }
 			    }
+			    String[] SplitDate = PDFReader.renewalExecutionDate.split("/");
 
+		    	 for (int i = 0; i < 2; i++) {
+		    	     if (SplitDate[i].length() == 1) {
+		    	         // Add a leading zero for single-digit values in the first two components
+		    	         SplitDate[i] = "0" + SplitDate[i];
+		    	     }
+		    	 }
+		    	 
+		    	 PDFReader.renewalExecutionDate= SplitDate[0]+"/"+ SplitDate[1]+"/"+SplitDate[2];
 
 			    System.out.println("Last date mentioned on the page: " + PDFReader.renewalExecutionDate);
 				    try
