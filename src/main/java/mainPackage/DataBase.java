@@ -223,4 +223,31 @@ public class DataBase
 		}
 	}
 
+	public static String getBuildingEntityID()
+	{
+		try
+		{
+		        Connection con = null;
+		        Statement stmt = null;
+		        ResultSet rs = null;
+		            //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		            con = DriverManager.getConnection(AppConfig.connectionUrl);
+		            String queryToGetBuildingEntityID = "Select top 1 BuildingEntityID from LeaseFact_Dashboard where Building like '%"+RunnerClass.buildingAbbreviation+"%'";
+		            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		            stmt.setQueryTimeout(100);
+		           // stmt = con.createStatement();
+		            rs = stmt.executeQuery(queryToGetBuildingEntityID);
+		            if(rs.next())
+		            {
+		            String 	buildingEntityID = rs.getObject(1).toString();
+		            return buildingEntityID;
+		            }
+		            else return "Error";
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return "Error";
+		}
+	}
 }

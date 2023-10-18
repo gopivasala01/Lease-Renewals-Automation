@@ -110,6 +110,7 @@ public class Locators
     public static By moveInChargeSaveButton = By.xpath("//*[@value='Save']");
     public static By somethingWrongInSavingCharge = By.xpath("//*[text()='You must correct the following:']");
     public static By summaryTab = By.xpath("//*[text()='Summary']");
+    public static By marketDropdown = By.id("switchAccountSelect");
     
     public static By youMustCorrectTheFollowingErrorMessage = By.xpath("//*[text()='You must correct the following:']");
     

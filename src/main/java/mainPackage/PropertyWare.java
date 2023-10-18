@@ -1,4 +1,4 @@
- 																																																																				package mainPackage;
+  																																																																				package mainPackage;
 
 import java.io.File;
 import java.time.Duration;
@@ -218,7 +218,7 @@ public class PropertyWare
 	                        }
 	                    }
 	                }
-	               boolean checkBuildingIsClicked=false;
+ 	               boolean checkBuildingIsClicked=false;
 	                if (leaseSelected == false) 
 	                {
 	                   
@@ -296,9 +296,11 @@ public class PropertyWare
 	            
 	            RunnerClass.driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	            RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(5));
+	       
 	        } catch (Exception e) {}
-	    }
-	
+	 
+	 }
+
 	public static boolean downloadLeaseAgreement(String building, String ownerName) throws Exception
 	{
 		try
@@ -342,20 +344,60 @@ public class PropertyWare
 		try
 		{
 		RunnerClass.driver.findElement(By.partialLinkText(ownerName.trim())).click();
+		
 		 intermittentPopUp();
 		}
 		catch(Exception e)
 		{
-			
+			RunnerClass.failedReason ="";
+			try
+			{
+				//Get BuildingEntityID from LeaseFact_Dashboard table
+				String buildingEntityID = DataBase.getBuildingEntityID();
+				if(buildingEntityID.equals("Error"))
+				{
+					System.out.println("Building Not Found");
+				    RunnerClass.failedReason =  RunnerClass.failedReason+","+ "Building Not Found";
+					return false;
+				}
+				else
+				{
+				RunnerClass.driver.manage().timeouts().implicitlyWait(100,TimeUnit.SECONDS);
+		        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(100));
+		        RunnerClass.driver.navigate().refresh();
+		        PropertyWare.intermittentPopUp();
+		        //if(PropertyWare.checkIfBuildingIsDeactivated()==true)
+		        	//return false;
+		        RunnerClass.driver.findElement(Locators.marketDropdown).click();
+		        String marketName = "HomeRiver Group - "+RunnerClass.company;
+		        Select marketDropdownList = new Select(RunnerClass.driver.findElement(Locators.marketDropdown));
+		        marketDropdownList.selectByVisibleText(marketName);
+		        String buildingPageURL = AppConfig.buildingPageURL+buildingEntityID;
+		        RunnerClass.driver.navigate().to(buildingPageURL);
+		        Thread.sleep(2000);
+		        RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+				Thread.sleep(2000);
+				if(RunnerClass.driver.findElement(Locators.leasesTab).getText().equals("Leases"))
+					RunnerClass.driver.findElement(Locators.leasesTab).click();
+					else 
+						RunnerClass.driver.findElement(Locators.leasesTab2).click();
+				RunnerClass.driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+		        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(5));
+				
+				RunnerClass.driver.findElement(By.partialLinkText(ownerName.trim())).click();
+				 PropertyWare.intermittentPopUp();
+		       
+				}
+			}
+				catch (Exception e2)
+				{
 			System.out.println("Unable to Click Lease Owner Name");
 		    RunnerClass.failedReason =  RunnerClass.failedReason+","+  "Unable to Click Lease Onwer Name";
 			return false;
 		}
-		try
-		{
 			
-		}
-		catch(Exception e) {}
+			}
+		
 		
 		RunnerClass.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(15));
@@ -505,6 +547,6 @@ public class PropertyWare
 			return false;
 		}
 	}
-	
+		}	
 
-}
+

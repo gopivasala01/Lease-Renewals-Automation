@@ -19,6 +19,7 @@ public class AppConfig
     
     public static  String PDFFormatConfirmationText = "The parties to this lease are:";
 	public static  String PDFFormat2ConfirmationText = "THIS RESIDENTIAL LEASE AGREEMENT";
+	public static String buildingPageURL = "https://app.propertyware.com/pw/properties/building_detail.do?entityID=";
 	
 	//Mail credentials
 	   public static String fromEmail = "bireports@beetlerim.com";
