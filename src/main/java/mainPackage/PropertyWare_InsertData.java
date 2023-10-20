@@ -185,7 +185,7 @@ public class PropertyWare_InsertData
 					    {
 					        availabilityCheck = false;
 					        System.out.println(description + " already available");
-						break;
+						    break;
 					}
 				}
 				//Add new Charge if it is not there
@@ -202,8 +202,8 @@ public class PropertyWare_InsertData
 					else
 						
 					PropertyWare_InsertData.addingMoveInCharge(chargeCode, amount, startDate, endDate, description);
-				}
 				
+				}
 		}
 		return true;
 		}

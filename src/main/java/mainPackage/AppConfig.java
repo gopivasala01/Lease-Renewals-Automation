@@ -1132,7 +1132,7 @@ public class AppConfig
 			       case "Chicago PFW":
 			           return "42030 - Utility Reimbursement";
 			       case "Boise":
-			           return "42030 - Utility Reimbursement";
+			           return "44040 - Resident Utility Bill Serv Rev";
 			       case "Spokane":
 			           return "42030 - Utility Reimbursement";
 			       case "Utah":
