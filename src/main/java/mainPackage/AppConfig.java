@@ -2,7 +2,7 @@ package mainPackage;
 
 public class AppConfig 
 {
-	public static boolean saveButtonOnAndOff= true;
+	public static boolean saveButtonOnAndOff= false;
 	
 	public static String username= "mds0418@gmail.com";
 	public static String password="KRm#V39fecMDGg#";
@@ -125,6 +125,8 @@ public class AppConfig
 				  return "40010 - Rent Income";
 		   case "New Jersey":
 				  return "40010 - Rent Income";
+		   case "Montana":
+				  return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -210,6 +212,8 @@ public class AppConfig
 		   case "Washington DC":
 			   return "40230 - Pet Rent";
 		   case "New Jersey":
+			   return "40230 - Pet Rent";
+		   case "Montana":
 			   return "40230 - Pet Rent";
 		   }
 		   return "";
@@ -297,6 +301,8 @@ public class AppConfig
 			   return "40230 - Pet Rent";
 		   case "New Jersey":
 			   return "40230 - Pet Rent";
+		   case "Montana":
+			   return "40230 - Pet Rent";
 		   }
 		   return "";
 	   }
@@ -382,6 +388,8 @@ public class AppConfig
 			   return "40010 - Rent Income";
 		   case "New Jersey":
 			   return "40010 - Rent Income";
+		   case "Montana":
+			   return "40010 - Rent Income";
 		   }
 		   return "";
 	   }
@@ -466,6 +474,8 @@ public class AppConfig
 		   case "Washington DC":
 			   return "43060 - Filter Fee";
 		   case "New Jersey":
+			   return "43060 - Filter Fee";
+		   case "Montana":
 			   return "43060 - Filter Fee";
 			   
 		   }
@@ -554,6 +564,8 @@ public class AppConfig
 			   return "43070 - Resident Benefit Package Fee";
 		   case "New Jersey":
 			   return "43070 - Resident Benefit Package Fee";
+		   case "Montana":
+			   return "43070 - Resident Benefit Package Fee";
 		   }
 		   return "";
 	   }
@@ -639,6 +651,8 @@ public class AppConfig
 			   return "43040 - Resident Renewal Admin Fee";
 		   case "New Jersey":
 			   return "43040 - Resident Renewal Admin Fee";
+		   case "Montana":
+			   return "43040 - Resident Renewal Admin Fee";
 		    
 		   }
 		   return "";
@@ -723,6 +737,8 @@ public class AppConfig
 		        case "Washington DC":
 		            return "43050 - Month-to-Month Admin Fee";
 		        case "New Jersey":
+		            return "43050 - Month-to-Month Admin Fee";
+		        case "Montana":
 		            return "43050 - Month-to-Month Admin Fee";
 		        default:
 		            return "";
@@ -811,6 +827,8 @@ public class AppConfig
 			   return "YES";
 		   case "New Jersey":
 			   return "YES";
+		   case "Montana":
+			   return "YES";
 		   }
 		   return "";
 	   }
@@ -895,6 +913,8 @@ public class AppConfig
 		   case "Washington DC":
 			   return "Yes";
 		   case "New Jersey":
+			   return "Yes";
+		   case "Montana":
 			   return "Yes";
 		   }
 		   return "";    
@@ -982,6 +1002,8 @@ public class AppConfig
 			   return "NO";
 		   case "New Jersey":
 			   return "NO";
+		   case "Montana":
+			   return "NO";
 		   }
 		   return "";
 	   }
@@ -1066,6 +1088,8 @@ public class AppConfig
 			   case "Washington DC":
 				   return "No";
 			   case "New Jersey":
+				   return "No";
+			   case "Montana":
 				   return "No";
 			   }
 			   return "";    
@@ -1152,6 +1176,8 @@ public class AppConfig
 			       case "Washington DC":
 			           return "42030 - Utility Reimbursement";
 			       case "New Jersey":
+			           return "42030 - Utility Reimbursement";
+			       case "Montana":
 			           return "42030 - Utility Reimbursement";
 			   }
 

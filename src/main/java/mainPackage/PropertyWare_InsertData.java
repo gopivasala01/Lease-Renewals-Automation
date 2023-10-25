@@ -264,7 +264,7 @@ public class PropertyWare_InsertData
 	            String startDatelist = startDateList.get(k).getText();
 	            System.out.println(autoChargeCode + "  ||  " + autoChargeAmount + "  ||  " + endDateAutoCharge);
 
-	            if (endDateAutoCharge.trim().isEmpty()) {
+  	            if (endDateAutoCharge.trim().isEmpty()) {
 	                if ((AppConfig.getMonthOnMonthRentChargeCode(RunnerClass.company)).contains(autoChargeCode.replaceAll("[.]", "")))
 	              {
 	                    editButtons.get(k).click();

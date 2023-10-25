@@ -873,6 +873,26 @@ public class PDFReader
 					return false;
 				    }
 				break;
+			case "Montana":
+				String pdfFormatType_montana = PDFReader.decidePDFFormat(market);
+				System.out.println("PDF Format Type = "+pdfFormatType_montana);
+				if(pdfFormatType_montana=="Format1")
+				{
+					if(PDFDataExtract.Montana_Format1.montana()==false)
+						return false;
+				}
+				else 
+					if(pdfFormatType_montana=="Format2")
+				     {
+					if(PDFDataExtract.Montana_Format2.montana()==false)
+						return false;
+			        }
+				    else 
+				   {
+					RunnerClass.failedReason = RunnerClass.failedReason+","+ "Wrong PDF Format";
+					return false;
+				    }
+				break;
 			}
 			return true;
 			
