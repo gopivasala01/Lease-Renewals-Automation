@@ -135,6 +135,7 @@ public class RunnerClass
 						PropertyWare_InsertData.configureValues();
 						PropertyWare_InsertData.verifyLedgerForMonhtlyRentStartDate();
 						PropertyWare_InsertData.addingMoveInCharges();
+						RunnerClass.driver.manage().timeouts().implicitlyWait(500,TimeUnit.SECONDS);
  						PropertyWare_InsertData.clearExistingAutoCharges();
 						//PropertyWare_InsertData.currentMonthlyRentUpdate();
 						PropertyWare_InsertData.addingNewAutoCharges();
