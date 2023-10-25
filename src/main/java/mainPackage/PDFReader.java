@@ -1066,6 +1066,10 @@ public class PDFReader
 		        format1Text = PDFAppConfig.PDFFormatDecider.washingtonDC_Format1;
 		        format2Text = PDFAppConfig.PDFFormatDecider.washingtonDC_Format2;
 		        break;
+			case "Montana":
+		        format1Text = PDFAppConfig.PDFFormatDecider.washingtonDC_Format1;
+		        format2Text = PDFAppConfig.PDFFormatDecider.washingtonDC_Format2;
+		        break;
 			}
 			
 			File file = RunnerClass.getLastModified();
