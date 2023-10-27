@@ -16,7 +16,7 @@ public class PropertyWare_ConsolidateValues
 		String query ="";
 		//if(RunnerClass.portfolioType=="MCH")
 		//{
-			if(PDFReader.petFlag==false)
+			if(PDFReader.petFlag==false ||(PDFReader.petFlag==true&&PDFReader.petSecurityDepositFlag==false&&(PDFReader.petRent =="0.00" ||PDFReader.petRent =="Error" )) )
 			{
 				if(PDFReader.residentBenefitsPackageAvailabilityCheck==true && RunnerClass.company!="Hawaii"&& RunnerClass.company!="Chicago PFW")
 				{
@@ -35,7 +35,7 @@ public class PropertyWare_ConsolidateValues
 					query = "update automation.LeaseReneWalsAutoChargesConfiguration Set Flag = 1 where ID in (2)";
 				}
 				
-              // DataBase.updateTable(query);				
+              // 0 DataBase.updateTable(query);				
 		     }
 			else
 			{
@@ -62,6 +62,7 @@ public class PropertyWare_ConsolidateValues
 					}
 					
 				}
+			
 			DataBase.updateTable(query);
 			
 			if(((RunnerClass.company.equals("Boise")||RunnerClass.company.equals("Idaho Falls")||RunnerClass.company.equals("Utah"))&&PDFReader.residentUtilityBillFlag==true&&(!PDFReader.RUBS.equals("Error"))))

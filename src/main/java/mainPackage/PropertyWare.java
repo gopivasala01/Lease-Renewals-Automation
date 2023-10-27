@@ -40,8 +40,8 @@ public class PropertyWare
         options.addArguments("--remote-allow-origins=*");
         WebDriverManager.chromedriver().clearDriverCache().setup();
         RunnerClass.driver= new ChromeDriver(options);
-        options.setPageLoadStrategy(PageLoadStrategy.NORMAL); // Or PageLoadStrategy.EAGER if needed
-        options.setPageLoadTimeout(Duration.ofSeconds(500));
+        options.setPageLoadStrategy(PageLoadStrategy.EAGER); // Or PageLoadStrategy.EAGER if needed
+        //	options.setPageLoadTimeout(Duration.ofSeconds(500));
         RunnerClass.driver.manage().window().maximize();
         RunnerClass.driver.get(AppConfig.URL);
         RunnerClass.driver.findElement(Locators.username).sendKeys(AppConfig.username); 

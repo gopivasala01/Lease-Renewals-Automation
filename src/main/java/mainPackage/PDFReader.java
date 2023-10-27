@@ -1081,7 +1081,7 @@ public class PDFReader
 			text = text.replaceAll(System.lineSeparator(), " ");
 		    text = text.replaceAll(" +", " ");
 		    if(text.contains(format1Text))
-		    	return "Format1";
+		    	return "Format1";  
 		    else if(text.contains(format2Text))
 		    	return "Format2";
 		    else return "Error";
