@@ -43,9 +43,10 @@ public class PropertyWare_InsertData
 	        // Convert commencement and expiration dates to LocalDate objects
 	        PDFReader.startDate = RunnerClass.convertDate(PDFReader.commencementDate);
 	        PDFReader.endDate = RunnerClass.convertDate(PDFReader.expirationDate);
-	        PDFReader.lastDayOfTheStartDate = RunnerClass.lastDateOfTheMonth(RunnerClass.firstDayOfMonth(PDFReader.startDate, -1));
 	        PDFReader.firstFullMonth = RunnerClass.firstDayOfMonth(PDFReader.startDate, 1);
-	        PDFReader.secondFullMonth = RunnerClass.firstDayOfMonth(PDFReader.startDate, 2);
+	        PDFReader.lastDayOfTheStartDate = RunnerClass.lastDateOfTheMonth(RunnerClass.firstDayOfMonth(PDFReader.startDate, -1));
+	       
+ 	        PDFReader.secondFullMonth = RunnerClass.firstDayOfMonth(PDFReader.startDate, 2);
 	        //RunnerClass.renewalExecutionDate = PDFReader.renewalExecutionDate;
 
 	        // Compare Start and end Dates in PW with Lease Agreement
@@ -367,11 +368,24 @@ public class PropertyWare_InsertData
 	
 
     public static void editingExistingAutoCharge() throws Exception {
+    	
+    	if(PDFReader.dateCheckInLedgerForMonthlyRentStartDate == true) 
+    	{
+    	PDFReader.lastDayOfTheStartDate2 = RunnerClass.lastDateOfTheMonth(RunnerClass.firstDayOfMonth(PDFReader.firstFullMonth, -1));
         WebElement endDateField = RunnerClass.driver.findElement(Locators.autoCharge_EndDate);
         endDateField.clear();
         endDateField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-        endDateField.sendKeys(PDFReader.lastDayOfTheStartDate);
+        
+        endDateField.sendKeys(PDFReader.lastDayOfTheStartDate2);
 
+    	}
+    	else {
+    		WebElement endDateField = RunnerClass.driver.findElement(Locators.autoCharge_EndDate);
+            endDateField.clear();
+            endDateField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+            
+            endDateField.sendKeys(PDFReader.lastDayOfTheStartDate);
+    	}
         if (!AppConfig.saveButtonOnAndOff) 
         {
             RunnerClass.driver.findElement(Locators.autoCharge_CancelButton).click();
