@@ -36,7 +36,7 @@ public class PropertyWare_ConsolidateValues
 				}
 				
               // 0 DataBase.updateTable(query);				
-		     }
+		     } 
 			else
 			{
 			   if(PDFReader.petFlag==true&&PDFReader.petSecurityDepositFlag==false)
