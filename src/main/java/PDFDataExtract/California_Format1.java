@@ -102,8 +102,15 @@ public class California_Format1
 		    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.California_Format1.monthlyRent_Prior)+PDFAppConfig.California_Format1.monthlyRent_Prior.length()).trim().split(" ")[0];
 		    	if(PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*"))
 		    		PDFReader.monthlyRent = "Error";
-		    	if(PDFReader.monthlyRent.contains("$"))
-		    		PDFReader.monthlyRent = PDFReader.monthlyRent.replace("$", "");
+		    	if(PDFReader.monthlyRent == "Error") {
+		    		PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.California_Format1.monthlyRent_Prior1)+PDFAppConfig.California_Format1.monthlyRent_Prior1.length()).trim().split(" ")[0];
+			    	if(PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*"))
+			    		PDFReader.monthlyRent = "Error";
+		    	}
+			    	if(PDFReader.monthlyRent.contains("$"))
+			    		PDFReader.monthlyRent = PDFReader.monthlyRent.replace("$", "");
+		    	
+		    	
 		    }
 		    catch(Exception e)
 		    {

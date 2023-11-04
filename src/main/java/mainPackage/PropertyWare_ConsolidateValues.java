@@ -12,6 +12,7 @@ public class PropertyWare_ConsolidateValues
 {
 	public static void decideAutoCharges()
 	{
+		
 		String autoCharges ="";
 		String query ="";
 		//if(RunnerClass.portfolioType=="MCH")

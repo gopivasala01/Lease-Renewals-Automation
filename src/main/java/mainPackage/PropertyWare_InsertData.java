@@ -39,7 +39,18 @@ public class PropertyWare_InsertData
 	//ConfigureValues
 
 	public static boolean configureValues() throws Exception {
-	    try {
+		
+		try {
+			String query = "update automation.LeaseReneWalsAutoChargesConfiguration set Amount = Null, StartDate= Null, EndDate= Null, Flag = Null";
+			DataBase.updateTable(query);
+		}
+		catch (Exception e) 
+		{
+			
+		}
+		
+		
+		try {
 	        // Convert commencement and expiration dates to LocalDate objects
 	        PDFReader.startDate = RunnerClass.convertDate(PDFReader.commencementDate);
 	        PDFReader.endDate = RunnerClass.convertDate(PDFReader.expirationDate);
@@ -285,7 +296,47 @@ public class PropertyWare_InsertData
 	                        }
 	                    }
 	                
-	            }  
+	            }
+  	            
+  	          if (autoChargeCode.equals(AppConfig.getMonthlyRentChargeCode(RunnerClass.company)) && startDatelist.equals(PDFReader.firstFullMonth)
+  	        		&&!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.monthlyRent.replaceAll("[^0-9]", ""))) 
+  	          {
+  	        	editButtons.get(k).click();
+  	        	PDFReader.lastDayOfTheStartDate3 = RunnerClass.lastDateOfTheMonth(RunnerClass.firstDayOfMonth(PDFReader.secondFullMonth, -1));
+  	          WebElement endDateField = RunnerClass.driver.findElement(Locators.autoCharge_EndDate);
+  	          endDateField.clear();
+  	          endDateField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+  	          
+  	          endDateField.sendKeys(PDFReader.lastDayOfTheStartDate3);
+  	          Thread.sleep(2000);
+  	          
+  	        if (!AppConfig.saveButtonOnAndOff) 
+  	        {
+  	            RunnerClass.driver.findElement(Locators.autoCharge_CancelButton).click();
+  	        } else 
+  	        {
+  	            RunnerClass.driver.findElement(Locators.autoCharge_SaveButton).click();
+  	            Thread.sleep(3000);
+
+  	            handleAlerts();
+
+  	            try {
+  	            WebElement errorMessage = findElementWithWait(By.xpath("//*[@id=\"errorMessages\"]/ul/li"));
+  	            if (errorMessage != null && errorMessage.isDisplayed()) {
+  	                RunnerClass.driver.findElement(By.xpath("//*[@id=\"editAutoChargeForm\"]/div[3]/input[2]")).click();
+  	            }
+
+  	            handleAlerts();
+  	            }
+  	          catch (Exception e){
+              	
+              }
+
+          } 
+  	        }
+  	        	  
+  	          
+  	        	  
   	            if (autoChargeCode.equals(AppConfig.getMonthlyRentChargeCode(RunnerClass.company))
 	                    && !monthlyRentChargeClosed &&!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.monthlyRent.replaceAll("[^0-9]", "")) ) 
 	            {
@@ -377,6 +428,7 @@ public class PropertyWare_InsertData
         endDateField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         
         endDateField.sendKeys(PDFReader.lastDayOfTheStartDate2);
+        Thread.sleep(2000);
 
     	}
     	else {
@@ -385,6 +437,7 @@ public class PropertyWare_InsertData
             endDateField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
             
             endDateField.sendKeys(PDFReader.lastDayOfTheStartDate);
+            Thread.sleep(2000);
     	}
         if (!AppConfig.saveButtonOnAndOff) 
         {
@@ -552,7 +605,7 @@ public class PropertyWare_InsertData
 				RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.cancelLease)).click(RunnerClass.driver.findElement(Locators.cancelLease)).build().perform();
   Thread.sleep(2000);
   PropertyWare.intermittentPopUp();
-		return true;
+ 		return true;
       }
       catch(Exception e)
       {

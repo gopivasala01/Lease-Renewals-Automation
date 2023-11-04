@@ -63,6 +63,7 @@ public class PDFReader
     public static String previousMonthlyRent = "";
 	public static boolean dateCheckInLedgerForMonthlyRentStartDate = false;
 	public static String lastDayOfTheStartDate2 = "";
+	public static String lastDayOfTheStartDate3 = "";
 	
 		public static boolean readPDFPerMarket(String market) throws Exception  
 		{
