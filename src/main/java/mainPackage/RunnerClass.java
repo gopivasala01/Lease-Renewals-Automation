@@ -1,4 +1,4 @@
-package mainPackage;
+ package mainPackage;
 
 import java.io.File;
 import java.text.DateFormat;
@@ -77,142 +77,121 @@ public class RunnerClass
 	public static void main(String[] args) throws Exception 
 	{
 		
-		RunnerClass.firstDayOfMonth("04/01/2023",-1);
-		//Get Pending Renewal Leases
-		//Company,BuildingAbbreviation, LeaseNae
-		DataBase.getBuildingsList();
-		for(int i=0;i<pendingRenewalLeases.length;i++) 
-		{
-		  System.out.println(" Record -- "+(i+1));
-		  company = pendingRenewalLeases[i][0];
-		  buildingAbbreviation =pendingRenewalLeases[i][1];
-		  ownerName = pendingRenewalLeases[i][2];
-		  statusID =0;
-		  failedReason = "";
-		  
-		  
-		  try
-			{
-			FileUtils.cleanDirectory(new File(AppConfig.downloadFilePath));
-			}
-			catch(Exception e) {}
-		  //Change the Status of the Lease to Started so that it won't run again in the Jenkins scheduling Process
-		  DataBase.insertData(buildingAbbreviation,"Started",6);
-		  
-		  completeBuildingAbbreviation = buildingAbbreviation;  //This will be used when Building not found in first attempt
-          try
-          {
-           String a = buildingAbbreviation;
-           a = a.replace(" " , "");
-           int b = a.length()-1;
-          char c =  a.charAt(a.indexOf('-')+1);
-           if(a.indexOf('-')>=1&&a.indexOf('-')==(b-1))
-				buildingAbbreviation = buildingAbbreviation;
-			else
-				if(a.indexOf('-')>=1&&a.charAt(a.indexOf('-')+1)=='(')
-           buildingAbbreviation = buildingAbbreviation.split("-")[0].trim();
-				else buildingAbbreviation = buildingAbbreviation;
-          }
-          catch(Exception e) {}
-          // Login to the PropertyWare		  
-		 if (company.contains("Montana")||company.contains("Washington DC")||company.contains("Alabama")|| company.contains("Arkansas")|| company.contains("Austin")|| company.contains("Dallas/Fort Worth")|| company.contains("Florida")||company.contains("North Carolina")|| company.contains("Georgia")||company.contains("Indiana")|| company.contains("Little Rock")|| company.contains("Tennessee")|| company.contains("California")|| company.contains("California PFW")|| company.contains("Houston")|| company.contains("Chattanooga")|| company.contains("Chicago")|| company.contains("South Carolina")|| company.contains("Tulsa")|| company.contains("Ohio")|| company.contains("Savannah")|| company.contains("Maine")|| company.contains("OKC")|| company.contains("San Antonio")|| company.contains("Pennsylvania") || company.contains("Colorado Springs") || company.contains("Kansas City") || company.contains("Lake Havasu") || company.contains("New Mexico") || company.contains("Boise") || company.contains("Spokane") || company.contains("Utah") || company.contains("Hawaii") || company.contains("Columbia - St Louis")|| company.contains("Idaho Falls") || company.contains("Arizona") || company.contains("Maryland") || company.contains("Virginia" )|| company.contains("Chicago PFW")|| company.contains("New Jersey"))
-       {		 
-    	  try
-      
-		  
-      {
-		  //Login 
-		  if( PropertyWare.login()==true)
-		  {
-		  //Search building in property Ware4970 Perceptive Wy	
-		   if(PropertyWare.searchBuilding(company, buildingAbbreviation)==true)
-			{
-				if(PropertyWare.downloadLeaseAgreement(buildingAbbreviation, ownerName)==true)
-				{
-					if(PDFReader.readPDFPerMarket(company)==true)
-					{
-						
-						PropertyWare_InsertData.configureValues();
-						PropertyWare_InsertData.verifyLedgerForMonhtlyRentStartDate();
-						PropertyWare_InsertData.addingMoveInCharges();
-						RunnerClass.driver.manage().timeouts().implicitlyWait(500  ,TimeUnit.SECONDS);
-  						PropertyWare_InsertData.clearExistingAutoCharges();
-						//PropertyWare_InsertData.currentMonthlyRentUpdate();
-						PropertyWare_InsertData.addingNewAutoCharges();
-						PropertyWare_InsertOtherInformation.addingOtherInformation();
-						
-						//Update Completed Status
-						if(failedReason=="")
-			 				failedReason="";
-						else if(failedReason.charAt(0)==',')
-							failedReason = failedReason.substring(1);
-						String updateSuccessStatus ="";
-						if(statusID==0)
-							updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Completed', StatusID=4,NotAutomatedFields='"+failedReason+"',LeaseCompletionDate= getDate() where BuildingName like '%"+buildingAbbreviation+"%'";
-						else 
-							updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Review', StatusID=5,NotAutomatedFields='"+failedReason+"',LeaseCompletionDate= getDate() where BuildingName like '%"+buildingAbbreviation+"%'";
-					    	DataBase.updateTable(updateSuccessStatus);
-					}
-					else 
-					{
-						if(failedReason.charAt(0)==',')
-						failedReason = failedReason.substring(1);
-	  					String updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Failed', StatusID=3,NotAutomatedFields='"+failedReason+"',LeaseCompletionDate= getDate() where BuildingName like '%"+buildingAbbreviation+"%'";
-				    	DataBase.updateTable(updateSuccessStatus);
-					}
-				}
-				else 
-				{
-					if(failedReason.charAt(0)==',')
-						failedReason = failedReason.substring(1);
-					String updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Failed', StatusID=3,NotAutomatedFields='"+failedReason+"',LeaseCompletionDate= getDate() where BuildingName like '%"+buildingAbbreviation+"%'";
-			    	DataBase.updateTable(updateSuccessStatus);
-				}
-			}
-		    else 
-		    {
-		    	if(failedReason.charAt(0)==',')
-					failedReason = failedReason.substring(1);
- 		    	String updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Failed', StatusID=3,NotAutomatedFields='"+failedReason+"',LeaseCompletionDate= getDate() where BuildingName like '%"+buildingAbbreviation+"%'";
-		    	DataBase.updateTable(updateSuccessStatus);
+		int maxRetries = 2;
+		int currentRetries = 0;
+
+		while (currentRetries < maxRetries) {
+		    RunnerClass.firstDayOfMonth("04/01/2023", -1);
+		    DataBase.getBuildingsList();
+
+		    for (int i = 0; i < pendingRenewalLeases.length; i++) {
+		        System.out.println(" Record -- " + (i + 1));
+		        company = pendingRenewalLeases[i][0];
+		        buildingAbbreviation = pendingRenewalLeases[i][1];
+		        ownerName = pendingRenewalLeases[i][2];
+		        statusID = 0;
+		        failedReason = "";
+
+		        try {
+		            FileUtils.cleanDirectory(new File(AppConfig.downloadFilePath));
+		        } catch (Exception e) {}
+
+		        DataBase.insertData(buildingAbbreviation, "Started", 6);
+		        completeBuildingAbbreviation = buildingAbbreviation;
+
+		        try {
+		            String a = buildingAbbreviation;
+		            a = a.replace(" ", "");
+		            int b = a.length() - 1;
+		            char c = a.charAt(a.indexOf('-') + 1);
+		            if (a.indexOf('-') >= 1 && a.indexOf('-') == (b - 1))
+		                buildingAbbreviation = buildingAbbreviation;
+		            else if (a.indexOf('-') >= 1 && a.charAt(a.indexOf('-') + 1) == '(')
+		                buildingAbbreviation = buildingAbbreviation.split("-")[0].trim();
+		            else
+		                buildingAbbreviation = buildingAbbreviation;
+		        } catch (Exception e) {}
+
+		        if (company.contains("Montana") || company.contains("Washington DC") || company.contains("Alabama") || company.contains("Arkansas") || company.contains("Austin") || company.contains("Dallas/Fort Worth") || company.contains("Florida") || company.contains("North Carolina") || company.contains("Georgia") || company.contains("Indiana") || company.contains("Little Rock") || company.contains("Tennessee") || company.contains("California") || company.contains("California PFW") || company.contains("Houston") || company.contains("Chattanooga") || company.contains("Chicago") || company.contains("South Carolina") || company.contains("Tulsa") || company.contains("Ohio") || company.contains("Savannah") || company.contains("Maine") || company.contains("OKC") || company.contains("San Antonio") || company.contains("Pennsylvania") || company.contains("Colorado Springs") || company.contains("Kansas City") || company.contains("Lake Havasu") || company.contains("New Mexico") || company.contains("Boise") || company.contains("Spokane") || company.contains("Utah") || company.contains("Hawaii") || company.contains("Columbia - St Louis") || company.contains("Idaho Falls") || company.contains("Arizona") || company.contains("Maryland") || company.contains("Virginia") || company.contains("Chicago PFW") || company.contains("New Jersey")) {
+		            try {
+		                if (PropertyWare.login() == true) {
+		                    if (PropertyWare.searchBuilding(company, buildingAbbreviation) == true) {
+		                        if (PropertyWare.downloadLeaseAgreement(buildingAbbreviation, ownerName) == true) {
+		                            if (PDFReader.readPDFPerMarket(company) == true) {
+		                                PropertyWare_InsertData.configureValues();
+		                                PropertyWare_InsertData.verifyLedgerForMonhtlyRentStartDate();
+		                                PropertyWare_InsertData.addingMoveInCharges();
+		                                RunnerClass.driver.manage().timeouts().implicitlyWait(500, TimeUnit.SECONDS);
+		                                PropertyWare_InsertData.clearExistingAutoCharges();
+		                                PropertyWare_InsertData.addingNewAutoCharges();
+		                                PropertyWare_InsertOtherInformation.addingOtherInformation();
+
+		                                if (failedReason == "")
+		                                    failedReason = "";
+		                                else if (failedReason.charAt(0) == ',')
+		                                    failedReason = failedReason.substring(1);
+		                                String updateSuccessStatus = "";
+		                                if (statusID == 0)
+		                                    updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Completed', StatusID=4,NotAutomatedFields='" + failedReason + "',LeaseCompletionDate= getDate() where BuildingName like '%" + buildingAbbreviation + "%'";
+		                                else
+		                                    updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Review', StatusID=5,NotAutomatedFields='" + failedReason + "',LeaseCompletionDate= getDate() where BuildingName like '%" + buildingAbbreviation + "%'";
+		                                DataBase.updateTable(updateSuccessStatus);
+		                            } else {
+		                                if (failedReason.charAt(0) == ',')
+		                                    failedReason = failedReason.substring(1);
+		                                String updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Failed', StatusID=3,NotAutomatedFields='" + failedReason + "',LeaseCompletionDate= getDate() where BuildingName like '%" + buildingAbbreviation + "%'";
+		                                DataBase.updateTable(updateSuccessStatus);
+		                            }
+		                        } else {
+		                            if (failedReason.charAt(0) == ',')
+		                                failedReason = failedReason.substring(1);
+		                            String updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Failed', StatusID=3,NotAutomatedFields='" + failedReason + "',LeaseCompletionDate= getDate() where BuildingName like '%" + buildingAbbreviation + "%'";
+		                            DataBase.updateTable(updateSuccessStatus);
+		                        }
+		                    } else {
+		                        if (failedReason.charAt(0) == ',')
+		                            failedReason = failedReason.substring(1);
+		                        String updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Failed', StatusID=3,NotAutomatedFields='" + failedReason + "',LeaseCompletionDate= getDate() where BuildingName like '%" + buildingAbbreviation + "%'";
+		                        DataBase.updateTable(updateSuccessStatus);
+		                    }
+		                } else {
+		                    if (failedReason.charAt(0) == ',')
+		                        failedReason = failedReason.substring(1);
+		                    String updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Failed', StatusID=3,NotAutomatedFields='" + failedReason + "',LeaseCompletionDate= getDate() where BuildingName like '%" + buildingAbbreviation + "%'";
+		                    DataBase.updateTable(updateSuccessStatus);
+		                }
+
+		                RunnerClass.driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		                RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(5));
+		                PropertyWare.intermittentPopUp();
+		                RunnerClass.driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		                RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(15));
+		                driver.navigate().refresh();
+		                RunnerClass.js.executeScript("window.scrollBy(document.body.scrollHeight,0)");
+		                RunnerClass.driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		                RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(5));
+		                PropertyWare.intermittentPopUp();
+		                RunnerClass.driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		                RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(15));
+		            } catch (Exception e) {
+		                e.printStackTrace();
+		                Thread.sleep(5000);
+		                driver.navigate().refresh();
+		                RunnerClass.js.executeScript("window.scrollBy(document.body.scrollHeight,0)");
+		            }
+		        }
 		    }
+
+		    if (statusID != 3 && statusID != 5) {
+		        break;
+		    }
+		    currentRetries++;
 		}
-		else 
-		{
-			if(failedReason.charAt(0)==',')
-				failedReason = failedReason.substring(1);
-			String updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Failed', StatusID=3,NotAutomatedFields='"+failedReason+"',LeaseCompletionDate= getDate() where BuildingName like '%"+buildingAbbreviation+"%'";
-	    	DataBase.updateTable(updateSuccessStatus);
-		}
-		   RunnerClass.driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-	        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(5));
-		   PropertyWare.intermittentPopUp();
-		   RunnerClass.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-	        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(15));
-		   driver.navigate().refresh();
-		   RunnerClass.js.executeScript("window.scrollBy(document.body.scrollHeight,0)");
-		   RunnerClass.driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-	        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(5));
-	        PropertyWare.intermittentPopUp();
-		   RunnerClass.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-	        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(15));
-	        
-		  }
-		  catch(Exception e)
-		  {
-			  e.printStackTrace();
-			  Thread.sleep(5000);
-			  driver.navigate().refresh();
-			  RunnerClass.js.executeScript("window.scrollBy(document.body.scrollHeight,0)");
-		  }
-	}
-}
+
 		if (RunnerClass.driver != null) {
 		    RunnerClass.driver.quit();
 		}
-
-
-	}   
+	}
 
 	public static File getLastModified() throws Exception
 	{

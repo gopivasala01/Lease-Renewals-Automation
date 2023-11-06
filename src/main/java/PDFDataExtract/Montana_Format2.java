@@ -192,32 +192,34 @@ public class Montana_Format2
 	    	System.out.println("Pet Rent = "+PDFReader.petRent);
 	    }
 	    
-	    if(text.contains(PDFAppConfig.Boise_Format1.residentUtilityBillTextCheck))
-	    {
-	    	PDFReader.residentUtilityBillFlag = true;
-    	try
-	    {
-    		if(text.indexOf(PDFAppConfig.Boise_Format1.RUBS_Prior)==-1)
-    		{
-    			if(text.indexOf(PDFAppConfig.Boise_Format1.RUBS_Prior2)==-1)
-    			{
-    				PDFReader.RUBS = text.substring(text.indexOf(PDFAppConfig.Boise_Format2.RUBS_Prior3)+PDFAppConfig.Utah_Format2.RUBS_Prior3.length()).trim().split(" ")[0];
-    			}
-    			else {
-    			PDFReader.RUBS = text.substring(text.indexOf(PDFAppConfig.Boise_Format2.RUBS_Prior2)+PDFAppConfig.Boise_Format1.RUBS_Prior2.length()).trim().split(" ")[0];
-    			}
-    		}
-    		else {
-    			 PDFReader.RUBS = text.substring(text.indexOf(PDFAppConfig.Boise_Format2.RUBS_Prior)+PDFAppConfig.Boise_Format1.RUBS_Prior.length()).trim().split(" ")[0];
-    		}
+	    if (text.contains(PDFAppConfig.Boise_Format1.residentUtilityBillTextCheck)) {
+	        PDFReader.residentUtilityBillFlag = true;
+	        try {
+	            // Extract the "D." section under "Special Provisions"
+	            String specialProvisions = extractSpecialProvisions(text);
+
+	            if (specialProvisions.isEmpty()) {
+	                PDFReader.RUBS = "Error"; // Handle the case when the "D." section is not found
+	            } else {
+	                // Define a regular expression pattern to match dollar values
+	                Pattern pattern1 = Pattern.compile("\\$\\d+(\\.\\d{2})");
+	                Matcher matcher1 = pattern1.matcher(specialProvisions);
+	                
+	                String lastDollarValue = "Error"; // Default if no value is found
+
+	                // Find and store the last dollar value
+	                while (matcher1.find()) {
+	                    lastDollarValue = matcher1.group();
+	                }
+	                
+	                PDFReader.RUBS = lastDollarValue.trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "");
+	            }
+	            System.out.println("RUBS = " + PDFReader.RUBS);
+	        } catch (Exception e) {
+	            PDFReader.RUBS = "Error";
+	        }
 	    }
-    	catch(Exception e)
-	    {
-    		if(PDFReader.RUBS.matches(".*[a-zA-Z]+.*"))
-    		PDFReader.RUBS = "Error";
-	    }
-    	System.out.println("RUBS = "+PDFReader.RUBS);
-	    }
+
 	    //Increased Rent
 	    try
 	    {
@@ -358,5 +360,19 @@ public class Montana_Format2
 		}
 
 }
+	public static String extractSpecialProvisions(String text) {
+	    int startIndex = text.indexOf("SPECIAL PROVISIONS:");
+	    if (startIndex == -1) {
+	        return ""; // "D." section not found
+	    }
+
+	    int endIndex = text.indexOf("27. DEFAULT", startIndex);
+
+	    if (endIndex == -1) {
+	        return text.substring(startIndex); // End of document, extract to the end
+	    } else {
+	        return text.substring(startIndex, endIndex);
+	    }
+	}
 
 }
