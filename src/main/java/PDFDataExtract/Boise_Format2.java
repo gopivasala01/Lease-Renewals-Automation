@@ -93,11 +93,11 @@ public class Boise_Format2
 			
 		   try
 		    {
-		    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.Boise_Format1.monthlyRent_Prior)+PDFAppConfig.Boise_Format1.monthlyRent_Prior.length()).trim().split(" ")[0];
+		    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.Boise_Format1.monthlyRent_Prior1)+PDFAppConfig.Boise_Format1.monthlyRent_Prior1.length()).trim().split(" ")[0];
 		    	if(PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*"))
 		    		PDFReader.monthlyRent = "Error";
 		    	if(PDFReader.monthlyRent == "Error") {
-		    		PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.Boise_Format1.monthlyRent_Prior1)+PDFAppConfig.Boise_Format1.monthlyRent_Prior1.length()).trim().split(" ")[0];
+		    		PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.Boise_Format1.monthlyRent_Prior)+PDFAppConfig.Boise_Format1.monthlyRent_Prior.length()).trim().split(" ")[0];
 			    	if(PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*"))
 			    		PDFReader.monthlyRent = "Error";
 		    	}

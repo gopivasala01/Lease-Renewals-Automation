@@ -347,8 +347,7 @@ public class PropertyWare_InsertData
 	                PropertyWare_InsertData.saveAnAutoCharge();
 	            }  
 	            if (AppConfig.getHVACAirFilterFeeChargeCode(RunnerClass.company).contains(autoChargeCode.replaceAll("[.]", ""))
-	                    && PDFReader.residentBenefitsPackageAvailabilityCheck
-	                    && !autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.HVACAirFilterFee.replaceAll("[^0-9]", "")))
+	            		&& !autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.HVACAirFilterFee.replaceAll("[^0-9]", "")))
 	            {
 	                editButtons.get(k).click();
 	                PropertyWare_InsertData.editingExistingAutoCharge();

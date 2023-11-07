@@ -232,7 +232,7 @@ public class DataBase
 		        ResultSet rs = null;
 		            //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		            con = DriverManager.getConnection(AppConfig.connectionUrl);
-		            String queryToGetBuildingEntityID = "Select top 1 BuildingEntityID from LeaseFact_Dashboard where Building like '%"+RunnerClass.buildingAbbreviation+"%'";
+		            String queryToGetBuildingEntityID = "Select top 1 BuildingIDNumber from LeaseRenewals_Dashboard where Building like '%"+RunnerClass.buildingAbbreviation+"%'";
 		            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		            stmt.setQueryTimeout(100);
 		           // stmt = con.createStatement();

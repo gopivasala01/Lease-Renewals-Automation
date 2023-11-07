@@ -96,7 +96,7 @@ public class NorthCarolina_Format1
 			//Monthly Rent
 		    try
 		    {
-		    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.NorthCarolina_Format1.monthlyRent_Prior)+PDFAppConfig.NorthCarolina_Format1.monthlyRent_Prior.length()).trim().split(" ")[0];
+		    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.NorthCarolina_Format1.monthlyRent_Prior1)+PDFAppConfig.NorthCarolina_Format1.monthlyRent_Prior1.length()).trim().split(" ")[0];
 		    	if(PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*"))
 		    		PDFReader.monthlyRent = "Error";
 		    	if(PDFReader.monthlyRent.contains("$"))

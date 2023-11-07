@@ -179,7 +179,7 @@ public class PropertyWare
 	                for (int j = 0; j < leaseList.size(); j++) 
 	                {
 	                    String lease = leaseList.get(j).getText();
-	                    if (lease.toLowerCase().contains(RunnerClass.completeBuildingAbbreviation.toLowerCase())) 
+	                    if (lease.toLowerCase().contains(RunnerClass.completeBuildingAbbreviation.toLowerCase())&&lease.toLowerCase().contains(":")) 
 	                    {
 	                        try 
 	                        {
@@ -243,15 +243,46 @@ public class PropertyWare
 	    		              if(checkBuildingIsClicked==true)
 	    		            	  break;
 	    					}
+	    					
 	    				
 	    				if(checkBuildingIsClicked==false)
 	    				{
+	    					RunnerClass.failedReason ="";
+	    					try
+	    					{
+	    						//Get BuildingEntityID from LeaseFact_Dashboard table
+	    						String buildingEntityID = DataBase.getBuildingEntityID();
+	    						if(buildingEntityID.equals("Error"))
+	    						{
+	    							System.out.println("Building Not Found");
+	    						    RunnerClass.failedReason =  RunnerClass.failedReason+","+ "Building Not Found";
+	    							return false;
+	    						}
+	    						else
+	    						{
+	    						RunnerClass.driver.manage().timeouts().implicitlyWait(100,TimeUnit.SECONDS);
+	    				        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(100));
+	    				        RunnerClass.driver.navigate().refresh();
+	    				        PropertyWare.intermittentPopUp();
+	    				        //if(PropertyWare.checkIfBuildingIsDeactivated()==true)
+	    				        	//return false;
+	    				        RunnerClass.driver.findElement(Locators.marketDropdown).click();
+	    				        String marketName = "HomeRiver Group - "+RunnerClass.company;
+	    				        Select marketDropdownList = new Select(RunnerClass.driver.findElement(Locators.marketDropdown));
+	    				        marketDropdownList.selectByVisibleText(marketName);
+	    				        String buildingPageURL = AppConfig.buildingPageURL+buildingEntityID;
+	    				        RunnerClass.driver.navigate().to(buildingPageURL);
+	    				        Thread.sleep(2000);
+	    						}
+	    					}
+	    				        catch (Exception e) {
 	    					System.out.println("Building Not Found");
 	    				    RunnerClass.failedReason =  RunnerClass.failedReason+","+ "Building Not Found";
 	    					return false;
 	    				}
+	    						}
 	    		}
-	                    }
+	                    
 	                
 	                
 	                
@@ -259,11 +290,12 @@ public class PropertyWare
 	        
 
 	        if (leaseSelected == false) {
-	            System.out.println("Building Not Found");
-	            RunnerClass.failedReason = RunnerClass.failedReason + "," + "Building Not Found";
+	            System.out.println("Lease Not Found");
+	            RunnerClass.failedReason = RunnerClass.failedReason + "," + "Lease Not Found";
 	            return false;
 	        }
-	    } catch (Exception e) {
+	    } 
+	    }catch (Exception e) {
 	        // Handle exceptions if necessary
 	    }
 
