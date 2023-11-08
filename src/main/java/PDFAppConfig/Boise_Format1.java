@@ -10,6 +10,9 @@ public class Boise_Format1
 	
 	public static String monthlyRent_Prior = "monthly rent in the amount of $";
 	public static String monthlyRent_Prior1 = "Monthly Rent due in the amount of $";
+	public static String monthlyRent_Prior2 = "each month, in the amount of $";
+
+	
 	public static String HVACFilterAddendumTextAvailabilityCheck = "HVAC Filter Maintenance Program and Fee";
 	public static String HVACAirFilterFee = "HVAC Filter Maintenance Program Fee of $";
 	
@@ -30,5 +33,7 @@ public class Boise_Format1
 	public static String residentUtilityBillTextCheck = "SPECIAL PROVISIONS:";
 	
 	public static String leaseRenewalFee_Prior = "A lease renewal fee in the amount of $";
+	   public static String[] monthlyRentFromPDF = {"Monthly Rent:^Monthly Rent due in the amount of $^ ","Monthly Rent:^Tenant will pay Landlord monthly rent in the amount of $^ ","monthly installments,^on or before the 1st day of each month, in the amount of $^ "};
+
 
 }

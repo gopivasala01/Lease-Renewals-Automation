@@ -57,21 +57,21 @@ public class DallasFortWorth_Format2
 		    }
 		    String[] SplitDate = PDFReader.renewalExecutionDate.split("/");
 
-	    	 for (int i = 0; i < 2; i++) {
-	    	     if (SplitDate[i].length() == 1) {
-	    	         // Add a leading zero for single-digit values in the first two components
-	    	         SplitDate[i] = "0" + SplitDate[i];
-	    	     }
-	    	 }
-	    	 
-	    	 PDFReader.renewalExecutionDate= SplitDate[0]+"/"+ SplitDate[1]+"/"+SplitDate[2];
+	   	 for (int i = 0; i < 2; i++) {
+	   	     if (SplitDate[i].length() == 1) {
+	   	         // Add a leading zero for single-digit values in the first two components
+	   	         SplitDate[i] = "0" + SplitDate[i];
+	   	     }
+	   	 }
+	   	 
+	   	 PDFReader.renewalExecutionDate= SplitDate[0]+"/"+ SplitDate[1]+"/"+SplitDate[2];
 
 		    System.out.println("Last date mentioned on the page: " + PDFReader.renewalExecutionDate);
 		    
 		    
 		    try
 		    {
-		    	PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.Florida_Format2.commencementDate_Prior)+PDFAppConfig.Florida_Format2.commencementDate_Prior.length());
+		    	PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.DallaFortWorth_Format2.commencementDate_Prior)+PDFAppConfig.DallaFortWorth_Format2.commencementDate_Prior.length());
 		    	PDFReader.commencementDate =  PDFReader.commencementDate.substring(0,PDFReader.commencementDate.indexOf("(the")).trim();
 		    }
 		    catch(Exception e)
@@ -82,7 +82,7 @@ public class DallasFortWorth_Format2
 		    System.out.println("Commensement Date = "+PDFReader.commencementDate);
 		   try
 		    {
-			   PDFReader.expirationDate = text.substring(text.indexOf(PDFAppConfig.Florida_Format2.expirationDate_Prior)+PDFAppConfig.Florida_Format2.expirationDate_Prior.length());
+			   PDFReader.expirationDate = text.substring(text.indexOf(PDFAppConfig.DallaFortWorth_Format2.expirationDate_Prior)+PDFAppConfig.DallaFortWorth_Format2.expirationDate_Prior.length());
 		    	PDFReader.expirationDate = PDFReader.expirationDate.substring(0,PDFReader.expirationDate.indexOf("(the")).trim();
 		    }
 		    catch(Exception e)
@@ -94,9 +94,35 @@ public class DallasFortWorth_Format2
 		    
 			
 			//Monthly Rent
-		    try
+		   
+		   try {
+			    PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior);
+
+			    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.contains("$")) {
+			        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior1);
+			    }
+
+			    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.contains("$")) {
+			        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior2);
+			    }
+
+			    if (PDFReader.monthlyRent != null) {
+			        PDFReader.monthlyRent = PDFReader.monthlyRent.replaceAll("\\$", "");
+			        if (PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*")) {
+			            PDFReader.monthlyRent = "Error";
+			        }
+			    } else {
+			        PDFReader.monthlyRent = "Error";
+			    }
+
+			    System.out.println("Monthly Rent = " + PDFReader.monthlyRent);
+			} catch (Exception e) {
+			    System.err.println("An error occurred: " + e.getMessage());
+			    e.printStackTrace();
+			}
+		   /* try
 		    {
-		    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.Florida_Format2.monthlyRent_Prior)+PDFAppConfig.Florida_Format2.monthlyRent_Prior.length()).trim().split(" ")[0];
+		    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.DallaFortWorth_Format2.monthlyRent_Prior)+PDFAppConfig.DallaFortWorth_Format2.monthlyRent_Prior.length()).trim().split(" ")[0];
 		    	if(PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*"))
 		    		PDFReader.monthlyRent = "Error";
 		    	if(PDFReader.monthlyRent.contains("$"))
@@ -107,16 +133,16 @@ public class DallasFortWorth_Format2
 		    	PDFReader.monthlyRent = "Error";
 		    	e.printStackTrace();
 		    }
-		    System.out.println("Monthly Rent = "+PDFReader.monthlyRent);
+		    System.out.println("Monthly Rent = "+PDFReader.monthlyRent);*/
 		    
 		    //HVAC Air Filter Fee (OR) Resident Benefits Package
-		    if(text.contains(PDFAppConfig.Florida_Format2.HVACFilterAddendumTextAvailabilityCheck))
+		    if(text.contains(PDFAppConfig.DallaFortWorth_Format2.HVACFilterAddendumTextAvailabilityCheck))
 		    {
 		    	PDFReader.HVACFilterFlag = true;
 		    	//HVAC Air Filter Fee
 		    	 try
 				    {
-				    	PDFReader.HVACAirFilterFee = text.substring(text.indexOf(PDFAppConfig.Florida_Format2.HVACAirFilterFee)+PDFAppConfig.Florida_Format2.HVACAirFilterFee.length()).trim().split(" ")[0];
+				    	PDFReader.HVACAirFilterFee = text.substring(text.indexOf(PDFAppConfig.DallaFortWorth_Format2.HVACAirFilterFee)+PDFAppConfig.DallaFortWorth_Format2.HVACAirFilterFee.length()).trim().split(" ")[0];
 				    	if(PDFReader.HVACAirFilterFee.matches(".*[a-zA-Z]+.*"))
 				    		PDFReader.HVACAirFilterFee = "Error";
 				    }
@@ -150,7 +176,7 @@ public class DallasFortWorth_Format2
 		    //Prorate Rent
 		    try
 		    {
-		    	PDFReader.proratedRent = text.substring(text.indexOf(PDFAppConfig.Florida_Format2.prorateRent_Prior)+PDFAppConfig.Florida_Format2.prorateRent_Prior.length());
+		    	PDFReader.proratedRent = text.substring(text.indexOf(PDFAppConfig.DallaFortWorth_Format2.prorateRent_Prior)+PDFAppConfig.DallaFortWorth_Format2.prorateRent_Prior.length());
 		    	PDFReader.proratedRent = PDFReader.proratedRent.substring(0,PDFReader.proratedRent.indexOf("as prorated rent")).trim();
 		    	if(PDFReader.proratedRent.matches(".*[a-zA-Z]+.*")||PDFReader.proratedRent.equals("0.00"))
 		    		PDFReader.proratedRent = "Error";
@@ -165,7 +191,7 @@ public class DallasFortWorth_Format2
 		  //Lease Renewal Admin Fee
 		    try
 		    {
-		    	PDFReader.leaseRenewalFee = text.substring(text.indexOf(PDFAppConfig.Florida_Format2.leaseRenewalAdminFee_Prior)+PDFAppConfig.Florida_Format2.leaseRenewalAdminFee_Prior.length()).trim().split(" ")[0];
+		    	PDFReader.leaseRenewalFee = text.substring(text.indexOf(PDFAppConfig.DallaFortWorth_Format2.leaseRenewalAdminFee_Prior)+PDFAppConfig.DallaFortWorth_Format2.leaseRenewalAdminFee_Prior.length()).trim().split(" ")[0];
 		    	if(PDFReader.leaseRenewalFee.matches(".*[a-zA-Z]+.*")||PDFReader.proratedRent.equals("0.00"))
 		    		PDFReader.leaseRenewalFee = "Error";
 		    }
@@ -177,14 +203,14 @@ public class DallasFortWorth_Format2
 		    System.out.println("Lease Renewal Admin Fee = "+PDFReader.leaseRenewalFee);
 		    
 			//Pet Rent
-		    if(text.contains(PDFAppConfig.Florida_Format2.petAgreementAvailabilityCheck))
+		    if(text.contains(PDFAppConfig.DallaFortWorth_Format2.petAgreementAvailabilityCheck))
 		    {
 		    	PDFReader.petFlag = true;
 		    	System.out.println("Pet Addendum Available = "+PDFReader.petFlag);
 		    	
 		    	try
 		    	{
-		    		PDFReader.petRent = text.substring(text.indexOf(PDFAppConfig.Florida_Format2.petRent_Prior)+PDFAppConfig.Florida_Format2.petRent_Prior.length()).trim().split(" ")[0].trim();
+		    		PDFReader.petRent = text.substring(text.indexOf(PDFAppConfig.DallaFortWorth_Format2.petRent_Prior)+PDFAppConfig.DallaFortWorth_Format2.petRent_Prior.length()).trim().split(" ")[0].trim();
 		    		if(PDFReader.petRent.matches(".*[a-zA-Z]+.*")||PDFReader.petRent.equals("0.00"))
 			    		PDFReader.petRent = "Error";
 		    	}
@@ -204,7 +230,7 @@ public class DallasFortWorth_Format2
 		    		//Increased Rent
 		    		try
 		    		{
-		    		PDFReader.increasedRent_amount = text.substring(text.indexOf(PDFAppConfig.Florida_Format2.increasedRent_Prior1)+PDFAppConfig.Florida_Format2.increasedRent_Prior1.length()).trim().split(" ")[0].trim();
+		    		PDFReader.increasedRent_amount = text.substring(text.indexOf(PDFAppConfig.DallaFortWorth_Format2.increasedRent_Prior1)+PDFAppConfig.DallaFortWorth_Format2.increasedRent_Prior1.length()).trim().split(" ")[0].trim();
 		    		if(PDFReader.increasedRent_amount.matches(".*[a-zA-Z]+.*")||PDFReader.increasedRent_amount.equals("0.00"))
 			    		PDFReader.increasedRent_amount = "Error";
 		    		}
@@ -241,7 +267,7 @@ public class DallasFortWorth_Format2
 		    		//Increased Rent
 		    		try
 		    		{
-		    		PDFReader.increasedRent_amount = text.substring(text.indexOf(PDFAppConfig.Florida_Format2.increasedRent_Prior2)+PDFAppConfig.Florida_Format2.increasedRent_Prior2.length()).trim().split(" ")[0].trim();
+		    		PDFReader.increasedRent_amount = text.substring(text.indexOf(PDFAppConfig.DallaFortWorth_Format2.increasedRent_Prior2)+PDFAppConfig.DallaFortWorth_Format2.increasedRent_Prior2.length()).trim().split(" ")[0].trim();
 		    		if(PDFReader.increasedRent_amount.matches(".*[a-zA-Z]+.*")||PDFReader.increasedRent_amount.equals("0.00"))
 			    		PDFReader.increasedRent_amount = "Error";
 		    		}
@@ -335,7 +361,16 @@ public class DallasFortWorth_Format2
 			}
 
 	}
-
+		public static String extractMonthlyRent(String text, String format) {
+		    try {
+		        String rent = text.substring(text.indexOf(format) + format.length()).trim().split(" ")[0];
+		        return rent.matches(".*[a-zA-Z]+.*") ? null : rent;
+		    } catch (Exception e) {
+		        System.err.println("An error occurred while extracting monthly rent: " + e.getMessage());
+		        e.printStackTrace();
+		        return null;
+		    }
+		}
 
 
 }

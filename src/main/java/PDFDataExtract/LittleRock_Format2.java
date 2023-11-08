@@ -95,7 +95,33 @@ public class LittleRock_Format2
 	    
 		
 		//Monthly Rent
-	    try
+	   
+	   try {
+		    PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior);
+
+		    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.contains("$")) {
+		        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior1);
+		    }
+
+		    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.contains("$")) {
+		        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior2);
+		    }
+
+		    if (PDFReader.monthlyRent != null) {
+		        PDFReader.monthlyRent = PDFReader.monthlyRent.replaceAll("\\$", "");
+		        if (PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*")) {
+		            PDFReader.monthlyRent = "Error";
+		        }
+		    } else {
+		        PDFReader.monthlyRent = "Error";
+		    }
+
+		    System.out.println("Monthly Rent = " + PDFReader.monthlyRent);
+		} catch (Exception e) {
+		    System.err.println("An error occurred: " + e.getMessage());
+		    e.printStackTrace();
+		}
+	   /* try
 	    {
 	    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.LittleRock_Format2.monthlyRent_Prior)+PDFAppConfig.LittleRock_Format2.monthlyRent_Prior.length()).trim().split(" ")[0];
 	    	if(PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*"))
@@ -108,7 +134,7 @@ public class LittleRock_Format2
 	    	PDFReader.monthlyRent = "Error";
 	    	e.printStackTrace();
 	    }
-	    System.out.println("Monthly Rent = "+PDFReader.monthlyRent);
+	    System.out.println("Monthly Rent = "+PDFReader.monthlyRent);*/
 	    
 	    //HVAC Air Filter Fee (OR) Resident Benefits Package
 	    if(text.contains(PDFAppConfig.LittleRock_Format2.HVACFilterAddendumTextAvailabilityCheck))
@@ -336,4 +362,14 @@ public class LittleRock_Format2
 		}
 
 }
+	public static String extractMonthlyRent(String text, String format) {
+	    try {
+	        String rent = text.substring(text.indexOf(format) + format.length()).trim().split(" ")[0];
+	        return rent.matches(".*[a-zA-Z]+.*") ? null : rent;
+	    } catch (Exception e) {
+	        System.err.println("An error occurred while extracting monthly rent: " + e.getMessage());
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
 }

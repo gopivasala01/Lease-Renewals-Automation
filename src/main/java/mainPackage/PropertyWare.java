@@ -282,18 +282,18 @@ public class PropertyWare
 	    				}
 	    						}
 	    		}
-	                    
+	                if (leaseSelected == false) {
+	    	            System.out.println("Lease Not Found");
+	    	            RunnerClass.failedReason = RunnerClass.failedReason + "," + "Lease Not Found";
+	    	            return false;
+	    	        }      
 	                
 	                
 	                
 	            }
 	        
 
-	        if (leaseSelected == false) {
-	            System.out.println("Lease Not Found");
-	            RunnerClass.failedReason = RunnerClass.failedReason + "," + "Lease Not Found";
-	            return false;
-	        }
+	       
 	    } 
 	    }catch (Exception e) {
 	        // Handle exceptions if necessary

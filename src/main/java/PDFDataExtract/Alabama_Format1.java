@@ -90,7 +90,39 @@ public class Alabama_Format1 {
 		    
 			
 			//Monthly Rent
-		    try
+		   
+		   
+		   // Monthly Rent
+		   //PDFReader.monthlyRent =  Alabama_Format1.getValues(PDFAppConfig.Boise_Format2.monthlyRentFromPDF);
+		   
+		   
+		   try {
+			    PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Alabama_Format1.monthlyRent_Prior);
+
+			    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.contains("$")) {
+			        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Alabama_Format1.monthlyRent_Prior1);
+			    }
+
+			    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.contains("$")) {
+			        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Alabama_Format1.monthlyRent_Prior2);
+			    }
+
+			    if (PDFReader.monthlyRent != null) {
+			        PDFReader.monthlyRent = PDFReader.monthlyRent.replaceAll("$", "");
+			    } else {
+			        PDFReader.monthlyRent = "Error";
+			    }
+
+			    System.out.println("Monthly Rent = " + PDFReader.monthlyRent);
+			} catch (Exception e) {
+			    System.err.println("An error occurred: " + e.getMessage());
+			    e.printStackTrace();
+			}
+
+			// Helper method to extract monthly rent
+			
+
+		  /*  try
 		    {
 		    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.Alabama_Format1.monthlyRent_Prior)+PDFAppConfig.Alabama_Format1.monthlyRent_Prior.length()).trim().split(" ")[0];
 		    	if(PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*"))
@@ -103,7 +135,7 @@ public class Alabama_Format1 {
 		    	PDFReader.monthlyRent = "Error";
 		    	e.printStackTrace();
 		    }
-		    System.out.println("Monthly Rent = "+PDFReader.monthlyRent);
+		    System.out.println("Monthly Rent = "+PDFReader.monthlyRent);*/
 		    
 		    //HVAC Air Filter Fee (OR) Resident Benefits Package
 		   if(text.contains(PDFAppConfig.Alabama_Format1.HVACFilterAddendumTextAvailabilityCheck))
@@ -197,6 +229,10 @@ public class Alabama_Format1 {
 			return false;
 		}
 
+	}
+	public static String extractMonthlyRent(String text, String format) {
+	    String rent = text.substring(text.indexOf(format) + format.length()).trim().split(" ")[0];
+	    return rent.matches(".*[a-zA-Z]+.*") ? null : rent;
 	}
 
 }

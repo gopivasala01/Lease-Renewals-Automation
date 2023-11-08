@@ -13,6 +13,7 @@ import mainPackage.RunnerClass;
 
 public class Boise_Format1 
 {
+	
 	//public static void main(String[] args) 
 	public static boolean boise() throws Exception
 	{
@@ -92,7 +93,35 @@ public class Boise_Format1
 	    
 		
 		//Monthly Rent
-	    try
+	    
+	    try {
+	        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior);
+
+	        if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.contains("$")) {
+	            PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior1);
+	        }
+
+	        if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.contains("$")) {
+	            PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior2);
+	        }
+
+	        if (PDFReader.monthlyRent != null) {
+	            PDFReader.monthlyRent = PDFReader.monthlyRent.replaceAll("\\$", "");
+	            if (PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*")) {
+	                PDFReader.monthlyRent = "Error";
+	            }
+	        } else {
+	            PDFReader.monthlyRent = "Error";
+	        }
+
+	        System.out.println("Monthly Rent = " + PDFReader.monthlyRent);
+	    } catch (Exception e) {
+	        System.err.println("An error occurred: " + e.getMessage());
+	        e.printStackTrace();
+	    }
+	    
+	   // PDFReader.monthlyRent =  Boise_Format1.getValues(PDFAppConfig.Boise_Format2.monthlyRentFromPDF);
+	   /* try
 	    {
 	    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.Boise_Format2.monthlyRent_Prior)+PDFAppConfig.Boise_Format2.monthlyRent_Prior.length()).trim().split(" ")[0];
 	    	if(PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*"))
@@ -106,7 +135,7 @@ public class Boise_Format1
 	    	e.printStackTrace();
 	    }
 	    System.out.println("Monthly Rent = "+PDFReader.monthlyRent);
-	    
+	    */
 	    //HVAC Air Filter Fee (OR) Resident Benefits Package
 	    if(text.contains(PDFAppConfig.Boise_Format2.HVACFilterAddendumTextAvailabilityCheck))
 	    {
@@ -366,6 +395,18 @@ public class Boise_Format1
 
 		
 }
+	
+	public static String extractMonthlyRent(String text, String format) {
+	    try {
+	        String rent = text.substring(text.indexOf(format) + format.length()).trim().split(" ")[0];
+	        return rent.matches(".*[a-zA-Z]+.*") ? null : rent;
+	    } catch (Exception e) {
+	        System.err.println("An error occurred while extracting monthly rent: " + e.getMessage());
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
+	
 	public static String extractSpecialProvisions(String text) {
 	    int startIndex = text.indexOf("SPECIAL PROVISIONS:");
 	    if (startIndex == -1) {
@@ -382,7 +423,7 @@ public class Boise_Format1
 	}
 
 
-		 
+	 
 
 
 }

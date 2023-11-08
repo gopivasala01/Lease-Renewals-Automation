@@ -66,6 +66,7 @@ public class LakeHavasu_Format1
 		    	 
 		    	 PDFReader.renewalExecutionDate= SplitDate[0]+"/"+ SplitDate[1]+"/"+SplitDate[2];
 
+
 			    System.out.println("Last date mentioned on the page: " + PDFReader.renewalExecutionDate);
 				    try
 				    {
@@ -91,9 +92,35 @@ public class LakeHavasu_Format1
 				    
 					
 					//Monthly Rent
-				    try
+				   
+				   try {
+					    PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior);
+
+					    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.contains("$")) {
+					        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior1);
+					    }
+
+					    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.contains("$")) {
+					        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior2);
+					    }
+
+					    if (PDFReader.monthlyRent != null) {
+					        PDFReader.monthlyRent = PDFReader.monthlyRent.replaceAll("\\$", "");
+					        if (PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*")) {
+					            PDFReader.monthlyRent = "Error";
+					        }
+					    } else {
+					        PDFReader.monthlyRent = "Error";
+					    }
+
+					    System.out.println("Monthly Rent = " + PDFReader.monthlyRent);
+					} catch (Exception e) {
+					    System.err.println("An error occurred: " + e.getMessage());
+					    e.printStackTrace();
+					}
+				    /*try
 				    {
-				    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.LakeHavasu_Format1.monthlyRent_Prior)+PDFAppConfig.LakeHavasu_Format1.monthlyRent_Prior.length()).trim().split(" ")[0];
+				    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.LakeHavasu_Format1.monthlyRent_Prior)+PDFAppConfig.LakeHavasu_Format1.monthlyRent_Prior.length()).trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "");
 				    	if(PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*"))
 				    		PDFReader.monthlyRent = "Error";
 				    	if(PDFReader.monthlyRent.contains("$"))
@@ -104,7 +131,7 @@ public class LakeHavasu_Format1
 				    	PDFReader.monthlyRent = "Error";
 				    	e.printStackTrace();
 				    }
-				    System.out.println("Monthly Rent = "+PDFReader.monthlyRent);
+				    System.out.println("Monthly Rent = "+PDFReader.monthlyRent);*/
 				    
 				    //HVAC Air Filter Fee (OR) Resident Benefits Package
 				    if(text.contains(PDFAppConfig.LakeHavasu_Format1.HVACFilterAddendumTextAvailabilityCheck))
@@ -113,7 +140,7 @@ public class LakeHavasu_Format1
 				    	//HVAC Air Filter Fee
 				    	 try
 						    {
-						    	PDFReader.HVACAirFilterFee = text.substring(text.indexOf(PDFAppConfig.LakeHavasu_Format1.HVACAirFilterFee)+PDFAppConfig.LakeHavasu_Format1.HVACAirFilterFee.length()).trim().split(" ")[0];
+						    	PDFReader.HVACAirFilterFee = text.substring(text.indexOf(PDFAppConfig.LakeHavasu_Format1.HVACAirFilterFee)+PDFAppConfig.LakeHavasu_Format1.HVACAirFilterFee.length()).trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "");
 						    	if(PDFReader.HVACAirFilterFee.matches(".*[a-zA-Z]+.*"))
 						    		PDFReader.HVACAirFilterFee = "Error";
 						    }
@@ -131,7 +158,7 @@ public class LakeHavasu_Format1
 				    	//HVAC Air Filter Fee
 				    	 try
 						    {
-						    	PDFReader.residentBenefitsPackage = text.substring(text.indexOf(PDFAppConfig.LakeHavasu_Format1.RBP_Prior)+PDFAppConfig.LakeHavasu_Format1.RBP_Prior.length()).trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "");
+						    	PDFReader.residentBenefitsPackage = text.substring(text.indexOf(PDFAppConfig.LakeHavasu_Format1.RBP_Prior)+PDFAppConfig.LakeHavasu_Format1.RBP_Prior.length()).trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "").replaceAll("[^0-9a-zA-Z.]", "").replaceAll("[^0-9a-zA-Z.]", "").replaceAll("[^0-9a-zA-Z.]", "");
 						    	if(PDFReader.residentBenefitsPackage.matches(".*[a-zA-Z]+.*"))
 						    		PDFReader.residentBenefitsPackage = "Error";
 						    }
@@ -147,7 +174,7 @@ public class LakeHavasu_Format1
 				    //Prorate Rent
 				    try
 				    {
-				    	PDFReader.proratedRent = text.substring(text.indexOf(PDFAppConfig.LakeHavasu_Format1.prorateRent_Prior)+PDFAppConfig.LakeHavasu_Format1.prorateRent_Prior.length()).trim().split(" ")[0];
+				    	PDFReader.proratedRent = text.substring(text.indexOf(PDFAppConfig.LakeHavasu_Format1.prorateRent_Prior)+PDFAppConfig.LakeHavasu_Format1.prorateRent_Prior.length()).trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "");
 				    	if(PDFReader.proratedRent.matches(".*[a-zA-Z]+.*"))
 				    		PDFReader.proratedRent = "Error";
 				    }
@@ -166,7 +193,7 @@ public class LakeHavasu_Format1
 				    	
 				    	try
 				    	{
-				    		PDFReader.petRent = text.substring(text.indexOf(PDFAppConfig.LakeHavasu_Format1.petRent_Prior)+PDFAppConfig.LakeHavasu_Format1.petRent_Prior.length()).trim().split(" ")[0].trim();
+				    		PDFReader.petRent = text.substring(text.indexOf(PDFAppConfig.LakeHavasu_Format1.petRent_Prior)+PDFAppConfig.LakeHavasu_Format1.petRent_Prior.length()).trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "").trim();
 				    		if(PDFReader.petRent.matches(".*[a-zA-Z]+.*"))
 					    		PDFReader.petRent = "Error";
 				    	}
@@ -180,7 +207,7 @@ public class LakeHavasu_Format1
 				    //Lease Renewal Admin Fee
 				    try
 			    	{
-			    		PDFReader.leaseRenewalFee = text.substring(text.indexOf(PDFAppConfig.LakeHavasu_Format1.leaseRenewalFee_Prior)+PDFAppConfig.LakeHavasu_Format1.leaseRenewalFee_Prior.length()).trim().split(" ")[0].trim();
+			    		PDFReader.leaseRenewalFee = text.substring(text.indexOf(PDFAppConfig.LakeHavasu_Format1.leaseRenewalFee_Prior)+PDFAppConfig.LakeHavasu_Format1.leaseRenewalFee_Prior.length()).trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "").trim();
 			    		if(PDFReader.leaseRenewalFee.matches(".*[a-zA-Z]+.*"))
 				    		PDFReader.leaseRenewalFee = "Error";
 			    	}
@@ -198,6 +225,16 @@ public class LakeHavasu_Format1
 					return false;
 				}
 
+			}
+			public static String extractMonthlyRent(String text, String format) {
+			    try {
+			        String rent = text.substring(text.indexOf(format) + format.length()).trim().split(" ")[0];
+			        return rent.matches(".*[a-zA-Z]+.*") ? null : rent;
+			    } catch (Exception e) {
+			        System.err.println("An error occurred while extracting monthly rent: " + e.getMessage());
+			        e.printStackTrace();
+			        return null;
+			    }
 			}
 
 }

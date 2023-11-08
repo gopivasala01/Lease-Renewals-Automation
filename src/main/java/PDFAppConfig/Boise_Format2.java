@@ -56,5 +56,7 @@ public class Boise_Format2
 	
 	public static String increasedRent_Prior1 = "on the first 12 months and $";
 	public static String increasedRent_Prior2 = "and, $ ";
+	public static String[] monthlyRentFromPDF = {"Monthly Rent:^Monthly Rent due in the amount of $^ ","Monthly Rent:^Tenant will pay Landlord monthly rent in the amount of $^ ","monthly installments,^on or before the 1st day of each month, in the amount of $^ "};
+
 
 }

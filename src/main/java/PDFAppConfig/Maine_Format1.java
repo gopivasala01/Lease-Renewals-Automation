@@ -11,6 +11,8 @@ public class Maine_Format1
 	
 	public static String monthlyRent_Prior = "monthly rent in the amount of $";
 	public static String monthlyRent_Prior1 = "Monthly Rent due in the amount of $";
+	public static String monthlyRent_Prior2 = "each month, in the amount of $";
+	
 	public static String HVACFilterAddendumTextAvailabilityCheck = "HVAC Filter Maintenance Program and Fee";
 	public static String HVACAirFilterFee = "HVAC Filter Maintenance Program Fee of $";
 	

@@ -13,6 +13,7 @@ import mainPackage.RunnerClass;
 
 public class Boise_Format2 
 {
+	public static String text ;
 	//public static void main(String[] args) 
 	public static boolean boise() throws Exception
 	{
@@ -23,7 +24,7 @@ public class Boise_Format2
 			FileInputStream fis = new FileInputStream(file);
 			PDDocument document = PDDocument.load(fis);
 			PDFTextStripper stripper = new PDFTextStripper();
-			String text = stripper.getText(document);
+			 text = stripper.getText(document);
 			stripper.setStartPage(1);
 			stripper.setEndPage(1);
 			String firstPageText = stripper.getText(document);
@@ -89,29 +90,40 @@ public class Boise_Format2
 		    	 e.printStackTrace();
 		    }
 		   System.out.println("Expiration Date = "+PDFReader.expirationDate);
-		    
-			
-		   try
-		    {
-		    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.Boise_Format1.monthlyRent_Prior1)+PDFAppConfig.Boise_Format1.monthlyRent_Prior1.length()).trim().split(" ")[0];
-		    	if(PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*"))
-		    		PDFReader.monthlyRent = "Error";
-		    	if(PDFReader.monthlyRent == "Error") {
-		    		PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.Boise_Format1.monthlyRent_Prior)+PDFAppConfig.Boise_Format1.monthlyRent_Prior.length()).trim().split(" ")[0];
-			    	if(PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*"))
-			    		PDFReader.monthlyRent = "Error";
-		    	}
-			    	if(PDFReader.monthlyRent.contains("$"))
-			    		PDFReader.monthlyRent = PDFReader.monthlyRent.replace("$", "");
-		    	
-		    	
-		    }
-		    catch(Exception e)
-		    {
-		    	PDFReader.monthlyRent = "Error";
-		    	e.printStackTrace();
-		    }
-		    System.out.println("Monthly Rent = "+PDFReader.monthlyRent);
+		   
+		   
+		   
+		   // Monthly Rent
+		   //PDFReader.monthlyRent =  Boise_Format1.getValues(PDFAppConfig.Boise_Format2.monthlyRentFromPDF);
+		   
+		   
+		   try {
+			    PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior);
+
+			    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.contains("$")) {
+			        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior1);
+			    }
+
+			    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.contains("$")) {
+			        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior2);
+			    }
+
+			    if (PDFReader.monthlyRent != null) {
+			        PDFReader.monthlyRent = PDFReader.monthlyRent.replaceAll("\\$", "");
+			        if (PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*")) {
+			            PDFReader.monthlyRent = "Error";
+			        }
+			    } else {
+			        PDFReader.monthlyRent = "Error";
+			    }
+
+			    System.out.println("Monthly Rent = " + PDFReader.monthlyRent);
+			} catch (Exception e) {
+			    System.err.println("An error occurred: " + e.getMessage());
+			    e.printStackTrace();
+			}
+		   
+		   
 		    
 		    //HVAC Air Filter Fee (OR) Resident Benefits Package
 		    if(text.contains(PDFAppConfig.Boise_Format1.HVACFilterAddendumTextAvailabilityCheck))
@@ -171,7 +183,13 @@ public class Boise_Format2
 		                    lastDollarValue = matcher1.group();
 		                }
 		                
+		                if(specialProvisions.contains("D. n/a") || specialProvisions.contains("D. N/A")) {
+		                    PDFReader.RUBS = "Error";
+		                }
+		                else {
+
 		                PDFReader.RUBS = lastDollarValue.trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "");
+		                }
 		            }
 		            System.out.println("RUBS = " + PDFReader.RUBS);
 		        } catch (Exception e) {
@@ -238,6 +256,17 @@ public class Boise_Format2
 		}
 
 	}
+	public static String extractMonthlyRent(String text, String format) {
+	    try {
+	        String rent = text.substring(text.indexOf(format) + format.length()).trim().split(" ")[0];
+	        return rent.matches(".*[a-zA-Z]+.*") ? null : rent;
+	    } catch (Exception e) {
+	        System.err.println("An error occurred while extracting monthly rent: " + e.getMessage());
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
+	
 	public static String extractSpecialProvisions(String text) {
 	    int startIndex = text.indexOf("SPECIAL PROVISIONS:");
 	    if (startIndex == -1) {
@@ -247,9 +276,15 @@ public class Boise_Format2
 	    int endIndex = text.indexOf("27. DEFAULT", startIndex);
 
 	    if (endIndex == -1) {
-	        return text.substring(startIndex); // End of document, extract to the end
+	        // Extract to the end of the document
+	        String specialProvisionsText = text.substring(startIndex);
+	        return specialProvisionsText;
 	    } else {
-	        return text.substring(startIndex, endIndex);
+	        // Extract text between startIndex and endIndex
+	        String specialProvisionsText = text.substring(startIndex, endIndex);
+	        return specialProvisionsText;
 	    }
 	}
+	
+
 }

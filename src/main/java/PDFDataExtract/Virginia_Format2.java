@@ -41,7 +41,7 @@ public class Virginia_Format2
 			    Pattern datePattern = Pattern.compile(pattern);
 
 			    Matcher matcher = datePattern.matcher(firstPageText);
-			    
+			    String renewalExecutionDate = "";
 
 			    
 			    while (matcher.find()) {
@@ -57,16 +57,18 @@ public class Virginia_Format2
 			    }
 			    String[] SplitDate = PDFReader.renewalExecutionDate.split("/");
 
-		    	 for (int i = 0; i < 2; i++) {
-		    	     if (SplitDate[i].length() == 1) {
-		    	         // Add a leading zero for single-digit values in the first two components
-		    	         SplitDate[i] = "0" + SplitDate[i];
-		    	     }
-		    	 }
-		    	 
-		    	 PDFReader.renewalExecutionDate= SplitDate[0]+"/"+ SplitDate[1]+"/"+SplitDate[2];
+		   	 for (int i = 0; i < 2; i++) {
+		   	     if (SplitDate[i].length() == 1) {
+		   	         // Add a leading zero for single-digit values in the first two components
+		   	         SplitDate[i] = "0" + SplitDate[i];
+		   	     }
+		   	 }
+		   	 
+		   	 PDFReader.renewalExecutionDate= SplitDate[0]+"/"+ SplitDate[1]+"/"+SplitDate[2];
 
 			    System.out.println("Last date mentioned on the page: " + PDFReader.renewalExecutionDate);
+			    
+			    
 			    try
 			    {
 			    	PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.Virginia_Format2.commencementDate_Prior)+PDFAppConfig.Virginia_Format2.commencementDate_Prior.length());
@@ -92,9 +94,35 @@ public class Virginia_Format2
 			    
 				
 				//Monthly Rent
-			    try
+			   
+			   try {
+				    PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior);
+
+				    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.contains("$")) {
+				        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior1);
+				    }
+
+				    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.contains("$")) {
+				        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior2);
+				    }
+
+				    if (PDFReader.monthlyRent != null) {
+				        PDFReader.monthlyRent = PDFReader.monthlyRent.replaceAll("\\$", "");
+				        if (PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*")) {
+				            PDFReader.monthlyRent = "Error";
+				        }
+				    } else {
+				        PDFReader.monthlyRent = "Error";
+				    }
+
+				    System.out.println("Monthly Rent = " + PDFReader.monthlyRent);
+				} catch (Exception e) {
+				    System.err.println("An error occurred: " + e.getMessage());
+				    e.printStackTrace();
+				}
+			   /* try
 			    {
-			    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.Virginia_Format2.monthlyRent_Prior2)+PDFAppConfig.Virginia_Format2.monthlyRent_Prior2.length()).trim().split(" ")[0];
+			    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.Virginia_Format2.monthlyRent_Prior)+PDFAppConfig.Virginia_Format2.monthlyRent_Prior.length()).trim().split(" ")[0];
 			    	if(PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*"))
 			    		PDFReader.monthlyRent = "Error";
 			    	if(PDFReader.monthlyRent.contains("$"))
@@ -105,7 +133,7 @@ public class Virginia_Format2
 			    	PDFReader.monthlyRent = "Error";
 			    	e.printStackTrace();
 			    }
-			    System.out.println("Monthly Rent = "+PDFReader.monthlyRent);
+			    System.out.println("Monthly Rent = "+PDFReader.monthlyRent);*/
 			    
 			    //HVAC Air Filter Fee (OR) Resident Benefits Package
 			    if(text.contains(PDFAppConfig.Virginia_Format2.HVACFilterAddendumTextAvailabilityCheck))
@@ -333,5 +361,15 @@ public class Virginia_Format2
 				}
 
 		}
+			public static String extractMonthlyRent(String text, String format) {
+			    try {
+			        String rent = text.substring(text.indexOf(format) + format.length()).trim().split(" ")[0];
+			        return rent.matches(".*[a-zA-Z]+.*") ? null : rent;
+			    } catch (Exception e) {
+			        System.err.println("An error occurred while extracting monthly rent: " + e.getMessage());
+			        e.printStackTrace();
+			        return null;
+			    }
+			}
 
 }
