@@ -110,10 +110,7 @@ public class California_Format1
 			    }
 
 			    if (PDFReader.monthlyRent != null) {
-			        PDFReader.monthlyRent = PDFReader.monthlyRent.replaceAll("\\$", "");
-			        if (PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*")) {
-			            PDFReader.monthlyRent = "Error";
-			        }
+			        PDFReader.monthlyRent = PDFReader.monthlyRent.replaceAll("$", "");
 			    } else {
 			        PDFReader.monthlyRent = "Error";
 			    }

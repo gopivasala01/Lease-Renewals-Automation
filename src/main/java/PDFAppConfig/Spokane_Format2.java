@@ -2,10 +2,10 @@ package PDFAppConfig;
 
 public class Spokane_Format2 
 {
-	public static String commencementDate_Prior = "commences on";
+	public static String commencementDate_Prior = "Commencement Date:";
 	public static String commencementDate_After = " (“Commencement Date”)";
 
-	public static String expirationDate_Prior = "expires on"; 
+	public static String expirationDate_Prior = "Expiration Date:"; 
 	public static String expirationDate_After = " (“Expiration Date”).";
 	
 	public static String proratedRentDate_Prior = "prorated rent, on or before";
@@ -13,9 +13,9 @@ public class Spokane_Format2
 	
 	public static String proratedRent_Prior = "Tenant will pay Landlord $ ";
 	
-	public static String monthlyRent_Prior = "monthly rent in the amount of $";
-	public static String monthlyRent_Prior1 = "Monthly Rent due in the amount of $";
-	public static String monthlyRent_Prior2 = "each month, in the amount of $";
+	public static String monthlyRent_Prior1 = "monthly rent in the amount of $";
+	public static String monthlyRent_Prior2 = "Monthly Rent due in the amount of $";
+	public static String monthlyRent_Prior = "each month, in the amount of $";
 	
 	public static String adminFee_prior = "An annual lease preparation fee in the amount of $";
 	

@@ -72,7 +72,7 @@ public class Spokane_Format2
 		    try
 		    {
 		    	PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.Spokane_Format2.commencementDate_Prior)+PDFAppConfig.Spokane_Format2.commencementDate_Prior.length());
-		    	PDFReader.commencementDate =  PDFReader.commencementDate.substring(0,PDFReader.commencementDate.indexOf("(the")).trim();
+		    	PDFReader.commencementDate =  PDFReader.commencementDate.substring(0,PDFReader.commencementDate.indexOf("Expiration")).trim();
 		    }
 		    catch(Exception e)
 		    {
@@ -83,7 +83,7 @@ public class Spokane_Format2
 		   try
 		    {
 			   PDFReader.expirationDate = text.substring(text.indexOf(PDFAppConfig.Spokane_Format2.expirationDate_Prior)+PDFAppConfig.Spokane_Format2.expirationDate_Prior.length());
-		    	PDFReader.expirationDate = PDFReader.expirationDate.substring(0,PDFReader.expirationDate.indexOf("(the")).trim();
+		    	PDFReader.expirationDate = PDFReader.expirationDate.substring(0,PDFReader.expirationDate.indexOf("B. Delay")).trim();
 		    }
 		    catch(Exception e)
 		    {
@@ -96,21 +96,18 @@ public class Spokane_Format2
 			//Monthly Rent
 		   
 		   try {
-			    PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior);
+			    PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Spokane_Format1.monthlyRent_Prior);
 
 			    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.contains("$")) {
-			        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior1);
+			        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Spokane_Format1.monthlyRent_Prior1);
 			    }
 
 			    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.contains("$")) {
-			        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior2);
+			        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Spokane_Format1.monthlyRent_Prior2);
 			    }
 
 			    if (PDFReader.monthlyRent != null) {
-			        PDFReader.monthlyRent = PDFReader.monthlyRent.replaceAll("\\$", "");
-			        if (PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*")) {
-			            PDFReader.monthlyRent = "Error";
-			        }
+			        PDFReader.monthlyRent = PDFReader.monthlyRent.replaceAll("$", "");
 			    } else {
 			        PDFReader.monthlyRent = "Error";
 			    }
@@ -120,6 +117,7 @@ public class Spokane_Format2
 			    System.err.println("An error occurred: " + e.getMessage());
 			    e.printStackTrace();
 			}
+		
 		   /* try
 		    {
 		    	PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.Spokane_Format2.monthlyRent_Prior)+PDFAppConfig.Spokane_Format2.monthlyRent_Prior.length()).trim().split(" ")[0];

@@ -96,21 +96,18 @@ public class Maryland_Format2
 			//Monthly Rent
 		   
 		   try {
-			    PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior);
+			    PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Maryland_Format1.monthlyRent_Prior);
 
 			    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.contains("$")) {
-			        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior1);
+			        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Maryland_Format1.monthlyRent_Prior1);
 			    }
 
 			    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.contains("$")) {
-			        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior2);
+			        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Maryland_Format1.monthlyRent_Prior2);
 			    }
 
 			    if (PDFReader.monthlyRent != null) {
-			        PDFReader.monthlyRent = PDFReader.monthlyRent.replaceAll("\\$", "");
-			        if (PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*")) {
-			            PDFReader.monthlyRent = "Error";
-			        }
+			        PDFReader.monthlyRent = PDFReader.monthlyRent.replaceAll("$", "");
 			    } else {
 			        PDFReader.monthlyRent = "Error";
 			    }
