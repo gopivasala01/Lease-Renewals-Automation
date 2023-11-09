@@ -423,8 +423,8 @@ public class PropertyWare_InsertData
 
     public static void editingExistingAutoCharge() throws Exception {
     	
-    	if(PDFReader.dateCheckInLedgerForMonthlyRentStartDate == true || (!PDFReader.startDate.split("/")[1].equals("1")||!PDFReader.startDate.split("/")[1].equals("01"))) 
-    	{
+    	if (PDFReader.dateCheckInLedgerForMonthlyRentStartDate || 
+    		    !(PDFReader.startDate.split("/")[1].equals("1") || PDFReader.startDate.split("/")[1].equals("01"))) {
     	PDFReader.lastDayOfTheStartDate2 = RunnerClass.lastDateOfTheMonth(RunnerClass.firstDayOfMonth(PDFReader.firstFullMonth, -1));
         WebElement endDateField = RunnerClass.driver.findElement(Locators.autoCharge_EndDate);
         endDateField.clear();
