@@ -126,7 +126,7 @@ public class RunnerClass
 		            try {
 		                if (PropertyWare.login() == true) {
 		                    if (PropertyWare.navigatetoLease(company,completeBuildingAbbreviation, buildingAbbreviation, ownerName)==true) {
-		                        if (PropertyWare.downloadLeaseAgreement(buildingAbbreviation, ownerName) == true) {
+		                        if (PropertyWare.downloadLeaseAgreement() == true) {
 		                            if (PDFReader.readPDFPerMarket(company) == true) {
 		                                PropertyWare_InsertData.configureValues();
 		                                PropertyWare_InsertData.verifyLedgerForMonhtlyRentStartDate();
