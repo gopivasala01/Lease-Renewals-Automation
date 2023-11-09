@@ -14,8 +14,8 @@ public class Alabama_Format2
 	
 	public static String proratedRent_Prior = "Tenant will pay Landlord $ ";
 	
-	public static String monthlyRent_Prior = "monthly rent in the amount of $";
-	public static String monthlyRent_Prior1 = "Monthly Rent due in the amount of $";
+	public static String monthlyRent_Prior1 = "monthly rent in the amount of $";
+	public static String monthlyRent_Prior= "Monthly Rent due in the amount of $";
 	public static String monthlyRent_Prior2 = "each month, in the amount of $";
 	
 	public static String adminFee_prior = "An annual lease preparation fee in the amount of $";

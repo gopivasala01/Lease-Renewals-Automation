@@ -55,9 +55,13 @@ public class PropertyWare_InsertData
 	        PDFReader.startDate = RunnerClass.convertDate(PDFReader.commencementDate);
 	        PDFReader.endDate = RunnerClass.convertDate(PDFReader.expirationDate);
 	        PDFReader.firstFullMonth = RunnerClass.firstDayOfMonth(PDFReader.startDate, 1);
+	        PDFReader.secondFullMonth = RunnerClass.firstDayOfMonth(PDFReader.startDate, 2);
 	        PDFReader.lastDayOfTheStartDate = RunnerClass.lastDateOfTheMonth(RunnerClass.firstDayOfMonth(PDFReader.startDate, -1));
+	        PDFReader.lastDayOfTheStartDate2 = RunnerClass.lastDateOfTheMonth(RunnerClass.firstDayOfMonth(PDFReader.firstFullMonth, -1));
+	        PDFReader.lastDayOfTheStartDate3 = RunnerClass.lastDateOfTheMonth(RunnerClass.firstDayOfMonth(PDFReader.secondFullMonth, -1));
+	        
 	       
- 	        PDFReader.secondFullMonth = RunnerClass.firstDayOfMonth(PDFReader.startDate, 2);
+ 	       
 	        //RunnerClass.renewalExecutionDate = PDFReader.renewalExecutionDate;
 
 	        // Compare Start and end Dates in PW with Lease Agreement
@@ -419,7 +423,7 @@ public class PropertyWare_InsertData
 
     public static void editingExistingAutoCharge() throws Exception {
     	
-    	if(PDFReader.dateCheckInLedgerForMonthlyRentStartDate == true) 
+    	if(PDFReader.dateCheckInLedgerForMonthlyRentStartDate == true || (!PDFReader.startDate.split("/")[1].equals("1")||!PDFReader.startDate.split("/")[1].equals("01"))) 
     	{
     	PDFReader.lastDayOfTheStartDate2 = RunnerClass.lastDateOfTheMonth(RunnerClass.firstDayOfMonth(PDFReader.firstFullMonth, -1));
         WebElement endDateField = RunnerClass.driver.findElement(Locators.autoCharge_EndDate);

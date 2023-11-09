@@ -250,4 +250,61 @@ public class DataBase
 			return "Error";
 		}
 	}
+	public static boolean getLeaseEntityID(String leaseName, String buildingAbbrivation)
+	{
+	try
+	{
+	        Connection con = null;
+	        Statement stmt = null;
+	        ResultSet rs = null;
+	            //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+	            con = DriverManager.getConnection(AppConfig.connectionUrl);
+	            String SQL = "Select LeaseEntityID from LeaseFact_Dashboard where LeaseName='" + leaseName +"' and Building= '"+buildingAbbrivation+"'";
+	            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+	           // stmt = con.createStatement();
+	            stmt.setQueryTimeout(150);
+	            rs = stmt.executeQuery(SQL);
+	            int rows =0;
+	            if (rs.last()) 
+	            {
+	            	rows = rs.getRow();
+	            	// Move to beginning
+	            	rs.beforeFirst();
+	            }
+	            if(rows>1 || rows == 0) {
+	            	return false;
+	            	
+	            }
+	            System.out.println("No of Rows = "+rows);
+	            RunnerClass.leaseEntityIDFromLeaseDashboard = new String[rows][1];
+	           int  i=0;
+	            while(rs.next())
+	            {
+	  
+	            	String 	leaseEntityID = rs.getObject(1).toString();
+	            	
+	              //stateCode
+	                try 
+	                {
+	                	if(leaseEntityID==null)
+	                		RunnerClass.leaseEntityIDFromLeaseDashboard[i][0] = "";
+	                	else
+	                	{
+	    				RunnerClass.leaseEntityIDFromLeaseDashboard[i][0] = leaseEntityID;
+	    				RunnerClass.leaseEntityID = RunnerClass.leaseEntityIDFromLeaseDashboard[i][0];
+	                	}
+	                }
+	                catch(Exception e)
+	                {
+	                	RunnerClass.leaseEntityIDFromLeaseDashboard[i][0] = "";
+	                }
+	            }
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+		return false;
+	}
+	return true;
+}
 }

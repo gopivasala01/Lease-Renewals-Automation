@@ -94,30 +94,39 @@ public class Utah_Format1
 		//Monthly Rent
 	    
 	    try {
-	        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Utah_Format1.monthlyRent_Prior);
+		    String[] monthlyRentCandidates = {
+		        PDFAppConfig.Utah_Format1.monthlyRent_Prior,
+		        PDFAppConfig.Utah_Format1.monthlyRent_Prior1,
+		        PDFAppConfig.Utah_Format1.monthlyRent_Prior2
+		    };
 
-	        if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.contains("$")) {
-	            PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Utah_Format1.monthlyRent_Prior1);
-	        }
+		    for (String candidate : monthlyRentCandidates) {
+		        int startIndex = text.indexOf(candidate);
+		        if (startIndex != -1) {
+		            String extractedValue = text.substring(startIndex + candidate.length()).trim().split(" ")[0].replaceAll("[^.0-9]", "");
 
-	        if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.contains("$")) {
-	            PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Utah_Format1.monthlyRent_Prior2);
-	        }
+		            if (!extractedValue.matches(".*[a-zA-Z]+.*")) {
+		                PDFReader.monthlyRent = extractedValue;
 
-	        if (PDFReader.monthlyRent != null) {
-	            PDFReader.monthlyRent = PDFReader.monthlyRent.replaceAll("\\$", "");
-	            if (PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*")) {
-	                PDFReader.monthlyRent = "Error";
-	            }
-	        } else {
-	            PDFReader.monthlyRent = "Error";
-	        }
+		                if (PDFReader.monthlyRent.contains("$")) {
+		                    PDFReader.monthlyRent = PDFReader.monthlyRent.replace("$", "");
+		                }
 
-	        System.out.println("Monthly Rent = " + PDFReader.monthlyRent);
-	    } catch (Exception e) {
-	        System.err.println("An error occurred: " + e.getMessage());
-	        e.printStackTrace();
-	    }
+		                break; // Break the loop if we successfully extract the value
+		            }
+		        }
+		    }
+
+		    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.equals("Error")) {
+		        PDFReader.monthlyRent = "Error";
+		    }
+		} catch (Exception e) {
+		    PDFReader.monthlyRent = "Error";
+		    e.printStackTrace();
+		}
+
+		System.out.println("MonthlyRent = " + PDFReader.monthlyRent);
+
 	    
 	   // PDFReader.monthlyRent =  Utah_Format1.getValues(PDFAppConfig.Utah_Format2.monthlyRentFromPDF);
 	   /* try

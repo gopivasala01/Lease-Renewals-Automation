@@ -71,8 +71,7 @@ public class Spokane_Format2
 		    
 		    try
 		    {
-		    	PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.Spokane_Format2.commencementDate_Prior)+PDFAppConfig.Spokane_Format2.commencementDate_Prior.length());
-		    	PDFReader.commencementDate =  PDFReader.commencementDate.substring(0,PDFReader.commencementDate.indexOf("Expiration")).trim();
+		    	PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.Spokane_Format2.commencementDate_Prior)+PDFAppConfig.Spokane_Format2.commencementDate_Prior.length(),text.indexOf(PDFAppConfig.Spokane_Format1.commencementDate_After));
 		    }
 		    catch(Exception e)
 		    {
@@ -82,8 +81,8 @@ public class Spokane_Format2
 		    System.out.println("Commensement Date = "+PDFReader.commencementDate);
 		   try
 		    {
-			   PDFReader.expirationDate = text.substring(text.indexOf(PDFAppConfig.Spokane_Format2.expirationDate_Prior)+PDFAppConfig.Spokane_Format2.expirationDate_Prior.length());
-		    	PDFReader.expirationDate = PDFReader.expirationDate.substring(0,PDFReader.expirationDate.indexOf("B. Delay")).trim();
+			   PDFReader.expirationDate = text.substring(text.indexOf(PDFAppConfig.Spokane_Format2.expirationDate_Prior)+PDFAppConfig.Spokane_Format2.expirationDate_Prior.length(),text.indexOf(PDFAppConfig.Spokane_Format1.expirationDate_After));
+		    	//PDFReader.expirationDate = PDFReader.expirationDate.substring(0,PDFReader.expirationDate.indexOf("(the")).trim();
 		    }
 		    catch(Exception e)
 		    {
@@ -96,27 +95,45 @@ public class Spokane_Format2
 			//Monthly Rent
 		   
 		   try {
-			    PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Spokane_Format1.monthlyRent_Prior);
+			    String[] monthlyRentCandidates = {
+			        PDFAppConfig.Spokane_Format1.monthlyRent_Prior,
+			        PDFAppConfig.Spokane_Format1.monthlyRent_Prior1,
+			        PDFAppConfig.Spokane_Format1.monthlyRent_Prior2
+			    };
 
-			    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.contains("$")) {
-			        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Spokane_Format1.monthlyRent_Prior1);
+			    for (String candidate : monthlyRentCandidates) {
+			        int startIndex = text.indexOf(candidate);
+			        if (startIndex != -1) {
+			            String extractedValue = text.substring(startIndex + candidate.length()).trim().split(" ")[0].replaceAll("[^.0-9]", "");
+
+			            if (!extractedValue.matches(".*[a-zA-Z]+.*")) {
+			                PDFReader.monthlyRent = extractedValue;
+
+			                if (PDFReader.monthlyRent.contains("$")) {
+			                    PDFReader.monthlyRent = PDFReader.monthlyRent.replace("$", "");
+			                }
+
+			                break; // Break the loop if we successfully extract the value
+			            }
+			        }
 			    }
 
-			    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.contains("$")) {
-			        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Spokane_Format1.monthlyRent_Prior2);
-			    }
-
-			    if (PDFReader.monthlyRent != null) {
-			        PDFReader.monthlyRent = PDFReader.monthlyRent.replaceAll("$", "");
-			    } else {
+			    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.equals("Error")) {
 			        PDFReader.monthlyRent = "Error";
 			    }
-
-			    System.out.println("Monthly Rent = " + PDFReader.monthlyRent);
 			} catch (Exception e) {
-			    System.err.println("An error occurred: " + e.getMessage());
+			    PDFReader.monthlyRent = "Error";
 			    e.printStackTrace();
 			}
+
+			System.out.println("MonthlyRent = " + PDFReader.monthlyRent);
+
+
+	        System.out.println("PDFReader.monthlyRent = " + PDFReader.monthlyRent);
+	    
+		
+		
+
 		
 		   /* try
 		    {

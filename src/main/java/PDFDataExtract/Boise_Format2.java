@@ -98,31 +98,39 @@ public class Boise_Format2
 		   
 		   
 		   try {
-			    PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior);
+			    String[] monthlyRentCandidates = {
+			        PDFAppConfig.Boise_Format1.monthlyRent_Prior,
+			        PDFAppConfig.Boise_Format1.monthlyRent_Prior1,
+			        PDFAppConfig.Boise_Format1.monthlyRent_Prior2
+			    };
 
-			    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.contains("$")) {
-			        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior1);
-			    }
+			    for (String candidate : monthlyRentCandidates) {
+			        int startIndex = text.indexOf(candidate);
+			        if (startIndex != -1) {
+			            String extractedValue = text.substring(startIndex + candidate.length()).trim().split(" ")[0].replaceAll("[^.0-9]", "");
 
-			    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.contains("$")) {
-			        PDFReader.monthlyRent = extractMonthlyRent(text, PDFAppConfig.Boise_Format1.monthlyRent_Prior2);
-			    }
+			            if (!extractedValue.matches(".*[a-zA-Z]+.*")) {
+			                PDFReader.monthlyRent = extractedValue;
 
-			    if (PDFReader.monthlyRent != null) {
-			        PDFReader.monthlyRent = PDFReader.monthlyRent.replaceAll("\\$", "");
-			        if (PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*")) {
-			            PDFReader.monthlyRent = "Error";
+			                if (PDFReader.monthlyRent.contains("$")) {
+			                    PDFReader.monthlyRent = PDFReader.monthlyRent.replace("$", "");
+			                }
+
+			                break; // Break the loop if we successfully extract the value
+			            }
 			        }
-			    } else {
+			    }
+
+			    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.equals("Error")) {
 			        PDFReader.monthlyRent = "Error";
 			    }
-
-			    System.out.println("Monthly Rent = " + PDFReader.monthlyRent);
 			} catch (Exception e) {
-			    System.err.println("An error occurred: " + e.getMessage());
+			    PDFReader.monthlyRent = "Error";
 			    e.printStackTrace();
 			}
-		   
+
+			System.out.println("MonthlyRent = " + PDFReader.monthlyRent);
+
 		   
 		    
 		    //HVAC Air Filter Fee (OR) Resident Benefits Package
