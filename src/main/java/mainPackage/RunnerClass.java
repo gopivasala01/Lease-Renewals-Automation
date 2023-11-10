@@ -94,14 +94,14 @@ public class RunnerClass
 		        ownerName = pendingRenewalLeases[i][2];
 		        statusID = 0;
 		        failedReason = "";
-		        /*if(AppConfig.saveButtonOnAndOff==false)
+		        if(AppConfig.saveButtonOnAndOff==false)
 		        {
 		        	 String updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Failed', StatusID=3,NotAutomatedFields='Save Functionality is Off',LeaseCompletionDate= getDate() where BuildingName like '%" + buildingAbbreviation + "%'";
 		        	 DataBase.updateTable(updateSuccessStatus);
 		        	 
 		        }
 
-		        else {*/
+		        else {
 		        try {
 		            FileUtils.cleanDirectory(new File(AppConfig.downloadFilePath));
 		        } catch (Exception e) {}
@@ -195,7 +195,7 @@ public class RunnerClass
 		       }
 		   }
        }
- //}
+ }
 		    
 		    
 	
