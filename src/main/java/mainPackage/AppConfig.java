@@ -19,7 +19,9 @@ public class AppConfig
     
     public static  String PDFFormatConfirmationText = "The parties to this lease are:";
 	public static  String PDFFormat2ConfirmationText = "THIS RESIDENTIAL LEASE AGREEMENT";
-	public static String buildingPageURL = "https://app.propertyware.com/pw/properties/building_detail.do?entityID=";
+	
+	public static String buildingPageURL = "https://app.propertyware.com/pw/leases/lease_detail.do?entityID=";
+	
 	public static String[] renewalLeaseAgreementFileNames = {"RT Renewal Signed","RT - RENEWAL","RT_Full_Lease","Full Lease -","RENEWAL","renewal_","Renewal","Full_Lease","Full"};
 	
 	//Mail credentials
