@@ -70,17 +70,17 @@ public class Utah_Format2
 	    System.out.println("Last date mentioned on the page: " + PDFReader.renewalExecutionDate);
 		    try
 		    {
-		    	PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.Utah_Format1.commencementDate_Prior)+PDFAppConfig.Utah_Format1.commencementDate_Prior.length(),text.indexOf(PDFAppConfig.Utah_Format1.commencementDate_After));
+		    	PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.Utah_Format2.commencementDate_Prior)+PDFAppConfig.Utah_Format2.commencementDate_Prior.length(),text.indexOf(PDFAppConfig.Utah_Format1.commencementDate_After));
 		    }
 		    catch(Exception e)
-		    {
+		    { 
 		    	PDFReader.commencementDate = "Error";
 		    	e.printStackTrace();
 		    }
 		    System.out.println("Commensement Date = "+PDFReader.commencementDate);
 		   try
 		    {
-			   PDFReader.expirationDate = text.substring(text.indexOf(PDFAppConfig.Utah_Format1.expirationDate_Prior)+PDFAppConfig.Utah_Format1.expirationDate_Prior.length(),text.indexOf(PDFAppConfig.Utah_Format1.expirationDate_After));
+			   PDFReader.expirationDate = text.substring(text.indexOf(PDFAppConfig.Utah_Format2.expirationDate_Prior)+PDFAppConfig.Utah_Format2.expirationDate_Prior.length(),text.indexOf(PDFAppConfig.Utah_Format1.expirationDate_After));
 		    	//PDFReader.expirationDate = PDFReader.expirationDate.substring(0,PDFReader.expirationDate.indexOf("(the")).trim();
 		    }
 		    catch(Exception e)

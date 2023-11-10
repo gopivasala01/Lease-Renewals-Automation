@@ -70,25 +70,27 @@ public class Utah_Format1
 	    System.out.println("Last date mentioned on the page: " + RunnerClass.convertDate(PDFReader.renewalExecutionDate));
 	    
 	    
-	    try {
-	        int commencementIndex = text.indexOf(PDFAppConfig.Utah_Format2.commencementDate_Prior) + PDFAppConfig.Utah_Format2.commencementDate_Prior.length();
-	        int commencementEndIndex = text.indexOf(PDFAppConfig.Utah_Format2.commencementDate_After, commencementIndex);
-	        PDFReader.commencementDate = text.substring(commencementIndex, commencementEndIndex).trim();
-	    } catch (Exception e) {
-	        PDFReader.commencementDate = "Error";
-	        e.printStackTrace();
+	    try
+	    {
+	    	PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.Utah_Format1.commencementDate_Prior)+PDFAppConfig.Utah_Format1.commencementDate_Prior.length(),text.indexOf(PDFAppConfig.Utah_Format1.commencementDate_After));
 	    }
-	    System.out.println("Commencement Date = " + PDFReader.commencementDate);
-
-	    try {
-	        int expirationIndex = text.indexOf(PDFAppConfig.Utah_Format2.expirationDate_Prior) + PDFAppConfig.Utah_Format2.expirationDate_Prior.length();
-	        int expirationEndIndex = text.indexOf(PDFAppConfig.Utah_Format2.expirationDate_After, expirationIndex);
-	        PDFReader.expirationDate = text.substring(expirationIndex, expirationEndIndex).trim();
-	    } catch (Exception e) {
-	        PDFReader.expirationDate = "Error";
-	        e.printStackTrace();
+	    catch(Exception e)
+	    {
+	    	PDFReader.commencementDate = "Error";
+	    	e.printStackTrace();
 	    }
-	    System.out.println("Expiration Date = " + PDFReader.expirationDate);
+	    System.out.println("Commensement Date = "+PDFReader.commencementDate);
+	   try
+	    {
+		   PDFReader.expirationDate = text.substring(text.indexOf(PDFAppConfig.Utah_Format1.expirationDate_Prior)+PDFAppConfig.Utah_Format1.expirationDate_Prior.length(),text.indexOf(PDFAppConfig.Utah_Format1.expirationDate_After));
+	    	//PDFReader.expirationDate = PDFReader.expirationDate.substring(0,PDFReader.expirationDate.indexOf("(the")).trim();
+	    }
+	    catch(Exception e)
+	    {
+	    	 PDFReader.expirationDate = "Error";
+	    	 e.printStackTrace();
+	    }
+	   System.out.println("Expiration Date = "+PDFReader.expirationDate);
 	    
 		
 		//Monthly Rent
