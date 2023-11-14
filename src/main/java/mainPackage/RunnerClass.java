@@ -82,9 +82,10 @@ public class RunnerClass
 	
 	public static void main(String[] args) throws Exception 
 	{
-		 boolean repeatloop = true;
-	    while (repeatloop)
-	    {
+		int loopCounter = 0;  // Initialize loop counter
+	    boolean repeatloop = true;
+
+	    while (repeatloop && loopCounter < 2) {
 	        RunnerClass.firstDayOfMonth("04/01/2023", -1);
 	        DataBase.getBuildingsList();
 
@@ -204,6 +205,7 @@ public class RunnerClass
 	                        {
 	                            // Repeat the loop only when the Status is "Review" or "Failed"
 	                            repeatloop = true;
+	                            loopCounter++;
 	                        } else 
 	                        {
 	                            repeatloop = false;
