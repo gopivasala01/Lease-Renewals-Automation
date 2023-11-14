@@ -243,7 +243,14 @@ public class PropertyWare_InsertData
 	
 	//Navigate to Auto Charges Section and update existing auto charges
 	public static boolean clearExistingAutoCharges() throws Exception {
-	    try {
+		 int maxRetries = 2; // You can adjust the number of retries as needed
+	        int retryCount = 0;
+	        boolean success = false;
+
+	        while (retryCount < maxRetries && !success) {
+	            try {
+		
+		try {
 	        RunnerClass.driver.navigate().refresh();
 	        PropertyWare.intermittentPopUp();
 	        RunnerClass.js.executeScript("window.scrollBy(0, document.body.scrollHeight)");
@@ -393,7 +400,16 @@ public class PropertyWare_InsertData
 	        RunnerClass.js.executeScript("window.scrollBy(0, document.body.scrollHeight)");
 	        return false;
 	    }
-	}
+            } catch (Exception e) {
+                System.out.println("Exception occurred during retry: " + e.getMessage());
+                retryCount++;
+                System.out.println("Retrying... Attempt: " + retryCount);
+            }
+        }
+
+        // If the loop completes without success, return false
+        return success;
+    }
 
 	
 	public static CharSequence getLastDayOfMonth() {
