@@ -82,11 +82,11 @@ public class RunnerClass
 	
 	public static void main(String[] args) throws Exception 
 	{
-		int loopCounter = 0;  // Initialize loop counter
-	    boolean repeatloop = true;
-
-	    while (repeatloop && loopCounter < 2) {
-	        RunnerClass.firstDayOfMonth("04/01/2023", -1);
+		int currentAttempt = 0;
+		int maxAttempts = 2;
+		while (currentAttempt < maxAttempts) {
+		
+		RunnerClass.firstDayOfMonth("04/01/2023", -1);
 	        DataBase.getBuildingsList();
 
 	        for (int i = 0; i < pendingRenewalLeases.length; i++) 
@@ -201,15 +201,13 @@ public class RunnerClass
 	                        Thread.sleep(5000);
 	                        driver.navigate().refresh();
 	                        RunnerClass.js.executeScript("window.scrollBy(document.body.scrollHeight,0)");
-	                        if (statusID == 4 || statusID == 5) 
-	                        {
-	                            // Repeat the loop only when the Status is "Review" or "Failed"
-	                            repeatloop = true;
-	                            loopCounter++;
-	                        } else 
-	                        {
-	                            repeatloop = false;
-	                        }
+	                       
+	                    }
+	                    if (statusID == 5 || statusID == 3) {
+	                        currentAttempt++;
+	                        System.out.println("Retry attempt: " + currentAttempt);
+	                    } else {
+	                        break;  // Break the loop if the status is not "Review" or "Failed"
 	                    }
 	                    RunnerClass.driver.quit();
 	                }
