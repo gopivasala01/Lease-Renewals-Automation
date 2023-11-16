@@ -82,9 +82,7 @@ public class RunnerClass
 	
 	public static void main(String[] args) throws Exception 
 	{
-		int currentAttempt = 0;
-		int maxAttempts = 2;
-		while (currentAttempt < maxAttempts) {
+		
 		
 		RunnerClass.firstDayOfMonth("04/01/2023", -1);
 	        DataBase.getBuildingsList();
@@ -203,19 +201,13 @@ public class RunnerClass
 	                        RunnerClass.js.executeScript("window.scrollBy(document.body.scrollHeight,0)");
 	                       
 	                    }
-	                    if (statusID == 5 || statusID == 3) {
-	                        currentAttempt++;
-	                        System.out.println("Retry attempt: " + currentAttempt);
-	                    } else {
-	                        break;  // Break the loop if the status is not "Review" or "Failed"
-	                    }
+	                   
 	                    RunnerClass.driver.quit();
 	                }
 	            }
 	        }
 	    }
-	}
-
+	
 		    
 		    
 	
