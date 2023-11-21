@@ -4,10 +4,10 @@ public class LakeHavasu_Format2
 {
 
 	public static String commencementDate_Prior = "commences on";
-	public static String commencementDate_After = " (“Commencement Date”)";
+	public static String commencementDate_After = "(“Commencement Date”)";
 
 	public static String expirationDate_Prior = "expires on"; 
-	public static String expirationDate_After = " (“Expiration Date”).";
+	public static String expirationDate_After = "(“Expiration Date”).";
 	
 	public static String proratedRentDate_Prior = "prorated rent, on or before";
 	public static String proratedRentDate_After = "Tenant will pay Landlord $";

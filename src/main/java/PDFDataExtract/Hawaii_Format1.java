@@ -117,7 +117,8 @@ public class Hawaii_Format1
 			        }
 			    }
 
-			    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.equals("Error")) {
+			    if (PDFReader.monthlyRent == null || PDFReader.monthlyRent.equals("Error") || PDFReader.monthlyRent.equals("")) 
+			    {
 			        PDFReader.monthlyRent = "Error";
 			    }
 			} catch (Exception e) {
@@ -161,9 +162,13 @@ public class Hawaii_Format1
 				    System.out.println("HVAC Air Filter Fee = "+PDFReader.HVACAirFilterFee);
 		    }
 		    
+		    if(text.contains("Resident Benefits Package Opt-Out Addendum")||text.contains("RESIDENT BENEFITS PACKAGE OPT-OUT ADDENDUM")) 
+		    {
+		    	PDFReader.rbpOptOutCheck= false;
+		    }
 		    if(text.contains(PDFAppConfig.Hawaii_Format1.residentBenefitsPackageCheck)&&(!text.contains("Resident Benefits Package Opt-Out Addendum")||!text.contains("RESIDENT BENEFITS PACKAGE OPT-OUT ADDENDUM")))
 		    {
-		    	PDFReader.residentBenefitsPackageAvailabilityCheck = true;
+		    	PDFReader.residentBenefitsPackageAvailabilityCheck = true;	
 		    	//HVAC Air Filter Fee
 		    	 try
 				    {

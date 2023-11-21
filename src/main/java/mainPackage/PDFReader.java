@@ -52,6 +52,7 @@ public class PDFReader
     public static String lateFeePercentage="";
     public static boolean HVACFilterFlag = false;
     public static boolean residentBenefitsPackageAvailabilityCheck = false;
+    public static boolean rbpOptOutCheck = false;
     public static String residentBenefitsPackage = "";
     public static String leaseRenewalFee = "";
     public static String startDate = "";

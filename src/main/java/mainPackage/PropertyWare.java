@@ -93,6 +93,9 @@ public class PropertyWare
 			 * 
 			 * RunnerClass.failedReason = "Institutional Accounts"; return false; }
 			 */
+	        if(RunnerClass.company.equalsIgnoreCase("California PFW")) {
+				  RunnerClass.company = "California pfw";
+			  }
 	        RunnerClass.driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
 	        String marketName = "HomeRiver Group - "+RunnerClass.company.trim();
 	        Select marketDropdownList = new Select(RunnerClass.driver.findElement(Locators.marketDropdown));
