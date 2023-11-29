@@ -302,7 +302,7 @@ public static boolean clearExistingAutoCharges() throws Exception {
 	                        }
 	                    }
 	                
-	            }
+	            
   	            
   	          if (autoChargeCode.equals(AppConfig.getMonthlyRentChargeCode(RunnerClass.company)) && startDatelist.equals(PDFReader.firstFullMonth)
   	        		&&!autoChargeAmount.replaceAll("[^0-9]", "").equals(PDFReader.monthlyRent.replaceAll("[^0-9]", ""))) 
@@ -387,7 +387,7 @@ public static boolean clearExistingAutoCharges() throws Exception {
 					}
 	            
 	        }
-
+ 	        }
 	        return true;
 	    } catch (Exception e) {
 	        RunnerClass.statusID = 1;
