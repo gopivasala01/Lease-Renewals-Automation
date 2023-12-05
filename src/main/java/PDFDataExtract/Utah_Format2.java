@@ -281,7 +281,7 @@ public class Utah_Format2
 	        return ""; // "D." section not found
 	    }
 
-	    int endIndex = text.indexOf("27. DEFAULT", startIndex);
+	    int endIndex = text.indexOf(". DEFAULT", startIndex);
 
 	    if (endIndex == -1) {
 	        // Extract to the end of the document

@@ -96,7 +96,7 @@ public class RunnerClass
 	            statusID = 0;
 	            failedReason = "";
 	            
-	            if (AppConfig.saveButtonOnAndOff == false) 
+	           /* if (AppConfig.saveButtonOnAndOff == false) 
 	            {
 	                String updateSuccessStatus = "Update [Automation].leaseRenewalAutomation Set Status ='Failed', StatusID=3,NotAutomatedFields='Save Functionality is Off',LeaseCompletionDate= getDate() where BuildingName like '%" + buildingAbbreviation + "%'";
 	                DataBase.updateTable(updateSuccessStatus);
@@ -106,7 +106,7 @@ public class RunnerClass
 	                try {
 	                    FileUtils.cleanDirectory(new File(AppConfig.downloadFilePath));
 	                } catch (Exception e) {
-	                }
+	                }*/
 
 	                DataBase.insertData(buildingAbbreviation, "Started", 6);
 	                completeBuildingAbbreviation = buildingAbbreviation;
@@ -134,6 +134,7 @@ public class RunnerClass
 	                            if (PropertyWare.navigatetoLease(company, completeBuildingAbbreviation, buildingAbbreviation, ownerName) == true) {//PropertyWare.navigatetoLease(company, completeBuildingAbbreviation, buildingAbbreviation, ownerName) == true
 	                                if (PropertyWare.downloadLeaseAgreement(buildingAbbreviation, ownerName) == true) {
 	                                    if (PDFReader.readPDFPerMarket(company) == true) {
+	                                    	Thread.sleep(2000);
 	                                        PropertyWare_InsertData.configureValues();
 	                                        PropertyWare_InsertData.verifyLedgerForMonhtlyRentStartDate();
 	                                        PropertyWare_InsertData.addingMoveInCharges();
@@ -206,7 +207,7 @@ public class RunnerClass
 	                }
 	            }
 	        }
-	    }
+	   // }
 	
 		    
 		    

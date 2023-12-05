@@ -21,6 +21,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 
 public class PropertyWare_InsertData 
 {
@@ -116,10 +118,11 @@ public class PropertyWare_InsertData
 		
 		try
 		{
+			 WebDriverManager.chromedriver().clearDriverCache().setup();
 		RunnerClass.driver.navigate().refresh();
 		PropertyWare.intermittentPopUp();
 		RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
-		
+		 WebDriverManager.chromedriver().clearDriverCache().setup();
 		RunnerClass.driver.findElement(Locators.ledgerTab).click();
 		
 		
@@ -230,6 +233,7 @@ public class PropertyWare_InsertData
 			e.printStackTrace();
 			System.out.println("Issue in Adding Move in charges");
 			RunnerClass.failedReason =  RunnerClass.failedReason+","+"Issue in Adding Move in charges";
+			 WebDriverManager.chromedriver().clearDriverCache().setup();
 			RunnerClass.driver.navigate().refresh();
 			RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 			RunnerClass.driver.findElement(Locators.summaryTab).click();
@@ -389,15 +393,25 @@ public static boolean clearExistingAutoCharges() throws Exception {
 	        }
  	        }
 	        return true;
-	    } catch (Exception e) {
+	        
+	    }
+		catch (TimeoutException t) {
+			 WebDriverManager.chromedriver().clearDriverCache().setup();
+			 clearExistingAutoCharges();
+			return false;
+			
+		}
+		catch (Exception e) {
 	        RunnerClass.statusID = 1;
 	        e.printStackTrace();
 	        RunnerClass.failedReason = RunnerClass.failedReason + "," + "Something went wrong in clearing previous auto charges";
 	        System.out.println("Something went wrong in clearing previous auto charges");
 	        RunnerClass.driver.navigate().refresh();
+	        WebDriverManager.chromedriver().clearDriverCache().setup();
 	        RunnerClass.js.executeScript("window.scrollBy(0, document.body.scrollHeight)");
 	        return false;
 	    }
+	
             } 
 
       
@@ -418,7 +432,7 @@ public static boolean clearExistingAutoCharges() throws Exception {
           PropertyWare.intermittentPopUp();
           RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
           Thread.sleep(2000);
-          
+          WebDriverManager.chromedriver().clearDriverCache().setup();
 		RunnerClass.driver.findElement(Locators.summaryEditButton).click();
 		PropertyWare.intermittentPopUp();
 			
@@ -689,6 +703,7 @@ public static boolean clearExistingAutoCharges() throws Exception {
 		
 		try
 		{
+			 WebDriverManager.chromedriver().clearDriverCache().setup();
 			RunnerClass.driver.navigate().refresh();
 		RunnerClass.driver.findElement(Locators.newCharge).click();
 		PropertyWare.intermittentPopUp();
@@ -736,9 +751,10 @@ public static boolean clearExistingAutoCharges() throws Exception {
 		catch(Exception e)
 		{
 			RunnerClass.statusID=1;
+			 WebDriverManager.chromedriver().clearDriverCache().setup();
 			RunnerClass.driver.navigate().refresh();
 			RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
-			
+			 WebDriverManager.chromedriver().clearDriverCache().setup();
 			RunnerClass.driver.findElement(Locators.summaryTab).click();
 			PropertyWare.intermittentPopUp();
 			e.printStackTrace();
