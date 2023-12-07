@@ -11,51 +11,97 @@
  import javax.imageio.ImageIO;
  import java.awt.image.BufferedImage;
  import java.io.File;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
- public class Tessaract {
 
-	 private static final String TARGET_TEXT_OPTION_1 = "Monthly Rent due in the amount of\r\n" + "$";
 
-	 public static void main(String[] args) {
-	     File pdfFile = new File("C:\\SantoshMurthyP\\Lease Audit Automation\\RT_-_RENEWAL_-[1517_Waterford_Dr]_[DFW-TX]_[Cooper,_S._1]_[1.01.24-12.31.24].pdf");
-	     try {
-	         String selectedOption = extractOptionFromPDF(pdfFile);
-	         System.out.println("Selected Option: " + selectedOption);
-	     } catch (Exception e) {
-	         System.err.println("Error: " + e.getMessage());
-	     }
-	 }
+	 public class Tessaract{
 
-	 private static String extractOptionFromPDF(File pdfFile) throws Exception {
-	     try (PDDocument pdfDocument = PDDocument.load(pdfFile)) {
-	         PDFRenderer pdfRenderer = new PDFRenderer(pdfDocument);
+		    private static final String TARGET_TEXT_1 = "Monthly Rent due in the amount of $";
+		    private static final String IMAGE_OUTPUT_PATH = "C:\\SantoshMurthyP\\Tessaract Images\\Image.jpeg";
+		    private static final String TESSDATA_PATH = "C:\\Users\\beerim\\git\\Lease-Renewals-Automation3\\tessdata";
 
-	         for (int page = 0; page < pdfDocument.getNumberOfPages(); ++page) {
-	             BufferedImage image = pdfRenderer.renderImageWithDPI(page, 300, ImageType.RGB);
-	             File imageFile = new File("C:\\SantoshMurthyP\\Lease Audit Automation\\image\\Image_" + page + ".jpeg");
-	             ImageIO.write(image, "jpeg", imageFile);
+		    /*public static void main(String[] args) {
+		        try {
+		            File file = new File("C:\\SantoshMurthyP\\Lease Audit Automation\\LEase\\RT_-_RENEWAL_-[91-1319_Puamaeole_St_Apt_34B]_[HI]_[Hairston,_D.]_[01.01.24-12.31.24] (2).pdf");
+		            pdfScreenShot(file);
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		    }*/
 
-	             String extractedText = performOCR(imageFile);
+		    public static void pdfScreenShot(File pdfFile) {
+		        try (PDDocument pdfDocument = PDDocument.load(pdfFile)) {
+		            PDFRenderer pdfRenderer = new PDFRenderer(pdfDocument);
 
-	             if (extractedText.contains(TARGET_TEXT_OPTION_1)) {
-	                 return "Option 1";
-	             }
-	         }
-	     }
-	     return "Option not found";
-	 }
+		            for (int page = 0; page < pdfDocument.getNumberOfPages(); ++page) {
+		                BufferedImage image = pdfRenderer.renderImageWithDPI(page, 300, ImageType.RGB);
+		                File outputFile = new File(IMAGE_OUTPUT_PATH);
+		                ImageIO.write(image, "jpeg", outputFile);
 
-	 private static String performOCR(File imageFile) throws Exception {
-	     ITesseract tesseract = new Tesseract();
-	     tesseract.setDatapath("C:\\SantoshMurthyP\\Lease Audit Automation\\Log Files");
+		                Tesseract tesseract = new Tesseract();
+		                tesseract.setDatapath(TESSDATA_PATH);
 
-	     try {
-	         return tesseract.doOCR(imageFile);
-	     } catch (Exception e) {
-	         throw new Exception("Error performing OCR on image: " + e.getMessage());
-	     }
-	 }
+		                try {
+		                    String text = tesseract.doOCR(outputFile);
+		                    text = text.replaceAll(System.lineSeparator(), " ");
+		                    text = text.trim().replaceAll(" +", " ");
+		    			    text = text.toLowerCase();
+		                    System.out.print(text);
 
+		                    if (text.contains(TARGET_TEXT_1.toLowerCase())) {
+		                        System.out.println("Option 1 is selected");
+
+		                        String monthlyRent = extractDollarValueBetween(text, "monthly rent due in the amount", "lease administrative fee(s):").toLowerCase();
+		                        processMonthlyRent(monthlyRent);
+		                        break;
+		                    }
+		                } catch (Exception e) {
+		                    e.printStackTrace();
+		                }
+		            }
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		    }
+
+		    private static String extractDollarValueBetween(String text, String startMarker, String endMarker) {
+		        Pattern pattern = Pattern.compile("\\$" + "\\d+,(\\.\\d{2})");
+		        String amount = "";
+		        int startIndex = text.indexOf(startMarker);
+		        int endIndex = text.indexOf(endMarker, startIndex);
+
+		        String extractedValue = "Error"; // Default if no value is found
+
+		        if (startIndex != -1 && endIndex != -1) {
+		            String substringBetweenMarkers = text.substring(startIndex, endIndex);
+		             amount = substringBetweenMarkers.substring(substringBetweenMarkers.indexOf("$")+1).split("month")[0].trim();
+		           /* substringBetweenMarkers = substringBetweenMarkers.replaceAll(System.lineSeparator(), " ");
+		            substringBetweenMarkers = substringBetweenMarkers.trim().replaceAll(" +", " ");
+		            Matcher valueMatcher = pattern.matcher(substringBetweenMarkers);
+
+		            if (valueMatcher.find()) {
+		                extractedValue = valueMatcher.group();
+		            }*/
+		        }
+		        return amount;
+		        
+		    }
+
+
+
+		    private static void processMonthlyRent(String text) {
+		        try {
+		            PDFReader.monthlyRent = (text.equals("Error")) ? "Error" : text;
+		            
+		        } catch (Exception e) {
+		            PDFReader.monthlyRent = "Error";
+		            e.printStackTrace();
+		        }
+		        System.out.println("MonthlyRent = " + PDFReader.monthlyRent);
+		    }
+		}
  
 
 		
@@ -123,7 +169,7 @@
 			       
 		 }*/
 
-	}
+	
 
 
 

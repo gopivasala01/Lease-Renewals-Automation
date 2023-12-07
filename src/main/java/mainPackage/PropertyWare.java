@@ -1,6 +1,9 @@
   																																																																				package mainPackage;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
@@ -546,6 +549,51 @@ public class PropertyWare
 			return false;
 		}
 	}
+
+	public static boolean handleTimeoutException() {
+	    try {
+	        throw new TimeoutException("Timeout Exception occurred");
+	    } catch (TimeoutException e) {
+	        String dynamicUrl = getDynamicUrl();
+	        if (navigateToUrl(dynamicUrl)) {
+	            return true;
+	        }
+	        try {
+	            throw new TimeoutException("Timeout Exception occurred again");
+	        } catch (TimeoutException secondTimeoutException) {
+	            openNewTab();
+	            dynamicUrl = getDynamicUrl();
+	            return navigateToUrl(dynamicUrl);
+	        }
+	    }
+	 
+	}
+
+
+	private static String getDynamicUrl() {
+	    try (BufferedReader br = new BufferedReader(new FileReader("config.txt"))) {
+	        return br.readLine();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	        return "";
+	    }
+	}
+
+	private static boolean navigateToUrl(String url) {
+	    System.out.println("Navigating to URL: " + url);
+	    return true;
+	}
+
+	private static void openNewTab() {
+	    System.out.println("Opening a new tab");
+	}
+
+	static class TimeoutException extends Exception {
+	    TimeoutException(String message) {
+	        super(message);
+	    }
+	}
+
 
 }
 

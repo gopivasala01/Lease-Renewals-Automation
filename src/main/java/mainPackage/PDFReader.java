@@ -898,6 +898,17 @@ public class PDFReader
 				    }
 				break;
 			}
+			if (monthlyRent.equals("Error") || monthlyRent.isEmpty()) 
+			{
+			    
+
+			    // Assuming you have a PDF file path
+				File file = RunnerClass.getLastModified();
+
+			    // Call pdfScreenShot method
+			    Tessaract.pdfScreenShot(file);
+			}
+
 			return true;
 			
 		}

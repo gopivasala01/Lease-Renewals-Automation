@@ -397,7 +397,7 @@ public static boolean clearExistingAutoCharges() throws Exception {
 	    }
 		catch (TimeoutException t) {
 			 WebDriverManager.chromedriver().clearDriverCache().setup();
-			 clearExistingAutoCharges();
+			 PropertyWare.handleTimeoutException();
 			return false;
 			
 		}
@@ -745,8 +745,14 @@ public static boolean clearExistingAutoCharges() throws Exception {
 		catch(Exception e)
 		{}
 		 RunnerClass.driver.manage().timeouts().implicitlyWait(100,TimeUnit.SECONDS);
-	        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(100));
+	        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(500));
 		return true;
+		}
+		catch (TimeoutException t) {
+			 WebDriverManager.chromedriver().clearDriverCache().setup();
+			 PropertyWare.handleTimeoutException();
+			return false;
+			
 		}
 		catch(Exception e)
 		{
