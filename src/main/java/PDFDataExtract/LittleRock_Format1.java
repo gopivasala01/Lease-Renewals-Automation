@@ -20,7 +20,7 @@ public class LittleRock_Format1
 		try
 		{
 			File file = RunnerClass.getLastModified();
-			RunnerClass.logger.info(file);
+			System.out.println(file);
 			FileInputStream fis = new FileInputStream(file);
 			PDDocument document = PDDocument.load(fis);
 			PDFTextStripper stripper = new PDFTextStripper();
@@ -32,11 +32,11 @@ public class LittleRock_Format1
 			text = text.replaceAll(" +", " ");
 			firstPageText = firstPageText.replaceAll(System.lineSeparator(), " ");
 			firstPageText = firstPageText.replaceAll(" +", " ");
-			RunnerClass.logger.info("First page text:\n" + firstPageText);
-			RunnerClass.logger.info("All pages text:\n" + text);
+			System.out.println("First page text:\n" + firstPageText);
+			System.out.println("All pages text:\n" + text);
 			document.close();
 	    
-	    RunnerClass.logger.info("------------------------------------------------------------------");
+	    System.out.println("------------------------------------------------------------------");
 	    
 	    String pattern = "\\d{1,2}/\\d{1,2}/\\d{4}"; 
 	    Pattern datePattern = Pattern.compile(pattern);
@@ -68,7 +68,7 @@ public class LittleRock_Format1
     	 PDFReader.renewalExecutionDate= SplitDate[0]+"/"+ SplitDate[1]+"/"+SplitDate[2];
 
 
-	    RunnerClass.logger.info("Last date mentioned on the page: " + PDFReader.renewalExecutionDate);
+	    System.out.println("Last date mentioned on the page: " + PDFReader.renewalExecutionDate);
 		    try
 		    {
 		    	PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.LittleRock_Format1.commencementDate_Prior)+PDFAppConfig.LittleRock_Format1.commencementDate_Prior.length(),text.indexOf(PDFAppConfig.LittleRock_Format1.commencementDate_After));
@@ -78,7 +78,7 @@ public class LittleRock_Format1
 		    	PDFReader.commencementDate = "Error";
 		    	e.printStackTrace();
 		    }
-		    RunnerClass.logger.info("Commensement Date = "+PDFReader.commencementDate);
+		    System.out.println("Commensement Date = "+PDFReader.commencementDate);
 		   try
 		    {
 			   PDFReader.expirationDate = text.substring(text.indexOf(PDFAppConfig.LittleRock_Format1.expirationDate_Prior)+PDFAppConfig.LittleRock_Format1.expirationDate_Prior.length(),text.indexOf(PDFAppConfig.LittleRock_Format1.expirationDate_After));
@@ -89,7 +89,7 @@ public class LittleRock_Format1
 		    	 PDFReader.expirationDate = "Error";
 		    	 e.printStackTrace();
 		    }
-		   RunnerClass.logger.info("Expiration Date = "+PDFReader.expirationDate);
+		   System.out.println("Expiration Date = "+PDFReader.expirationDate);
 		    
 			
 			//Monthly Rent
@@ -126,7 +126,7 @@ public class LittleRock_Format1
 			    e.printStackTrace();
 			}
 
-			RunnerClass.logger.info("MonthlyRent = " + PDFReader.monthlyRent);
+			System.out.println("MonthlyRent = " + PDFReader.monthlyRent);
 
 		    /*try
 		    {
@@ -141,7 +141,7 @@ public class LittleRock_Format1
 		    	PDFReader.monthlyRent = "Error";
 		    	e.printStackTrace();
 		    }
-		    RunnerClass.logger.info("Monthly Rent = "+PDFReader.monthlyRent);*/
+		    System.out.println("Monthly Rent = "+PDFReader.monthlyRent);*/
 		    
 		    //HVAC Air Filter Fee (OR) Resident Benefits Package
 		    if(text.contains(PDFAppConfig.LittleRock_Format1.HVACFilterAddendumTextAvailabilityCheck))
@@ -159,7 +159,7 @@ public class LittleRock_Format1
 				    	PDFReader.HVACAirFilterFee = "Error";
 				    	e.printStackTrace();
 				    }
-				    RunnerClass.logger.info("HVAC Air Filter Fee = "+PDFReader.HVACAirFilterFee);
+				    System.out.println("HVAC Air Filter Fee = "+PDFReader.HVACAirFilterFee);
 		    }
 		    
 		    if(text.contains(PDFAppConfig.LittleRock_Format1.residentBenefitsPackageCheck)&&(!text.contains("Resident Benefits Package Opt-Out Addendum")||!text.contains("RESIDENT BENEFITS PACKAGE OPT-OUT ADDENDUM")))
@@ -177,7 +177,7 @@ public class LittleRock_Format1
 				    	PDFReader.residentBenefitsPackage = "Error";
 				    	e.printStackTrace();
 				    }
-				    RunnerClass.logger.info("Resident Benefits Package = "+PDFReader.residentBenefitsPackage);
+				    System.out.println("Resident Benefits Package = "+PDFReader.residentBenefitsPackage);
 		    }
 		    
 		    
@@ -193,13 +193,13 @@ public class LittleRock_Format1
 		    	PDFReader.proratedRent = "Error";
 		    	e.printStackTrace();
 		    }
-		    RunnerClass.logger.info("Prorate Rent = "+PDFReader.proratedRent);
+		    System.out.println("Prorate Rent = "+PDFReader.proratedRent);
 		    
 			//Pet Rent
 		    if(text.contains(PDFAppConfig.LittleRock_Format1.petAgreementAvailabilityCheck))
 		    {
 		    	PDFReader.petFlag = true;
-		    	RunnerClass.logger.info("Pet Addendum Available = "+PDFReader.petFlag);
+		    	System.out.println("Pet Addendum Available = "+PDFReader.petFlag);
 		    	
 		    	try
 		    	{
@@ -211,7 +211,7 @@ public class LittleRock_Format1
 		    	{
 		    		PDFReader.petRent = "Error";
 		    	}
-		    	RunnerClass.logger.info("Pet Rent = "+PDFReader.petRent);
+		    	System.out.println("Pet Rent = "+PDFReader.petRent);
 		    }
 		    
 		    //Lease Renewal Admin Fee
@@ -225,12 +225,12 @@ public class LittleRock_Format1
 	    	{
 	    		PDFReader.leaseRenewalFee = "Error";
 	    	}
-	    	RunnerClass.logger.info("Lease Renewal Fee = "+PDFReader.leaseRenewalFee);
+	    	System.out.println("Lease Renewal Fee = "+PDFReader.leaseRenewalFee);
 			return true;
 		}
 		catch(Exception e)
 		{
-			RunnerClass.logger.info("Issue in fetching values from PDF");
+			System.out.println("Issue in fetching values from PDF");
 			RunnerClass.failedReason =  RunnerClass.failedReason+","+"Issue in fetching values from PDF";
 			return false;
 		}

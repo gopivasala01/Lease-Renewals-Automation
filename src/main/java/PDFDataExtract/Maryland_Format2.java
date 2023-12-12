@@ -19,7 +19,7 @@ public class Maryland_Format2
 			try
 			{
 				File file = RunnerClass.getLastModified();
-				RunnerClass.logger.info(file);
+				System.out.println(file);
 				FileInputStream fis = new FileInputStream(file);
 				PDDocument document = PDDocument.load(fis);
 				PDFTextStripper stripper = new PDFTextStripper();
@@ -31,11 +31,11 @@ public class Maryland_Format2
 				text = text.replaceAll(" +", " ");
 				firstPageText = firstPageText.replaceAll(System.lineSeparator(), " ");
 				firstPageText = firstPageText.replaceAll(" +", " ");
-				RunnerClass.logger.info("First page text:\n" + firstPageText);
-				RunnerClass.logger.info("All pages text:\n" + text);
+				System.out.println("First page text:\n" + firstPageText);
+				System.out.println("All pages text:\n" + text);
 				document.close();
 		    
-		    RunnerClass.logger.info("------------------------------------------------------------------");
+		    System.out.println("------------------------------------------------------------------");
 		    
 		    String pattern = "\\d{1,2}/\\d{1,2}/\\d{4}"; 
 		    Pattern datePattern = Pattern.compile(pattern);
@@ -66,7 +66,7 @@ public class Maryland_Format2
 	   	 
 	   	 PDFReader.renewalExecutionDate= SplitDate[0]+"/"+ SplitDate[1]+"/"+SplitDate[2];
 
-		    RunnerClass.logger.info("Last date mentioned on the page: " + PDFReader.renewalExecutionDate);
+		    System.out.println("Last date mentioned on the page: " + PDFReader.renewalExecutionDate);
 		    
 		    
 		    try
@@ -79,7 +79,7 @@ public class Maryland_Format2
 		    	PDFReader.commencementDate = "Error";
 		    	e.printStackTrace();
 		    }
-		    RunnerClass.logger.info("Commensement Date = "+PDFReader.commencementDate);
+		    System.out.println("Commensement Date = "+PDFReader.commencementDate);
 		   try
 		    {
 			   PDFReader.expirationDate = text.substring(text.indexOf(PDFAppConfig.Maryland_Format2.expirationDate_Prior)+PDFAppConfig.Maryland_Format2.expirationDate_Prior.length());
@@ -90,7 +90,7 @@ public class Maryland_Format2
 		    	 PDFReader.expirationDate = "Error";
 		    	 e.printStackTrace();
 		    }
-		   RunnerClass.logger.info("Expiration Date = "+PDFReader.expirationDate);
+		   System.out.println("Expiration Date = "+PDFReader.expirationDate);
 		    
 			
 			//Monthly Rent
@@ -127,7 +127,7 @@ public class Maryland_Format2
 			    e.printStackTrace();
 			}
 
-			RunnerClass.logger.info("MonthlyRent = " + PDFReader.monthlyRent);
+			System.out.println("MonthlyRent = " + PDFReader.monthlyRent);
 
 		   /* try
 		    {
@@ -142,7 +142,7 @@ public class Maryland_Format2
 		    	PDFReader.monthlyRent = "Error";
 		    	e.printStackTrace();
 		    }
-		    RunnerClass.logger.info("Monthly Rent = "+PDFReader.monthlyRent);*/
+		    System.out.println("Monthly Rent = "+PDFReader.monthlyRent);*/
 		    
 		    //HVAC Air Filter Fee (OR) Resident Benefits Package
 		    if(text.contains(PDFAppConfig.Maryland_Format2.HVACFilterAddendumTextAvailabilityCheck))
@@ -160,7 +160,7 @@ public class Maryland_Format2
 				    	PDFReader.HVACAirFilterFee = "Error";
 				    	e.printStackTrace();
 				    }
-				    RunnerClass.logger.info("HVAC Air Filter Fee = "+PDFReader.HVACAirFilterFee);
+				    System.out.println("HVAC Air Filter Fee = "+PDFReader.HVACAirFilterFee);
 		    }
 		    
 		    if(text.contains(PDFAppConfig.Maryland_Format2.residentBenefitsPackageCheck)&&(!text.contains("Resident Benefits Package Opt-Out Addendum")||!text.contains("RESIDENT BENEFITS PACKAGE OPT-OUT ADDENDUM")))
@@ -178,7 +178,7 @@ public class Maryland_Format2
 				    	PDFReader.residentBenefitsPackage = "Error";
 				    	e.printStackTrace();
 				    }
-				    RunnerClass.logger.info("Resident Benefits Package = "+PDFReader.residentBenefitsPackage);
+				    System.out.println("Resident Benefits Package = "+PDFReader.residentBenefitsPackage);
 		    }
 		    
 		    
@@ -195,7 +195,7 @@ public class Maryland_Format2
 		    	PDFReader.proratedRent = "Error";
 		    	e.printStackTrace();
 		    }
-		    RunnerClass.logger.info("Prorate Rent = "+PDFReader.proratedRent);
+		    System.out.println("Prorate Rent = "+PDFReader.proratedRent);
 		    
 		  //Lease Renewal Admin Fee
 		    try
@@ -209,13 +209,13 @@ public class Maryland_Format2
 		    	PDFReader.leaseRenewalFee = "Error";
 		    	e.printStackTrace();
 		    }
-		    RunnerClass.logger.info("Lease Renewal Admin Fee = "+PDFReader.leaseRenewalFee);
+		    System.out.println("Lease Renewal Admin Fee = "+PDFReader.leaseRenewalFee);
 		    
 			//Pet Rent
 		    if(text.contains(PDFAppConfig.OKC_Format2.petAgreementAvailabilityCheck)||text.contains(PDFAppConfig.OKC_Format2.petAgreementAvailabilityCheck2)||text.contains(PDFAppConfig.OKC_Format2.petAgreementAvailabilityCheck3))
 		    {
 		    	PDFReader.petFlag = true;
-		    	RunnerClass.logger.info("Pet Addendum Available = "+PDFReader.petFlag);
+		    	System.out.println("Pet Addendum Available = "+PDFReader.petFlag);
 		    	
 		    	try
 		    	{
@@ -227,7 +227,7 @@ public class Maryland_Format2
 		    	{
 		    		PDFReader.petRent = "Error";
 		    	}
-		    	RunnerClass.logger.info("Pet Rent = "+PDFReader.petRent);
+		    	System.out.println("Pet Rent = "+PDFReader.petRent);
 		    }
 		    
 		    //Increased Rent
@@ -247,7 +247,7 @@ public class Maryland_Format2
 		    		{
 		    			PDFReader.increasedRent_amount = "Error";
 		    		}
-		    		RunnerClass.logger.info("Increased Rent = "+PDFReader.increasedRent_amount);
+		    		System.out.println("Increased Rent = "+PDFReader.increasedRent_amount);
 		    		//Monthly Rent End Date
 		    		try
 		    		{
@@ -257,7 +257,7 @@ public class Maryland_Format2
 		    		{
 		    			PDFReader.increasedRent_previousRentEndDate = "Error";
 		    		}
-		    		RunnerClass.logger.info("Monthly rent End Date = "+PDFReader.increasedRent_previousRentEndDate);
+		    		System.out.println("Monthly rent End Date = "+PDFReader.increasedRent_previousRentEndDate);
 		    		// Increased Rent Start Date
 		    		try
 		    		{
@@ -267,7 +267,7 @@ public class Maryland_Format2
 		    		{
 		    			PDFReader.increasedRent_newStartDate  = "Error";
 		    		}
-		    		RunnerClass.logger.info("Increased Rent Start Date = "+PDFReader.increasedRent_newStartDate);
+		    		System.out.println("Increased Rent Start Date = "+PDFReader.increasedRent_newStartDate);
 		    		
 		    	}
 		    	if(text.contains("and, $"))
@@ -284,7 +284,7 @@ public class Maryland_Format2
 		    		{
 		    			PDFReader.increasedRent_amount = "Error";
 		    		}
-		    		RunnerClass.logger.info("Increased Rent = "+PDFReader.increasedRent_amount);
+		    		System.out.println("Increased Rent = "+PDFReader.increasedRent_amount);
 		    		
 		    		//Monthly Rent End Date
 		    		try
@@ -295,7 +295,7 @@ public class Maryland_Format2
 		    		{
 		    			PDFReader.increasedRent_previousRentEndDate = "Error";
 		    		}
-		    		RunnerClass.logger.info("Monthly rent End Date = "+PDFReader.increasedRent_previousRentEndDate);
+		    		System.out.println("Monthly rent End Date = "+PDFReader.increasedRent_previousRentEndDate);
 		    		
 		    		// Increased Rent Start Date
 		    		try
@@ -307,7 +307,7 @@ public class Maryland_Format2
 		    		{
 		    			PDFReader.increasedRent_newStartDate  = "Error";
 		    		}
-		    		RunnerClass.logger.info("Increased Rent Start Date = "+PDFReader.increasedRent_newStartDate);
+		    		System.out.println("Increased Rent Start Date = "+PDFReader.increasedRent_newStartDate);
 		    	}
 		    	if(text.contains("for "+PDFReader.commencementDate.trim()+" to"))
 		    	{
@@ -325,7 +325,7 @@ public class Maryland_Format2
 		    		{
 		    			PDFReader.increasedRent_previousRentEndDate = "Error";
 		    		}
-		    		RunnerClass.logger.info("Monthly rent End Date = "+PDFReader.increasedRent_previousRentEndDate);
+		    		System.out.println("Monthly rent End Date = "+PDFReader.increasedRent_previousRentEndDate);
 		    		//Increased Rent
 		    		try
 		    		{
@@ -338,7 +338,7 @@ public class Maryland_Format2
 		    		{
 		    			PDFReader.increasedRent_amount = "Error";
 		    		}
-		    		RunnerClass.logger.info("Increased Rent = "+PDFReader.increasedRent_amount);
+		    		System.out.println("Increased Rent = "+PDFReader.increasedRent_amount);
 		    		
 		    		// Increased Rent Start Date
 		    		try
@@ -351,7 +351,7 @@ public class Maryland_Format2
 		    		{
 		    			PDFReader.increasedRent_newStartDate  = "Error";
 		    		}
-		    		RunnerClass.logger.info("Increased Rent Start Date = "+PDFReader.increasedRent_newStartDate);
+		    		System.out.println("Increased Rent Start Date = "+PDFReader.increasedRent_newStartDate);
 		    		
 		    	}
 		    }
@@ -364,7 +364,7 @@ public class Maryland_Format2
 			}	
 			catch(Exception e)
 			{
-				RunnerClass.logger.info("Issue in fetching values from PDF");
+				System.out.println("Issue in fetching values from PDF");
 				RunnerClass.failedReason =  RunnerClass.failedReason+","+"Issue in fetching values from PDF";
 				return false;
 			}

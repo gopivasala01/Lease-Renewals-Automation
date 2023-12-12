@@ -57,7 +57,7 @@ public class PropertyWare
         try {
             if (RunnerClass.driver.findElement(Locators.loginError).isDisplayed()) 
             {
-                RunnerClass.logger.info("Login failed");
+                System.out.println("Login failed");
                 String failedReason = ", Login failed";
                 //MailActivities.sendEmail(failedReason);
                 return false;
@@ -70,7 +70,7 @@ public class PropertyWare
 		}
 		catch(Exception e)
 		{
-			RunnerClass.logger.info("Login failed");
+			System.out.println("Login failed");
 		    RunnerClass.failedReason = RunnerClass.failedReason+","+ "Login failed";
 			return false;
 		}
@@ -103,22 +103,25 @@ public class PropertyWare
 	        String marketName = "HomeRiver Group - "+RunnerClass.company.trim();
 	        Select marketDropdownList = new Select(RunnerClass.driver.findElement(Locators.marketDropdown));
 	        marketDropdownList.selectByVisibleText(marketName);
+	        intermittentPopUp();
 	        Thread.sleep(2000);
 	        RunnerClass.driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
 	        //}
+	        intermittentPopUp();
 	        String buildingPageURL = AppConfig.buildingPageURL+RunnerClass.leaseEntityID;
 	        if(RunnerClass.leaseEntityID== null || RunnerClass.leaseEntityID == "") {
 	        	RunnerClass.failedReason = "Building Not Available";
 	        	return false;
 	        }
 	        else {
-	        	 RunnerClass.logger.info(buildingPageURL);
+	        	System.out.println(buildingPageURL);
 	 	        RunnerClass.driver.navigate().to(buildingPageURL);
+	 	       
 	        }
 	       
 			/*
 			 * if(PropertyWare.permissionDeniedPage()==true) {
-			 * RunnerClass.logger.info("Wrong building Entity ID"); RunnerClass.failedReason =
+			 * System.out.println("Wrong building Entity ID"); RunnerClass.failedReason =
 			 * "Building Not Available"; return false; }
 			 */
 	        intermittentPopUp();
@@ -150,7 +153,7 @@ public class PropertyWare
 			}
 			catch(Exception e) {
 				
-				RunnerClass.logger.info("Building Not Found");
+				System.out.println("Building Not Found");
 			    RunnerClass.failedReason =  RunnerClass.failedReason+","+ "Building Not Found";
 				return false;
 			}
@@ -167,7 +170,7 @@ public class PropertyWare
 			}
 			catch(Exception e) {
 				
-				RunnerClass.logger.info("Building Not Found");
+				System.out.println("Building Not Found");
 			    RunnerClass.failedReason =  RunnerClass.failedReason+","+ "Building Not Found";
 				return false;
 			}
@@ -214,7 +217,7 @@ public class PropertyWare
 	                    try {
 	                        RunnerClass.driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 	                        if (RunnerClass.driver.findElement(Locators.noItemsFoundMessagewhenLeaseNotFound).isDisplayed()) {
-	                            RunnerClass.logger.info("Building Not Found");
+	                            System.out.println("Building Not Found");
 	                            RunnerClass.failedReason = RunnerClass.failedReason + "," + "Building Not Found";
 	                            return false;
 	                        }
@@ -232,14 +235,14 @@ public class PropertyWare
 	                        try {
 	                            RunnerClass.driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 	                            if (RunnerClass.driver.findElement(Locators.noItemsFoundMessagewhenLeaseNotFound).isDisplayed()) {
-	                                RunnerClass.logger.info("Building Not Found");
+	                                System.out.println("Building Not Found");
 	                                RunnerClass.failedReason = RunnerClass.failedReason + "," + "Building Not Found";
 	                                return false;
 	                            }
 	                        } catch (Exception e3) {
 	                        }
 	                    } catch (Exception e) {
-	                        RunnerClass.logger.info("Building Not Found");
+	                        System.out.println("Building Not Found");
 	                        RunnerClass.failedReason = RunnerClass.failedReason + "," + "Building Not Found";
 	                        return false;
 	                    }
@@ -249,7 +252,7 @@ public class PropertyWare
 	        }
 	        RunnerClass.driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
 	        Thread.sleep(1000);
-	        RunnerClass.logger.info(building);
+	        System.out.println(building);
 	        // Select Lease from multiple leases
 	        List<WebElement> displayedCompanies = null;
 	        try {
@@ -264,7 +267,7 @@ public class PropertyWare
 	            if (companyName.toLowerCase().contains(company.toLowerCase()) && !companyName.contains("Legacy")) 
 	            {
 	                List<WebElement> leaseList = RunnerClass.driver.findElements(By.xpath("(//*[@class='section'])[" + (i + 1) + "]/ul/li/a"));
-	                //RunnerClass.logger.info(leaseList.size());
+	                //System.out.println(leaseList.size());
 	                //Check if displayed leases list has the building name completely first
 	                for (int j = 0; j < leaseList.size(); j++) {
 	                    String lease = leaseList.get(j).getText();
@@ -272,7 +275,7 @@ public class PropertyWare
 	                        try {
 	                            RunnerClass.portfolioType = RunnerClass.driver.findElement(By.xpath("(//*[@class='section'])[" + (i + 1) + "]/ul/li[" + (j + 1) + "]/a")).getText().trim().split(":")[0];
 	                            RunnerClass.portfolioName = RunnerClass.portfolioType;
-	                            RunnerClass.logger.info("Portfolio type = " + RunnerClass.portfolioType);
+	                            System.out.println("Portfolio type = " + RunnerClass.portfolioType);
 	                        } catch (Exception e) {
 	                        }
 	                        RunnerClass.driver.findElement(By.xpath("(//*[@class='section'])[" + (i + 1) + "]/ul/li[" + (j + 1) + "]/a")).click();
@@ -288,7 +291,7 @@ public class PropertyWare
 	                        try {
 	                            RunnerClass.portfolioType = RunnerClass.driver.findElement(By.xpath("(//*[@class='section'])[" + (i + 1) + "]/ul/li[" + (j + 1) + "]/a")).getText().trim().split(":")[0];
 	                            RunnerClass.portfolioName = RunnerClass.portfolioType;
-	                            RunnerClass.logger.info("Portfolio type = " + RunnerClass.portfolioType);
+	                            System.out.println("Portfolio type = " + RunnerClass.portfolioType);
 	                        } catch (Exception e) {
 	                        }
 	                        RunnerClass.driver.findElement(By.xpath("(//*[@class='section'])[" + (i + 1) + "]/ul/li[" + (j + 1) + "]/a")).click();
@@ -341,7 +344,7 @@ public class PropertyWare
 	     		        }
 	     		        intermittentPopUp();
 	     		    } catch (Exception e) {
-	     		        RunnerClass.logger.info("Unable to download Lease Agreement");
+	     		        System.out.println("Unable to download Lease Agreement");
 	     		        RunnerClass.failedReason = RunnerClass.failedReason + "," + "Unable to download Lease Agreement";
 	     		        return false;
 	     		    }
@@ -530,7 +533,7 @@ public class PropertyWare
 		
 		if(checkLeaseAgreementAvailable==false)
 		{
-			RunnerClass.logger.info("Unable to download Lease Agreement");
+			System.out.println("Unable to download Lease Agreement");
 		    RunnerClass.failedReason =  RunnerClass.failedReason+","+ "Unable to download Lease Agreement";
 			return false;
 		}
@@ -544,7 +547,7 @@ public class PropertyWare
 		}
 		catch(Exception e)
 		{
-			RunnerClass.logger.info("Unable to download Lease Agreement");
+			System.out.println("Unable to download Lease Agreement");
 		    RunnerClass.failedReason =  RunnerClass.failedReason+","+"Unable to download Lease Agreement";
 			return false;
 		}
@@ -580,12 +583,12 @@ public class PropertyWare
 	}
 
 	private static boolean navigateToUrl(String url) {
-	    RunnerClass.logger.info("Navigating to URL: " + url);
+	    System.out.println("Navigating to URL: " + url);
 	    return true;
 	}
 
 	private static void openNewTab() {
-	    RunnerClass.logger.info("Opening a new tab");
+	    System.out.println("Opening a new tab");
 	}
 
 	static class TimeoutException extends Exception {

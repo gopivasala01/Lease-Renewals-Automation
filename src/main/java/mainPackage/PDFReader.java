@@ -98,7 +98,7 @@ public class PDFReader
 			{
 			case "Florida":
 				String pdfFormatType_florida = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_florida);
+				System.out.println("PDF Format Type = "+pdfFormatType_florida);
 				if(pdfFormatType_florida=="Format1")
 				{
 					if(PDFDataExtract.Florida_Format1.florida()==false)
@@ -118,7 +118,7 @@ public class PDFReader
 				break;
 			case "Alabama":
 				String pdfFormatType_alabama = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_alabama);
+				System.out.println("PDF Format Type = "+pdfFormatType_alabama);
 				if(pdfFormatType_alabama=="Format1")
 				{
 					if(PDFDataExtract.Alabama_Format1.alabama()==false)
@@ -138,7 +138,7 @@ public class PDFReader
 				break;
 			case "Dallas/Fort Worth":
 				String pdfFormatType_dallasFortWorth = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_dallasFortWorth);
+				System.out.println("PDF Format Type = "+pdfFormatType_dallasFortWorth);
 				if(pdfFormatType_dallasFortWorth=="Format1")
 				{
 					if(PDFDataExtract.DallasFortWorth_Format1.dallasFortWorth()==false)
@@ -158,7 +158,7 @@ public class PDFReader
 				break;
 			case "North Carolina":
 				String pdfFormatType = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType);
+				System.out.println("PDF Format Type = "+pdfFormatType);
 				if(pdfFormatType=="Format1")
 				{
 					if(PDFDataExtract.NorthCarolina_Format1.northCarolina()==false)
@@ -178,7 +178,7 @@ public class PDFReader
                 break;
 			case "Arkansas":
 				String pdfFormatType_arkansas = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_arkansas);
+				System.out.println("PDF Format Type = "+pdfFormatType_arkansas);
 				if(pdfFormatType_arkansas=="Format1")
 				{
 					if(PDFDataExtract.Arkansas_Format1.arkansas()==false)
@@ -198,7 +198,7 @@ public class PDFReader
 				break;
 			case "Georgia":
 				String pdfFormatType_georgia= PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_georgia);
+				System.out.println("PDF Format Type = "+pdfFormatType_georgia);
 				if(pdfFormatType_georgia=="Format1")
 				{
 					if(PDFDataExtract.Georgia_Format1.georgia()==false)
@@ -218,7 +218,7 @@ public class PDFReader
 				break;
 			case "Indiana":
 				String pdfFormatType_indiana= PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_indiana);
+				System.out.println("PDF Format Type = "+pdfFormatType_indiana);
 				if(pdfFormatType_indiana=="Format1")
 				{
 					if(PDFDataExtract.Indiana_Format1.indiana()==false)
@@ -238,7 +238,7 @@ public class PDFReader
 				break;
 			case "Little Rock":
 				String pdfFormatType_littleRock= PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_littleRock);
+				System.out.println("PDF Format Type = "+pdfFormatType_littleRock);
 				if(pdfFormatType_littleRock=="Format1")
 				{
 					if(PDFDataExtract.LittleRock_Format1.littleRock()==false)
@@ -258,7 +258,7 @@ public class PDFReader
 				break;
 			case "Tennessee":
 				String pdfFormatType_tennessee= PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_tennessee);
+				System.out.println("PDF Format Type = "+pdfFormatType_tennessee);
 				if(pdfFormatType_tennessee=="Format1")
 				{
 					if(PDFDataExtract.Tennessee_Format1.tennessee()==false)
@@ -278,7 +278,7 @@ public class PDFReader
 				break;
 			case "California":
 				String pdfFormatType_california= PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_california);
+				System.out.println("PDF Format Type = "+pdfFormatType_california);
 				if(pdfFormatType_california=="Format1")
 				{
 					if(PDFDataExtract.California_Format1.california()==false)
@@ -298,7 +298,7 @@ public class PDFReader
 				break;
 			case "California PFW":
 				String pdfFormatType_californiapfw = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_californiapfw);
+				System.out.println("PDF Format Type = "+pdfFormatType_californiapfw);
 				if(pdfFormatType_californiapfw=="Format1")
 				{
 					if(PDFDataExtract.California_PFW_Format1.californiapfw()==false)
@@ -318,7 +318,7 @@ public class PDFReader
 				break;
 			case "Houston":
 				String pdfFormatType_houston= PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_houston);
+				System.out.println("PDF Format Type = "+pdfFormatType_houston);
 				if(pdfFormatType_houston=="Format1")
 				{
 					if(PDFDataExtract.Houston_Format1.houston()==false)
@@ -338,7 +338,7 @@ public class PDFReader
 				break;
 			case "Austin":
 				String pdfFormatType_austin= PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_austin);
+				System.out.println("PDF Format Type = "+pdfFormatType_austin);
 				if(pdfFormatType_austin=="Format1")
 				{
 					if(PDFDataExtract.Austin_Format1.austin()==false)
@@ -359,7 +359,7 @@ public class PDFReader
 
 			case "Chattanooga":
 				String pdfFormatType_chattanooga= PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_chattanooga);
+				System.out.println("PDF Format Type = "+pdfFormatType_chattanooga);
 				if(pdfFormatType_chattanooga=="Format1")
 				{
 					if(PDFDataExtract.Chattanooga_Format1.chattanooga()==false)
@@ -379,7 +379,7 @@ public class PDFReader
 				break;
 			case "Chicago":
 				String pdfFormatType_chicago= PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_chicago);
+				System.out.println("PDF Format Type = "+pdfFormatType_chicago);
 				if(pdfFormatType_chicago=="Format1")
 				{
 					if(PDFDataExtract.Chicago_Format1.chicago()==false)
@@ -399,7 +399,7 @@ public class PDFReader
 				break;
 			case "Savannah":
 				String pdfFormatType_savannah= PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_savannah);
+				System.out.println("PDF Format Type = "+pdfFormatType_savannah);
 				if(pdfFormatType_savannah=="Format1")
 				{
 					if(PDFDataExtract.Savannah_Format1.savannah()==false)
@@ -419,7 +419,7 @@ public class PDFReader
 				break;
 			case "South Carolina":
 				String pdfFormatType_southCarolina= PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_southCarolina);
+				System.out.println("PDF Format Type = "+pdfFormatType_southCarolina);
 				if(pdfFormatType_southCarolina=="Format1")
 				{
 					if(PDFDataExtract.SouthCarolina_Format1.southCarolina()==false)
@@ -439,7 +439,7 @@ public class PDFReader
 				break;
 			case "Tulsa":
 				String pdfFormatType_tulsa= PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_tulsa);
+				System.out.println("PDF Format Type = "+pdfFormatType_tulsa);
 				if(pdfFormatType_tulsa=="Format1")
 				{
 					if(PDFDataExtract.Tulsa_Format1.tulsa()==false)
@@ -459,7 +459,7 @@ public class PDFReader
 				break;
 			case "Ohio":
 				String pdfFormatType_ohio = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_ohio);
+				System.out.println("PDF Format Type = "+pdfFormatType_ohio);
 				if(pdfFormatType_ohio=="Format1")
 				{
 					if(PDFDataExtract.Ohio_Format1.ohio()==false)
@@ -479,7 +479,7 @@ public class PDFReader
 				break;
 			case "Maine":
 				String pdfFormatType_maine = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_maine);
+				System.out.println("PDF Format Type = "+pdfFormatType_maine);
 				if(pdfFormatType_maine=="Format1")
 				{
 					if(PDFDataExtract.Maine_Format1.maine()==false)
@@ -499,7 +499,7 @@ public class PDFReader
 				break;
 			case "OKC":
 				String pdfFormatType_okc = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_okc);
+				System.out.println("PDF Format Type = "+pdfFormatType_okc);
 				if(pdfFormatType_okc=="Format1")
 				{
 					if(PDFDataExtract.OKC_Format1.okc()==false)
@@ -519,7 +519,7 @@ public class PDFReader
 				break;
 			case "San Antonio":
 				String pdfFormatType_sanAntonio = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_sanAntonio);
+				System.out.println("PDF Format Type = "+pdfFormatType_sanAntonio);
 				if(pdfFormatType_sanAntonio=="Format1")
 				{
 					if(PDFDataExtract.SanAntonio_Format1.sanAntonio()==false)
@@ -539,7 +539,7 @@ public class PDFReader
 				break;
 			case "Pennsylvania":
 				String pdfFormatType_pennsylvania = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_pennsylvania);
+				System.out.println("PDF Format Type = "+pdfFormatType_pennsylvania);
 				if(pdfFormatType_pennsylvania=="Format1")
 				{
 					if(PDFDataExtract.Pennsylvania_Format1.pennsylvania()==false)
@@ -559,7 +559,7 @@ public class PDFReader
 				break;
 			case "Colorado Springs":
 				String pdfFormatType_coloradoSprings = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_coloradoSprings);
+				System.out.println("PDF Format Type = "+pdfFormatType_coloradoSprings);
 				if(pdfFormatType_coloradoSprings=="Format1")
 				{
 					if(PDFDataExtract.ColoradoSprings_Format1.coloradoSprings()==false)
@@ -579,7 +579,7 @@ public class PDFReader
 				break;
 			case "Kansas City":
 				String pdfFormatType_kansasCity = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_kansasCity);
+				System.out.println("PDF Format Type = "+pdfFormatType_kansasCity);
 				if(pdfFormatType_kansasCity=="Format1")
 				{
 					if(PDFDataExtract.KansasCity_Format1.kansasCity()==false)
@@ -599,7 +599,7 @@ public class PDFReader
 				break;
 			case "Lake Havasu":
 				String pdfFormatType_lakeHavasu = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_lakeHavasu);
+				System.out.println("PDF Format Type = "+pdfFormatType_lakeHavasu);
 				if(pdfFormatType_lakeHavasu=="Format1")
 				{
 					if(PDFDataExtract.LakeHavasu_Format1.lakeHavasu()==false)
@@ -619,7 +619,7 @@ public class PDFReader
 				break;
 			case "New Mexico":
 				String pdfFormatType_newMexico = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_newMexico);
+				System.out.println("PDF Format Type = "+pdfFormatType_newMexico);
 				if(pdfFormatType_newMexico=="Format1")
 				{
 					if(PDFDataExtract.NewMexico_Format1.newMexico()==false)
@@ -639,7 +639,7 @@ public class PDFReader
 				break;
 			case "Chicago PFW":
 				String pdfFormatType_chicagoPfw = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_chicagoPfw);
+				System.out.println("PDF Format Type = "+pdfFormatType_chicagoPfw);
 				if(pdfFormatType_chicagoPfw=="Format1")
 				{
 					if(PDFDataExtract.ChicagoPFW_Format1.chicagoPfw()==false)
@@ -659,7 +659,7 @@ public class PDFReader
 				break;
 			case "Boise":
 				String pdfFormatType_boise = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_boise);
+				System.out.println("PDF Format Type = "+pdfFormatType_boise);
 				if(pdfFormatType_boise=="Format1")
 				{
 					if(PDFDataExtract.Boise_Format1.boise()==false)
@@ -679,7 +679,7 @@ public class PDFReader
 				break;
 			case "Spokane":
 				String pdfFormatType_spokane = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_spokane);
+				System.out.println("PDF Format Type = "+pdfFormatType_spokane);
 				if(pdfFormatType_spokane=="Format1")
 				{
 					if(PDFDataExtract.Spokane_Format1.spokane()==false)
@@ -699,7 +699,7 @@ public class PDFReader
 				break;
 			case "Utah":
 				String pdfFormatType_utah = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_utah);
+				System.out.println("PDF Format Type = "+pdfFormatType_utah);
 				if(pdfFormatType_utah=="Format1")
 				{
 					if(PDFDataExtract.Utah_Format1.utah()==false)
@@ -719,7 +719,7 @@ public class PDFReader
 				break;
 			case "Hawaii":
 				String pdfFormatType_hawaii = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_hawaii);
+				System.out.println("PDF Format Type = "+pdfFormatType_hawaii);
 				if(pdfFormatType_hawaii=="Format1")
 				{
 					if(PDFDataExtract.Hawaii_Format1.hawaii()==false)
@@ -739,7 +739,7 @@ public class PDFReader
 				break;
 			case "Columbia - St Louis":
 				String pdfFormatType_saintLouis = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_saintLouis);
+				System.out.println("PDF Format Type = "+pdfFormatType_saintLouis);
 				if(pdfFormatType_saintLouis=="Format1")
 				{
 					if(PDFDataExtract.SaintLouis_Format1.saintLouis()==false)
@@ -759,7 +759,7 @@ public class PDFReader
 				break;
 			case "Idaho Falls":
 				String pdfFormatType_idahoFalls = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_idahoFalls);
+				System.out.println("PDF Format Type = "+pdfFormatType_idahoFalls);
 				if(pdfFormatType_idahoFalls=="Format1")
 				{
 					if(PDFDataExtract.IdahoFalls_Format1.idahoFalls()==false)
@@ -779,7 +779,7 @@ public class PDFReader
 				break;
 			case "Arizona":
 				String pdfFormatType_arizona = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_arizona);
+				System.out.println("PDF Format Type = "+pdfFormatType_arizona);
 				if(pdfFormatType_arizona=="Format1")
 				{
 					if(PDFDataExtract.Arizona_Format1.arizona()==false)
@@ -799,7 +799,7 @@ public class PDFReader
 				break;
 			case "Maryland":
 				String pdfFormatType_maryland = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_maryland);
+				System.out.println("PDF Format Type = "+pdfFormatType_maryland);
 				if(pdfFormatType_maryland=="Format1")
 				{
 					if(PDFDataExtract.Maryland_Format1.maryland()==false)
@@ -819,7 +819,7 @@ public class PDFReader
 				break;
 			case "Virginia":
 				String pdfFormatType_virginia = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_virginia);
+				System.out.println("PDF Format Type = "+pdfFormatType_virginia);
 				if(pdfFormatType_virginia=="Format1")
 				{
 					if(PDFDataExtract.Virginia_Format1.virginia()==false)
@@ -839,7 +839,7 @@ public class PDFReader
 				break;
 			case "Washington DC":
 				String pdfFormatType_washingtonDC = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_washingtonDC);
+				System.out.println("PDF Format Type = "+pdfFormatType_washingtonDC);
 				if(pdfFormatType_washingtonDC=="Format1")
 				{
 					if(PDFDataExtract.WashingtonDC_Format1.washingtonDC()==false)
@@ -859,7 +859,7 @@ public class PDFReader
 				break;
 			case "New Jersey":
 				String pdfFormatType_newJersey = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_newJersey);
+				System.out.println("PDF Format Type = "+pdfFormatType_newJersey);
 				if(pdfFormatType_newJersey=="Format1")
 				{
 					if(PDFDataExtract.NewJersey_Format1.newJersey()==false)
@@ -879,7 +879,7 @@ public class PDFReader
 				break;
 			case "Montana":
 				String pdfFormatType_montana = PDFReader.decidePDFFormat(market);
-				RunnerClass.logger.info("PDF Format Type = "+pdfFormatType_montana);
+				System.out.println("PDF Format Type = "+pdfFormatType_montana);
 				if(pdfFormatType_montana=="Format1")
 				{
 					if(PDFDataExtract.Montana_Format1.montana()==false)
@@ -1089,7 +1089,7 @@ public class PDFReader
 			
 			File file = RunnerClass.getLastModified();
 			//File file = new File("C:\\SantoshMurthyP\\Lease Audit Automation\\Full_Lease_-_[6128_Creekview_Court]_-_[Wallace_-_Crawford]_-_[02.01.2023]_-_[04.30.2024].PDF_(1).pdf");
-			RunnerClass.logger.info(file);
+			System.out.println(file);
 			FileInputStream fis = new FileInputStream(file);
 			PDDocument document = PDDocument.load(fis);
 			String text = new PDFTextStripper().getText(document);
