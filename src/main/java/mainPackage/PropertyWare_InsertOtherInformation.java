@@ -93,7 +93,7 @@ public class PropertyWare_InsertOtherInformation
 		    RunnerClass.statusID=1;
 		    e.printStackTrace();
 		    RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Current Monthly Rent";
-		    System.out.println("Issue - Other information - Base Rent");
+		    RunnerClass.logger.info("Issue - Other information - Base Rent");
 		}
 		
 		if (PDFReader.residentBenefitsPackageAvailabilityCheck == true) 
@@ -109,7 +109,7 @@ public class PropertyWare_InsertOtherInformation
 				RunnerClass.statusID=1;
 				e.printStackTrace();
 				RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Enrolled In RBP For PM Use";
-				System.out.println("Issue - Other information - Enrolled In RBP For PM Use");
+				RunnerClass.logger.info("Issue - Other information - Enrolled In RBP For PM Use");
 			}
 		} 
 		
@@ -126,7 +126,7 @@ public class PropertyWare_InsertOtherInformation
 				RunnerClass.statusID=1;
 				e.printStackTrace();
 				RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Enrolled In RBP For PM Use (No)";
-				System.out.println("Issue - Other information - Enrolled In RBP For PM Use (No)");
+				RunnerClass.logger.info("Issue - Other information - Enrolled In RBP For PM Use (No)");
 			}
 			Thread.sleep(2000);
 		}
@@ -144,7 +144,7 @@ public class PropertyWare_InsertOtherInformation
 				RunnerClass.statusID=1;
 				e.printStackTrace();
 				RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - RBP Enrollment Complete For SN Use Only";
-				System.out.println("Issue - Other information - RBP Enrollment Complete For SN Use Only");
+				RunnerClass.logger.info("Issue - Other information - RBP Enrollment Complete For SN Use Only");
 			}
 		} 
 		else 
@@ -160,7 +160,7 @@ public class PropertyWare_InsertOtherInformation
 				RunnerClass.statusID=1;
 				e.printStackTrace();
 				RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - RBP Enrollment Complete For SN Use Only (No)";
-				System.out.println("Issue - Other information - RBP Enrollment Complete For SN Use Only (No)");
+				RunnerClass.logger.info("Issue - Other information - RBP Enrollment Complete For SN Use Only (No)");
 			}
 		}
 		Thread.sleep(2000);
@@ -177,7 +177,7 @@ public class PropertyWare_InsertOtherInformation
 			RunnerClass.statusID=1;
 			 e.printStackTrace();
 			 RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Renewal Status";
-			 System.out.println("Issue - Other information - Renewal Status");
+			 RunnerClass.logger.info("Issue - Other information - Renewal Status");
 		}
 		
 		//Renewal Follow - up Notes
@@ -193,7 +193,7 @@ public class PropertyWare_InsertOtherInformation
 	    	RunnerClass.statusID=1;
 	    	e.printStackTrace();
 			RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Renewal Follow up Notes";
-			System.out.println("Issue - Other information - Renewal Follow up Notes");
+			RunnerClass.logger.info("Issue - Other information - Renewal Follow up Notes");
 	    }
 		
 		//Renewal Execution Date
@@ -207,7 +207,7 @@ public class PropertyWare_InsertOtherInformation
 		    RunnerClass.statusID=1;
 		    e.printStackTrace();
 		    RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Renewal Execution Date";
-		    System.out.println("Issue - Other information - Renewal Renewal Execution Date");
+		    RunnerClass.logger.info("Issue - Other information - Renewal Renewal Execution Date");
 		}
 
 		//Current Monthly Rent
@@ -221,7 +221,7 @@ public class PropertyWare_InsertOtherInformation
 		    RunnerClass.statusID=1;
 		    e.printStackTrace();
 		    RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Current Monthly Rent";
-		    System.out.println("Issue - Other information - Current Monthly Rent");
+		    RunnerClass.logger.info("Issue - Other information - Current Monthly Rent");
 		}
 
 		//Prior Monthly Rent
@@ -235,7 +235,7 @@ public class PropertyWare_InsertOtherInformation
 		    RunnerClass.statusID=1;
 		    e.printStackTrace();
 		    RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Prior Monthly Rent";
-		    System.out.println("Issue - Other information - Prior Monthly Rent");
+		    RunnerClass.logger.info("Issue - Other information - Prior Monthly Rent");
 		}
 
 		
@@ -253,7 +253,7 @@ public class PropertyWare_InsertOtherInformation
 			RunnerClass.statusID=1;
 			e.printStackTrace();
 			RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Renewal Coordinator Name";
-			System.out.println("Issue - Other information - Renewal Coordinator Name");		
+			RunnerClass.logger.info("Issue - Other information - Renewal Coordinator Name");		
 		}
 		
 		// Pet Rent Amount
@@ -271,7 +271,7 @@ public class PropertyWare_InsertOtherInformation
 						RunnerClass.statusID=1;
 						e.printStackTrace();
 						RunnerClass.failedReason = RunnerClass.failedReason+","+"Other information - Pet Rent Amount";
-						System.out.println("Issue - Other information - Pet Rent Amount");
+						RunnerClass.logger.info("Issue - Other information - Pet Rent Amount");
 					}
 					
 				}
@@ -373,14 +373,14 @@ public class PropertyWare_InsertOtherInformation
 	        // Handle InterruptedException if it occurs during the Thread.sleep() calls
 	        RunnerClass.statusID = 1;
 	        RunnerClass.failedReason = RunnerClass.failedReason + "," + "Issue in adding Related Activities";
-	        System.out.println("Issue in adding Related Activities");
+	        RunnerClass.logger.info("Issue in adding Related Activities");
 	        e1.printStackTrace();
 	    } catch (Exception e) 
 	    {
 	        // Handle any other exceptions
 	        RunnerClass.statusID = 1;
 	        RunnerClass.failedReason = RunnerClass.failedReason + "," + "Issue in adding Related Activities";
-	        System.out.println("Issue in adding Related Activities");
+	        RunnerClass.logger.info("Issue in adding Related Activities");
 	        e.printStackTrace();
 	    } finally 
 	    {

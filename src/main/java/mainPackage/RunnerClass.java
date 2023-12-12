@@ -23,7 +23,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.FileAppender;
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PatternLayout;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -73,10 +76,11 @@ public class RunnerClass
 	public static String arizonaRentCode = "";
 	public static String completeBuildingAbbreviation;
 	public static String portfolioName;
-	private static final Logger logger = Logger.getLogger(RunnerClass.class);
+	public static Logger logger;
 	public static boolean navigateToLeaseThroughLeaseEntityID = false;
 	public static String leaseEntityID;
 	public static String[][] leaseEntityIDFromLeaseDashboard;
+	
 	
 	
 	
@@ -89,7 +93,7 @@ public class RunnerClass
 
 	        for (int i = 0; i < pendingRenewalLeases.length; i++) 
 	        {
-	            System.out.println(" Record -- " + (i + 1));
+	            RunnerClass.logger.info(" Record -- " + (i + 1));
 	            company = pendingRenewalLeases[i][0];
 	            buildingAbbreviation = pendingRenewalLeases[i][1];
 	            ownerName = pendingRenewalLeases[i][2];
@@ -212,7 +216,51 @@ public class RunnerClass
 		    
 		    
 	
-		
+	public static void generateLogs() {
+		try {
+    		File directoryPath = new File(AppConfig.logFilePath);
+    		LocalDate todayDate = LocalDate.now();
+    		LocalDate yesterdayDate = todayDate.minusDays(1);
+    		LocalDate dayBeforeYesterdayDate = todayDate.minusDays(2);
+	    	String currentDate = todayDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+	    	String yesterdayDateString = yesterdayDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+	    	String dayBeforeYesterdayDateString = dayBeforeYesterdayDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+	        //List of all files and directories
+	        File[] files = directoryPath.listFiles();
+	        for(File file:files) {
+	          if(file.getName().contains(currentDate) || file.getName().contains(yesterdayDateString) || file.getName().contains(dayBeforeYesterdayDateString)) {
+	        	  continue;
+	          }
+	          else {
+	        	  file.delete();
+	          }
+	        }
+    	}
+    	catch(Exception e) {
+    		System.out.print("log file doesnot exists");
+    	}
+    	 // creates pattern layout
+        PatternLayout layout = new PatternLayout();
+        String conversionPattern = "%-7p %d [%t] %c %x - %m%n";
+        layout.setConversionPattern(conversionPattern);
+ 
+
+ 
+        // creates file appender
+        FileAppender fileAppender = new FileAppender(); 
+        fileAppender.setFile(AppConfig.logFilePath+"\\"+"PWLog - "+LocalDate.now()+".txt");
+        fileAppender.setLayout(layout);
+        fileAppender.activateOptions();
+ 
+        // configures the root logger
+        Logger rootLogger = Logger.getRootLogger();
+        rootLogger.setLevel(Level.DEBUG);
+       // rootLogger.addAppender(consoleAppender);
+        rootLogger.addAppender(fileAppender);
+ 
+        // creates a custom logger and log messages
+        logger = Logger.getLogger(AppConfig.class);
+    }
 		    
 		
 
@@ -247,7 +295,7 @@ public class RunnerClass
 		SimpleDateFormat format1 = new SimpleDateFormat("MMMM dd, yyyy");
 	    SimpleDateFormat format2 = new SimpleDateFormat("MM/dd/yyyy");
 	    Date date = format1.parse(dateRaw.trim().replaceAll(" +", " "));
-	    System.out.println(format2.format(date));
+	    RunnerClass.logger.info(format2.format(date));
 		return format2.format(date).toString();
 		}
 		catch(Exception e)
@@ -257,7 +305,7 @@ public class RunnerClass
 			SimpleDateFormat format1 = new SimpleDateFormat("MMMM dd yyyy");
 		    SimpleDateFormat format2 = new SimpleDateFormat("MM/dd/yyyy");
 		    Date date = format1.parse(dateRaw.trim().replaceAll(" +", " "));
-		    System.out.println(format2.format(date));
+		    RunnerClass.logger.info(format2.format(date));
 			return format2.format(date).toString();
 			}
 			catch(Exception e2)
@@ -269,7 +317,7 @@ public class RunnerClass
 				SimpleDateFormat format1 = new SimpleDateFormat("MMMM dd yyyy");
 			    SimpleDateFormat format2 = new SimpleDateFormat("MM/dd/yyyy");
 			    Date date = format1.parse(dateRaw.trim().replaceAll(" +", " "));
-			    System.out.println(format2.format(date));
+			    RunnerClass.logger.info(format2.format(date));
 				return format2.format(date).toString();
 				}
 				catch(Exception e3)
@@ -279,7 +327,7 @@ public class RunnerClass
 					SimpleDateFormat format1 = new SimpleDateFormat("MMMM dd,yyyy");
 				    SimpleDateFormat format2 = new SimpleDateFormat("MM/dd/yyyy");
 				    Date date = format1.parse(dateRaw.trim().replaceAll(" +", " "));
-				    System.out.println(format2.format(date));
+				    RunnerClass.logger.info(format2.format(date));
 					return format2.format(date).toString();
 					}
 					catch(Exception e4)
@@ -289,7 +337,7 @@ public class RunnerClass
 						SimpleDateFormat format1 = new SimpleDateFormat("MMMM dd.yyyy");
 					    SimpleDateFormat format2 = new SimpleDateFormat("MM/dd/yyyy");
 					    Date date = format1.parse(dateRaw.trim().replaceAll(" +", " "));
-					    System.out.println(format2.format(date));
+					    RunnerClass.logger.info(format2.format(date));
 						return format2.format(date).toString();
 						}
 						catch(Exception e5)
@@ -299,7 +347,7 @@ public class RunnerClass
 							SimpleDateFormat format1 = new SimpleDateFormat("M/dd/yyyy");
 						    SimpleDateFormat format2 = new SimpleDateFormat("MM/dd/yyyy");
 						    Date date = format1.parse(dateRaw.trim().replaceAll(" +", " "));
-						    System.out.println(format2.format(date));
+						    RunnerClass.logger.info(format2.format(date));
 							return format2.format(date).toString();
 							}
 							catch(Exception e6)
@@ -326,7 +374,7 @@ public class RunnerClass
 	        //else c.add(Calendar.MONTH, 2);
 	        c.set(Calendar.DAY_OF_MONTH, 01);
 	        String firstDate = sdf.format(c.getTime());
-	        System.out.println(firstDate);
+	        RunnerClass.logger.info(firstDate);
 	        return firstDate;
 	    }
 	    public static String getCurrentDateTime()
@@ -334,7 +382,7 @@ public class RunnerClass
 	    	currentTime ="";
 	    	 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
 			 LocalDateTime now = LocalDateTime.now();  
-			// System.out.println(dtf.format(now));
+			// RunnerClass.logger.info(dtf.format(now));
 			 currentTime = dtf.format(now);
 			 return currentTime;
 	    }
@@ -367,7 +415,7 @@ public class RunnerClass
 	    	currentTime ="";
 	    	 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");  
 			 LocalDateTime now = LocalDateTime.now();  
-			// System.out.println(dtf.format(now));
+			// RunnerClass.logger.info(dtf.format(now));
 			 currentTime = dtf.format(now);
 			 return currentTime;
 	    }

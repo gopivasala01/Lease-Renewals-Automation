@@ -72,15 +72,15 @@ public class PropertyWare_InsertData
 
 	        	if (comparisonResult < 0) 
 	        	{
-	        	    System.out.println("End Date is before Start Date");
+	        	    RunnerClass.logger.info("End Date is before Start Date");
 	        	    // Handle the situation where the End Date is before the Start Date
 	        	} 
 	        	else if (comparisonResult == 0) 
 	        	{
-	        	    System.out.println("Start Date and End Date are the same");
+	        	    RunnerClass.logger.info("Start Date and End Date are the same");
 	        	} else 
 	        	{
-	        	    System.out.println("End Date is after Start Date");
+	        	    RunnerClass.logger.info("End Date is after Start Date");
 	        	    // Handle the situation where the End Date is after the Start Date
 	        	}
 	        } 
@@ -91,7 +91,7 @@ public class PropertyWare_InsertData
 	        }
 
 	    } catch (Exception e) {
-	        System.out.println("Issue in getting or Converting dates");
+	        RunnerClass.logger.info("Issue in getting or Converting dates");
 	        RunnerClass.failedReason = RunnerClass.failedReason + "," + "Issue in getting or Converting dates";
 	        return false;
 	    }
@@ -203,7 +203,7 @@ public class PropertyWare_InsertData
 					            && moveinautoChargeStartDate.equals(PDFReader.renewalExecutionDate))  
 					    {
 					        availabilityCheck = true;
-					        System.out.println(description + " already available");
+					        RunnerClass.logger.info(description + " already available");
 						    break;
 						    
 					}
@@ -213,9 +213,9 @@ public class PropertyWare_InsertData
 				{
 					if(amount=="Error"||amount=="0.00")
 					{
-						System.out.println("Issue in Adding Move in charge - "+description);
+						RunnerClass.logger.info("Issue in Adding Move in charge - "+description);
 						RunnerClass.failedReason =  RunnerClass.failedReason+","+"Issue in Adding Move in charge - "+description;
-						System.out.println(description+ " is not updated");
+						RunnerClass.logger.info(description+ " is not updated");
 						RunnerClass.statusID=1;
 					}
 					
@@ -231,7 +231,7 @@ public class PropertyWare_InsertData
 		{
 			RunnerClass.statusID=1;
 			e.printStackTrace();
-			System.out.println("Issue in Adding Move in charges");
+			RunnerClass.logger.info("Issue in Adding Move in charges");
 			RunnerClass.failedReason =  RunnerClass.failedReason+","+"Issue in Adding Move in charges";
 			 WebDriverManager.chromedriver().clearDriverCache().setup();
 			RunnerClass.driver.navigate().refresh();
@@ -288,7 +288,7 @@ public static boolean clearExistingAutoCharges() throws Exception {
 	            String autoChargeAmount = existingAutoChargeAmounts.get(k).getText();
 	            String endDateAutoCharge = endDates.get(k).getText();
 	            String startDatelist = startDateList.get(k).getText();
-	            System.out.println(autoChargeCode + "  ||  " + autoChargeAmount + "  ||  " + endDateAutoCharge);
+	            RunnerClass.logger.info(autoChargeCode + "  ||  " + autoChargeAmount + "  ||  " + endDateAutoCharge);
 
   	            if (endDateAutoCharge.trim().isEmpty()) 
   	            {
@@ -405,7 +405,7 @@ public static boolean clearExistingAutoCharges() throws Exception {
 	        RunnerClass.statusID = 1;
 	        e.printStackTrace();
 	        RunnerClass.failedReason = RunnerClass.failedReason + "," + "Something went wrong in clearing previous auto charges";
-	        System.out.println("Something went wrong in clearing previous auto charges");
+	        RunnerClass.logger.info("Something went wrong in clearing previous auto charges");
 	        RunnerClass.driver.navigate().refresh();
 	        WebDriverManager.chromedriver().clearDriverCache().setup();
 	        RunnerClass.js.executeScript("window.scrollBy(0, document.body.scrollHeight)");
@@ -556,7 +556,7 @@ public static boolean clearExistingAutoCharges() throws Exception {
 	        RunnerClass.statusID = 1;
 	        e.printStackTrace();
 	        RunnerClass.failedReason = RunnerClass.failedReason + "," + "Other information - Current Monthly Rent";
-	        System.out.println("Issue - Other information - Current Monthly Rent");
+	        RunnerClass.logger.info("Issue - Other information - Current Monthly Rent");
 	    }
 	}*/
 
@@ -598,12 +598,12 @@ public static boolean clearExistingAutoCharges() throws Exception {
 				if(chargeCode.contains(autoChargeCodes.replaceAll(".", ""))&&autoChargeAmount.substring(1).replaceAll("[^0-9]", "").equals(amount.replaceAll("[^0-9]", ""))&&(startDate.equals(autoChargeStartDate)||autoChargeEndDate.trim().equals("")))
 				{
 					availabilityCheck = true;
-					System.out.println(description+" already available");
+					RunnerClass.logger.info(description+" already available");
 					break;
 				}
 				if(autoChargeAmount=="Error"||autoChargeAmount=="0.00") 
 				{
-					System.out.println(description+" Amount Error");
+					RunnerClass.logger.info(description+" Amount Error");
 					RunnerClass.failedReason = RunnerClass.failedReason+","+" issue in adding Auto Charge - "+description;
 					RunnerClass.statusID=1;
 					break;
@@ -613,7 +613,7 @@ public static boolean clearExistingAutoCharges() throws Exception {
 			if(availabilityCheck==false)
 			{
 				if(amount=="Error" || amount=="0" || amount=="0.00") 
-				{					System.out.println(" issue in adding Auto Charge - "+description);
+				{					RunnerClass.logger.info(" issue in adding Auto Charge - "+description);
 					RunnerClass.failedReason = RunnerClass.failedReason+","+" issue in adding Auto Charge - "+description;
 					RunnerClass.statusID=1;
 					break;
@@ -635,7 +635,7 @@ public static boolean clearExistingAutoCharges() throws Exception {
       {
     	  e.printStackTrace();
 		  RunnerClass.failedReason = RunnerClass.failedReason+","+"Something went wrong in adding auto charges";
-		  System.out.println("Something went wrong in adding auto charges");
+		  RunnerClass.logger.info("Something went wrong in adding auto charges");
 		  RunnerClass.driver.navigate().refresh();
 		  return false;
       }
@@ -685,7 +685,7 @@ public static boolean clearExistingAutoCharges() throws Exception {
 			{
 			e.printStackTrace();
 			RunnerClass.statusID=1;
-			System.out.println("Issue in adding Move in Charge"+description);
+			RunnerClass.logger.info("Issue in adding Move in Charge"+description);
 			RunnerClass.failedReason =  RunnerClass.failedReason+","+"Issue in adding Auto Charge - "+description;
 			RunnerClass.driver.findElement(Locators.autoCharge_CancelButton).click();
 			return false;	
@@ -764,7 +764,7 @@ public static boolean clearExistingAutoCharges() throws Exception {
 			RunnerClass.driver.findElement(Locators.summaryTab).click();
 			PropertyWare.intermittentPopUp();
 			e.printStackTrace();
-			System.out.println("Issue in adding Move in Charge"+description);
+			RunnerClass.logger.info("Issue in adding Move in Charge"+description);
 			RunnerClass.failedReason =  RunnerClass.failedReason+","+"Issue in adding Move in Charge - "+description;
 			return false;	
 		}
@@ -809,7 +809,7 @@ public static boolean clearExistingAutoCharges() throws Exception {
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			System.out.println("Issue in adding values to Auto charges table");
+			RunnerClass.logger.info("Issue in adding values to Auto charges table");
 			RunnerClass.failedReason =  RunnerClass.failedReason+","+"Internal Error - consolidating auto charges";
 			return false;
 		}
@@ -835,7 +835,7 @@ public static boolean clearExistingAutoCharges() throws Exception {
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			System.out.println("Issue in adding values to Auto charges table");
+			RunnerClass.logger.info("Issue in adding values to Auto charges table");
 			RunnerClass.failedReason =  RunnerClass.failedReason+","+"Internal Error - consolidating Move In charges";
 			return false;
 		}

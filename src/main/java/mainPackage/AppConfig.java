@@ -2,13 +2,14 @@ package mainPackage;
 
 public class AppConfig 
 {
-	public static boolean saveButtonOnAndOff= true;
+	public static boolean saveButtonOnAndOff= false;
 	
 	public static String username= "mds0418@gmail.com";
 	public static String password="KRm#V39fecMDGg#";
 	public static String URL="https://app.propertyware.com/pw/login.jsp";
 	public static String[] Buildings= {"SABA2399"};
 	public static String[] Names= {"Baxter - Hernandez"};
+	public static String logFilePath = "C:\\SantoshMurthyP\\Lease Audit Automation\\Log Files";
 	
    public static String pendingRenewalLeases = "Select  Company,buildingName,OwnerName from Automation.LeaseRenewalAutomation  where Status = 'In Progress'";
 		   //"Select  Company,buildingabbreviation,LeaseName from LeaseFact_dashboard where DATEDIFF(month, StartDate, GETDATE()) = 1 and Company ='Florida'  order by id asc";

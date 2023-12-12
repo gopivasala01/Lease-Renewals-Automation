@@ -19,7 +19,7 @@ public class IdahoFalls_Format1
 		try
 		{
 			File file = RunnerClass.getLastModified();
-			System.out.println(file);
+			RunnerClass.logger.info(file);
 			FileInputStream fis = new FileInputStream(file);
 			PDDocument document = PDDocument.load(fis);
 			PDFTextStripper stripper = new PDFTextStripper();
@@ -31,11 +31,11 @@ public class IdahoFalls_Format1
 			text = text.replaceAll(" +", " ");
 			firstPageText = firstPageText.replaceAll(System.lineSeparator(), " ");
 			firstPageText = firstPageText.replaceAll(" +", " ");
-			System.out.println("First page text:\n" + firstPageText);
-			System.out.println("All pages text:\n" + text);
+			RunnerClass.logger.info("First page text:\n" + firstPageText);
+			RunnerClass.logger.info("All pages text:\n" + text);
 			document.close();
 	    
-	    System.out.println("------------------------------------------------------------------");
+	    RunnerClass.logger.info("------------------------------------------------------------------");
 	    
 	    String pattern = "\\d{1,2}/\\d{1,2}/\\d{4}"; 
 	    Pattern datePattern = Pattern.compile(pattern);
@@ -67,7 +67,7 @@ public class IdahoFalls_Format1
    	 
    	 PDFReader.renewalExecutionDate= SplitDate[0]+"/"+ SplitDate[1]+"/"+SplitDate[2];
 
-	    System.out.println("Last date mentioned on the page: " + RunnerClass.convertDate(PDFReader.renewalExecutionDate));
+	    RunnerClass.logger.info("Last date mentioned on the page: " + RunnerClass.convertDate(PDFReader.renewalExecutionDate));
 	    
 	    
 	    try {
@@ -78,7 +78,7 @@ public class IdahoFalls_Format1
 	        PDFReader.commencementDate = "Error";
 	        e.printStackTrace();
 	    }
-	    System.out.println("Commencement Date = " + PDFReader.commencementDate);
+	    RunnerClass.logger.info("Commencement Date = " + PDFReader.commencementDate);
 
 	    try {
 	        int expirationIndex = text.indexOf(PDFAppConfig.IdahoFalls_Format2.expirationDate_Prior) + PDFAppConfig.IdahoFalls_Format2.expirationDate_Prior.length();
@@ -88,7 +88,7 @@ public class IdahoFalls_Format1
 	        PDFReader.expirationDate = "Error";
 	        e.printStackTrace();
 	    }
-	    System.out.println("Expiration Date = " + PDFReader.expirationDate);
+	    RunnerClass.logger.info("Expiration Date = " + PDFReader.expirationDate);
 	    
 		
 		//Monthly Rent
@@ -125,7 +125,7 @@ public class IdahoFalls_Format1
 		    e.printStackTrace();
 		}
 
-		System.out.println("MonthlyRent = " + PDFReader.monthlyRent);
+		RunnerClass.logger.info("MonthlyRent = " + PDFReader.monthlyRent);
 
 	    
 	   // PDFReader.monthlyRent =  IdahoFalls_Format1.getValues(PDFAppConfig.IdahoFalls_Format2.monthlyRentFromPDF);
@@ -142,7 +142,7 @@ public class IdahoFalls_Format1
 	    	PDFReader.monthlyRent = "Error";
 	    	e.printStackTrace();
 	    }
-	    System.out.println("Monthly Rent = "+PDFReader.monthlyRent);
+	    RunnerClass.logger.info("Monthly Rent = "+PDFReader.monthlyRent);
 	    */
 	    //HVAC Air Filter Fee (OR) Resident Benefits Package
 	    if(text.contains(PDFAppConfig.IdahoFalls_Format2.HVACFilterAddendumTextAvailabilityCheck))
@@ -160,7 +160,7 @@ public class IdahoFalls_Format1
 			    	PDFReader.HVACAirFilterFee = "Error";
 			    	e.printStackTrace();
 			    }
-			    System.out.println("HVAC Air Filter Fee = "+PDFReader.HVACAirFilterFee);
+			    RunnerClass.logger.info("HVAC Air Filter Fee = "+PDFReader.HVACAirFilterFee);
 	    }
 	    
 	    if(text.contains(PDFAppConfig.IdahoFalls_Format2.residentBenefitsPackageCheck)&&(!text.contains("Resident Benefits Package Opt-Out Addendum")||!text.contains("RESIDENT BENEFITS PACKAGE OPT-OUT ADDENDUM")))
@@ -178,7 +178,7 @@ public class IdahoFalls_Format1
 			    	PDFReader.residentBenefitsPackage = "Error";
 			    	e.printStackTrace();
 			    }
-			    System.out.println("Resident Benefits Package = "+PDFReader.residentBenefitsPackage);
+			    RunnerClass.logger.info("Resident Benefits Package = "+PDFReader.residentBenefitsPackage);
 	    }
 	    
 	    
@@ -195,7 +195,7 @@ public class IdahoFalls_Format1
 	    	PDFReader.proratedRent = "Error";
 	    	e.printStackTrace();
 	    }
-	    System.out.println("Prorate Rent = "+PDFReader.proratedRent);
+	    RunnerClass.logger.info("Prorate Rent = "+PDFReader.proratedRent);
 	    
 	  //Lease Renewal Admin Fee
 	    try
@@ -209,13 +209,13 @@ public class IdahoFalls_Format1
 	    	PDFReader.leaseRenewalFee = "Error";
 	    	e.printStackTrace();
 	    }
-	    System.out.println("Lease Renewal Admin Fee = "+PDFReader.leaseRenewalFee);
+	    RunnerClass.logger.info("Lease Renewal Admin Fee = "+PDFReader.leaseRenewalFee);
 	    
 		//Pet Rent
 	    if(text.contains(PDFAppConfig.IdahoFalls_Format2.petAgreementAvailabilityCheck))
 	    {
 	    	PDFReader.petFlag = true;
-	    	System.out.println("Pet Addendum Available = "+PDFReader.petFlag);
+	    	RunnerClass.logger.info("Pet Addendum Available = "+PDFReader.petFlag);
 	    	
 	    	try
 	    	{
@@ -227,7 +227,7 @@ public class IdahoFalls_Format1
 	    	{
 	    		PDFReader.petRent = "Error";
 	    	}
-	    	System.out.println("Pet Rent = "+PDFReader.petRent);
+	    	RunnerClass.logger.info("Pet Rent = "+PDFReader.petRent);
 	    }
 	    
 	  //RUBS
@@ -253,7 +253,7 @@ public class IdahoFalls_Format1
 	                
 	                PDFReader.RUBS = lastDollarValue.trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "");
 	            }
-	            System.out.println("RUBS = " + PDFReader.RUBS);
+	            RunnerClass.logger.info("RUBS = " + PDFReader.RUBS);
 	        } catch (Exception e) {
 	            PDFReader.RUBS = "Error";
 	        }
@@ -277,7 +277,7 @@ public class IdahoFalls_Format1
 	    		{
 	    			PDFReader.increasedRent_amount = "Error";
 	    		}
-	    		System.out.println("Increased Rent = "+PDFReader.increasedRent_amount);
+	    		RunnerClass.logger.info("Increased Rent = "+PDFReader.increasedRent_amount);
 	    		//Monthly Rent End Date
 	    		try
 	    		{
@@ -287,7 +287,7 @@ public class IdahoFalls_Format1
 	    		{
 	    			PDFReader.increasedRent_previousRentEndDate = "Error";
 	    		}
-	    		System.out.println("Monthly rent End Date = "+PDFReader.increasedRent_previousRentEndDate);
+	    		RunnerClass.logger.info("Monthly rent End Date = "+PDFReader.increasedRent_previousRentEndDate);
 	    		// Increased Rent Start Date
 	    		try
 	    		{
@@ -297,7 +297,7 @@ public class IdahoFalls_Format1
 	    		{
 	    			PDFReader.increasedRent_newStartDate  = "Error";
 	    		}
-	    		System.out.println("Increased Rent Start Date = "+PDFReader.increasedRent_newStartDate);
+	    		RunnerClass.logger.info("Increased Rent Start Date = "+PDFReader.increasedRent_newStartDate);
 	    		
 	    	}
 	    	if(text.contains("and, $"))
@@ -314,7 +314,7 @@ public class IdahoFalls_Format1
 	    		{
 	    			PDFReader.increasedRent_amount = "Error";
 	    		}
-	    		System.out.println("Increased Rent = "+PDFReader.increasedRent_amount);
+	    		RunnerClass.logger.info("Increased Rent = "+PDFReader.increasedRent_amount);
 	    		
 	    		//Monthly Rent End Date
 	    		try
@@ -325,7 +325,7 @@ public class IdahoFalls_Format1
 	    		{
 	    			PDFReader.increasedRent_previousRentEndDate = "Error";
 	    		}
-	    		System.out.println("Monthly rent End Date = "+PDFReader.increasedRent_previousRentEndDate);
+	    		RunnerClass.logger.info("Monthly rent End Date = "+PDFReader.increasedRent_previousRentEndDate);
 	    		
 	    		// Increased Rent Start Date
 	    		try
@@ -337,7 +337,7 @@ public class IdahoFalls_Format1
 	    		{
 	    			PDFReader.increasedRent_newStartDate  = "Error";
 	    		}
-	    		System.out.println("Increased Rent Start Date = "+PDFReader.increasedRent_newStartDate);
+	    		RunnerClass.logger.info("Increased Rent Start Date = "+PDFReader.increasedRent_newStartDate);
 	    	}
 	    	if(text.contains("for "+PDFReader.commencementDate.trim()+" to"))
 	    	{
@@ -355,7 +355,7 @@ public class IdahoFalls_Format1
 	    		{
 	    			PDFReader.increasedRent_previousRentEndDate = "Error";
 	    		}
-	    		System.out.println("Monthly rent End Date = "+PDFReader.increasedRent_previousRentEndDate);
+	    		RunnerClass.logger.info("Monthly rent End Date = "+PDFReader.increasedRent_previousRentEndDate);
 	    		//Increased Rent
 	    		try
 	    		{
@@ -368,7 +368,7 @@ public class IdahoFalls_Format1
 	    		{
 	    			PDFReader.increasedRent_amount = "Error";
 	    		}
-	    		System.out.println("Increased Rent = "+PDFReader.increasedRent_amount);
+	    		RunnerClass.logger.info("Increased Rent = "+PDFReader.increasedRent_amount);
 	    		
 	    		// Increased Rent Start Date
 	    		try
@@ -381,7 +381,7 @@ public class IdahoFalls_Format1
 	    		{
 	    			PDFReader.increasedRent_newStartDate  = "Error";
 	    		}
-	    		System.out.println("Increased Rent Start Date = "+PDFReader.increasedRent_newStartDate);
+	    		RunnerClass.logger.info("Increased Rent Start Date = "+PDFReader.increasedRent_newStartDate);
 	    		
 	    	
 	    	}
@@ -396,7 +396,7 @@ public class IdahoFalls_Format1
 		}	
 		catch(Exception e)
 		{
-			System.out.println("Issue in fetching values from PDF");
+			RunnerClass.logger.info("Issue in fetching values from PDF");
 			RunnerClass.failedReason =  RunnerClass.failedReason+","+"Issue in fetching values from PDF";
 			return false;
 		}

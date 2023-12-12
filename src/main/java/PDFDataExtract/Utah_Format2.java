@@ -19,7 +19,7 @@ public class Utah_Format2
 		try
 		{
 			File file = RunnerClass.getLastModified();
-			System.out.println(file);
+			RunnerClass.logger.info(file);
 			FileInputStream fis = new FileInputStream(file);
 			PDDocument document = PDDocument.load(fis);
 			PDFTextStripper stripper = new PDFTextStripper();
@@ -31,11 +31,11 @@ public class Utah_Format2
 			text = text.replaceAll(" +", " ");
 			firstPageText = firstPageText.replaceAll(System.lineSeparator(), " ");
 			firstPageText = firstPageText.replaceAll(" +", " ");
-			System.out.println("First page text:\n" + firstPageText);
-			System.out.println("All pages text:\n" + text);
+			RunnerClass.logger.info("First page text:\n" + firstPageText);
+			RunnerClass.logger.info("All pages text:\n" + text);
 			document.close();
 	    
-	    System.out.println("------------------------------------------------------------------");
+	    RunnerClass.logger.info("------------------------------------------------------------------");
 	    
 	    String pattern = "\\d{1,2}/\\d{1,2}/\\d{4}"; 
 	    Pattern datePattern = Pattern.compile(pattern);
@@ -67,7 +67,7 @@ public class Utah_Format2
    	 PDFReader.renewalExecutionDate= SplitDate[0]+"/"+ SplitDate[1]+"/"+SplitDate[2];
 
 
-	    System.out.println("Last date mentioned on the page: " + PDFReader.renewalExecutionDate);
+	    RunnerClass.logger.info("Last date mentioned on the page: " + PDFReader.renewalExecutionDate);
 		    try
 		    {
 		    	PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.Utah_Format2.commencementDate_Prior)+PDFAppConfig.Utah_Format2.commencementDate_Prior.length(),text.indexOf(PDFAppConfig.Utah_Format1.commencementDate_After));
@@ -77,7 +77,7 @@ public class Utah_Format2
 		    	PDFReader.commencementDate = "Error";
 		    	e.printStackTrace();
 		    }
-		    System.out.println("Commensement Date = "+PDFReader.commencementDate);
+		    RunnerClass.logger.info("Commensement Date = "+PDFReader.commencementDate);
 		   try
 		    {
 			   PDFReader.expirationDate = text.substring(text.indexOf(PDFAppConfig.Utah_Format2.expirationDate_Prior)+PDFAppConfig.Utah_Format2.expirationDate_Prior.length(),text.indexOf(PDFAppConfig.Utah_Format1.expirationDate_After));
@@ -88,7 +88,7 @@ public class Utah_Format2
 		    	 PDFReader.expirationDate = "Error";
 		    	 e.printStackTrace();
 		    }
-		   System.out.println("Expiration Date = "+PDFReader.expirationDate);
+		   RunnerClass.logger.info("Expiration Date = "+PDFReader.expirationDate);
 		   
 		   
 		   
@@ -128,7 +128,7 @@ public class Utah_Format2
 			    e.printStackTrace();
 			}
 
-			System.out.println("MonthlyRent = " + PDFReader.monthlyRent);
+			RunnerClass.logger.info("MonthlyRent = " + PDFReader.monthlyRent);
 
 		   
 		   
@@ -149,7 +149,7 @@ public class Utah_Format2
 				    	PDFReader.HVACAirFilterFee = "Error";
 				    	e.printStackTrace();
 				    }
-				    System.out.println("HVAC Air Filter Fee = "+PDFReader.HVACAirFilterFee);
+				    RunnerClass.logger.info("HVAC Air Filter Fee = "+PDFReader.HVACAirFilterFee);
 		    }
 		    
 		    if(text.contains(PDFAppConfig.Utah_Format1.residentBenefitsPackageCheck)&&(!text.contains("Resident Benefits Package Opt-Out Addendum")||(!text.contains("Resident Benefits Package Opt-Out Addendum")||!text.contains("RESIDENT BENEFITS PACKAGE OPT-OUT ADDENDUM"))))
@@ -167,7 +167,7 @@ public class Utah_Format2
 				    	PDFReader.residentBenefitsPackage = "Error";
 				    	e.printStackTrace();
 				    }
-				    System.out.println("Resident Benefits Package = "+PDFReader.residentBenefitsPackage);
+				    RunnerClass.logger.info("Resident Benefits Package = "+PDFReader.residentBenefitsPackage);
 		    }
 		    
 		    
@@ -199,7 +199,7 @@ public class Utah_Format2
 		                PDFReader.RUBS = lastDollarValue.trim().split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "");
 		                }
 		            }
-		            System.out.println("RUBS = " + PDFReader.RUBS);
+		            RunnerClass.logger.info("RUBS = " + PDFReader.RUBS);
 		        } catch (Exception e) {
 		            PDFReader.RUBS = "Error";
 		        }
@@ -218,13 +218,13 @@ public class Utah_Format2
 		    	PDFReader.proratedRent = "Error";
 		    	e.printStackTrace();
 		    }
-		    System.out.println("Prorate Rent = "+PDFReader.proratedRent);
+		    RunnerClass.logger.info("Prorate Rent = "+PDFReader.proratedRent);
 		    
 			//Pet Rent
 		    if(text.contains(PDFAppConfig.OKC_Format2.petAgreementAvailabilityCheck)||text.contains(PDFAppConfig.OKC_Format2.petAgreementAvailabilityCheck2)||text.contains(PDFAppConfig.OKC_Format2.petAgreementAvailabilityCheck3))
 		    {
 		    	PDFReader.petFlag = true;
-		    	System.out.println("Pet Addendum Available = "+PDFReader.petFlag);
+		    	RunnerClass.logger.info("Pet Addendum Available = "+PDFReader.petFlag);
 		    	
 		    	try
 		    	{
@@ -236,7 +236,7 @@ public class Utah_Format2
 		    	{
 		    		PDFReader.petRent = "Error";
 		    	}
-		    	System.out.println("Pet Rent = "+PDFReader.petRent);
+		    	RunnerClass.logger.info("Pet Rent = "+PDFReader.petRent);
 		    }
 		    
 		    //Lease Renewal Admin Fee
@@ -250,7 +250,7 @@ public class Utah_Format2
 	    	{
 	    		PDFReader.leaseRenewalFee = "Error";
 	    	}
-	    	System.out.println("Lease Renewal Fee = "+PDFReader.leaseRenewalFee);
+	    	RunnerClass.logger.info("Lease Renewal Fee = "+PDFReader.leaseRenewalFee);
 	    	
 	    	
 	    	 
@@ -258,7 +258,7 @@ public class Utah_Format2
 		}
 		catch(Exception e)
 		{
-			System.out.println("Issue in fetching values from PDF");
+			RunnerClass.logger.info("Issue in fetching values from PDF");
 			RunnerClass.failedReason =  RunnerClass.failedReason+","+"Issue in fetching values from PDF";
 			return false;
 		}
